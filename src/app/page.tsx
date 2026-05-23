@@ -28,7 +28,7 @@ const Home = () => {
         src="/hero_pose_mobile.png"
         alt="Hero Mobile"
         width={800}
-        height={1200}
+        height={900}
         className="block md:hidden w-screen h-auto object-cover"
         priority
       />
