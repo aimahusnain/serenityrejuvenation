@@ -34,13 +34,16 @@ const Home = () => {
       />
 
       {/* Button over image */}
-      <div className="absolute inset-0 left-14 md:-top-24 max-w-md items-start justify-end md:justify-center flex flex-col py-5">
-        <h1 className="text-5xl md:text-6xl font-bold text-[#133316] mb-4">Serenity <br /> <span className={`${PrataFont.className}`}>Rejuvenation</span></h1  >
+      <div className="absolute inset-0 left-5 sm:left-14 md:-top-24 max-w-md items-start justify-end md:justify-center flex flex-col py-5">
+        <h1 className="text-[2.2rem] sm:text-3xl md:text-6xl font-bold text-[#133316] mb-3 sm:mb-4 leading-tight">
+          Serenity <br />
+          <span className={PrataFont.className}>Rejuvenation</span>
+        </h1>
         <Button className="rounded-full px-7 mt-5 bg-[#102d16] hover:bg-[#094f17] text-md" size="lg">CONTACT US</Button>
       </div>
 
       {/* Product Card */}
-      <div className="absolute left-6 md:right-14 md:left-auto top-6 md:top-24 w-56 md:w-xs">
+      <div className="absolute left-5 sm:left-14 md:right-14 md:left-auto top-10 md:top-24 w-56 md:w-xs">
         <ProductCard
           name="Microneedling"
         />
