@@ -21,6 +21,9 @@ const Home = () => {
         height={1080}
         className="hidden md:block w-screen h-auto object-cover"
         priority
+        loading="eager"
+        quality={80}
+        sizes="100vw"
       />
 
       {/* Mobile Image */}
@@ -31,6 +34,9 @@ const Home = () => {
         height={750}
         className="block md:hidden w-screen h-auto object-cover"
         priority
+        loading="eager"
+        quality={80}
+        sizes="100vw"
       />
 
       {/* Button over image */}
