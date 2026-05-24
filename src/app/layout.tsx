@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import SpaLoader from "@/components/loader";
 
 const fontSans = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body
         className="antialiased bg-[ecf4dd]"
       >
+        <SpaLoader />
         {children}
       </body>
     </html>

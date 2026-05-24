@@ -141,3 +141,57 @@
     @apply font-[family-name:var(--font-text)];
   }
 }
+
+@layer utilities {
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 50s linear infinite;
+  }
+}
+
+::selection {
+  background: #f7e0ac;
+  color: #000;
+}
+
+/* For Firefox */
+::-moz-selection {
+  background: #f7e0ac;
+  color: #000;
+}
+
+@keyframes sweep {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-sweep {
+  animation: sweep 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* 1. Word slide-up entrance */
+.word-inner {
+  opacity: 0;
+  transform: translateY(100%) skewY(6deg);
+  animation: slideUp .75s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes slideUp {
+  to { opacity: 1; transform: none; }
+}
+
+/* 2. Stagger each word */
+.serif-word { animation-delay: 0.18s; }
+
+/* 3. Expanding divider line */
+@keyframes expandLine {
+  to { width: 48px; }
+}
