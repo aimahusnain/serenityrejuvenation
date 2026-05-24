@@ -95,7 +95,7 @@ export default function PurelyRejuvenated() {
               <br />
               Rejuvenated
             </h1>
-            <div className="flex-shrink-0 mt-1">
+            <div className="shrink-0 mt-1">
               <SpaFaceIcon />
             </div>
           </div>
@@ -146,7 +146,7 @@ export default function PurelyRejuvenated() {
                 {/* Step badge */}
                 <span
                   className={[
-                    "flex-shrink-0 w-6 h-6 rounded-full text-[11px] font-bold flex items-center justify-center transition-all duration-500",
+                    "shrink-0 w-6 h-6 rounded-full text-[11px] font-bold flex items-center justify-center transition-all duration-500",
                     isHighlighted && "bg-[#2e241e] text-white",
                     isDim && "bg-[#d4cdc4] text-[#a09890]",
                   ]

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Prata } from "next/font/google";
 import TextSlider from "@/components/TextSlider";
 import NailTechSection from "@/components/Nailtechsection";
-import PurelyRejuvenated from "@/components/Purelyrejuvenated ";
+import PurelyRejuvenated from "@/components/Purelyrejuvenated";
 
 const PrataFont = Prata({
   weight: "400",

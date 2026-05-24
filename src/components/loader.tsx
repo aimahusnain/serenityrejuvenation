@@ -26,7 +26,7 @@ export default function SpaLoader() {
     <div
       role="status"
       aria-label="Loading"
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-2 transition-opacity duration-[800ms] ease-in-out"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-2 transition-opacity duration-800 ease-in-out"
       style={{
         backgroundColor: "#fff",
         opacity: fading ? 0 : 1,
@@ -50,7 +50,7 @@ export default function SpaLoader() {
 
       {/* Sweeping bar */}
       <div
-        className="relative w-[120px] h-1 overflow-hidden"
+        className="relative w-30 h-1 overflow-hidden"
         style={{ backgroundColor: "#2e2018" }}
         aria-hidden="true"
       >

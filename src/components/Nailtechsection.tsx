@@ -6,7 +6,7 @@ const TICKER_ITEMS = Array(8).fill(null);
 
 export default function NailTechSection() {
   return (
-    <section className="flex rounded-2xl flex-col md:flex-row w-full min-h-screen md:min-h-0 md:h-[600px] overflow-hidden font-sans">
+    <section className="flex rounded-2xl flex-col md:flex-row w-full min-h-screen md:min-h-0 md:h-150 overflow-hidden font-sans">
       {/* ── LEFT: Photo ── */}
       <div className="relative w-full md:flex-[0_0_48%] h-72 sm:h-96 md:h-full overflow-hidden">
         <Image
@@ -38,7 +38,7 @@ export default function NailTechSection() {
             Serenity
             {/* Decorative curl underline */}
             <span
-              className="absolute bottom-[6px] w-16 h-4 border-b-[2.5px] border-r-[2.5px] border-[#2e241e] rounded-br-[20px]"
+              className="absolute bottom-1.5 w-16 h-4 border-b-[2.5px] border-r-[2.5px] border-[#2e241e] rounded-br-[20px]"
               aria-hidden="true"
             />
           </h1>
