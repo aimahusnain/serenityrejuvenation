@@ -195,3 +195,7 @@
 @keyframes expandLine {
   to { width: 48px; }
 }
+
+html {
+  scroll-behavior: smooth;
+}
