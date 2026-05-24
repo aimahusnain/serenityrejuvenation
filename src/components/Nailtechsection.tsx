@@ -6,7 +6,7 @@ const TICKER_ITEMS = Array(8).fill(null);
 
 export default function NailTechSection() {
   return (
-    <section className="flex flex-col md:flex-row w-full min-h-screen md:min-h-0 md:h-[600px] overflow-hidden font-sans">
+    <section className="flex rounded-2xl flex-col md:flex-row w-full min-h-screen md:min-h-0 md:h-[600px] overflow-hidden font-sans">
       {/* ── LEFT: Photo ── */}
       <div className="relative w-full md:flex-[0_0_48%] h-72 sm:h-96 md:h-full overflow-hidden">
         <Image

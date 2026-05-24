@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Prata } from "next/font/google";
 import TextSlider from "@/components/TextSlider";
 import NailTechSection from "@/components/Nailtechsection";
+import PurelyRejuvenated from "@/components/Purelyrejuvenated ";
 
 const PrataFont = Prata({
   weight: "400",
@@ -13,7 +14,7 @@ const PrataFont = Prata({
 const Home = () => {
   return (
     <div>
-      <div className="m-4 flex flex-col gap-8">
+      <div className="m-4 flex flex-col gap-3">
         <div>
           <div className="relative overflow-hidden rounded-t-2xl">
             {/* Desktop Image */}
@@ -59,6 +60,7 @@ const Home = () => {
         </div>
 
         <NailTechSection />
+        <PurelyRejuvenated />
       </div>
     </div>
   );
