@@ -84,7 +84,7 @@ const products: Product[] = [
 
 const ProductsSection = () => {
   return (
-    <section className="w-full py-20 md:px-10 dark:bg-[#120e0c]">
+    <section className="w-full pt-20 pb-5 md:px-10 dark:bg-[#120e0c]">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-16">

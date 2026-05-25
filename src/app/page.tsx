@@ -5,6 +5,7 @@ import TextSlider from "@/components/TextSlider";
 import NailTechSection from "@/components/Nailtechsection";
 import PurelyRejuvenated from "@/components/Purelyrejuvenated";
 import ProductsSection from "@/components/productsection";
+import { ScrollBasedVelocity } from "@/components/ScrollBasedVelocity";
 
 const PrataFont = Prata({
   weight: "400",
@@ -63,6 +64,7 @@ const Home = () => {
         <NailTechSection />
         <PurelyRejuvenated />
         <ProductsSection />
+        <ScrollBasedVelocity />
       </div>
     </div>
   );
