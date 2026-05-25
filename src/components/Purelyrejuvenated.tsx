@@ -90,7 +90,7 @@ export default function PurelyRejuvenated() {
         {/* ── LEFT ── */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start gap-5 mb-6">
-            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[#2e241e] leading-[1.1] tracking-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[#2e241e] dark:text-neutral-100 leading-[1.1] tracking-tight">
               Purely
               <br />
               Rejuvenated
@@ -100,7 +100,7 @@ export default function PurelyRejuvenated() {
             </div>
           </div>
 
-          <p className="text-[15px] leading-relaxed text-[#6b6457] max-w-sm mb-10">
+          <p className="text-[15px] leading-relaxed text-[#6b6457] dark:text-neutral-400 max-w-sm mb-10">
             The serenity that stays with you long after your spa session,
             lasting well even into the next day. No more commuting way back
             home, no more traffic, just pure relaxation.
@@ -112,12 +112,12 @@ export default function PurelyRejuvenated() {
             rel="noopener noreferrer"
             className="
               inline-flex items-center justify-center
-              bg-[#2e241e] text-white
+              bg-[#2e241e] dark:bg-neutral-100 text-white dark:text-neutral-900
               text-sm font-medium tracking-wide
               px-10 py-4 rounded-full
               transition-all duration-200
-              hover:bg-[#21130f] active:scale-95
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2e241e]
+              hover:bg-[#21130f] dark:hover:bg-neutral-200 active:scale-95
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2e241e] dark:focus-visible:ring-neutral-100
             "
           >
             Instant Booking
@@ -137,8 +137,9 @@ export default function PurelyRejuvenated() {
                 className={[
                   "flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-500 cursor-not-allowed select-none",
                   isHighlighted &&
-                    "bg-white shadow-md border border-[#e8e0d6] cursor-default select-auto",
-                  isDim && "bg-[#ede9e3] border border-[#ddd6cc]",
+                    "bg-white dark:bg-neutral-800 shadow-md border border-[#e8e0d6] dark:border-neutral-700 cursor-default select-auto",
+                  isDim &&
+                    "bg-[#ede9e3] dark:bg-neutral-900 border border-[#ddd6cc] dark:border-neutral-800",
                 ]
                   .filter(Boolean)
                   .join(" ")}
@@ -147,8 +148,10 @@ export default function PurelyRejuvenated() {
                 <span
                   className={[
                     "shrink-0 w-6 h-6 rounded-full text-[11px] font-bold flex items-center justify-center transition-all duration-500",
-                    isHighlighted && "bg-[#2e241e] text-white",
-                    isDim && "bg-[#d4cdc4] text-[#a09890]",
+                    isHighlighted &&
+                      "bg-[#2e241e] dark:bg-neutral-100 text-white dark:text-neutral-900",
+                    isDim &&
+                      "bg-[#d4cdc4] dark:bg-neutral-700 text-[#a09890] dark:text-neutral-500",
                   ]
                     .filter(Boolean)
                     .join(" ")}
@@ -160,8 +163,9 @@ export default function PurelyRejuvenated() {
                 <span
                   className={[
                     "text-sm leading-snug transition-all duration-500 flex-1",
-                    isHighlighted && "font-semibold text-[#2e241e]",
-                    isDim && "font-normal text-[#a09890]",
+                    isHighlighted &&
+                      "font-semibold text-[#2e241e] dark:text-neutral-100",
+                    isDim && "font-normal text-[#a09890] dark:text-neutral-500",
                   ]
                     .filter(Boolean)
                     .join(" ")}
@@ -208,7 +212,8 @@ function SpaFaceIcon() {
         y1="8"
         x2="8"
         y2="16"
-        stroke="#2e241e"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -217,7 +222,8 @@ function SpaFaceIcon() {
         y1="12"
         x2="12"
         y2="12"
-        stroke="#2e241e"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -226,7 +232,8 @@ function SpaFaceIcon() {
         y1="2"
         x2="20"
         y2="8"
-        stroke="#2e241e"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -235,14 +242,23 @@ function SpaFaceIcon() {
         y1="5"
         x2="23"
         y2="5"
-        stroke="#2e241e"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
-      <circle cx="34" cy="34" r="20" stroke="#2e241e" strokeWidth="1.8" />
+      <circle
+        cx="34"
+        cy="34"
+        r="20"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
+        strokeWidth="1.8"
+      />
       <path
         d="M18 28 Q20 14 34 14 Q48 14 50 28"
-        stroke="#2e241e"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
         strokeWidth="1.8"
         fill="none"
         strokeLinecap="round"
@@ -252,7 +268,8 @@ function SpaFaceIcon() {
         y1="32"
         x2="27"
         y2="36"
-        stroke="#2e241e"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
         strokeWidth="2"
         strokeLinecap="round"
       />
@@ -261,20 +278,23 @@ function SpaFaceIcon() {
         y1="32"
         x2="41"
         y2="36"
-        stroke="#2e241e"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
         strokeWidth="2"
         strokeLinecap="round"
       />
       <path
         d="M27 42 Q34 48 41 42"
-        stroke="#2e241e"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
         strokeWidth="1.8"
         fill="none"
         strokeLinecap="round"
       />
       <path
         d="M16 58 Q20 50 34 50 Q48 50 52 58"
-        stroke="#2e241e"
+        stroke="currentColor"
+        className="text-[#2e241e] dark:text-neutral-100"
         strokeWidth="1.8"
         fill="none"
         strokeLinecap="round"

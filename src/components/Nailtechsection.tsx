@@ -20,7 +20,7 @@ export default function NailTechSection() {
       </div>
 
       {/* ── MIDDLE: Vertical scrolling ticker ── */}
-      <div className="hidden md:flex flex-col items-center justify-start w-14 shrink-0 bg-white border-x border-neutral-100 overflow-hidden">
+      <div className="hidden md:flex flex-col items-center justify-start w-14 shrink-0 bg-white dark:bg-[#2e241e]/60 border-x border-neutral-100 dark:border-neutral-700 overflow-hidden">
         <div className="flex flex-col items-center animate-ticker-scroll">
           {TICKER_ITEMS.map((_, i) => (
             <TickerGroup key={i} />
@@ -29,22 +29,22 @@ export default function NailTechSection() {
       </div>
 
       {/* ── RIGHT: Content ── */}
-      <div className="flex-1 bg-[#ffece0] flex items-center justify-center px-8 py-14 md:py-0 md:px-14 lg:px-20">
+      <div className="flex-1 bg-[#ffece0] dark:bg-[#2e241e]/40 flex items-center justify-center px-8 py-14 md:py-0 md:px-14 lg:px-20">
         <div className="max-w-sm w-full">
           {/* Heading */}
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-[52px] font-bold text-[#2e241e] leading-[1.1] mb-6 relative inline-block">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-[52px] font-bold text-[#2e241e] dark:text-neutral-100 leading-[1.1] mb-6 relative inline-block">
             Experienced
             <br />
             Serenity
             {/* Decorative curl underline */}
             <span
-              className="absolute bottom-1.5 w-16 h-4 border-b-[2.5px] border-r-[2.5px] border-[#2e241e] rounded-br-[20px]"
+              className="absolute bottom-1.5 w-16 h-4 border-b-[2.5px] border-r-[2.5px] border-[#2e241e] dark:border-neutral-100 rounded-br-[20px]"
               aria-hidden="true"
             />
           </h1>
 
           {/* Body copy */}
-          <p className="text-[15.5px] leading-[1.75] text-[#2e241e] mb-10 font-normal">
+          <p className="text-[15.5px] leading-[1.75] text-[#2e241e] dark:text-neutral-300 mb-10 font-normal">
             Our trained technicians use only the highest quality products and
             latest techniques to ensure your skin is not just beautiful, but
             healthy too.
@@ -55,11 +55,11 @@ export default function NailTechSection() {
             href="#gallery"
             className="
               inline-block px-10 py-3.5
-              rounded-full border border-[#2e241e]
-              text-sm font-medium tracking-wide text-[#2e241e]
+              rounded-full border border-[#2e241e] dark:border-neutral-100
+              text-sm font-medium tracking-wide text-[#2e241e] dark:text-neutral-100
               transition-colors duration-200
-              hover:bg-[#2e241e] hover:text-white
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2e241e]
+              hover:bg-[#2e241e] hover:text-white dark:hover:bg-neutral-100 dark:hover:text-neutral-900
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2e241e] dark:focus-visible:ring-neutral-100
             "
           >
             View Work
@@ -78,13 +78,13 @@ function TickerGroup() {
         className="
           [writing-mode:vertical-rl] [text-orientation:mixed] rotate-180
           text-[10px] font-medium tracking-[0.18em] uppercase
-          text-stone-500 whitespace-nowrap py-7 leading-none
+          text-stone-500 dark:text-stone-400 whitespace-nowrap py-7 leading-none
         "
       >
         Serenity Rejuvenation
       </span>
       <span
-        className="text-[#2e241e] py-2 leading-none select-none"
+        className="text-[#2e241e] dark:text-neutral-100 py-2 leading-none select-none"
         aria-hidden="true"
       >
         ♡

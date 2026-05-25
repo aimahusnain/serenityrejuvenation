@@ -21,6 +21,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 
 const services = [
   {
@@ -70,15 +71,15 @@ export default function Header() {
           <NavigationMenuList className="gap-1">
             {/* Services */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-neutral-700  hover:bg-[#ffc6a4]/50 dark:text-neutral-300">
+              <NavigationMenuTrigger className="text-neutral-700 hover:bg-[#ffc6a4]/50 dark:text-neutral-300 dark:hover:bg-neutral-800">
                 Services
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid w-150 grid-cols-2 gap-4 p-6">
+                <div className="grid w-150 grid-cols-2 gap-4 p-6 bg-white dark:bg-neutral-900">
                   {services.map((service) => (
                     <div
                       key={service.title}
-                      className="group rounded-lg border border-neutral-200 p-4 hover:border-black/40  hover:bg-[#ffc6a4]/50 transition-all"
+                      className="group rounded-lg border border-neutral-200 dark:border-neutral-700 p-4 hover:border-black/40 dark:hover:border-neutral-600 hover:bg-[#ffc6a4]/50 dark:hover:bg-neutral-800 transition-all"
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
@@ -90,7 +91,7 @@ export default function Header() {
                           </p>
                         </div>
                         <div className="text-right ml-2 max-w-15">
-                          <p className="text-xs font-semibold text-[#2e241e] dark:text-black">
+                          <p className="text-xs font-semibold text-[#2e241e] dark:text-neutral-100">
                             {service.price}
                           </p>
                         </div>
@@ -107,7 +108,7 @@ export default function Header() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "text-neutral-700 hover:bg-[#ffc6a4]/50 dark:text-neutral-300",
+                    "text-neutral-700 hover:bg-[#ffc6a4]/50 dark:text-neutral-300 dark:hover:bg-neutral-800",
                   )}
                 >
                   Gallery
@@ -121,7 +122,7 @@ export default function Header() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "text-neutral-700 hover:bg-[#ffc6a4]/50 dark:text-neutral-300",
+                    "text-neutral-700 hover:bg-[#ffc6a4]/50 dark:text-neutral-300 dark:hover:bg-neutral-800",
                   )}
                 >
                   Gift Card
@@ -131,12 +132,20 @@ export default function Header() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 mr-18">
+          {/* Light mode logo */}
           <Image
-            src="/logo.png"
+            src="/logo_dark.png"
             alt="Serenity Rejuvenation"
-            className="max-h-full"
+            className="max-h-full dark:hidden"
+            width={130}
+            height={200}
+          />
+          {/* Dark mode logo */}
+          <Image
+            src="/logo_light.png"
+            alt="Serenity Rejuvenation"
+            className="max-h-full hidden dark:block"
             width={130}
             height={200}
           />
@@ -144,6 +153,7 @@ export default function Header() {
 
         {/* Right side buttons */}
         <div className="flex items-center space-x-2 md:space-x-4">
+          <AnimatedThemeToggler />
           <Button
             variant="ghost"
             size="sm"
@@ -174,16 +184,25 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-72 bg-[#fff8f4] p-0 flex flex-col"
+              className="w-72 bg-[#fff8f4] dark:bg-neutral-900 p-0 flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-[#f0d8c8]">
+              <div className="flex items-center justify-between px-5 py-4 border-b border-[#f0d8c8] dark:border-neutral-700">
+                {/* Light mode logo */}
                 <Image
-                  src="/logo.png"
+                  src="/logo_dark.png"
                   alt="Serenity Rejuvenation"
                   width={100}
                   height={60}
-                  className="object-contain"
+                  className="object-contain dark:hidden"
+                />
+                {/* Dark mode logo */}
+                <Image
+                  src="/logo_light.png"
+                  alt="Serenity Rejuvenation"
+                  width={100}
+                  height={60}
+                  className="object-contain hidden dark:block"
                 />
               </div>
 
@@ -192,7 +211,7 @@ export default function Header() {
                 {/* Services accordion */}
                 <Accordion type="single" collapsible defaultValue="services">
                   <AccordionItem value="services" className="border-none">
-                    <AccordionTrigger className="px-5 py-3 text-sm font-medium text-[#2e241e] hover:bg-[#fce8d8] hover:no-underline rounded-none">
+                    <AccordionTrigger className="px-5 py-3 text-sm font-medium text-[#2e241e] dark:text-neutral-100 hover:bg-[#fce8d8] dark:hover:bg-neutral-800 hover:no-underline rounded-none">
                       Services
                     </AccordionTrigger>
                     <AccordionContent className="pb-1">
@@ -200,17 +219,17 @@ export default function Header() {
                         {services.map((service) => (
                           <div
                             key={service.title}
-                            className="rounded-xl border border-[#f0d8c8] bg-white px-3 py-2.5 hover:border-[#d4a090] hover:bg-[#fff8f4] transition-all cursor-pointer"
+                            className="rounded-xl border border-[#f0d8c8] dark:border-neutral-700 bg-white dark:bg-neutral-800 px-3 py-2.5 hover:border-[#d4a090] dark:hover:border-neutral-600 hover:bg-[#fff8f4] dark:hover:bg-neutral-700 transition-all cursor-pointer"
                           >
                             <div className="flex items-start justify-between gap-2 mb-1">
-                              <span className="text-xs font-medium text-[#2e241e] leading-snug">
+                              <span className="text-xs font-medium text-[#2e241e] dark:text-neutral-100 leading-snug">
                                 {service.title}
                               </span>
-                              <span className="text-[11px] font-medium text-[#a0634a] whitespace-nowrap pt-px">
+                              <span className="text-[11px] font-medium text-[#a0634a] dark:text-amber-600 whitespace-nowrap pt-px">
                                 {service.price}
                               </span>
                             </div>
-                            <p className="text-[11px] text-[#8a7068] leading-relaxed line-clamp-2">
+                            <p className="text-[11px] text-[#8a7068] dark:text-neutral-400 leading-relaxed line-clamp-2">
                               {service.description}
                             </p>
                           </div>
@@ -220,35 +239,35 @@ export default function Header() {
                   </AccordionItem>
                 </Accordion>
 
-                <div className="h-px bg-[#f0d8c8] mx-5 my-1" />
+                <div className="h-px bg-[#f0d8c8] dark:bg-neutral-700 mx-5 my-1" />
 
                 <Link
                   href="/gallery"
-                  className="flex items-center px-5 py-3 text-sm font-medium text-[#2e241e] hover:bg-[#fce8d8] transition-colors"
+                  className="flex items-center px-5 py-3 text-sm font-medium text-[#2e241e] dark:text-neutral-100 hover:bg-[#fce8d8] dark:hover:bg-neutral-800 transition-colors"
                 >
                   Gallery
                 </Link>
                 <Link
                   href="/gift-card"
-                  className="flex items-center px-5 py-3 text-sm font-medium text-[#2e241e] hover:bg-[#fce8d8] transition-colors"
+                  className="flex items-center px-5 py-3 text-sm font-medium text-[#2e241e] dark:text-neutral-100 hover:bg-[#fce8d8] dark:hover:bg-neutral-800 transition-colors"
                 >
                   Gift Card
                 </Link>
               </div>
 
               {/* Footer actions */}
-              <div className="border-t border-[#f0d8c8] p-4 flex flex-col gap-2">
+              <div className="border-t border-[#f0d8c8] dark:border-neutral-700 p-4 flex flex-col gap-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="w-full border-[#e5cfc3] text-[#2e241e] hover:bg-[#fce8d8]"
+                  className="w-full border-[#e5cfc3] dark:border-neutral-700 text-[#2e241e] dark:text-neutral-100 hover:bg-[#fce8d8] dark:hover:bg-neutral-800"
                 >
                   <User className="mr-2 size-4" />
                   Account
                 </Button>
                 <Button
                   size="sm"
-                  className="w-full bg-[#2e241e] hover:bg-[#4a3830] text-white"
+                  className="w-full bg-[#2e241e] hover:bg-[#4a3830] dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900"
                 >
                   <LogIn className="mr-2 size-4" />
                   Login

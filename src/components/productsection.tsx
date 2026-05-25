@@ -1,8 +1,5 @@
 "use client";
 
-import React from "react";
-import { FollowerPointerCard } from "./ui/following-pointer";
-
 type Product = {
   title: string;
   price?: string;
@@ -85,21 +82,21 @@ const products: Product[] = [
 
 const ProductsSection = () => {
   return (
-    <section className="w-full py-20 md:px-10">
+    <section className="w-full py-20 md:px-10 dark:bg-[#120e0c]">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-16">
-          <p className="uppercase tracking-[4px] text-sm text-[#8b6f5c]">
+          <p className="uppercase tracking-[4px] text-sm text-[#8b6f5c] dark:text-stone-400">
             Our Products
           </p>
 
-          <h2 className="text-4xl md:text-6xl font-serif font-semibold text-[#2e2018] mt-4">
+          <h2 className="text-4xl md:text-6xl font-serif font-semibold text-[#2e2018] dark:text-neutral-100 mt-4">
             Advanced Treatments.
             <br />
             Natural Results.
           </h2>
 
-          <p className="mt-6 text-[#6f625a] max-w-2xl mx-auto text-lg">
+          <p className="mt-6 text-[#6f625a] dark:text-neutral-400 max-w-2xl mx-auto text-lg">
             Each treatment is designed with precision and care to help you
             achieve radiant, healthy skin.
           </p>
@@ -108,70 +105,65 @@ const ProductsSection = () => {
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-1 xl:grid-cols-3 gap-8">
           {products.map((product, index) => (
-            <FollowerPointerCard
-            key={index}
-              title={<TitleComponent title="Click to Book Appointment" />}
-            >
-              <div
-                className="bg-white rounded-3xl overflow-hidden border border-[#e7ddd4] shadow-sm hover:shadow-xl transition-all duration-300 group"
-              >
-                {/* Top image placeholder */}
-                <div className="h-56 bg-[#e9dfd5] relative overflow-hidden">
-                  <div className="absolute inset-0 bg-linear-to-br from-[#d8c6b7] to-[#f3ece6]" />
-                </div>
-
-                {/* Content */}
-                <div className="p-8">
-                  <div className="flex justify-between items-start mb-4 gap-3">
-                    <h3 className="text-2xl font-serif font-semibold text-[#2e2018]">
-                      {product.title}
-                    </h3>
-
-                    {product.price && (
-                      <span className="px-4 py-2 border border-[#d7b89d] rounded-full text-sm font-medium text-[#5a4032]">
-                        {product.price}
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="text-[#6f625a] mb-6 leading-relaxed">
-                    {product.description}
-                  </p>
-
-                  <ul className="space-y-2 mb-6">
-                    {product.benefits.map((benefit, i) => (
-                      <li
-                        key={i}
-                        className="flex items-center text-sm text-[#4b3a2f]"
-                      >
-                        <span className="mr-2 text-[#b58a68]">✦</span>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button className="mt-auto text-[#2e2018] font-medium hover:translate-x-1 transition-transform cursor-none">
-                    Learn More →
-                  </button>
-                </div>
+            <div className="bg-white dark:bg-[#1c1612] rounded-3xl overflow-hidden border border-[#e7ddd4] dark:border-neutral-700 shadow-sm hover:shadow-xl transition-all duration-300 group">
+              {/* Top image placeholder */}
+              <div className="h-56 bg-[#e9dfd5] dark:bg-neutral-700 relative overflow-hidden">
+                <div className="absolute inset-0 bg-linear-to-br from-[#d8c6b7] dark:from-neutral-600 to-[#f3ece6] dark:to-neutral-700" />
               </div>
-            </FollowerPointerCard>
+
+              {/* Content */}
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-4 gap-3">
+                  <h3 className="text-2xl font-serif font-semibold text-[#2e2018] dark:text-neutral-100">
+                    {product.title}
+                  </h3>
+
+                  {product.price && (
+                    <span className="px-4 py-2 border border-[#d7b89d] dark:border-neutral-600 rounded-full text-sm font-medium text-[#5a4032] dark:text-neutral-300">
+                      {product.price}
+                    </span>
+                  )}
+                </div>
+
+                <p className="text-[#6f625a] dark:text-neutral-400 mb-6 leading-relaxed">
+                  {product.description}
+                </p>
+
+                <ul className="space-y-2 mb-6">
+                  {product.benefits.map((benefit, i) => (
+                    <li
+                      key={i}
+                      className="flex items-center text-sm text-[#4b3a2f] dark:text-neutral-300"
+                    >
+                      <span className="mr-2 text-[#b58a68] dark:text-amber-600">
+                        ✦
+                      </span>
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+
+                <button className="mt-auto text-[#2e2018] dark:text-neutral-100 font-medium hover:translate-x-1 transition-transform cursor-none">
+                  Learn More →
+                </button>
+              </div>
+            </div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-10 bg-white rounded-3xl border border-[#e7ddd4] p-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="mt-10 bg-[#2e2018] rounded-3xl p-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
-            <h4 className="text-2xl font-serif text-[#2e2018] mb-2">
+            <h4 className="text-2xl font-serif text-white dark:text-neutral-100 mb-2">
               Not sure which treatment is right for you?
             </h4>
-            <p className="text-[#6f625a]">
+            <p className="text-[#6f625a] dark:text-neutral-400">
               Book a consultation and let our experts guide your skincare
               journey.
             </p>
           </div>
 
-          <button className="bg-[#2e2018] text-white px-8 py-4 rounded-full hover:bg-[#160e0a] transition">
+          <button className="bg-white dark:bg-neutral-100 text-black dark:text-neutral-900 px-8 py-4 rounded-full cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-50 transition">
             Book Consultation
           </button>
         </div>
