@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { FollowerPointerCard } from "./ui/following-pointer";
 
 type Product = {
   title: string;
@@ -107,50 +108,54 @@ const ProductsSection = () => {
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-1 xl:grid-cols-3 gap-8">
           {products.map((product, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-3xl overflow-hidden border border-[#e7ddd4] shadow-sm hover:shadow-xl transition-all duration-300 group"
+            <FollowerPointerCard
+            key={index}
+              title={<TitleComponent title="Click to Book Appointment" />}
             >
-              {/* Top image placeholder */}
-              <div className="h-56 bg-[#e9dfd5] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d8c6b7] to-[#f3ece6]" />
-              </div>
-
-              {/* Content */}
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-4 gap-3">
-                  <h3 className="text-2xl font-serif font-semibold text-[#2e2018]">
-                    {product.title}
-                  </h3>
-
-                  {product.price && (
-                    <span className="px-4 py-2 border border-[#d7b89d] rounded-full text-sm font-medium text-[#5a4032]">
-                      {product.price}
-                    </span>
-                  )}
+              <div
+                className="bg-white rounded-3xl overflow-hidden border border-[#e7ddd4] shadow-sm hover:shadow-xl transition-all duration-300 group"
+              >
+                {/* Top image placeholder */}
+                <div className="h-56 bg-[#e9dfd5] relative overflow-hidden">
+                  <div className="absolute inset-0 bg-linear-to-br from-[#d8c6b7] to-[#f3ece6]" />
                 </div>
 
-                <p className="text-[#6f625a] mb-6 leading-relaxed">
-                  {product.description}
-                </p>
+                {/* Content */}
+                <div className="p-8">
+                  <div className="flex justify-between items-start mb-4 gap-3">
+                    <h3 className="text-2xl font-serif font-semibold text-[#2e2018]">
+                      {product.title}
+                    </h3>
 
-                <ul className="space-y-2 mb-6">
-                  {product.benefits.map((benefit, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center text-sm text-[#4b3a2f]"
-                    >
-                      <span className="mr-2 text-[#b58a68]">✦</span>
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
+                    {product.price && (
+                      <span className="px-4 py-2 border border-[#d7b89d] rounded-full text-sm font-medium text-[#5a4032]">
+                        {product.price}
+                      </span>
+                    )}
+                  </div>
 
-                <button className="mt-auto text-[#2e2018] font-medium hover:translate-x-1 transition-transform">
-                  Learn More →
-                </button>
+                  <p className="text-[#6f625a] mb-6 leading-relaxed">
+                    {product.description}
+                  </p>
+
+                  <ul className="space-y-2 mb-6">
+                    {product.benefits.map((benefit, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center text-sm text-[#4b3a2f]"
+                      >
+                        <span className="mr-2 text-[#b58a68]">✦</span>
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button className="mt-auto text-[#2e2018] font-medium hover:translate-x-1 transition-transform cursor-none">
+                    Learn More →
+                  </button>
+                </div>
               </div>
-            </div>
+            </FollowerPointerCard>
           ))}
         </div>
 
@@ -176,3 +181,7 @@ const ProductsSection = () => {
 };
 
 export default ProductsSection;
+
+const TitleComponent = ({ title }: { title: string }) => (
+  <p className="font-bold uppercase font-sans">{title}</p>
+);

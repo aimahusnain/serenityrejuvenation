@@ -64,7 +64,7 @@ const services = [
 export default function Header() {
   return (
     <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-[#ffece0]/95 backdrop-blur supports-backdrop-filter:bg-[#ffece0]/80 dark:bg-black/95">
-      <div className="flex h-14 max-w-7xl items-center justify-between px-1">
+      <div className="flex h-14 max-w-full items-center justify-between px-1">
         {/* Desktop Navigation Menu */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-1">
@@ -74,7 +74,7 @@ export default function Header() {
                 Services
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid w-[600px] grid-cols-2 gap-4 p-6">
+                <div className="grid w-150 grid-cols-2 gap-4 p-6">
                   {services.map((service) => (
                     <div
                       key={service.title}
