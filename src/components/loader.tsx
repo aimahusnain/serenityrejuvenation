@@ -12,11 +12,22 @@ export default function SpaLoader() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
+    // Force scroll to top on load
+    window.scrollTo(0, 0);
+
+    // Prevent background scrolling
+    document.body.style.overflow = "hidden";
+
     const fadeTimer = setTimeout(() => setFading(true), 2000);
-    const hideTimer = setTimeout(() => setVisible(false), 2800); // 800ms fade duration
+    const hideTimer = setTimeout(() => {
+      setVisible(false);
+      document.body.style.overflow = ""; // restore scroll
+    }, 2800);
+
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
+      document.body.style.overflow = "";
     };
   }, []);
 
@@ -26,38 +37,32 @@ export default function SpaLoader() {
     <div
       role="status"
       aria-label="Loading"
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-2 transition-opacity duration-800 ease-in-out"
+      className={`
+        fixed inset-0 z-50 flex flex-col items-center justify-center gap-2
+        transition-opacity duration-800 ease-in-out
+        bg-white dark:bg-[#0f0f0f]
+      `}
       style={{
-        backgroundColor: "#fff",
         opacity: fading ? 0 : 1,
       }}
     >
       {/* Wordmark */}
       <div className="flex flex-col items-center gap-1.5">
-        <span
-          className="text-[11px] font-light tracking-[0.65em] uppercase"
-          style={{ color: "#7a6355" }}
-        >
+        <span className="text-[11px] font-light tracking-[0.65em] uppercase text-[#7a6355] dark:text-[#c7b3a4]">
           Serenity
         </span>
-        <span
-          className={`${prata.className} text-[32px] tracking-[0.06em]`}
-          style={{ color: "#2e241e" }}
-        >
+
+        <span className={`${prata.className} text-[32px] tracking-[0.06em] text-[#2e241e] dark:text-white`}>
           Rejuvenation
         </span>
       </div>
 
       {/* Sweeping bar */}
       <div
-        className="relative w-30 h-1 overflow-hidden"
-        style={{ backgroundColor: "#2e2018" }}
+        className="relative w-30 h-1 overflow-hidden bg-[#2e2018] dark:bg-[#2a2a2a]"
         aria-hidden="true"
       >
-        <div
-          className="absolute inset-0 animate-sweep"
-          style={{ backgroundColor: "#b89070" }}
-        />
+        <div className="absolute inset-0 animate-sweep bg-[#b89070] dark:bg-[#e0b899]" />
       </div>
     </div>
   );

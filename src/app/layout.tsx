@@ -15,20 +15,32 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={fontSans.variable}
-    >
+    <html lang="en" suppressHydrationWarning className={fontSans.variable}>
+      <head>
+        {/* 🔥 Prevent scroll BEFORE React loads */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.scrollTo(0, 0);
+              document.documentElement.style.scrollBehavior = 'auto';
+              document.documentElement.style.overflow = 'hidden';
+              document.body && (document.body.style.overflow = 'hidden');
+            `,
+          }}
+        />
+      </head>
+
       <body className="antialiased bg-[ecf4dd] dark:bg-black">
         <ThemeContextProvider>
-        <Header />
-        <SpaLoader />
-        <LenisProvider>{children}</LenisProvider>
+          <Header />
+
+          <SpaLoader />
+
+          <LenisProvider>{children}</LenisProvider>
         </ThemeContextProvider>
       </body>
     </html>
