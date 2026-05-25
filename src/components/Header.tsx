@@ -65,7 +65,7 @@ const services = [
 export default function Header() {
   return (
     <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-[#ffece0]/95 backdrop-blur supports-backdrop-filter:bg-[#ffece0]/80 dark:bg-black/95">
-      <div className="flex h-14 max-w-full items-center justify-between px-1">
+      <div className="flex h-16 max-w-full items-center justify-between px-2">
         {/* Desktop Navigation Menu */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-1">
