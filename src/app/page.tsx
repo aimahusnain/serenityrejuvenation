@@ -4,6 +4,7 @@ import { Prata } from "next/font/google";
 import TextSlider from "@/components/TextSlider";
 import NailTechSection from "@/components/Nailtechsection";
 import PurelyRejuvenated from "@/components/Purelyrejuvenated";
+import ProductsSection from "@/components/productsection";
 
 const PrataFont = Prata({
   weight: "400",
@@ -49,7 +50,7 @@ const Home = () => {
               </h1>
 
               <Button
-                className="px-5 mt-1 bg-[#2e241e] hover:bg-[#150c07] text-sm rounded-xl cursor-pointer"
+                className="px-5 mt-1 bg-[#2e241e] hover:bg-[#150c07] text-sm rounded-full cursor-pointer"
                 size="lg"
               >
                 CONTACT US
@@ -61,6 +62,7 @@ const Home = () => {
 
         <NailTechSection />
         <PurelyRejuvenated />
+        <ProductsSection />
       </div>
     </div>
   );

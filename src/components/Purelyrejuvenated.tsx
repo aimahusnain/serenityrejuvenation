@@ -116,7 +116,7 @@ export default function PurelyRejuvenated() {
               text-sm font-medium tracking-wide
               px-10 py-4 rounded-full
               transition-all duration-200
-              hover:opacity-80 active:scale-95
+              hover:bg-[#21130f] active:scale-95
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2e241e]
             "
           >
