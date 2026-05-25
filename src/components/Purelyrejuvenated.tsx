@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Highlighter } from "./ui/highlighter";
 
 const BOOKING_URL = "https://your-booking-url.com";
 
@@ -93,7 +94,13 @@ export default function PurelyRejuvenated() {
             <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[#2e241e] dark:text-neutral-100 leading-[1.1] tracking-tight">
               Purely
               <br />
-              Rejuvenated
+              <Highlighter
+                action="underline"
+                darkColor="#fff"
+                lightColor="#2e241e"
+              >
+                Rejuvenated
+              </Highlighter>
             </h1>
             <div className="shrink-0 mt-1">
               <SpaFaceIcon />

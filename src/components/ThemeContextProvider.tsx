@@ -10,7 +10,7 @@ export default function ThemeContextProvider({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark">{children}</ThemeProvider>
       </body>
     </html>
   );

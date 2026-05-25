@@ -1,5 +1,7 @@
 "use client";
 
+import { Highlighter } from "./ui/highlighter";
+
 type Product = {
   title: string;
   price?: string;
@@ -86,8 +88,14 @@ const ProductsSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-16">
-          <p className="uppercase tracking-[4px] text-sm text-[#8b6f5c] dark:text-stone-400">
-            Our Products
+          <p className="uppercase tracking-[4px] text-sm dark:text-black text-white">
+            <Highlighter
+              action="highlight"
+              lightColor="#2e241e"
+              darkColor="#fff"
+            >
+              Our Products
+            </Highlighter>
           </p>
 
           <h2 className="text-4xl md:text-6xl font-serif font-semibold text-[#2e2018] dark:text-neutral-100 mt-4">
