@@ -164,7 +164,7 @@ export default function Header() {
           </Button>
           <Button
             size="sm"
-            className="bg-[#2e241e] hover:bg-[#2e241e] text-white dark:bg-black dark:hover:bg-black"
+            className="bg-[#2e241e] hover:bg-[#2e241e] sm:flex hidden text-white dark:bg-black dark:hover:bg-black"
           >
             <LogIn className="mr-2 size-4" />
             <span className="hidden sm:inline">Login</span>
