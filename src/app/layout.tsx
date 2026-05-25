@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import SpaLoader from "@/components/loader";
 import LenisProvider from "@/components/LenisProvider";
+import Header from "@/components/Header";
 
 const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={fontSans.variable}>
       <body className="antialiased bg-[ecf4dd]">
+        <Header />
         <SpaLoader />
         <LenisProvider>{children}</LenisProvider>
       </body>
