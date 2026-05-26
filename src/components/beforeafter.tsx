@@ -41,6 +41,7 @@ const slides = [
     before: "/before-after/microneedling_prf_before.png",
     after: "/before-after/microneedling_prf_after.png",
   },
+  
 ];
 
 const stats = [
