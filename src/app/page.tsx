@@ -44,14 +44,14 @@ const Home = () => {
             />
 
             {/* Button over image */}
-            <div className="absolute bottom-5 left-1/2 md:left-5 -translate-x-1/2 md:translate-x-0 backdrop-blur-sm w-[90%] md:w-fit rounded-lg p-5 bg-[#2e241e]/40 max-w-md flex flex-col items-center md:items-start justify-start">
+            <div className="absolute bottom-5 left-1/2 md:left-5 -translate-x-1/2 md:translate-x-0 backdrop-blur-sm w-[90%] md:w-fit rounded-lg p-5 bg-[#e3ae72]/40 max-w-md flex flex-col items-center md:items-start justify-start">
               <h1 className="text-[2.2rem] sm:text-3xl md:text-6xl font-bold text-white mb-3 sm:mb-4 leading-tight text-center md:text-left">
                 Serenity{" "}
                 <span className={PrataFont.className}>Rejuvenation</span>
               </h1>
 
               <Button
-                className="px-5 mt-1 bg-[#2e241e] hover:bg-[#150c07] text-sm rounded-full cursor-pointer"
+                className="px-5 mt-1 bg-[#e3ae72] hover:bg-[#150c07] text-sm rounded-full cursor-pointer"
                 size="lg"
               >
                 CONTACT US
@@ -64,8 +64,8 @@ const Home = () => {
         <NailTechSection />
         <PurelyRejuvenated />
         <ProductsSection />
-        <ScrollBasedVelocity />
       </div>
+        <ScrollBasedVelocity />
     </div>
   );
 };

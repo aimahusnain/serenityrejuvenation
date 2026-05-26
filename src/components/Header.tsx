@@ -64,34 +64,34 @@ const services = [
 
 export default function Header() {
   return (
-    <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-[#ffece0]/95 backdrop-blur supports-backdrop-filter:bg-[#ffece0]/80 dark:bg-black/95">
+    <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#07264f]/95 dark:supports-backdrop-filter:bg-[#07264f]/80 border border-[#07264f]/10 dark:border-[#e3ae72]/15">
       <div className="flex h-16 max-w-full items-center justify-between px-2">
         {/* Desktop Navigation Menu */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-1">
             {/* Services */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-neutral-700 hover:bg-[#ffc6a4]/50 dark:text-neutral-300 dark:hover:bg-neutral-800">
+              <NavigationMenuTrigger className="text-[#07264f] hover:bg-[#07264f]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10">
                 Services
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid w-150 grid-cols-2 gap-4 p-6 bg-white dark:bg-neutral-900">
+                <div className="grid w-150 grid-cols-2 gap-4 p-6 bg-white dark:bg-[#07264f] border border-[#07264f]/10 dark:border-[#e3ae72]/15">
                   {services.map((service) => (
                     <div
                       key={service.title}
-                      className="group rounded-lg border border-neutral-200 dark:border-neutral-700 p-4 hover:border-black/40 dark:hover:border-neutral-600 hover:bg-[#ffc6a4]/50 dark:hover:bg-neutral-800 transition-all"
+                      className="group rounded-lg border border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4 hover:border-[#07264f]/40 dark:hover:border-[#e3ae72]/50 hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/8 transition-all"
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <h4 className="font-semibold text-neutral-900 dark:text-white text-sm leading-tight">
+                          <h4 className="font-semibold text-[#07264f] dark:text-[#e3ae72] text-sm leading-tight">
                             {service.title}
                           </h4>
-                          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">
+                          <p className="text-xs text-[#07264f]/55 dark:text-[#e3ae72]/60 mt-1 line-clamp-2">
                             {service.description}
                           </p>
                         </div>
                         <div className="text-right ml-2 max-w-15">
-                          <p className="text-xs font-semibold text-[#2e241e] dark:text-neutral-100">
+                          <p className="text-xs font-semibold text-[#e3ae72]">
                             {service.price}
                           </p>
                         </div>
@@ -108,7 +108,7 @@ export default function Header() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "text-neutral-700 hover:bg-[#ffc6a4]/50 dark:text-neutral-300 dark:hover:bg-neutral-800",
+                    "text-[#07264f] hover:bg-[#07264f]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
                   )}
                 >
                   Gallery
@@ -122,7 +122,7 @@ export default function Header() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "text-neutral-700 hover:bg-[#ffc6a4]/50 dark:text-neutral-300 dark:hover:bg-neutral-800",
+                    "text-[#07264f] hover:bg-[#07264f]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
                   )}
                 >
                   Gift Card
@@ -154,17 +154,19 @@ export default function Header() {
         {/* Right side buttons */}
         <div className="flex items-center space-x-2 md:space-x-4">
           <AnimatedThemeToggler />
+
           <Button
             variant="ghost"
             size="sm"
-            className="hidden sm:flex text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-[#ffc6a4]/50"
+            className="hidden sm:flex text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
           >
             <User className="mr-2 size-4" />
             Account
           </Button>
+
           <Button
             size="sm"
-            className="bg-[#2e241e] hover:bg-[#2e241e] sm:flex hidden text-white dark:bg-[#2e241e] dark:hover:bg-[#1d1510]"
+            className="sm:flex hidden bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
           >
             <LogIn className="mr-2 size-4" />
             <span className="hidden sm:inline">Login</span>
@@ -177,17 +179,17 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900"
+                className="text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
               >
                 <Menu className="size-6" />
               </Button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-72 bg-[#fff8f4] dark:bg-neutral-900 p-0 flex flex-col"
+              className="w-72 bg-white dark:bg-[#07264f] p-0 flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-[#f0d8c8] dark:border-neutral-700">
+              <div className="flex items-center justify-between px-5 py-4 border-b border-[#07264f]/15 dark:border-[#e3ae72]/20">
                 {/* Light mode logo */}
                 <Image
                   src="/logo_dark.png"
@@ -211,7 +213,7 @@ export default function Header() {
                 {/* Services accordion */}
                 <Accordion type="single" collapsible defaultValue="services">
                   <AccordionItem value="services" className="border-none">
-                    <AccordionTrigger className="px-5 py-3 text-sm font-medium text-[#2e241e] dark:text-neutral-100 hover:bg-[#fce8d8] dark:hover:bg-neutral-800 hover:no-underline rounded-none">
+                    <AccordionTrigger className="px-5 py-3 text-sm font-medium text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 hover:no-underline rounded-none">
                       Services
                     </AccordionTrigger>
                     <AccordionContent className="pb-1">
@@ -219,17 +221,17 @@ export default function Header() {
                         {services.map((service) => (
                           <div
                             key={service.title}
-                            className="rounded-xl border border-[#f0d8c8] dark:border-neutral-700 bg-white dark:bg-neutral-800 px-3 py-2.5 hover:border-[#d4a090] dark:hover:border-neutral-600 hover:bg-[#fff8f4] dark:hover:bg-neutral-700 transition-all cursor-pointer"
+                            className="rounded-xl border border-[#07264f]/15 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]/50 px-3 py-2.5 hover:border-[#07264f]/30 dark:hover:border-[#e3ae72]/40 hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/8 transition-all cursor-pointer"
                           >
                             <div className="flex items-start justify-between gap-2 mb-1">
-                              <span className="text-xs font-medium text-[#2e241e] dark:text-neutral-100 leading-snug">
+                              <span className="text-xs font-medium text-[#07264f] dark:text-[#e3ae72] leading-snug">
                                 {service.title}
                               </span>
-                              <span className="text-[11px] font-medium text-[#a0634a] dark:text-amber-600 whitespace-nowrap pt-px">
+                              <span className="text-[11px] font-medium text-[#e3ae72] whitespace-nowrap pt-px">
                                 {service.price}
                               </span>
                             </div>
-                            <p className="text-[11px] text-[#8a7068] dark:text-neutral-400 leading-relaxed line-clamp-2">
+                            <p className="text-[11px] text-[#07264f]/55 dark:text-[#e3ae72]/55 leading-relaxed line-clamp-2">
                               {service.description}
                             </p>
                           </div>
@@ -239,35 +241,35 @@ export default function Header() {
                   </AccordionItem>
                 </Accordion>
 
-                <div className="h-px bg-[#f0d8c8] dark:bg-neutral-700 mx-5 my-1" />
+                <div className="h-px bg-[#07264f]/10 dark:bg-[#e3ae72]/15 mx-5 my-1" />
 
                 <Link
                   href="/gallery"
-                  className="flex items-center px-5 py-3 text-sm font-medium text-[#2e241e] dark:text-neutral-100 hover:bg-[#fce8d8] dark:hover:bg-neutral-800 transition-colors"
+                  className="flex items-center px-5 py-3 text-sm font-medium text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 transition-colors"
                 >
                   Gallery
                 </Link>
                 <Link
                   href="/gift-card"
-                  className="flex items-center px-5 py-3 text-sm font-medium text-[#2e241e] dark:text-neutral-100 hover:bg-[#fce8d8] dark:hover:bg-neutral-800 transition-colors"
+                  className="flex items-center px-5 py-3 text-sm font-medium text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 transition-colors"
                 >
                   Gift Card
                 </Link>
               </div>
 
               {/* Footer actions */}
-              <div className="border-t border-[#f0d8c8] dark:border-neutral-700 p-4 flex flex-col gap-2">
+              <div className="border-t border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4 flex flex-col gap-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="w-full border-[#e5cfc3] dark:border-neutral-700 text-[#2e241e] dark:text-neutral-100 hover:bg-[#fce8d8] dark:hover:bg-neutral-800"
+                  className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
                 >
                   <User className="mr-2 size-4" />
                   Account
                 </Button>
                 <Button
                   size="sm"
-                  className="w-full bg-[#2e241e] hover:bg-[#4a3830] dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900"
+                  className="w-full bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
                 >
                   <LogIn className="mr-2 size-4" />
                   Login

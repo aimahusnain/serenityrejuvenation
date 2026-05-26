@@ -86,18 +86,19 @@ export default function PurelyRejuvenated() {
   }, [cycle]);
 
   return (
-    <section className="w-full px-6 py-14 md:py-20">
+    <section className="w-full px-6 py-14 md:py-20 bg-white dark:bg-[#07264f]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-8 lg:gap-20">
+
         {/* ── LEFT ── */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start gap-5 mb-6">
-            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[#2e241e] dark:text-neutral-100 leading-[1.1] tracking-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[#07264f] dark:text-[#e3ae72] leading-[1.1] tracking-tight">
               Purely
               <br />
               <Highlighter
                 action="underline"
-                darkColor="#fff"
-                lightColor="#2e241e"
+                lightColor="#07264f"
+                darkColor="#e3ae72"
               >
                 Rejuvenated
               </Highlighter>
@@ -107,7 +108,7 @@ export default function PurelyRejuvenated() {
             </div>
           </div>
 
-          <p className="text-[15px] leading-relaxed text-[#6b6457] dark:text-neutral-400 max-w-sm mb-10">
+          <p className="text-[15px] leading-relaxed text-[#07264f]/60 dark:text-[#e3ae72]/65 max-w-sm mb-10">
             The serenity that stays with you long after your spa session,
             lasting well even into the next day. No more commuting way back
             home, no more traffic, just pure relaxation.
@@ -119,12 +120,15 @@ export default function PurelyRejuvenated() {
             rel="noopener noreferrer"
             className="
               inline-flex items-center justify-center
-              bg-[#2e241e] dark:bg-neutral-100 text-white dark:text-neutral-900
+              bg-[#07264f] dark:bg-[#e3ae72]
+              text-white dark:text-[#07264f]
               text-sm font-medium tracking-wide
               px-10 py-4 rounded-full
               transition-all duration-200
-              hover:bg-[#21130f] dark:hover:bg-neutral-200 active:scale-95
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2e241e] dark:focus-visible:ring-neutral-100
+              hover:bg-[#07264f]/80 dark:hover:bg-[#d49e5e]
+              active:scale-95
+              focus-visible:outline-none focus-visible:ring-2
+              focus-visible:ring-[#07264f] dark:focus-visible:ring-[#e3ae72]
             "
           >
             Instant Booking
@@ -135,7 +139,6 @@ export default function PurelyRejuvenated() {
         <div className="flex-1 min-w-0 flex flex-col gap-3 w-full max-w-md md:max-w-none md:pt-2">
           {steps.map((step) => {
             const isHighlighted = step.id <= highlightedUpto;
-            const isLatest = step.id === highlightedUpto;
             const isDim = step.id > highlightedUpto;
 
             return (
@@ -144,9 +147,9 @@ export default function PurelyRejuvenated() {
                 className={[
                   "flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-500 cursor-not-allowed select-none",
                   isHighlighted &&
-                    "bg-white dark:bg-neutral-800 shadow-md border border-[#e8e0d6] dark:border-neutral-700 cursor-default select-auto",
+                    "bg-white dark:bg-[#e3ae72] shadow-md border border-[#07264f]/15 dark:border-transparent cursor-default select-auto",
                   isDim &&
-                    "bg-[#ede9e3] dark:bg-neutral-900 border border-[#ddd6cc] dark:border-neutral-800",
+                    "bg-[#07264f]/5 dark:bg-[#07264f]/60 border border-[#07264f]/10 dark:border-[#e3ae72]/10",
                 ]
                   .filter(Boolean)
                   .join(" ")}
@@ -156,9 +159,9 @@ export default function PurelyRejuvenated() {
                   className={[
                     "shrink-0 w-6 h-6 rounded-full text-[11px] font-bold flex items-center justify-center transition-all duration-500",
                     isHighlighted &&
-                      "bg-[#2e241e] dark:bg-neutral-100 text-white dark:text-neutral-900",
+                      "bg-[#07264f] dark:bg-white text-white dark:text-[#07264f]",
                     isDim &&
-                      "bg-[#d4cdc4] dark:bg-neutral-700 text-[#a09890] dark:text-neutral-500",
+                      "bg-[#07264f]/15 dark:bg-[#e3ae72]/20 text-[#07264f]/40 dark:text-[#e3ae72]/50",
                   ]
                     .filter(Boolean)
                     .join(" ")}
@@ -171,8 +174,9 @@ export default function PurelyRejuvenated() {
                   className={[
                     "text-sm leading-snug transition-all duration-500 flex-1",
                     isHighlighted &&
-                      "font-semibold text-[#2e241e] dark:text-neutral-100",
-                    isDim && "font-normal text-[#a09890] dark:text-neutral-500",
+                      "font-semibold text-[#07264f] dark:text-[#07264f]",
+                    isDim &&
+                      "font-normal text-[#07264f]/40 dark:text-[#e3ae72]/45",
                   ]
                     .filter(Boolean)
                     .join(" ")}
@@ -183,6 +187,7 @@ export default function PurelyRejuvenated() {
             );
           })}
         </div>
+
       </div>
     </section>
   );
@@ -214,98 +219,16 @@ function SpaFaceIcon() {
       className="w-16 h-16"
       aria-hidden="true"
     >
-      <line
-        x1="8"
-        y1="8"
-        x2="8"
-        y2="16"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <line
-        x1="4"
-        y1="12"
-        x2="12"
-        y2="12"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <line
-        x1="20"
-        y1="2"
-        x2="20"
-        y2="8"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <line
-        x1="17"
-        y1="5"
-        x2="23"
-        y2="5"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <circle
-        cx="34"
-        cy="34"
-        r="20"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M18 28 Q20 14 34 14 Q48 14 50 28"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="1.8"
-        fill="none"
-        strokeLinecap="round"
-      />
-      <line
-        x1="27"
-        y1="32"
-        x2="27"
-        y2="36"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <line
-        x1="41"
-        y1="32"
-        x2="41"
-        y2="36"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M27 42 Q34 48 41 42"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="1.8"
-        fill="none"
-        strokeLinecap="round"
-      />
-      <path
-        d="M16 58 Q20 50 34 50 Q48 50 52 58"
-        stroke="currentColor"
-        className="text-[#2e241e] dark:text-neutral-100"
-        strokeWidth="1.8"
-        fill="none"
-        strokeLinecap="round"
-      />
+      <line x1="8" y1="8" x2="8" y2="16" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="4" y1="12" x2="12" y2="12" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="17" y1="5" x2="23" y2="5" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.5" strokeLinecap="round" />
+      <circle cx="34" cy="34" r="20" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.8" />
+      <path d="M18 28 Q20 14 34 14 Q48 14 50 28" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <line x1="27" y1="32" x2="27" y2="36" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="2" strokeLinecap="round" />
+      <line x1="41" y1="32" x2="41" y2="36" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="2" strokeLinecap="round" />
+      <path d="M27 42 Q34 48 41 42" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <path d="M16 58 Q20 50 34 50 Q48 50 52 58" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.8" fill="none" strokeLinecap="round" />
     </svg>
   );
 }

@@ -7,7 +7,7 @@ export function HeroSection() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden" style={{ backgroundColor: '#000000' }}>
+    <section className="relative w-full h-screen overflow-hidden" style={{ backgroundColor: '#07264f' }}>
       {/* Video Background with optimization */}
       <video
         autoPlay

@@ -52,7 +52,9 @@ export default function SpaLoader() {
           Serenity
         </span>
 
-        <span className={`${prata.className} text-[32px] tracking-[0.06em] text-[#2e241e] dark:text-white`}>
+        <span
+          className={`${prata.className} text-[32px] tracking-[0.06em] text-[#e3ae72] dark:text-white`}
+        >
           Rejuvenation
         </span>
       </div>
