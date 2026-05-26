@@ -86,9 +86,8 @@ export default function PurelyRejuvenated() {
   }, [cycle]);
 
   return (
-    <section className="w-full px-6 py-14 md:py-20 bg-white dark:bg-[#07264f]">
+    <section className="w-full px-6 pt-14 md:pt-20 bg-white dark:bg-[#07264f]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-8 lg:gap-20">
-
         {/* ── LEFT ── */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start gap-5 mb-6">
@@ -187,7 +186,6 @@ export default function PurelyRejuvenated() {
             );
           })}
         </div>
-
       </div>
     </section>
   );
@@ -219,16 +217,98 @@ function SpaFaceIcon() {
       className="w-16 h-16"
       aria-hidden="true"
     >
-      <line x1="8" y1="8" x2="8" y2="16" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="4" y1="12" x2="12" y2="12" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="17" y1="5" x2="23" y2="5" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.5" strokeLinecap="round" />
-      <circle cx="34" cy="34" r="20" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.8" />
-      <path d="M18 28 Q20 14 34 14 Q48 14 50 28" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-      <line x1="27" y1="32" x2="27" y2="36" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="2" strokeLinecap="round" />
-      <line x1="41" y1="32" x2="41" y2="36" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="2" strokeLinecap="round" />
-      <path d="M27 42 Q34 48 41 42" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-      <path d="M16 58 Q20 50 34 50 Q48 50 52 58" stroke="currentColor" className="text-[#07264f] dark:text-[#e3ae72]" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <line
+        x1="8"
+        y1="8"
+        x2="8"
+        y2="16"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <line
+        x1="4"
+        y1="12"
+        x2="12"
+        y2="12"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <line
+        x1="20"
+        y1="2"
+        x2="20"
+        y2="8"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <line
+        x1="17"
+        y1="5"
+        x2="23"
+        y2="5"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <circle
+        cx="34"
+        cy="34"
+        r="20"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M18 28 Q20 14 34 14 Q48 14 50 28"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="1.8"
+        fill="none"
+        strokeLinecap="round"
+      />
+      <line
+        x1="27"
+        y1="32"
+        x2="27"
+        y2="36"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <line
+        x1="41"
+        y1="32"
+        x2="41"
+        y2="36"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M27 42 Q34 48 41 42"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="1.8"
+        fill="none"
+        strokeLinecap="round"
+      />
+      <path
+        d="M16 58 Q20 50 34 50 Q48 50 52 58"
+        stroke="currentColor"
+        className="text-[#07264f] dark:text-[#e3ae72]"
+        strokeWidth="1.8"
+        fill="none"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }

@@ -12,16 +12,13 @@ export default function SpaLoader() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    // Force scroll to top on load
     window.scrollTo(0, 0);
-
-    // Prevent background scrolling
     document.body.style.overflow = "hidden";
 
     const fadeTimer = setTimeout(() => setFading(true), 2000);
     const hideTimer = setTimeout(() => {
       setVisible(false);
-      document.body.style.overflow = ""; // restore scroll
+      document.body.style.overflow = "";
     }, 2800);
 
     return () => {
@@ -40,7 +37,7 @@ export default function SpaLoader() {
       className={`
         fixed inset-0 z-50 flex flex-col items-center justify-center gap-2
         transition-opacity duration-800 ease-in-out
-        bg-white dark:bg-[#0f0f0f]
+        bg-white dark:bg-[#07264f]
       `}
       style={{
         opacity: fading ? 0 : 1,
@@ -48,12 +45,12 @@ export default function SpaLoader() {
     >
       {/* Wordmark */}
       <div className="flex flex-col items-center gap-1.5">
-        <span className="text-[11px] font-light tracking-[0.65em] uppercase text-[#7a6355] dark:text-[#c7b3a4]">
+        <span className="text-[11px] font-light tracking-[0.65em] uppercase text-[#07264f]/60 dark:text-[#e3ae72]/65">
           Serenity
         </span>
 
         <span
-          className={`${prata.className} text-[32px] tracking-[0.06em] text-[#e3ae72] dark:text-white`}
+          className={`${prata.className} text-[32px] tracking-[0.06em] text-[#07264f] dark:text-[#e3ae72]`}
         >
           Rejuvenation
         </span>
@@ -61,10 +58,10 @@ export default function SpaLoader() {
 
       {/* Sweeping bar */}
       <div
-        className="relative w-30 h-1 overflow-hidden bg-[#2e2018] dark:bg-[#2a2a2a]"
+        className="relative w-30 h-1 overflow-hidden bg-[#07264f]/15 dark:bg-[#e3ae72]/20"
         aria-hidden="true"
       >
-        <div className="absolute inset-0 animate-sweep bg-[#b89070] dark:bg-[#e0b899]" />
+        <div className="absolute inset-0 animate-sweep bg-[#07264f] dark:bg-[#e3ae72]" />
       </div>
     </div>
   );
