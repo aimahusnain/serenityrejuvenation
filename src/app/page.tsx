@@ -6,6 +6,7 @@ import NailTechSection from "@/components/Nailtechsection";
 import PurelyRejuvenated from "@/components/Purelyrejuvenated";
 import ProductsSection from "@/components/productsection";
 import { ScrollBasedVelocity } from "@/components/ScrollBasedVelocity";
+import BeforeAfterSection from "@/components/beforeafter";
 
 const PrataFont = Prata({
   weight: "400",
@@ -66,6 +67,7 @@ const Home = () => {
         <ProductsSection />
       </div>
         <ScrollBasedVelocity />
+        <BeforeAfterSection />
     </div>
   );
 };
