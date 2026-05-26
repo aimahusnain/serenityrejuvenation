@@ -1,5 +1,4 @@
 "use client";
-
 import { useLayoutEffect, useRef, useState } from "react";
 import type React from "react";
 import { useInView } from "motion/react";
@@ -47,28 +46,30 @@ export function Highlighter({
   const elementRef = useRef<HTMLSpanElement>(null);
   const [themeKey, setThemeKey] = useState(0);
 
+  // ✅ Safe SSR default — never calls document at render time
+  const [color, setColor] = useState(lightColor);
+
   const isInView = useInView(elementRef, {
     once: true,
     margin: "-10%",
   });
-
   const shouldShow = !isView || isInView;
 
-  // 🔥 Listen to Tailwind dark mode changes
+  // 🔥 Listen to Tailwind dark mode changes and resolve color (client-only)
   useLayoutEffect(() => {
+    // Set initial color on mount
+    setColor(isDarkMode() ? darkColor : lightColor);
+
     const observer = new MutationObserver(() => {
+      setColor(isDarkMode() ? darkColor : lightColor);
       setThemeKey((prev) => prev + 1);
     });
-
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
     });
-
     return () => observer.disconnect();
-  }, []);
-
-  const color = isDarkMode() ? darkColor : lightColor;
+  }, [darkColor, lightColor]);
 
   useLayoutEffect(() => {
     const element = elementRef.current;
@@ -85,7 +86,6 @@ export function Highlighter({
         padding,
         multiline,
       });
-
       annotation = currentAnnotation;
       currentAnnotation.show();
 
@@ -93,7 +93,6 @@ export function Highlighter({
         currentAnnotation.hide();
         currentAnnotation.show();
       });
-
       resizeObserver.observe(element);
       resizeObserver.observe(document.body);
     }
@@ -111,7 +110,7 @@ export function Highlighter({
     iterations,
     padding,
     multiline,
-    themeKey, // 🔥 important re-run on theme change
+    themeKey,
   ]);
 
   return (
