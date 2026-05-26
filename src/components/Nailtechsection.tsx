@@ -20,7 +20,7 @@ export default function NailTechSection() {
       </div>
 
       {/* ── MIDDLE: Vertical scrolling ticker ── */}
-      <div className="hidden md:flex flex-col items-center justify-start w-14 shrink-0 bg-white dark:bg-[#e3ae72] border-x border-neutral-100 dark:border-neutral-700 overflow-hidden">
+      <div className="hidden md:flex flex-col items-center justify-start w-14 shrink-0 bg-white dark:bg-[#e3ae72] overflow-hidden">
         <div className="flex flex-col items-center animate-ticker-scroll">
           {TICKER_ITEMS.map((_, i) => (
             <TickerGroup key={i} />
