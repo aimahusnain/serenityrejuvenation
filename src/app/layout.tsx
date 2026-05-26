@@ -5,6 +5,7 @@ import SpaLoader from "@/components/loader";
 import LenisProvider from "@/components/LenisProvider";
 import Header from "@/components/Header";
 import ThemeContextProvider from "@/components/ThemeContextProvider";
+import Footer from "@/components/Footer";
 
 const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           <SpaLoader />
 
           <LenisProvider>{children}</LenisProvider>
+          <Footer />
         </ThemeContextProvider>
       </body>
     </html>
