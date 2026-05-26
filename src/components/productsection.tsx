@@ -330,7 +330,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           {/* Price */}
           {product.price && (
             <div className="mt-4 flex items-baseline gap-2">
-              <span className="text-white/45 dark:text-[#07264f]/45 text-xs font-light tracking-wider uppercase">
+              <span className="text-white/45 dark:text-black   text-xs font-light tracking-wider uppercase">
                 From
               </span>
               <div className="overflow-hidden">
