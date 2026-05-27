@@ -52,7 +52,7 @@ const Home = () => {
               </h1>
 
               <Button
-                className="px-5 mt-1 bg-[#e3ae72] hover:bg-[#150c07] text-sm rounded-full cursor-pointer"
+                className="px-5 mt-1 text-black hover:text-white bg-[#e3ae72] hover:bg-[#150c07] text-sm rounded-full cursor-pointer"
                 size="lg"
               >
                 CONTACT US
@@ -66,8 +66,8 @@ const Home = () => {
         <PurelyRejuvenated />
         <ProductsSection />
       </div>
-        <ScrollBasedVelocity />
-        <BeforeAfterSection />
+      <ScrollBasedVelocity />
+      <BeforeAfterSection />
     </div>
   );
 };

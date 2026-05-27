@@ -41,7 +41,6 @@ const slides = [
     before: "/before-after/microneedling_prf_before.png",
     after: "/before-after/microneedling_prf_after.png",
   },
-  
 ];
 
 const stats = [
@@ -296,12 +295,6 @@ export default function ShowcaseSection() {
                   size={15}
                   className="group-hover:translate-x-0.5 transition-transform"
                 />
-              </Link>
-              <Link
-                href="/services"
-                className="text-sm font-medium text-[#07264f]/55 dark:text-[#e3ae72]/60 hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors"
-              >
-                All services →
               </Link>
             </div>
           </div>
