@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Highlighter } from "./ui/highlighter";
+import { useProducts } from "./ProductsProvider";
 
 /* ── TYPES ── */
 type Product = {
@@ -173,24 +174,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
 /* ── SECTION ── */
 export default function ProductsSection() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        setProducts(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  const products = useProducts();
 
   return (
     <section className="w-full pt-20 pb-10 bg-white dark:bg-[#07264f]">
@@ -213,15 +197,11 @@ export default function ProductsSection() {
         </div>
 
         {/* GRID */}
-        {loading ? (
-          <p className="text-center text-gray-500">Loading products...</p>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-            {products.map((p, i) => (
-              <ProductCard key={p.id} product={p} index={i} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+          {products.map((p, i) => (
+            <ProductCard key={p.id} product={p} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );

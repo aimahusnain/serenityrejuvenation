@@ -22,47 +22,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
-
-const services = [
-  {
-    title: "Microneedling",
-    price: "$350",
-    description:
-      "Stimulate your skin's natural renewal process with microneedling, an advanced collagen induction treatment designed to improve skin texture, tone, and overall radiance.",
-  },
-  {
-    title: "Microneedling with PRP",
-    price: "$600",
-    description:
-      "Enhance your microneedling results with PRP, utilizing your body's own growth factors to support healing, collagen production, and skin rejuvenation.",
-  },
-  {
-    title: "Microneedling with PRF",
-    price: "Contact for pricing",
-    description:
-      "Take skin rejuvenation to the next level with PRF, an advanced regenerative treatment rich in platelets and growth factors.",
-  },
-  {
-    title: "Microneedling with Sculptra®",
-    price: "$600",
-    description:
-      "Combine collagen induction therapy with Sculptra®, a biostimulatory treatment designed to restore volume and improve firmness.",
-  },
-  {
-    title: "PRP (Platelet-Rich Plasma)",
-    price: "Contact for pricing",
-    description:
-      "PRP therapy utilizes concentrated platelets derived from your own blood that contain growth factors to support skin rejuvenation.",
-  },
-  {
-    title: "PRF (Platelet-Rich Fibrin)",
-    price: "Contact for pricing",
-    description:
-      "An advanced regenerative treatment that contains platelets, fibrin, and growth factors for natural rejuvenation.",
-  },
-];
+import { useProducts } from "@/components/ProductsProvider";
 
 export default function Header() {
+  const products = useProducts();
+
   return (
     <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#07264f]/95 dark:supports-backdrop-filter:bg-[#07264f]/80 border border-[#07264f]/10 dark:border-[#e3ae72]/15">
       <div className="flex h-16 max-w-full items-center justify-between px-2">
@@ -74,30 +38,33 @@ export default function Header() {
               <NavigationMenuTrigger className="text-[#07264f] hover:bg-[#07264f]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10">
                 Services
               </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <div className="grid w-150 grid-cols-2 gap-4 p-6 bg-white dark:bg-[#07264f] border border-[#07264f]/10 dark:border-[#e3ae72]/15">
-                  {services.map((service) => (
-                    <div
-                      key={service.title}
-                      className="group rounded-lg border border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4 hover:border-[#07264f]/40 dark:hover:border-[#e3ae72]/50 hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/8 transition-all"
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-[#07264f] dark:text-[#e3ae72] text-sm leading-tight">
-                            {service.title}
-                          </h4>
-                          <p className="text-xs text-[#07264f]/55 dark:text-[#e3ae72]/60 mt-1 line-clamp-2">
-                            {service.description}
-                          </p>
-                        </div>
-                        <div className="text-right ml-2 max-w-15">
-                          <p className="text-xs font-semibold text-[#e3ae72]">
-                            {service.price}
-                          </p>
+              <NavigationMenuContent className="bg-white dark:bg-[#07264f] dark:border-[#e3ae72]/15">
+                <div className="grid w-220 grid-cols-3 gap-4 p-6 bg-white dark:bg-[#07264f] dark:border-[#e3ae72]/15">
+                  {products.map((service) => {
+                    const price = Number(service.price ?? 0);
+                    return (
+                      <div
+                        key={service.title}
+                        className="group rounded-lg border border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4 hover:border-[#07264f]/40 dark:hover:border-[#e3ae72]/50 hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/8 transition-all"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-[#07264f] dark:text-[#e3ae72] text-sm leading-tight">
+                              {service.title}
+                            </h4>
+                            <p className="text-xs text-[#07264f]/55 dark:text-[#e3ae72]/60 mt-1 line-clamp-2">
+                              {service.description}
+                            </p>
+                          </div>
+                          <div className="text-right ml-2 max-w-15">
+                            <p className="text-xs font-semibold text-[#e3ae72]">
+                              {price > 0 ? price.toFixed(2) : "Contact Us"}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
@@ -218,7 +185,7 @@ export default function Header() {
                     </AccordionTrigger>
                     <AccordionContent className="pb-1">
                       <div className="flex flex-col gap-1 px-3">
-                        {services.map((service) => (
+                        {products.map((service) => (
                           <div
                             key={service.title}
                             className="rounded-xl border border-[#07264f]/15 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]/50 px-3 py-2.5 hover:border-[#07264f]/30 dark:hover:border-[#e3ae72]/40 hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/8 transition-all cursor-pointer"
@@ -228,7 +195,7 @@ export default function Header() {
                                 {service.title}
                               </span>
                               <span className="text-[11px] font-medium text-[#e3ae72] whitespace-nowrap pt-px">
-                                {service.price}
+                                ${service.price}.00
                               </span>
                             </div>
                             <p className="text-[11px] text-[#07264f]/55 dark:text-[#e3ae72]/55 leading-relaxed line-clamp-2">
