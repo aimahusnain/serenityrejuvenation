@@ -7,6 +7,7 @@ import PurelyRejuvenated from "@/components/Purelyrejuvenated";
 import ProductsSection from "@/components/productsection";
 import { ScrollBasedVelocity } from "@/components/ScrollBasedVelocity";
 import BeforeAfterSection from "@/components/beforeafter";
+import Link from "next/link";
 
 const PrataFont = Prata({
   weight: "400",
@@ -51,12 +52,14 @@ const Home = () => {
                 <span className={PrataFont.className}>Rejuvenation</span>
               </h1>
 
+         <Link href="/contact">
               <Button
                 className="px-5 mt-1 text-black hover:text-white bg-[#e3ae72] hover:bg-[#150c07] text-sm rounded-full cursor-pointer"
                 size="lg"
-              >
+                >
                 CONTACT US
               </Button>
+                </Link>
             </div>
           </div>
           <TextSlider />

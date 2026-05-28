@@ -354,7 +354,7 @@ export default function ContactPage() {
                     <div className="mb-5 h-px bg-[#07264f]/8 dark:bg-[#e3ae72]/10" />
                   )}
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#07264f]/8 dark:bg-[#e3ae72]">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#07264f]/8 dark:bg-[#e3ae72]">
                       {icon}
                     </div>
                     <div>

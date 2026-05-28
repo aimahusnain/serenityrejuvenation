@@ -58,7 +58,19 @@ export default function Header() {
                           </div>
                           <div className="text-right ml-2 max-w-15">
                             <p className="text-xs font-semibold text-[#e3ae72]">
-                              {price > 0 ? price.toFixed(2) : "Contact Us"}
+                              {price > 0 ? (
+                                price.toFixed(2)
+                              ) : (
+                                <>
+                                  {" "}
+                                  <Link
+                                    href="/contact"
+                                    className="text-xs font-bold italic hover:underline"
+                                  >
+                                    Contact  for  Pricing{" "}
+                                  </Link>
+                                </>
+                              )}
                             </p>
                           </div>
                         </div>
