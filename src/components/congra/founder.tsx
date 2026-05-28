@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 export default function Founder() {
   return (
@@ -30,29 +30,54 @@ export default function Founder() {
 
             {/* Subheading */}
             <p className="text-[#d2b48c] text-sm md:text-base font-light tracking-wide uppercase">
-              Master Injector & Founder of Serenity Rejuvenation Aesthetics & Wellness
+              Master Injector & Founder of Serenity Rejuvenation Aesthetics &
+              Wellness
             </p>
 
             {/* Bio paragraphs */}
-            <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed">
+            <div className="space-y-4 text-neutral-300 text-base md:text-lg leading-relaxed">
               <p>
-                Meet Brandi Milton, the dynamic, board-certified Nurse Practitioner and visionary founder behind Serenity Rejuvenation Aesthetics & Wellness. Atlanta&apos;s rising name in modern beauty and holistic rejuvenation. With over a decade of experience in the medical field, Brandi has built her reputation on blending science, artistry, and compassion to help clients look and feel effortlessly confident.
+                Meet Brandi Milton, the dynamic, board-certified Nurse
+                Practitioner and visionary founder behind Serenity Rejuvenation
+                Aesthetics & Wellness. Atlanta&apos;s rising name in modern
+                beauty and holistic rejuvenation. With over a decade of
+                experience in the medical field, Brandi has built her reputation
+                on blending science, artistry, and compassion to help clients
+                look and feel effortlessly confident.
               </p>
 
               <p>
-                Brandi&apos;s philosophy is simple: beauty should never mask who you are; it should magnify it. Known for her expertise in anti-aging and natural enhancements, she customizes every treatment plan to celebrate individuality, empowering her clients to radiate confidence from the inside out.
+                Brandi&apos;s philosophy is simple: beauty should never mask who
+                you are; it should magnify it. Known for her expertise in
+                anti-aging and natural enhancements, she customizes every
+                treatment plan to celebrate individuality, empowering her
+                clients to radiate confidence from the inside out.
               </p>
 
               <p>
-                Originally from North Carolina and a proud graduate of the University of North Carolina at Chapel Hill, Brandi&apos;s journey from dedicated healthcare provider to leading aesthetics expert reflects her lifelong passion for transformation. Her holistic approach goes beyond skin-deep beauty, emphasizing wellness of both mind and body.
+                Originally from North Carolina and a proud graduate of the
+                University of North Carolina at Chapel Hill, Brandi&apos;s
+                journey from dedicated healthcare provider to leading aesthetics
+                expert reflects her lifelong passion for transformation. Her
+                holistic approach goes beyond skin-deep beauty, emphasizing
+                wellness of both mind and body.
               </p>
 
               <p>
-                At Serenity Rejuvenation, Brandi isn&apos;t just the medical director; she is the brand. Her precision, warmth, and unwavering dedication to excellence set the tone for everything Serenity Rejuvenation represents. Beyond the clinic, she&apos;s a devoted wife and mother of four, balancing her thriving career with family life and an authentic grace that clients instantly connect with.
+                At Serenity Rejuvenation, Brandi isn&apos;t just the medical
+                director; she is the brand. Her precision, warmth, and
+                unwavering dedication to excellence set the tone for everything
+                Serenity Rejuvenation represents. Beyond the clinic, she&apos;s
+                a devoted wife and mother of four, balancing her thriving career
+                with family life and an authentic grace that clients instantly
+                connect with.
               </p>
 
               <p>
-                More than a Master Injector, Brandi Milton is the face and force behind Serenity Rejuvenation Aesthetics & Wellness, a woman redefining what it means to age beautifully, live confidently, and embrace the power of self-care.
+                More than a Master Injector, Brandi Milton is the face and force
+                behind Serenity Rejuvenation Aesthetics & Wellness, a woman
+                redefining what it means to age beautifully, live confidently,
+                and embrace the power of self-care.
               </p>
             </div>
 

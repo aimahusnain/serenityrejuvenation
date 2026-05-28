@@ -94,13 +94,13 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       <div className="rounded-[28px] overflow-hidden bg-white dark:bg-[#07264f] border border-[#07264f]/12 dark:border-[#e3ae72]/20 shadow-[0_8px_40px_rgba(7,38,79,0.10)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.3)] h-full flex flex-col">
         {/* TOP */}
         <div className="relative bg-[#07264f] dark:bg-[#e3ae72] px-7 pt-7 pb-9">
-          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase text-white/60 bg-white/10 px-3 py-1.5 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase dark:text-black! text-white/60 bg-white/10 px-3 py-1.5 rounded-full">
             <StarDiamond className="w-2 h-2" />
             Treatment
           </span>
 
           <div className="flex items-end justify-between mt-4">
-            <h3 className="text-[1.6rem] font-light text-white leading-[1.1]">
+            <h3 className="text-[1.6rem] font-light dark:text-black text-white leading-[1.1]">
               {product.title}
             </h3>
 
@@ -115,7 +115,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </div>
 
           {product.price && (
-            <div className="mt-4 text-white/80">
+            <div className="mt-4 dark:text-black text-white/80">
               From{" "}
               <span
                 style={{
@@ -135,7 +135,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
         {/* BOTTOM */}
         <div className="px-7 pt-6 pb-7 flex flex-col flex-1">
-          <p className="text-sm text-gray-600 dark:text-gray-300 mb-5">
+          <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-5">
             {product.description}
           </p>
 
@@ -151,7 +151,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                   className={`w-2 h-2 ${
                     hoveredBenefit === i
                       ? "text-[#07264f] dark:text-[#e3ae72]"
-                      : "text-gray-400"
+                      : "text-neutral-400"
                   }`}
                 />
                 <span className="text-sm">{b}</span>

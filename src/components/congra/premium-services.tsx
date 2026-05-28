@@ -1,21 +1,21 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 export function PremiumServices() {
   const services = [
     {
-      title: 'THE SALT FACIAL TREATMENT',
+      title: "THE SALT FACIAL TREATMENT",
       description:
-        'Renew your skin with this gentle, three-step resurfacing treatment that exfoliates, hydrates, and restores your natural glow. Perfect for all skin types, it makes your complexion smoother, brighter, and beautifully revitalized.',
+        "Renew your skin with this gentle, three-step resurfacing treatment that exfoliates, hydrates, and restores your natural glow. Perfect for all skin types, it makes your complexion smoother, brighter, and beautifully revitalized.",
     },
     {
-      title: 'CHEMICAL PEEL',
+      title: "CHEMICAL PEEL",
       description:
-        'Reveal a radiant, youthful glow with our customized chemical peels designed to exfoliate dull skin, reduce fine lines, and improve texture. Each treatment is personalized to your skin\'s needs for a fresher, more even complexion.',
+        "Reveal a radiant, youthful glow with our customized chemical peels designed to exfoliate dull skin, reduce fine lines, and improve texture. Each treatment is personalized to your skin's needs for a fresher, more even complexion.",
     },
     {
-      title: 'SCULPTRA® TREATMENT',
+      title: "SCULPTRA® TREATMENT",
       description:
-        'Rebuild collagen from within and restore natural volume with Sculptra®, a long-lasting injectable that enhances facial structure and smooths fine lines. Enjoy firmer, more youthful-looking skin and confidence that lasts.',
+        "Rebuild collagen from within and restore natural volume with Sculptra®, a long-lasting injectable that enhances facial structure and smooths fine lines. Enjoy firmer, more youthful-looking skin and confidence that lasts.",
     },
   ];
 
@@ -26,7 +26,7 @@ export function PremiumServices() {
           {/* Left Column - Content */}
           <div>
             <p className="text-tan text-sm tracking-wide uppercase mb-4">
-            Serenity Rejuvenation Aesthetics & Wellness
+              Serenity Rejuvenation Aesthetics & Wellness
             </p>
             <h2 className="text-4xl lg:text-5xl font-serif font-light mb-12">
               Our Premium Services
@@ -47,7 +47,7 @@ export function PremiumServices() {
                     <h3 className="text-tan font-serif text-sm tracking-wide uppercase mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-gray-300 text-sm leading-relaxed">
+                    <p className="text-neutral-300 text-sm leading-relaxed">
                       {service.description}
                     </p>
                   </div>

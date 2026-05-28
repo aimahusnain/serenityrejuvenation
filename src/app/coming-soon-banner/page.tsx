@@ -1,15 +1,8 @@
 // app/page.tsx
 
 import Image from "next/image";
-import {
-  Mail,
-  Droplets,
-  Sparkles,
-  Syringe,
-  Flower2,
-} from "lucide-react";
+import { Mail, Droplets, Sparkles, Syringe, Flower2 } from "lucide-react";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
-
 
 export default function ComingSoonBanner() {
   return (
@@ -44,35 +37,23 @@ export default function ComingSoonBanner() {
             </div>
 
             {/* DESCRIPTION */}
-            <p className="mt-8 text-lg text-gray-600 leading-relaxed max-w-lg">
-              We&apos;re working behind the scenes to bring you something amazing.
-              Luxury hydration, wellness, and rejuvenation experiences are on
-              the way.
+            <p className="mt-8 text-lg text-neutral-600 leading-relaxed max-w-lg">
+              We&apos;re working behind the scenes to bring you something
+              amazing. Luxury hydration, wellness, and rejuvenation experiences
+              are on the way.
             </p>
 
             {/* FEATURES */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-12">
-              <FeatureItem
-                icon={<Droplets size={28} />}
-                label="Restore"
-              />
-              <FeatureItem
-                icon={<Flower2 size={28} />}
-                label="Rebalance"
-              />
-              <FeatureItem
-                icon={<Sparkles size={28} />}
-                label="Renew"
-              />
-              <FeatureItem
-                icon={<Syringe size={28} />}
-                label="Hydrate"
-              />
+              <FeatureItem icon={<Droplets size={28} />} label="Restore" />
+              <FeatureItem icon={<Flower2 size={28} />} label="Rebalance" />
+              <FeatureItem icon={<Sparkles size={28} />} label="Renew" />
+              <FeatureItem icon={<Syringe size={28} />} label="Hydrate" />
             </div>
 
             {/* SOCIALS */}
             <div className="mt-14">
-              <p className="text-gray-600 mb-5">
+              <p className="text-neutral-600 mb-5">
                 Stay connected for updates!
               </p>
 
@@ -93,13 +74,15 @@ export default function ComingSoonBanner() {
           {/* glow */}
           <div className="absolute w-[600px] h-[600px] rounded-full bg-[#d4b06a]/20 blur-3xl" />
 
-<div className="relative z-10 w-full h-full">          <Image
-  src="/hero-image.png"
-  alt="Luxury Wellness"
-  fill
-  className="object-fill drop-shadow-2xl"
-  priority
-/>
+          <div className="relative z-10 w-full h-full">
+            {" "}
+            <Image
+              src="/hero-image.png"
+              alt="Luxury Wellness"
+              fill
+              className="object-fill drop-shadow-2xl"
+              priority
+            />
           </div>
         </div>
       </section>
@@ -140,11 +123,7 @@ function FeatureItem({
 }
 
 /* SOCIAL ICON */
-function SocialIcon({
-  icon,
-}: {
-  icon: React.ReactNode;
-}) {
+function SocialIcon({ icon }: { icon: React.ReactNode }) {
   return (
     <button className="w-11 h-11 rounded-full border border-[#d4b06a] flex items-center justify-center text-[#0e2341] hover:bg-[#0e2341] hover:text-white transition-all duration-300">
       {icon}
