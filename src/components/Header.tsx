@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { User, LogIn, Menu } from "lucide-react";
+import { User, LogIn, Menu, LogOut } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -26,6 +27,7 @@ import { useProducts } from "@/components/ProductsProvider";
 
 export default function Header() {
   const products = useProducts();
+  const { data: session } = useSession();
 
   return (
     <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#07264f]/95 dark:supports-backdrop-filter:bg-[#07264f]/80 border border-[#07264f]/10 dark:border-[#e3ae72]/15">
@@ -134,23 +136,54 @@ export default function Header() {
         <div className="flex items-center space-x-2 md:space-x-4">
           <AnimatedThemeToggler />
 
-          <Button
-            variant="ghost"
-            size="sm"
-            className="hidden sm:flex text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
-          >
-            <User className="mr-2 size-4" />
-            Account
-          </Button>
+          {session ? (
+            <>
+              <Link href="/account">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hidden sm:flex text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
+                >
+                  <User className="mr-2 size-4" />
+                  Account
+                </Button>
+              </Link>
 
-          <Button
-            size="sm"
-            className="sm:flex hidden bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
-          >
-            <LogIn className="mr-2 size-4" />
-            <span className="hidden sm:inline">Login</span>
-            <span className="sm:hidden">Login</span>
-          </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className="hidden sm:flex text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
+              >
+                <LogOut className="mr-2 size-4" />
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hidden cursor-pointer sm:flex text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
+                >
+                  <User className="mr-2 size-4" />
+                  Account
+                </Button>
+              </Link>
+
+              <Link href="/login">
+                <Button
+                  size="sm"
+                  className="sm:flex hidden bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
+                >
+                  <LogIn className="mr-2 size-4" />
+                  <span className="hidden sm:inline">Login</span>
+                  <span className="sm:hidden">Login</span>
+                </Button>
+              </Link>
+            </>
+          )}
 
           {/* Mobile Navigation Sheet */}
           <Sheet>
@@ -238,21 +271,51 @@ export default function Header() {
 
               {/* Footer actions */}
               <div className="border-t border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4 flex flex-col gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
-                >
-                  <User className="mr-2 size-4" />
-                  Account
-                </Button>
-                <Button
-                  size="sm"
-                  className="w-full bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
-                >
-                  <LogIn className="mr-2 size-4" />
-                  Login
-                </Button>
+                {session ? (
+                  <>
+                    <Link href="/account" onClick={() => setTimeout(() => {}, 0)}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+                      >
+                        <User className="mr-2 size-4" />
+                        Account
+                      </Button>
+                    </Link>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => signOut({ callbackUrl: "/" })}
+                      className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+                    >
+                      <LogOut className="mr-2 size-4" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/login" onClick={() => setTimeout(() => {}, 0)}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+                      >
+                        <User className="mr-2 size-4" />
+                        Account
+                      </Button>
+                    </Link>
+                    <Link href="/login" onClick={() => setTimeout(() => {}, 0)}>
+                      <Button
+                        size="sm"
+                        className="w-full bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
+                      >
+                        <LogIn className="mr-2 size-4" />
+                        Login
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </SheetContent>
           </Sheet>

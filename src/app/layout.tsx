@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { auth } from "@/lib/auth";
+import { SessionProvider } from "next-auth/react";
 
 import SpaLoader from "@/components/loader";
 import LenisProvider from "@/components/LenisProvider";
@@ -27,20 +29,24 @@ export default async function RootLayout({
     orderBy: { createdAt: "desc" },
   });
 
+  const session = await auth();
+
   return (
     <html lang="en" suppressHydrationWarning className={fontSans.variable}>
       <body className="antialiased bg-white dark:bg-[#07264f]!">
-        <ThemeContextProvider>
-          <ProductsProvider initialProducts={products}>
-            <Header />
+        <SessionProvider session={session}>
+          <ThemeContextProvider>
+            <ProductsProvider initialProducts={products}>
+              <Header />
 
-            <SpaLoader />
+              <SpaLoader />
 
-            <LenisProvider>{children}</LenisProvider>
+              <LenisProvider>{children}</LenisProvider>
 
-            <Footer />
-          </ProductsProvider>
-        </ThemeContextProvider>
+              <Footer />
+            </ProductsProvider>
+          </ThemeContextProvider>
+        </SessionProvider>
       </body>
     </html>
   );
