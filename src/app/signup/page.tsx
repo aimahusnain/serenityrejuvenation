@@ -8,6 +8,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
+type SignupState = {
+  error?: {
+    [key: string]: string[];
+  } | null;
+  success?: boolean;
+} | null;
+
 export default function SignupPage() {
   const [state, formAction, isPending] = useActionState(signup, null);
 

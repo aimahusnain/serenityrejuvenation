@@ -16,7 +16,19 @@ const signupSchema = z.object({
   path: ["confirmPassword"],
 });
 
-export async function signup(formData: FormData) {
+type SignupState = {
+  error?: {
+    [key: string]: string[];
+  } | null;
+  success?: boolean;
+} | null;
+
+type LoginState = {
+  error?: string | null;
+  success?: boolean;
+} | null;
+
+export async function signup(prevState: SignupState, formData: FormData) {
   const validatedFields = signupSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
@@ -65,7 +77,7 @@ export async function signup(formData: FormData) {
   redirect("/account");
 }
 
-export async function login(formData: FormData) {
+export async function login(prevState: LoginState, formData: FormData) {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 

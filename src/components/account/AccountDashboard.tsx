@@ -14,6 +14,8 @@ interface User {
   name: string | null;
   email: string | null;
   role: string;
+  createdAt: Date;
+  updatedAt: Date;
   bookings: any[];
   preferences: any;
 }
