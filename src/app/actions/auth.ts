@@ -145,7 +145,7 @@ export async function updateProfile(prevState: UpdateProfileState, formData: For
     const validatedFields = updateProfileSchema.safeParse(data);
 
     if (!validatedFields.success) {
-      return { error: validatedFields.error.errors[0].message };
+      return { error: validatedFields.error.issues[0].message };
     }
 
     // Update user profile

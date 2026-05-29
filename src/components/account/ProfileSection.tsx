@@ -52,9 +52,7 @@ export default function ProfileSection({ user }: Props) {
 
   const handleCancel = () => {
     setName(user.name || "");
-    setEmail(user.email || "");
     setIsEditing(false);
-    setSaveStatus("idle");
   };
 
   return (
