@@ -130,7 +130,7 @@ function BeforeAfterSlider({
 
       {/* Divider line */}
       <div
-        className="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_12px_rgba(255,255,255,0.5)] pointer-events-none"
+        className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_12px_rgba(255,255,255,0.5)] pointer-events-none"
         style={{ left: `${position}%` }}
       />
 
@@ -213,7 +213,7 @@ export default function ShowcaseSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
           {/* ── LEFT ─────────────────────────────────────────────── */}
-          <div className="flex-1 flex flex-col gap-8 lg:max-w-[460px]">
+          <div className="flex-1 flex flex-col gap-8 lg:max-w-115">
             {/* Eyebrow */}
             <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-[#e3ae72]" />
@@ -228,11 +228,11 @@ export default function ShowcaseSection() {
               <br />
               <span className="relative inline-block">
                 Lasting results.
-                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#e3ae72] rounded-full" />
+                <span className="absolute -bottom-1 left-0 right-0 h-0.75 bg-[#e3ae72] rounded-full" />
               </span>
             </h2>
 
-            <p className="text-base leading-[1.85] text-[#07264f]/58 dark:text-[#e3ae72]/62 max-w-[370px]">
+            <p className="text-base leading-[1.85] text-[#07264f]/58 dark:text-[#e3ae72]/62 max-w-92.5">
               Every transformation is real — no filters, no edits. Drag the
               slider to see exactly what our treatments deliver.
             </p>
@@ -300,9 +300,9 @@ export default function ShowcaseSection() {
           </div>
 
           {/* ── RIGHT ────────────────────────────────────────────── */}
-          <div className="flex-1 w-full flex flex-col gap-5 lg:max-w-[500px]">
+          <div className="flex-1 w-full flex flex-col gap-5 lg:max-w-125">
             {/* Card */}
-            <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-[#07264f]/12 dark:shadow-black/40 bg-[#07264f]/5 dark:bg-[#e3ae72]/5">
+            <div className="relative w-full aspect-4/5 rounded-3xl overflow-hidden shadow-2xl shadow-[#07264f]/12 dark:shadow-black/40 bg-[#07264f]/5 dark:bg-[#e3ae72]/5">
               {/* Before/After slider — fades on slide change */}
               <div
                 className="absolute inset-0 transition-opacity duration-300"

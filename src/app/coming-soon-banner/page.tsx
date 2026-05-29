@@ -69,10 +69,10 @@ export default function ComingSoonBanner() {
         {/* RIGHT SIDE IMAGE */}
         <div className="relative hidden lg:flex items-center justify-center overflow-hidden">
           {/* background accent */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0b1c33] via-[#11284a] to-[#08111f]" />
+          <div className="absolute inset-0 bg-linear-to-br from-[#0b1c33] via-[#11284a] to-[#08111f]" />
 
           {/* glow */}
-          <div className="absolute w-[600px] h-[600px] rounded-full bg-[#d4b06a]/20 blur-3xl" />
+          <div className="absolute w-150 h-150 rounded-full bg-[#d4b06a]/20 blur-3xl" />
 
           <div className="relative z-10 w-full h-full">
             {" "}

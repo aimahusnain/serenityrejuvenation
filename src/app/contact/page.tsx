@@ -38,7 +38,7 @@ const CONTACT_FIELDS: ContactField[] = [
     lines: ["aimahusnain@gmail.com"],
     icon: (
       <svg
-        className="h-[18px] w-[18px]"
+        className="h-4.5 w-4.5"
         style={{ stroke: "#07264f" }}
         viewBox="0 0 24 24"
         fill="none"
@@ -56,7 +56,7 @@ const CONTACT_FIELDS: ContactField[] = [
     lines: ["+1 (817) 487-7378"],
     icon: (
       <svg
-        className="h-[18px] w-[18px]"
+        className="h-4.5 w-4.5"
         style={{ stroke: "#07264f" }}
         viewBox="0 0 24 24"
         fill="none"
@@ -77,7 +77,7 @@ const CONTACT_FIELDS: ContactField[] = [
     ],
     icon: (
       <svg
-        className="h-[18px] w-[18px]"
+        className="h-4.5 w-4.5"
         style={{ stroke: "#07264f" }}
         viewBox="0 0 24 24"
         fill="none"
@@ -133,7 +133,7 @@ function CheckboxField({
 }) {
   return (
     <label className="flex cursor-pointer items-start gap-3">
-      <div className="relative mt-0.5 flex-shrink-0">
+      <div className="relative mt-0.5 shrink-0">
         <input
           type="checkbox"
           name={name}
@@ -330,7 +330,7 @@ export default function ContactPage() {
                   focus-visible:outline-none focus-visible:ring-2
                   focus-visible:ring-[#07264f] dark:focus-visible:ring-[#e3ae72]"
               >
-                Start for Free
+                SEND A MESSAGE
                 <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none">
                   <path
                     d="M3 8h10M9 4l4 4-4 4"

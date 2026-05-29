@@ -23,7 +23,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // ✅ FETCH ONCE HERE
   const products = await prisma.product.findMany({
     orderBy: { createdAt: "desc" },
   });

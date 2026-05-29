@@ -20,7 +20,7 @@ export default function Footer() {
     <footer className="w-full bg-white dark:bg-[#07264f]">
 
       {/* Top accent line */}
-      <div className="h-px bg-gradient-to-r from-transparent via-[#07264f]/20 dark:via-[#e3ae72]/30 to-transparent" />
+      <div className="h-px bg-linear-to-r from-transparent via-[#07264f]/20 dark:via-[#e3ae72]/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-16 pb-8">
 
@@ -44,7 +44,7 @@ export default function Footer() {
               className="object-contain hidden dark:block"
             />
 
-            <p className="text-sm leading-[1.75] text-[#07264f]/55 dark:text-[#e3ae72]/60 max-w-[260px]">
+            <p className="text-sm leading-[1.75] text-[#07264f]/55 dark:text-[#e3ae72]/60 max-w-65">
               Precision-crafted skin treatments for lasting radiance. We blend science and serenity so results stay with you.
             </p>
 
