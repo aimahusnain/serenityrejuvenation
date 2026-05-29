@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useActionState } from "react";
 import { login } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function LoginPage() {
+  const [state, formAction, isPending] = useActionState(login, null);
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-white dark:bg-[#07264f] px-4 py-12">
       <Card className="w-full max-w-md border-[#07264f]/10 dark:border-[#e3ae72]/20">
@@ -18,7 +23,7 @@ export default function LoginPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={login} className="space-y-4">
+          <form action={formAction} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-[#07264f] dark:text-[#e3ae72]">
                 Email
@@ -29,6 +34,7 @@ export default function LoginPage() {
                 type="email"
                 placeholder="your@email.com"
                 required
+                disabled={isPending}
                 className="border-[#07264f]/15 focus:border-[#07264f] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
               />
             </div>
@@ -41,14 +47,19 @@ export default function LoginPage() {
                 name="password"
                 type="password"
                 required
+                disabled={isPending}
                 className="border-[#07264f]/15 focus:border-[#07264f] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
               />
             </div>
+            {state?.error && (
+              <p className="text-sm text-red-500 dark:text-red-400">{state.error}</p>
+            )}
             <Button
               type="submit"
+              disabled={isPending}
               className="w-full bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
             >
-              Sign In
+              {isPending ? "Signing in..." : "Sign In"}
             </Button>
           </form>
         </CardContent>

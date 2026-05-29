@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useActionState } from "react";
 import { signup } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function SignupPage() {
+  const [state, formAction, isPending] = useActionState(signup, null);
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-white dark:bg-[#07264f] px-4 py-12">
       <Card className="w-full max-w-md border-[#07264f]/10 dark:border-[#e3ae72]/20">
@@ -18,7 +23,7 @@ export default function SignupPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={signup} className="space-y-4">
+          <form action={formAction} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-[#07264f] dark:text-[#e3ae72]">
                 Full Name
@@ -30,6 +35,7 @@ export default function SignupPage() {
                 placeholder="John Doe"
                 required
                 minLength={2}
+                disabled={isPending}
                 className="border-[#07264f]/15 focus:border-[#07264f] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
               />
             </div>
@@ -43,6 +49,7 @@ export default function SignupPage() {
                 type="email"
                 placeholder="your@email.com"
                 required
+                disabled={isPending}
                 className="border-[#07264f]/15 focus:border-[#07264f] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
               />
             </div>
@@ -57,6 +64,7 @@ export default function SignupPage() {
                 placeholder="Min. 8 characters"
                 required
                 minLength={8}
+                disabled={isPending}
                 className="border-[#07264f]/15 focus:border-[#07264f] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
               />
             </div>
@@ -70,14 +78,27 @@ export default function SignupPage() {
                 type="password"
                 placeholder="Confirm your password"
                 required
+                disabled={isPending}
                 className="border-[#07264f]/15 focus:border-[#07264f] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
               />
             </div>
+            {state?.error && (
+              <div className="space-y-1">
+                {Object.entries(state.error).map(([field, errors]) =>
+                  errors?.map((error: string) => (
+                    <p key={`${field}-${error}`} className="text-sm text-red-500 dark:text-red-400">
+                      {error}
+                    </p>
+                  ))
+                )}
+              </div>
+            )}
             <Button
               type="submit"
+              disabled={isPending}
               className="w-full bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
             >
-              Create Account
+              {isPending ? "Creating account..." : "Create Account"}
             </Button>
           </form>
         </CardContent>
