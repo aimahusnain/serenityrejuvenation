@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 import { signup } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,7 +20,26 @@ type SignupState = {
 } | null;
 
 export default function SignupPage() {
+  const router = useRouter();
+  const { data: session, status, update } = useSession();
   const [state, formAction, isPending] = useActionState(signup, null);
+
+  // Redirect to dashboard when logged in
+  useEffect(() => {
+    if (status === "authenticated" && session?.user) {
+      router.push("/account");
+    }
+  }, [status, session, router]);
+
+  // Refresh session and redirect on successful signup
+  useEffect(() => {
+    if (state?.success) {
+      // Refresh the session to get the latest data
+      update().then(() => {
+        // After session is updated, redirect will happen in the other effect
+      });
+    }
+  }, [state?.success, update]);
 
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
