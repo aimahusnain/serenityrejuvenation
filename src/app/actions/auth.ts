@@ -69,13 +69,15 @@ export async function signup(prevState: SignupState, formData: FormData) {
     },
   });
 
+  // Sign in the user after signup and redirect
   await signIn("credentials", {
     email,
     password,
-    redirect: false,
+    redirectTo: "/account",
   });
 
-  redirect("/account");
+  // This shouldn't be reached if signIn redirects properly
+  return { success: true };
 }
 
 export async function login(prevState: LoginState, formData: FormData) {
@@ -87,26 +89,22 @@ export async function login(prevState: LoginState, formData: FormData) {
   }
 
   try {
-    const result = await signIn("credentials", {
+    // Use signIn with redirect to let NextAuth handle the session and redirect
+    await signIn("credentials", {
       email,
       password,
-      redirect: false,
+      redirectTo: "/account",
     });
 
-    // Check if sign in was successful
-    if (result && typeof result === 'object' && 'error' in result && result.error) {
-      return { error: "Invalid email or password" };
-    }
-
-    // Successful login - redirect to account
-    redirect("/account");
+    // This shouldn't be reached if signIn redirects properly
+    return { success: true };
   } catch (error) {
     // Check if it's a redirect error (expected behavior)
     if (error && typeof error === 'object' && 'digest' in error && typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
       throw error; // Re-throw redirect errors so Next.js can handle them
     }
     console.error("Login error:", error);
-    return { error: "Something went wrong" };
+    return { error: "Invalid email or password" };
   }
 }
 
