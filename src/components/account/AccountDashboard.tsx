@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTransition } from "react";
+import { logout } from "@/app/actions/auth";
 import ProfileSection from "./ProfileSection";
 import BookingsSection from "./BookingsSection";
 import PreferencesSection from "./PreferencesSection";
@@ -26,9 +27,12 @@ interface Props {
 
 export default function AccountDashboard({ user }: Props) {
   const [activeTab, setActiveTab] = useState("profile");
+  const [isPending, startTransition] = useTransition();
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: "/" });
+    startTransition(async () => {
+      await logout();
+    });
   };
 
   return (
@@ -46,9 +50,10 @@ export default function AccountDashboard({ user }: Props) {
           <Button
             variant="outline"
             onClick={handleSignOut}
+            disabled={isPending}
             className="border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
           >
-            Sign Out
+            {isPending ? "Signing out..." : "Sign Out"}
           </Button>
         </div>
 

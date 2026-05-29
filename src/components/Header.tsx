@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { User, LogIn, Menu, LogOut } from "lucide-react";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useTransition } from "react";
+import { logout } from "@/app/actions/auth";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,10 +26,18 @@ import {
 } from "@/components/ui/accordion";
 import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 import { useProducts } from "@/components/ProductsProvider";
+import UserMenu from "@/components/UserMenu";
 
 export default function Header() {
   const products = useProducts();
   const { data: session } = useSession();
+  const [isPending, startTransition] = useTransition();
+
+  const handleSignOut = () => {
+    startTransition(async () => {
+      await logout();
+    });
+  };
 
   return (
     <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#07264f]/95 dark:supports-backdrop-filter:bg-[#07264f]/80 border border-[#07264f]/10 dark:border-[#e3ae72]/15">
@@ -137,28 +147,7 @@ export default function Header() {
           <AnimatedThemeToggler />
 
           {session ? (
-            <>
-              <Link href="/account">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="hidden sm:flex text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
-                >
-                  <User className="mr-2 size-4" />
-                  Account
-                </Button>
-              </Link>
-
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => signOut({ callbackUrl: "/" })}
-                className="hidden sm:flex text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
-              >
-                <LogOut className="mr-2 size-4" />
-                Sign Out
-              </Button>
-            </>
+            <UserMenu />
           ) : (
             <>
               <Link href="/login">
@@ -270,27 +259,38 @@ export default function Header() {
               </div>
 
               {/* Footer actions */}
-              <div className="border-t border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4 flex flex-col gap-2">
+              <div className="border-t border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4">
                 {session ? (
                   <>
+                    <Link href={session.user.role === "ADMIN" ? "/admin" : "/account"} onClick={() => setTimeout(() => {}, 0)}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
+                      >
+                        <User className="mr-2 size-4" />
+                        Dashboard
+                      </Button>
+                    </Link>
                     <Link href="/account" onClick={() => setTimeout(() => {}, 0)}>
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
                       >
                         <User className="mr-2 size-4" />
-                        Account
+                        Profile
                       </Button>
                     </Link>
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => signOut({ callbackUrl: "/" })}
+                      onClick={handleSignOut}
+                      disabled={isPending}
                       className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
                     >
                       <LogOut className="mr-2 size-4" />
-                      Sign Out
+                      {isPending ? "Signing out..." : "Sign Out"}
                     </Button>
                   </>
                 ) : (
@@ -299,7 +299,7 @@ export default function Header() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
                       >
                         <User className="mr-2 size-4" />
                         Account
