@@ -20,12 +20,8 @@ export default async function AdminLayout({
   }
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="antialiased bg-gray-50/50 dark:bg-[#07264f]">
-        <SessionProvider session={session}>
-          {children}
-        </SessionProvider>
-      </body>
-    </html>
+    <SessionProvider session={session}>
+      {children}
+    </SessionProvider>
   );
 }

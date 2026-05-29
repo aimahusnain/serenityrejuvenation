@@ -27,7 +27,7 @@ export default function SignupPage() {
   // Redirect to dashboard when logged in
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
-      router.push("/account");
+      router.push("/user-dashboard");
     }
   }, [status, session, router]);
 

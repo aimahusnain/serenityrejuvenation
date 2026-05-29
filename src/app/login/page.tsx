@@ -25,7 +25,7 @@ export default function LoginPage() {
   // Redirect to dashboard when logged in
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
-      const dashboard = session.user.role === "ADMIN" ? "/admin" : "/account";
+      const dashboard = session.user.role === "ADMIN" ? "/admin" : "/user-dashboard";
       router.push(dashboard);
     }
   }, [status, session, router]);

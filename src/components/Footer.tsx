@@ -123,7 +123,6 @@ export default function Footer() {
               <ul className="flex flex-col gap-3">
                 {[
                   { title: "Gallery", href: "/gallery" },
-                  { title: "Gift Card", href: "/gift-card" },
                 ].map((l) => (
                   <li key={l.title}>
                     <Link
@@ -173,10 +172,10 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-5 text-xs text-[#07264f]/40 dark:text-[#e3ae72]/40">
-            <Link href="/privacy" className="hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors">
+            <Link href="/privacy-policy" className="hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors">
+            <Link href="/terms-and-conditions" className="hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors">
               Terms
             </Link>
             <span className="flex items-center gap-1">

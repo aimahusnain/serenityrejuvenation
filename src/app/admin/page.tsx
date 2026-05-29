@@ -64,19 +64,12 @@ export default async function AdminPage() {
   const totalRevenue = completedBookings * avgServicePrice;
 
   return (
-    <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "calc(var(--spacing) * 20)",
-          "--header-height": "calc(var(--spacing) * 12)",
-        } as React.CSSProperties
-      }
-    >
-      <AdminSidebar variant="inset" />
-      <SidebarInset>
+    <SidebarProvider>
+      <AdminSidebar />
+      <SidebarInset className="flex-1 flex flex-col bg-gray-50/50 dark:bg-[#07264f]">
         <SiteHeader title="Admin Dashboard" />
-        <div className="flex flex-1 flex-col">
-          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 md:gap-6 md:p-6">
+        <div className="flex-1 overflow-auto">
+          <div className="container mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-8 space-y-6">
             <AdminStatCards
               totalUsers={totalUsers}
               totalBookings={totalBookings}
@@ -86,8 +79,8 @@ export default async function AdminPage() {
               totalRevenue={totalRevenue}
             />
 
-            <Tabs defaultValue="clients">
-              <TabsList className="grid w-full grid-cols-4 bg-[#07264f]/5 dark:bg-[#e3ae72]/10">
+            <Tabs defaultValue="clients" className="space-y-4">
+              <TabsList className="grid w-full grid-cols-4 bg-white dark:bg-[#07264f]/50 border-0 shadow-sm">
                 <TabsTrigger
                   value="clients"
                   className="data-[state=active]:bg-[#07264f] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#07264f]"
@@ -114,19 +107,19 @@ export default async function AdminPage() {
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="clients">
+              <TabsContent value="clients" className="space-y-4">
                 <AdminClientsTable users={users} />
               </TabsContent>
 
-              <TabsContent value="appointments">
+              <TabsContent value="appointments" className="space-y-4">
                 <BookingsSection bookings={bookings} onUpdate={() => {}} />
               </TabsContent>
 
-              <TabsContent value="revenue">
+              <TabsContent value="revenue" className="space-y-4">
                 <RevenueOverview bookings={bookings} completedCount={completedBookings} />
               </TabsContent>
 
-              <TabsContent value="services">
+              <TabsContent value="services" className="space-y-4">
                 <ServicesManagement products={products} />
               </TabsContent>
             </Tabs>
@@ -141,19 +134,19 @@ export default async function AdminPage() {
 function RevenueOverview({ bookings, completedCount }: { bookings: any[], completedCount: number }) {
   return (
     <div className="grid gap-4">
-      <div className="rounded-lg border border-[#07264f]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]/50 p-6">
+      <div className="rounded-lg border border-[#07264f]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]/50 p-6 shadow-sm">
         <h3 className="text-lg font-semibold text-[#07264f] dark:text-[#e3ae72] mb-4">Revenue Overview</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 rounded-lg bg-[#07264f]/5 dark:bg-[#e3ae72]/5">
-            <p className="text-sm text-[#07264f]/60 dark:text-[#e3ae72]/60">Today</p>
+          <div className="p-4 rounded-lg bg-[#07264f]/5 dark:bg-[#e3ae72]/5 border border-[#07264f]/10 dark:border-[#e3ae72]/15">
+            <p className="text-sm text-[#07264f]/60 dark:text-[#e3ae72]/60 font-medium">Today</p>
             <p className="text-2xl font-bold text-[#07264f] dark:text-[#e3ae72]">$0.00</p>
           </div>
-          <div className="p-4 rounded-lg bg-[#07264f]/5 dark:bg-[#e3ae72]/5">
-            <p className="text-sm text-[#07264f]/60 dark:text-[#e3ae72]/60">This Week</p>
+          <div className="p-4 rounded-lg bg-[#07264f]/5 dark:bg-[#e3ae72]/5 border border-[#07264f]/10 dark:border-[#e3ae72]/15">
+            <p className="text-sm text-[#07264f]/60 dark:text-[#e3ae72]/60 font-medium">This Week</p>
             <p className="text-2xl font-bold text-[#07264f] dark:text-[#e3ae72]">${(completedCount * 100).toFixed(2)}</p>
           </div>
-          <div className="p-4 rounded-lg bg-[#07264f]/5 dark:bg-[#e3ae72]/5">
-            <p className="text-sm text-[#07264f]/60 dark:text-[#e3ae72]/60">This Month</p>
+          <div className="p-4 rounded-lg bg-[#07264f]/5 dark:bg-[#e3ae72]/5 border border-[#07264f]/10 dark:border-[#e3ae72]/15">
+            <p className="text-sm text-[#07264f]/60 dark:text-[#e3ae72]/60 font-medium">This Month</p>
             <p className="text-2xl font-bold text-[#07264f] dark:text-[#e3ae72]">${(completedCount * 100).toFixed(2)}</p>
           </div>
         </div>
@@ -168,10 +161,10 @@ function RevenueOverview({ bookings, completedCount }: { bookings: any[], comple
 // Services Management Component
 function ServicesManagement({ products }: { products: any[] }) {
   return (
-    <div className="rounded-lg border border-[#07264f]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]/50 p-6">
+    <div className="rounded-lg border border-[#07264f]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]/50 p-6 shadow-sm">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-[#07264f] dark:text-[#e3ae72]">Services ({products.length})</h3>
-        <button className="px-4 py-2 bg-[#07264f] text-white dark:bg-[#e3ae72] dark:text-[#07264f] rounded-lg hover:bg-[#07264f]/80 dark:hover:bg-[#d49e5e] transition-colors">
+        <button className="px-4 py-2 bg-[#07264f] text-white dark:bg-[#e3ae72] dark:text-[#07264f] rounded-lg hover:bg-[#07264f]/80 dark:hover:bg-[#d49e5e] transition-colors font-medium">
           Add Service
         </button>
       </div>
@@ -190,6 +183,11 @@ function ServicesManagement({ products }: { products: any[] }) {
             </p>
           </div>
         ))}
+        {products.length === 0 && (
+          <div className="text-center py-8 text-[#07264f]/60 dark:text-[#e3ae72]/60">
+            No services available. Add your first service to get started.
+          </div>
+        )}
       </div>
     </div>
   );

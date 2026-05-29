@@ -40,7 +40,7 @@ export default function UserMenu() {
         .slice(0, 2)
     : session.user.email?.[0].toUpperCase() || "U";
 
-  const dashboardPath = session.user.role === "ADMIN" ? "/admin" : "/account";
+  const dashboardPath = session.user.role === "ADMIN" ? "/admin" : "/user-dashboard";
 
   return (
     <div className="flex items-center gap-3">
@@ -97,7 +97,7 @@ export default function UserMenu() {
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link
-                href="/account"
+                href="/user-dashboard"
                 className="flex cursor-pointer items-center gap-2 text-sm text-[#07264f] dark:text-[#e3ae72]/80 hover:text-[#07264f] dark:hover:text-[#e3ae72]"
               >
                 <User className="h-4 w-4" />
@@ -106,7 +106,7 @@ export default function UserMenu() {
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link
-                href="/account?tab=preferences"
+                href="/user-dashboard?tab=preferences"
                 className="flex cursor-pointer items-center gap-2 text-sm text-[#07264f] dark:text-[#e3ae72]/80 hover:text-[#07264f] dark:hover:text-[#e3ae72]"
               >
                 <Settings className="h-4 w-4" />

@@ -106,20 +106,6 @@ export default function Header() {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-
-            {/* Gift Card */}
-            <NavigationMenuItem>
-              <Link href="/gift-card" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    "text-[#07264f] hover:bg-[#07264f]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
-                  )}
-                >
-                  Gift Card
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -250,19 +236,13 @@ export default function Header() {
                 >
                   Gallery
                 </Link>
-                <Link
-                  href="/gift-card"
-                  className="flex items-center px-5 py-3 text-sm font-medium text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 transition-colors"
-                >
-                  Gift Card
-                </Link>
               </div>
 
               {/* Footer actions */}
               <div className="border-t border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4">
                 {session ? (
                   <>
-                    <Link href={session.user.role === "ADMIN" ? "/admin" : "/account"} onClick={() => setTimeout(() => {}, 0)}>
+                    <Link href={session.user.role === "ADMIN" ? "/admin" : "/user-dashboard"} onClick={() => setTimeout(() => {}, 0)}>
                       <Button
                         variant="outline"
                         size="sm"
@@ -272,7 +252,7 @@ export default function Header() {
                         Dashboard
                       </Button>
                     </Link>
-                    <Link href="/account" onClick={() => setTimeout(() => {}, 0)}>
+                    <Link href="/user-dashboard" onClick={() => setTimeout(() => {}, 0)}>
                       <Button
                         variant="outline"
                         size="sm"

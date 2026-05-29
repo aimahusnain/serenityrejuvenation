@@ -1,11 +1,11 @@
 import {
   Card,
+  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Calendar, Heart, TrendingUp, Clock } from "lucide-react";
+import { Calendar, Heart, TrendingUp, Clock, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface Booking {
@@ -44,65 +44,71 @@ export function StatCards({ bookings, user }: Props) {
       })
     : "No visits yet";
 
+  const stats = [
+    {
+      title: "Total Visits",
+      value: totalBookings.toString(),
+      description: `Member since ${memberSince}`,
+      icon: Calendar,
+      color: "text-blue-600 dark:text-blue-400",
+      bgColor: "bg-blue-500/10 dark:bg-blue-500/20",
+    },
+    {
+      title: "Upcoming",
+      value: upcomingBookings.toString(),
+      description: "Scheduled appointments",
+      icon: Clock,
+      color: "text-yellow-600 dark:text-yellow-400",
+      bgColor: "bg-yellow-500/10 dark:bg-yellow-500/20",
+    },
+    {
+      title: "Completed",
+      value: completedBookings.toString(),
+      description: totalBookings > 0 ? `${Math.round((completedBookings / totalBookings) * 100)}% completion rate` : "Start your journey",
+      icon: TrendingUp,
+      color: "text-green-600 dark:text-green-400",
+      bgColor: "bg-green-500/10 dark:bg-green-500/20",
+    },
+    {
+      title: "Last Visit",
+      value: lastVisit,
+      description: recentBooking
+        ? `Status: ${recentBooking.status.toLowerCase()}`
+        : "Book your first treatment",
+      icon: Sparkles,
+      color: "text-purple-600 dark:text-purple-400",
+      bgColor: "bg-purple-500/10 dark:bg-purple-500/20",
+    },
+  ];
+
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 lg:px-6 @xl/main:grid-cols-4">
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Total Visits</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums text-[#07264f] dark:text-[#e3ae72]">
-            {totalBookings}
-          </CardTitle>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <p className="text-[#07264f]/60 dark:text-[#e3ae72]/60">
-            Member since {memberSince}
-          </p>
-        </CardFooter>
-      </Card>
-
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Upcoming</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums text-[#07264f] dark:text-[#e3ae72]">
-            {upcomingBookings}
-          </CardTitle>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <p className="text-[#07264f]/60 dark:text-[#e3ae72]/60">
-            Scheduled appointments
-          </p>
-        </CardFooter>
-      </Card>
-
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Completed</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums text-[#07264f] dark:text-[#e3ae72]">
-            {completedBookings}
-          </CardTitle>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <p className="text-[#07264f]/60 dark:text-[#e3ae72]/60">
-            {totalBookings > 0 ? `${Math.round((completedBookings / totalBookings) * 100)}% completion rate` : "Start your journey"}
-          </p>
-        </CardFooter>
-      </Card>
-
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Last Visit</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums text-[#07264f] dark:text-[#e3ae72]">
-            {lastVisit}
-          </CardTitle>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <p className="text-[#07264f]/60 dark:text-[#e3ae72]/60">
-            {recentBooking
-              ? `Status: ${recentBooking.status.toLowerCase()}`
-              : "Book your first treatment"}
-          </p>
-        </CardFooter>
-      </Card>
+    <div className="grid grid-cols-1 gap-4 px-4 lg:px-6 sm:grid-cols-2 lg:grid-cols-4">
+      {stats.map((stat, index) => {
+        const Icon = stat.icon;
+        return (
+          <Card
+            key={index}
+            className="relative overflow-hidden border-0 shadow-md bg-white dark:bg-[#07264f]/50 hover:shadow-lg transition-shadow"
+          >
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardDescription className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                {stat.title}
+              </CardDescription>
+              <div className={`p-2 rounded-lg ${stat.bgColor}`}>
+                <Icon className={`h-4 w-4 ${stat.color}`} />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <CardTitle className="text-3xl font-bold text-gray-900 dark:text-white">
+                {stat.value}
+              </CardTitle>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                {stat.description}
+              </p>
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 }

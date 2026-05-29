@@ -181,7 +181,7 @@ export async function updateProfile(prevState: UpdateProfileState, formData: For
       });
     }
 
-    revalidatePath("/account");
+    revalidatePath("/user-dashboard");
     return { success: true };
   } catch (error) {
     console.error("Profile update error:", error);
@@ -226,6 +226,6 @@ export async function deleteAccount() {
     redirect("/");
   } catch (error) {
     console.error("Account deletion error:", error);
-    redirect("/account?error=delete_failed");
+    redirect("/user-dashboard?error=delete_failed");
   }
 }

@@ -9,7 +9,7 @@ import {
   Heart,
   LogOut,
 } from "lucide-react";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useTransition } from "react";
 import { logout } from "@/app/actions/auth";
 import {
@@ -22,27 +22,28 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./NavMain";
+import Link from "next/link";
 
 const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "/account",
+      url: "/user-dashboard",
       icon: Home,
     },
     {
       title: "My Bookings",
-      url: "/account?tab=bookings",
+      url: "/user-dashboard#bookings",
       icon: Calendar,
     },
     {
       title: "Profile",
-      url: "/account?tab=profile",
+      url: "/user-dashboard#profile",
       icon: User,
     },
     {
-      title: "Preferences",
-      url: "/account?tab=preferences",
+      title: "Settings",
+      url: "/user-dashboard#settings",
       icon: Settings,
     },
   ],
@@ -68,42 +69,43 @@ export function SpaAppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>
     : session?.user?.email?.[0].toUpperCase() || "U";
 
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+    <Sidebar collapsible="icon" side="left" className="border-r border-gray-200 dark:border-gray-800" {...props}>
+      <SidebarHeader className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#07264f]">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              asChild
-              className="data-[slot=sidebar-menu-button]:p-1.5!"
-            >
-              <a href="/">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-[#07264f] text-white dark:bg-[#e3ae72] dark:text-[#07264f]">
-                  <Heart className="size-4" />
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/">
+                <div className="flex aspect-square size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#07264f] to-[#0a3a66] text-white dark:from-[#e3ae72] dark:to-[#d49e5e] shadow-lg">
+                  <Heart className="size-5" />
                 </div>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-xs font-semibold text-[#07264f] dark:text-[#e3ae72]">
+                  <span className="text-sm font-semibold text-[#07264f] dark:text-[#e3ae72]">
                     Serenity
                   </span>
-                  <span className="text-[10px] text-[#07264f]/60 dark:text-[#e3ae72]/60">
-                    {session?.user?.role === "ADMIN" ? "Admin" : "Member"}
+                  <span className="text-xs text-[#07264f]/60 dark:text-[#e3ae72]/60">
+                    {session?.user?.role === "ADMIN" ? "Admin Panel" : "Member Dashboard"}
                   </span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
+      <SidebarContent className="bg-gray-50/50 dark:bg-[#07264f]/50">
+        <div className="px-3 py-2">
+          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 px-3 mb-2">
+            MENU
+          </p>
+          <NavMain items={data.navMain} />
+        </div>
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#07264f]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={handleSignOut}
               disabled={isPending}
-              className="cursor-pointer"
+              className="cursor-pointer text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10"
             >
               <LogOut className="size-4" />
               <span>{isPending ? "Signing out..." : "Sign out"}</span>
@@ -113,14 +115,19 @@ export function SpaAppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>
         <SidebarMenu className="mt-2">
           <SidebarMenuItem>
             <SidebarMenuButton size="sm" asChild className="cursor-pointer">
-              <a href="/account">
-                <div className="flex size-6 items-center justify-center rounded-md bg-[#07264f]/10 text-[#07264f] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]">
-                  {userInitials}
+              <div className="flex items-center gap-2">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#07264f] to-[#0a3a66] text-white dark:from-[#e3ae72] dark:to-[#d49e5e]">
+                  <span className="text-xs font-bold">{userInitials}</span>
                 </div>
-                <span className="text-xs font-medium text-[#07264f] dark:text-[#e3ae72]">
-                  {session?.user?.name || "User"}
-                </span>
-              </a>
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium text-[#07264f] dark:text-[#e3ae72]">
+                    {session?.user?.name || "User"}
+                  </span>
+                  <span className="text-xs text-[#07264f]/60 dark:text-[#e3ae72]/60">
+                    {session?.user?.email}
+                  </span>
+                </div>
+              </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -128,3 +135,4 @@ export function SpaAppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>
     </Sidebar>
   );
 }
+

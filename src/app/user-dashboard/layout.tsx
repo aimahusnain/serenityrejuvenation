@@ -8,24 +8,20 @@ export const metadata: Metadata = {
   description: "Manage your spa appointments and preferences",
 };
 
-export default async function AccountLayout({
+export default async function UserDashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const session = await auth();
 
-  if (!session?.user) {
+  if (!session?.user || session.user.role !== "USER") {
     redirect("/login");
   }
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="antialiased bg-gray-50/50 dark:bg-[#07264f]">
-        <SessionProvider session={session}>
-          {children}
-        </SessionProvider>
-      </body>
-    </html>
+    <SessionProvider session={session}>
+      {children}
+    </SessionProvider>
   );
 }

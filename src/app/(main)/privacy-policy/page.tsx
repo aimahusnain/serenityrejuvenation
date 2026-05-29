@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
       content: [
         {
           heading: "Personal Information",
-          text: "When you book appointments, purchase gift cards, or create an account, we collect information such as your full name, email address, phone number, and mailing address. This information is essential for providing our services and communicating with you about your bookings.",
+          text: "When you book appointments or create an account, we collect information such as your full name, email address, phone number, and mailing address. This information is essential for providing our services and communicating with you about your bookings.",
         },
         {
           heading: "Health & Wellness Information",
@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
       content: [
         {
           heading: "Service Delivery",
-          text: "We use your information to schedule and manage your appointments, process gift card purchases, and provide the spa services you request. This includes sending appointment confirmations and reminders.",
+          text: "We use your information to schedule and manage your appointments and provide the spa services you request. This includes sending appointment confirmations and reminders.",
         },
         {
           heading: "Communication",
@@ -70,7 +70,7 @@ export default function PrivacyPolicyPage() {
         },
         {
           heading: "With Your Consent",
-          text: "We may share your information with third parties when you explicitly consent to such sharing, such as when you purchase a gift card for someone else.",
+          text: "We may share your information with third parties when you explicitly consent to such sharing.",
         },
       ],
     },
@@ -206,7 +206,7 @@ export default function PrivacyPolicyPage() {
             <div className="space-y-2">
               <p><strong>Email:</strong> privacy@serenityrejuvenation.com</p>
               <p><strong>Phone:</strong> (555) 123-4567</p>
-              <p><strong>Address:</strong> 123 Wellness Way, Serenity Springs, CA 90210</p>
+              <p><strong>Hours:</strong> Daily 8:00 AM - 5:00 PM</p>
             </div>
             <div className="mt-6 pt-6 border-t border-white/20 dark:border-[#07264f]/20">
               <p className="text-sm text-white/70 dark:text-[#07264f]/70">

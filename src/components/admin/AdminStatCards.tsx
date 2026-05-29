@@ -1,10 +1,9 @@
 import {
   Card,
+  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-  CardAction,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown, Users, Calendar, DollarSign, Sparkles } from "lucide-react";
@@ -35,119 +34,87 @@ export function AdminStatCards({
   const completionRate =
     totalBookings > 0 ? Math.round((completedBookings / totalBookings) * 100) : 0;
 
+  const stats = [
+    {
+      title: "Total Revenue",
+      value: `$${totalRevenue.toFixed(2)}`,
+      description: `From ${completedBookings} completed appointments`,
+      icon: DollarSign,
+      color: "text-green-600 dark:text-green-400",
+      bgColor: "bg-green-500/10 dark:bg-green-500/20",
+      trend: `+${revenueGrowth}%`,
+      trendUp: true,
+    },
+    {
+      title: "Total Clients",
+      value: totalUsers.toString(),
+      description: "Registered users",
+      icon: Users,
+      color: "text-blue-600 dark:text-blue-400",
+      bgColor: "bg-blue-500/10 dark:bg-blue-500/20",
+      trend: `+${userGrowth}%`,
+      trendUp: true,
+    },
+    {
+      title: "Total Bookings",
+      value: totalBookings.toString(),
+      description: `${pendingBookings} pending, ${confirmedBookings} confirmed`,
+      icon: Calendar,
+      color: "text-purple-600 dark:text-purple-400",
+      bgColor: "bg-purple-500/10 dark:bg-purple-500/20",
+      trend: `+${bookingGrowth}%`,
+      trendUp: true,
+    },
+    {
+      title: "Completion Rate",
+      value: `${completionRate}%`,
+      description: `${completedBookings} of ${totalBookings} completed`,
+      icon: Sparkles,
+      color: completionRate >= 80 ? "text-green-600 dark:text-green-400" : "text-yellow-600 dark:text-yellow-400",
+      bgColor: completionRate >= 80 ? "bg-green-500/10 dark:bg-green-500/20" : "bg-yellow-500/10 dark:bg-yellow-500/20",
+      trend: completionRate >= 80 ? "Excellent" : "Good",
+      trendUp: completionRate >= 80,
+    },
+  ];
+
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 lg:px-6 @xl/main:grid-cols-4">
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Total Revenue</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums text-[#07264f] dark:text-[#e3ae72]">
-            ${totalRevenue.toFixed(2)}
-          </CardTitle>
-          <CardAction>
-            <Badge
-              variant="outline"
-              className="border-green-500/20 text-green-700 dark:border-green-500/30 dark:text-green-400"
-            >
-              <TrendingUp className="size-3" />
-              +{revenueGrowth}%
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium text-[#07264f] dark:text-[#e3ae72]">
-            Revenue this month <TrendingUp className="size-4 text-green-600" />
-          </div>
-          <div className="text-[#07264f]/60 dark:text-[#e3ae72]/60">
-            From {completedBookings} completed appointments
-          </div>
-        </CardFooter>
-      </Card>
-
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Total Clients</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums text-[#07264f] dark:text-[#e3ae72]">
-            {totalUsers}
-          </CardTitle>
-          <CardAction>
-            <Badge
-              variant="outline"
-              className="border-green-500/20 text-green-700 dark:border-green-500/30 dark:text-green-400"
-            >
-              <TrendingUp className="size-3" />
-              +{userGrowth}%
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium text-[#07264f] dark:text-[#e3ae72]">
-            Active clients <Users className="size-4" />
-          </div>
-          <div className="text-[#07264f]/60 dark:text-[#e3ae72]/60">
-            Registered users
-          </div>
-        </CardFooter>
-      </Card>
-
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Total Bookings</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums text-[#07264f] dark:text-[#e3ae72]">
-            {totalBookings}
-          </CardTitle>
-          <CardAction>
-            <Badge
-              variant="outline"
-              className="border-green-500/20 text-green-700 dark:border-green-500/30 dark:text-green-400"
-            >
-              <TrendingUp className="size-3" />
-              +{bookingGrowth}%
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium text-[#07264f] dark:text-[#e3ae72]">
-            All appointments <Calendar className="size-4" />
-          </div>
-          <div className="text-[#07264f]/60 dark:text-[#e3ae72]/60">
-            {pendingBookings} pending, {confirmedBookings} confirmed
-          </div>
-        </CardFooter>
-      </Card>
-
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Completion Rate</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums text-[#07264f] dark:text-[#e3ae72]">
-            {completionRate}%
-          </CardTitle>
-          <CardAction>
-            <Badge
-              variant="outline"
-              className={
-                completionRate >= 80
-                  ? "border-green-500/20 text-green-700 dark:border-green-500/30 dark:text-green-400"
-                  : "border-yellow-500/20 text-yellow-700 dark:border-yellow-500/30 dark:text-yellow-400"
-              }
-            >
-              {completionRate >= 80 ? (
-                <TrendingUp className="size-3" />
-              ) : (
-                <TrendingDown className="size-3" />
-              )}
-              {completionRate >= 80 ? "Excellent" : "Good"}
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium text-[#07264f] dark:text-[#e3ae72]">
-            Service quality <Sparkles className="size-4" />
-          </div>
-          <div className="text-[#07264f]/60 dark:text-[#e3ae72]/60">
-            {completedBookings} of {totalBookings} completed
-          </div>
-        </CardFooter>
-      </Card>
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {stats.map((stat, index) => {
+        const Icon = stat.icon;
+        const TrendIcon = stat.trendUp ? TrendingUp : TrendingDown;
+        return (
+          <Card
+            key={index}
+            className="relative overflow-hidden border-0 shadow-md bg-white dark:bg-[#07264f]/50 hover:shadow-lg transition-shadow"
+          >
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardDescription className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                {stat.title}
+              </CardDescription>
+              <div className="flex items-center gap-2">
+                <Badge
+                  variant="outline"
+                  className={`border-${stat.trendUp ? 'green' : 'yellow'}-500/20 ${stat.trendUp ? 'text-green-700 dark:text-green-400' : 'text-yellow-700 dark:text-yellow-400'}`}
+                >
+                  <TrendIcon className="h-3 w-3 mr-1" />
+                  {stat.trend}
+                </Badge>
+                <div className={`p-2 rounded-lg ${stat.bgColor}`}>
+                  <Icon className={`h-4 w-4 ${stat.color}`} />
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <CardTitle className="text-3xl font-bold text-gray-900 dark:text-white">
+                {stat.value}
+              </CardTitle>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                {stat.description}
+              </p>
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 }

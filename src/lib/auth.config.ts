@@ -8,14 +8,18 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnAccount = nextUrl.pathname.startsWith("/account");
+      const isOnUserDashboard = nextUrl.pathname.startsWith("/user-dashboard");
       const isOnAdmin = nextUrl.pathname.startsWith("/admin");
 
-      if ((isOnAccount || isOnAdmin) && !isLoggedIn) {
+      if ((isOnUserDashboard || isOnAdmin) && !isLoggedIn) {
         return false;
       }
 
       if (isOnAdmin && auth?.user?.role !== "ADMIN") {
+        return false;
+      }
+
+      if (isOnUserDashboard && auth?.user?.role !== "USER") {
         return false;
       }
 

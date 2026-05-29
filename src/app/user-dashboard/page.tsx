@@ -12,7 +12,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProfileSection from "@/components/account/ProfileSection";
 import PreferencesSection from "@/components/account/PreferencesSection";
-import { Suspense } from "react";
 
 export default async function AccountPage() {
   const session = await auth();
@@ -36,27 +35,20 @@ export default async function AccountPage() {
   }
 
   return (
-    <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "calc(var(--spacing) * 20)",
-          "--header-height": "calc(var(--spacing) * 12)",
-        } as React.CSSProperties
-      }
-    >
-      <SpaAppSidebar variant="inset" />
-      <SidebarInset>
+    <SidebarProvider>
+      <SpaAppSidebar />
+      <SidebarInset className="flex-1 flex flex-col bg-gray-50/50 dark:bg-[#07264f]">
         <SiteHeader title="My Dashboard" />
-        <div className="flex flex-1 flex-col">
-          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 md:gap-6 md:p-6">
+        <div className="flex-1 overflow-auto">
+          <div className="container mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-8 space-y-6">
             <StatCards bookings={user.bookings} user={user} />
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-              <div className="lg:col-span-4">
+            <div className="grid gap-6 lg:grid-cols-3">
+              <div className="lg:col-span-2">
                 <SpaAppointments bookings={user.bookings} />
               </div>
-              <div className="lg:col-span-3">
+              <div className="lg:col-span-1">
                 <Tabs defaultValue="profile">
-                  <TabsList className="grid w-full grid-cols-2 bg-[#07264f]/5 dark:bg-[#e3ae72]/10">
+                  <TabsList className="grid w-full grid-cols-2 bg-white dark:bg-[#07264f]/50 border-0 shadow-sm">
                     <TabsTrigger
                       value="profile"
                       className="data-[state=active]:bg-[#07264f] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#07264f]"
@@ -67,13 +59,13 @@ export default async function AccountPage() {
                       value="preferences"
                       className="data-[state=active]:bg-[#07264f] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#07264f]"
                     >
-                      Preferences
+                      Settings
                     </TabsTrigger>
                   </TabsList>
-                  <TabsContent value="profile">
+                  <TabsContent value="profile" className="mt-4">
                     <ProfileSection user={user} />
                   </TabsContent>
-                  <TabsContent value="preferences">
+                  <TabsContent value="preferences" className="mt-4">
                     <PreferencesSection preferences={user.preferences} />
                   </TabsContent>
                 </Tabs>

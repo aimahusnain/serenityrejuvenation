@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FileText, Calendar, CreditCard, User, AlertCircle, Gift, Clock } from "lucide-react";
+import { FileText, Calendar, CreditCard, User, AlertCircle, Clock } from "lucide-react";
 
 export const metadata = {
   title: "Terms & Conditions - Serenity Rejuvenation",
@@ -14,7 +14,7 @@ export default function TermsAndConditionsPage() {
       content: [
         {
           heading: "Agreement to Terms",
-          text: "By accessing our website, booking appointments, purchasing gift cards, or using any services provided by Serenity Rejuvenation, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please refrain from using our services.",
+          text: "By accessing our website, booking appointments, or using any services provided by Serenity Rejuvenation, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please refrain from using our services.",
         },
         {
           heading: "Changes to Terms",
@@ -36,7 +36,7 @@ export default function TermsAndConditionsPage() {
       content: [
         {
           heading: "Booking Process",
-          text: "Appointments can be booked through our website, by phone, or in-person. All bookings are subject to availability and confirmation. We recommend booking in advance, especially for weekend and evening appointments.",
+          text: "Appointments can be booked through our website, by phone, or in-person. All bookings are subject to availability and confirmation. We recommend booking in advance, especially for weekend appointments.",
         },
         {
           heading: "Cancellations",
@@ -71,28 +71,6 @@ export default function TermsAndConditionsPage() {
         {
           heading: "Refunds",
           text: "Refunds are handled on a case-by-case basis. If you are dissatisfied with your service, please contact us within 24 hours. Refund requests made more than 7 days after service will not be considered.",
-        },
-      ],
-    },
-    {
-      icon: Gift,
-      title: "Gift Cards",
-      content: [
-        {
-          heading: "Gift Card Purchase",
-          text: "Gift cards can be purchased online, in-person, or by phone. They are available in various denominations and have no expiration date unless required by law. Physical and digital gift cards are available.",
-        },
-        {
-          heading: "Gift Card Terms",
-          text: "Gift cards are not redeemable for cash and cannot be replaced if lost or stolen without proof of purchase. Remaining balances cannot be transferred to other gift cards.",
-        },
-        {
-          heading: "Gift Card Redemption",
-          text: "Gift cards can be redeemed for any service offered at Serenity Rejuvenation. Appointments booked with gift cards are still subject to our cancellation policy.",
-        },
-        {
-          heading: "Promotional Gift Cards",
-          text: "Special promotional gift cards may have additional terms and restrictions. These terms will be clearly disclosed at the time of purchase or on the gift card itself.",
         },
       ],
     },
@@ -146,7 +124,7 @@ export default function TermsAndConditionsPage() {
       content: [
         {
           heading: "Business Hours",
-          text: "Our operating hours are posted on our website and may vary by season or holidays. We reserve the right to adjust hours without prior notice. Emergency closures may occur due to weather or facility issues.",
+          text: "We are open daily from 8:00 AM to 5:00 PM. These hours may vary by season or holidays. We reserve the right to adjust hours without prior notice. Emergency closures may occur due to weather or facility issues.",
         },
         {
           heading: "Late Policy",
@@ -192,7 +170,7 @@ export default function TermsAndConditionsPage() {
           {/* Introduction */}
           <div className="bg-white dark:bg-[#07264f] rounded-2xl p-8 shadow-sm border border-[#07264f]/10 dark:border-[#e3ae72]/20">
             <p className="text-[#07264f]/70 dark:text-[#e3ae72]/70 leading-relaxed text-lg">
-              Welcome to <strong className="text-[#07264f] dark:text-[#e3ae72]">Serenity Rejuvenation</strong>. These Terms and Conditions govern your use of our website, booking services, gift card purchases, and all spa treatments provided by our establishment.
+              Welcome to <strong className="text-[#07264f] dark:text-[#e3ae72]">Serenity Rejuvenation</strong>. These Terms and Conditions govern your use of our website, booking services, and all spa treatments provided by our establishment.
             </p>
             <p className="text-[#07264f]/70 dark:text-[#e3ae72]/70 leading-relaxed text-lg mt-4">
               Please read these terms carefully before using our services. By booking an appointment or making a purchase, you acknowledge that you have read, understood, and agree to be bound by these terms.
@@ -250,7 +228,7 @@ export default function TermsAndConditionsPage() {
             <div className="space-y-2">
               <p><strong>Email:</strong> support@serenityrejuvenation.com</p>
               <p><strong>Phone:</strong> (555) 123-4567</p>
-              <p><strong>Hours:</strong> Mon-Sat 9AM-7PM, Sun 10AM-5PM</p>
+              <p><strong>Hours:</strong> Daily 8:00 AM - 5:00 PM</p>
             </div>
             <div className="mt-6 pt-6 border-t border-white/20 dark:border-[#07264f]/20">
               <p className="text-sm text-white/70 dark:text-[#07264f]/70">

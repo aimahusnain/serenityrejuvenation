@@ -69,7 +69,25 @@ const CONTACT_FIELDS: ContactField[] = [
     ),
   },
   {
-    title: "Headquarter",
+    title: "Business Hours",
+    lines: ["Daily: 8:00 AM - 5:00 PM"],
+    icon: (
+      <svg
+        className="h-4.5 w-4.5"
+        style={{ stroke: "#07264f" }}
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.7}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </svg>
+    ),
+  },
+  {
+    title: "Headquarters",
     lines: [
       "1870 The Exchange SE, Ste 220",
       "PMB 213900",
