@@ -17,6 +17,7 @@ export default async function MainLayout({
   const session = await auth();
 
   return (
+    <div className="antialiased bg-white dark:bg-[#07264f]">
     <SessionProvider session={session}>
       <ProductsProvider initialProducts={products}>
         <Header />
@@ -24,5 +25,6 @@ export default async function MainLayout({
         <Footer />
       </ProductsProvider>
     </SessionProvider>
+    </div>
   );
 }
