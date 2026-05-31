@@ -1,13 +1,17 @@
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import {
   Calendar,
   Home,
   User,
-  Settings,
   Heart,
   LogOut,
+  CalendarPlus,
+  History,
+  CreditCard,
+  Gift,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useTransition } from "react";
@@ -26,26 +30,13 @@ import Link from "next/link";
 
 const data = {
   navMain: [
-    {
-      title: "Dashboard",
-      url: "/user-dashboard",
-      icon: Home,
-    },
-    {
-      title: "My Bookings",
-      url: "/user-dashboard#bookings",
-      icon: Calendar,
-    },
-    {
-      title: "Profile",
-      url: "/user-dashboard#profile",
-      icon: User,
-    },
-    {
-      title: "Settings",
-      url: "/user-dashboard#settings",
-      icon: Settings,
-    },
+    { title: "Overview", url: "/user-dashboard?view=overview", icon: Home, view: "overview" },
+    { title: "My Appointments", url: "/user-dashboard?view=appointments", icon: Calendar, view: "appointments" },
+    { title: "Book Appointment", url: "/user-dashboard?view=book", icon: CalendarPlus, view: "book" },
+    { title: "Treatment History", url: "/user-dashboard?view=history", icon: History, view: "history" },
+    { title: "Payments", url: "/user-dashboard?view=payments", icon: CreditCard, view: "payments" },
+    { title: "Profile", url: "/user-dashboard?view=profile", icon: User, view: "profile" },
+    { title: "Loyalty", url: "/user-dashboard?view=loyalty", icon: Gift, view: "loyalty" },
   ],
 };
 
@@ -69,8 +60,8 @@ export function SpaAppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>
     : session?.user?.email?.[0].toUpperCase() || "U";
 
   return (
-    <Sidebar collapsible="icon" side="left" className="border-r border-gray-200 dark:border-gray-800" {...props}>
-      <SidebarHeader className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#07264f]">
+    <Sidebar collapsible="icon" side="left" className="border-r border-border/60" {...props}>
+      <SidebarHeader className="border-b border-border/60 bg-card">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
@@ -91,12 +82,14 @@ export function SpaAppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="bg-gray-50/50 dark:bg-[#07264f]/50">
+      <SidebarContent className="bg-muted/30">
         <div className="px-3 py-2">
           <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 px-3 mb-2">
             MENU
           </p>
-          <NavMain items={data.navMain} />
+          <Suspense fallback={null}>
+            <NavMain items={data.navMain} />
+          </Suspense>
         </div>
       </SidebarContent>
       <SidebarFooter className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#07264f]">

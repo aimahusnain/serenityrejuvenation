@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import {
   LayoutDashboard,
   Users,
@@ -29,31 +30,12 @@ import Link from "next/link";
 
 const data = {
   navMain: [
-    {
-      title: "Overview",
-      url: "/admin",
-      icon: LayoutDashboard,
-    },
-    {
-      title: "Appointments",
-      url: "/admin?tab=appointments",
-      icon: Calendar,
-    },
-    {
-      title: "Clients",
-      url: "/admin?tab=clients",
-      icon: Users,
-    },
-    {
-      title: "Revenue",
-      url: "/admin?tab=revenue",
-      icon: DollarSign,
-    },
-    {
-      title: "Services",
-      url: "/admin?tab=services",
-      icon: Package,
-    },
+    { title: "Overview", url: "/admin?view=overview", icon: LayoutDashboard, view: "overview" },
+    { title: "Appointments", url: "/admin?view=appointments", icon: Calendar, view: "appointments" },
+    { title: "Clients", url: "/admin?view=clients", icon: Users, view: "clients" },
+    { title: "Services", url: "/admin?view=services", icon: Package, view: "services" },
+    { title: "Finance", url: "/admin?view=finance", icon: DollarSign, view: "finance" },
+    { title: "Staff", url: "/admin?view=staff", icon: Settings, view: "staff" },
   ],
 };
 
@@ -104,7 +86,9 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 px-3 mb-2">
             MENU
           </p>
-          <NavMain items={data.navMain} />
+          <Suspense fallback={null}>
+            <NavMain items={data.navMain} />
+          </Suspense>
         </div>
       </SidebarContent>
       <SidebarFooter className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#07264f]">

@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { type LucideIcon } from "lucide-react";
 import {
   SidebarMenu,
@@ -13,6 +13,7 @@ export interface NavItem {
   title: string;
   url: string;
   icon: LucideIcon;
+  view?: string;
 }
 
 export interface NavMainProps {
@@ -21,16 +22,18 @@ export interface NavMainProps {
 
 export function NavMain({ items }: NavMainProps) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentView = searchParams.get("view") ?? "overview";
 
-  const isActive = (url: string) => {
-    if (url.includes("?")) {
-      const [baseUrl] = url.split("?");
-      return pathname.startsWith(baseUrl);
+  const isActive = (item: NavItem) => {
+    const [baseUrl, query] = item.url.split("?");
+    if (pathname !== baseUrl && !pathname.startsWith(baseUrl)) return false;
+    if (item.view) return currentView === item.view;
+    if (query?.startsWith("view=")) {
+      const v = new URLSearchParams(query).get("view");
+      return v ? currentView === v : currentView === "overview";
     }
-    if (url.includes("#")) {
-      return pathname === url.replace(/#.*$/, "");
-    }
-    return pathname === url;
+    return currentView === "overview";
   };
 
   return (
@@ -40,12 +43,12 @@ export function NavMain({ items }: NavMainProps) {
           <SidebarMenuButton
             asChild
             className="cursor-pointer data-[active=true]:bg-[#07264f]/10 data-[active=true]:text-[#07264f] dark:data-[active=true]:bg-[#e3ae72]/10 dark:data-[active=true]:text-[#e3ae72]"
-            data-active={isActive(item.url)}
+            data-active={isActive(item)}
           >
-            <a href={item.url}>
+            <Link href={item.url}>
               <item.icon className="size-4" />
               <span>{item.title}</span>
-            </a>
+            </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
       ))}

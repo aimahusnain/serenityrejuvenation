@@ -1,17 +1,16 @@
+import { auth } from "@/lib/auth";
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 import { Geist } from "next/font/google";
 import "./globals.css";
-import { auth } from "@/lib/auth";
-import { SessionProvider } from "next-auth/react";
 
-import SpaLoader from "@/components/loader";
 import LenisProvider from "@/components/LenisProvider";
-import Header from "@/components/Header";
+import SpaLoader from "@/components/loader";
 import ThemeContextProvider from "@/components/ThemeContextProvider";
-import Footer from "@/components/Footer";
 
-import { prisma } from "@/lib/prisma";
 import { ProductsProvider } from "@/components/ProductsProvider";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { prisma } from "@/lib/prisma";
 
 const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -34,6 +33,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={fontSans.variable}>
       <body className="antialiased bg-white dark:bg-[#07264f]">
+      <TooltipProvider>
         <SessionProvider session={session}>
           <ThemeContextProvider>
             <ProductsProvider initialProducts={products}>
@@ -43,6 +43,7 @@ export default async function RootLayout({
             </ProductsProvider>
           </ThemeContextProvider>
         </SessionProvider>
+      </TooltipProvider>
       </body>
     </html>
   );
