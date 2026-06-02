@@ -61,7 +61,7 @@ Serenity Rejuvenation is a complete digital solution for spa businesses that com
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/serenityrejuvenation.git
+   git clone https://github.com/aimahusnain/serenityrejuvenation.git
    cd serenityrejuvenation
    ```
 
