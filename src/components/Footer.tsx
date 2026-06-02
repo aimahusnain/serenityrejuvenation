@@ -17,10 +17,10 @@ const services = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-white dark:bg-[#07264f]">
+    <footer className="w-full bg-white dark:bg-[#271024]">
 
       {/* Top accent line */}
-      <div className="h-px bg-linear-to-r from-transparent via-[#07264f]/20 dark:via-[#e3ae72]/30 to-transparent" />
+      <div className="h-px bg-linear-to-r from-transparent via-[#271024]/20 dark:via-[#e3ae72]/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-16 pb-8">
 
@@ -44,15 +44,15 @@ export default function Footer() {
               className="object-contain hidden dark:block"
             />
 
-            <p className="text-sm leading-[1.75] text-[#07264f]/55 dark:text-[#e3ae72]/60 max-w-65">
+            <p className="text-sm leading-[1.75] text-[#271024]/55 dark:text-[#e3ae72]/60 max-w-65">
               Precision-crafted skin treatments for lasting radiance. We blend science and serenity so results stay with you.
             </p>
 
             {/* Contact block */}
-            <div className="flex flex-col gap-2 text-sm text-[#07264f]/65 dark:text-[#e3ae72]/65">
+            <div className="flex flex-col gap-2 text-sm text-[#271024]/65 dark:text-[#e3ae72]/65">
               <a
                 href="tel:+18174877378"
-                className="hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors"
+                className="hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors"
               >
                 +1 (817) 487-7378
               </a>
@@ -77,10 +77,10 @@ export default function Footer() {
                   aria-label={label}
                   className="
                     w-9 h-9 rounded-xl flex items-center justify-center
-                    border border-[#07264f]/12 dark:border-[#e3ae72]/20
-                    text-[#07264f]/50 dark:text-[#e3ae72]/55
-                    hover:bg-[#07264f] hover:text-white hover:border-[#07264f]
-                    dark:hover:bg-[#e3ae72] dark:hover:text-[#07264f] dark:hover:border-[#e3ae72]
+                    border border-[#271024]/12 dark:border-[#e3ae72]/20
+                    text-[#271024]/50 dark:text-[#e3ae72]/55
+                    hover:bg-[#271024] hover:text-white hover:border-[#271024]
+                    dark:hover:bg-[#e3ae72] dark:hover:text-[#271024] dark:hover:border-[#e3ae72]
                     transition-all duration-200
                   "
                 >
@@ -95,7 +95,7 @@ export default function Footer() {
 
           {/* Services col — spans 3 */}
           <div className="md:col-span-3 flex flex-col gap-5">
-            <p className="text-[11px] uppercase tracking-[0.18em] font-semibold text-[#07264f] dark:text-[#e3ae72]">
+            <p className="text-[11px] uppercase tracking-[0.18em] font-semibold text-[#271024] dark:text-[#e3ae72]">
               Services
             </p>
             <ul className="flex flex-col gap-3">
@@ -103,7 +103,7 @@ export default function Footer() {
                 <li key={s.title}>
                   <Link
                     href={s.href}
-                    className="text-sm text-[#07264f]/60 dark:text-[#e3ae72]/60 hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors duration-150"
+                    className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60 hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors duration-150"
                   >
                     {s.title}
                   </Link>
@@ -117,7 +117,7 @@ export default function Footer() {
 
             {/* Quick nav */}
             <div className="flex flex-col gap-5">
-              <p className="text-[11px] uppercase tracking-[0.18em] font-semibold text-[#07264f] dark:text-[#e3ae72]">
+              <p className="text-[11px] uppercase tracking-[0.18em] font-semibold text-[#271024] dark:text-[#e3ae72]">
                 Explore
               </p>
               <ul className="flex flex-col gap-3">
@@ -127,7 +127,7 @@ export default function Footer() {
                   <li key={l.title}>
                     <Link
                       href={l.href}
-                      className="text-sm text-[#07264f]/60 dark:text-[#e3ae72]/60 hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors duration-150"
+                      className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60 hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors duration-150"
                     >
                       {l.title}
                     </Link>
@@ -137,12 +137,12 @@ export default function Footer() {
             </div>
 
             {/* CTA card */}
-            <div className="rounded-2xl border border-[#07264f]/10 dark:border-[#e3ae72]/15 p-6 flex flex-col gap-4 bg-[#07264f]/3 dark:bg-[#e3ae72]/5">
+            <div className="rounded-2xl border border-[#271024]/10 dark:border-[#e3ae72]/15 p-6 flex flex-col gap-4 bg-[#271024]/3 dark:bg-[#e3ae72]/5">
               <div>
-                <p className="text-base font-semibold text-[#07264f] dark:text-[#e3ae72] leading-snug">
+                <p className="text-base font-semibold text-[#271024] dark:text-[#e3ae72] leading-snug">
                   Ready for your glow?
                 </p>
-                <p className="text-sm text-[#07264f]/55 dark:text-[#e3ae72]/60 mt-1">
+                <p className="text-sm text-[#271024]/55 dark:text-[#e3ae72]/60 mt-1">
                   Let our experts guide your skincare journey.
                 </p>
               </div>
@@ -151,8 +151,8 @@ export default function Footer() {
                 className="
                   inline-flex items-center justify-center self-start
                   px-6 py-2.5 rounded-full text-sm font-medium
-                  bg-[#07264f] text-white hover:bg-[#07264f]/85
-                  dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]
+                  bg-[#271024] text-white hover:bg-[#271024]/85
+                  dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]
                   transition-all duration-200
                 "
               >
@@ -163,19 +163,19 @@ export default function Footer() {
         </div>
 
         {/* ── Divider ── */}
-        <div className="mt-14 h-px bg-[#07264f]/8 dark:bg-[#e3ae72]/12" />
+        <div className="mt-14 h-px bg-[#271024]/8 dark:bg-[#e3ae72]/12" />
 
         {/* ── Bottom bar ── */}
         <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-[#07264f]/40 dark:text-[#e3ae72]/40">
+          <p className="text-xs text-[#271024]/40 dark:text-[#e3ae72]/40">
             © {new Date().getFullYear()} Serenity Rejuvenation. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-5 text-xs text-[#07264f]/40 dark:text-[#e3ae72]/40">
-            <Link href="/privacy-policy" className="hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors">
+          <div className="flex items-center gap-5 text-xs text-[#271024]/40 dark:text-[#e3ae72]/40">
+            <Link href="/privacy-policy" className="hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms-and-conditions" className="hover:text-[#07264f] dark:hover:text-[#e3ae72] transition-colors">
+            <Link href="/terms-and-conditions" className="hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors">
               Terms
             </Link>
             <span className="flex items-center gap-1">
@@ -184,7 +184,7 @@ export default function Footer() {
                 href="https://devkins.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#e3ae72] hover:text-[#07264f] dark:hover:text-white transition-colors font-medium"
+                className="text-[#e3ae72] hover:text-[#271024] dark:hover:text-white transition-colors font-medium"
               >
                 devkins.dev
               </a>

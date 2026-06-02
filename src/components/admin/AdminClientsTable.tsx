@@ -35,7 +35,7 @@ interface Props {
 }
 
 const getClientStatus = (bookingCount: number) => {
-  if (bookingCount >= 10) return { status: "VIP", color: "bg-[#e3ae72] text-[#07264f]" };
+  if (bookingCount >= 10) return { status: "VIP", color: "bg-[#e3ae72] text-[#271024]" };
   if (bookingCount >= 5) return { status: "Regular", color: "bg-green-500/20 text-green-700 dark:bg-green-500/30 dark:text-green-400" };
   if (bookingCount >= 2) return { status: "Active", color: "bg-blue-500/20 text-blue-700 dark:bg-blue-500/30 dark:text-blue-400" };
   return { status: "New", color: "bg-gray-500/20 text-gray-700 dark:bg-gray-500/30 dark:text-gray-400" };
@@ -67,14 +67,14 @@ export function AdminClientsTable({ users }: Props) {
   const irregularCount = users.length - regularCount;
 
   return (
-    <Card className="border-[#07264f]/10 dark:border-[#e3ae72]/20">
+    <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">
+            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
               Clients ({users.length})
             </CardTitle>
-            <CardDescription className="text-[#07264f]/60 dark:text-[#e3ae72]/65">
+            <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
               Manage your client base
             </CardDescription>
           </div>
@@ -139,39 +139,39 @@ export function AdminClientsTable({ users }: Props) {
       <CardContent>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-[#07264f]/5 dark:bg-[#e3ae72]/10">
+            <thead className="bg-[#271024]/5 dark:bg-[#e3ae72]/10">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Client
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Visits
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Role
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Joined
                 </th>
-                <th className="px-4 py-3 text-right text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-right text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#07264f]/10 dark:divide-[#e3ae72]/10">
+            <tbody className="divide-y divide-[#271024]/10 dark:divide-[#e3ae72]/10">
               {filteredUsers.map((user) => {
                 const clientStatus = getClientStatus(user._count.bookings);
                 return (
-                  <tr key={user.id} className="hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/5">
+                  <tr key={user.id} className="hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5">
                     <td className="px-4 py-3">
                       <div>
-                        <p className="text-sm font-medium text-[#07264f] dark:text-[#e3ae72]/90">
+                        <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]/90">
                           {user.name || "—"}
                         </p>
-                        <p className="text-xs text-[#07264f]/60 dark:text-[#e3ae72]/60 flex items-center gap-1">
+                        <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60 flex items-center gap-1">
                           <Mail className="h-3 w-3" />
                           {user.email || "—"}
                         </p>
@@ -183,7 +183,7 @@ export function AdminClientsTable({ users }: Props) {
                         {clientStatus.status}
                       </Badge>
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#07264f] dark:text-[#e3ae72]/90">
+                    <td className="px-4 py-3 text-sm text-[#271024] dark:text-[#e3ae72]/90">
                       {user._count.bookings}
                     </td>
                     <td className="px-4 py-3">
@@ -191,7 +191,7 @@ export function AdminClientsTable({ users }: Props) {
                         variant="outline"
                         className={
                           user.role === "ADMIN"
-                            ? "bg-[#e3ae72]/10 text-[#07264f]"
+                            ? "bg-[#e3ae72]/10 text-[#271024]"
                             : ""
                         }
                       >
@@ -199,7 +199,7 @@ export function AdminClientsTable({ users }: Props) {
                         {user.role}
                       </Badge>
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#07264f] dark:text-[#e3ae72]/90">
+                    <td className="px-4 py-3 text-sm text-[#271024] dark:text-[#e3ae72]/90">
                       {new Date(user.createdAt).toLocaleDateString()}
                     </td>
                     <td className="px-4 py-3 text-right">
@@ -208,20 +208,20 @@ export function AdminClientsTable({ users }: Props) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="h-8 w-8 p-0 text-[#07264f] dark:text-[#e3ae72]"
+                            className="h-8 w-8 p-0 text-[#271024] dark:text-[#e3ae72]"
                           >
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                           align="end"
-                          className="border-[#07264f]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]"
+                          className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]"
                         >
-                          <DropdownMenuItem className="cursor-pointer text-[#07264f] dark:text-[#e3ae72]/80">
+                          <DropdownMenuItem className="cursor-pointer text-[#271024] dark:text-[#e3ae72]/80">
                             <Mail className="h-4 w-4 mr-2" />
                             Send Email
                           </DropdownMenuItem>
-                          <DropdownMenuItem className="cursor-pointer text-[#07264f] dark:text-[#e3ae72]/80">
+                          <DropdownMenuItem className="cursor-pointer text-[#271024] dark:text-[#e3ae72]/80">
                             <Calendar className="h-4 w-4 mr-2" />
                             View Bookings
                           </DropdownMenuItem>
@@ -235,7 +235,7 @@ export function AdminClientsTable({ users }: Props) {
                 <tr>
                   <td
                     colSpan={6}
-                    className="px-4 py-8 text-center text-[#07264f]/60 dark:text-[#e3ae72]/60"
+                    className="px-4 py-8 text-center text-[#271024]/60 dark:text-[#e3ae72]/60"
                   >
                     No clients found matching your criteria
                   </td>

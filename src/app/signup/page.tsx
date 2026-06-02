@@ -42,17 +42,17 @@ export default function SignupPage() {
   }, [state?.success, update]);
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
+    <div className="min-h-screen grid lg:grid-cols-2 bg-white dark:bg-[#271024]">
       {/* Left side - Form */}
-      <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#271024]">
         <div className="mx-auto w-full max-w-sm">
           {/* Logo/Brand */}
           <div className="mb-8">
             <Link href="/" className="inline-flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#07264f] dark:bg-[#e3ae72]">
-                <Sparkles className="h-5 w-5 text-white dark:text-[#07264f]" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#271024] dark:bg-[#e3ae72]">
+                <Sparkles className="h-5 w-5 text-white dark:text-[#271024]" />
               </div>
-              <span className="text-xl font-bold text-[#07264f] dark:text-[#e3ae72]">
+              <span className="text-xl font-bold text-[#271024] dark:text-[#e3ae72]">
                 Serenity Rejuvenation
               </span>
             </Link>
@@ -60,7 +60,7 @@ export default function SignupPage() {
 
           {/* Heading */}
           <div className="mb-8">
-            <h1 className="text-2xl font-bold tracking-tight text-[#07264f] dark:text-[#e3ae72] sm:text-3xl">
+            <h1 className="text-2xl font-bold tracking-tight text-[#271024] dark:text-[#e3ae72] sm:text-3xl">
               Create an account
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -72,9 +72,9 @@ export default function SignupPage() {
           <form action={formAction} className="space-y-6">
             {/* Name */}
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name" className="text-[#271024] dark:text-[#e3ae72]">Full Name</Label>
               <div className="relative">
-                <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-[#e3ae72]/60" />
                 <Input
                   id="name"
                   name="name"
@@ -83,16 +83,16 @@ export default function SignupPage() {
                   required
                   minLength={2}
                   disabled={isPending}
-                  className="pl-10"
+                  className="pl-10 bg-white dark:bg-[#1a0a18] border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] placeholder:text-muted-foreground dark:placeholder:text-[#e3ae72]/50 focus:border-[#271024] dark:focus:border-[#e3ae72]"
                 />
               </div>
             </div>
 
             {/* Email */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-[#271024] dark:text-[#e3ae72]">Email</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-[#e3ae72]/60" />
                 <Input
                   id="email"
                   name="email"
@@ -100,16 +100,16 @@ export default function SignupPage() {
                   placeholder="m@example.com"
                   required
                   disabled={isPending}
-                  className="pl-10"
+                  className="pl-10 bg-white dark:bg-[#1a0a18] border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] placeholder:text-muted-foreground dark:placeholder:text-[#e3ae72]/50 focus:border-[#271024] dark:focus:border-[#e3ae72]"
                 />
               </div>
             </div>
 
             {/* Password */}
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="text-[#271024] dark:text-[#e3ae72]">Password</Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-[#e3ae72]/60" />
                 <Input
                   id="password"
                   name="password"
@@ -118,19 +118,19 @@ export default function SignupPage() {
                   required
                   minLength={8}
                   disabled={isPending}
-                  className="pl-10"
+                  className="pl-10 bg-white dark:bg-[#1a0a18] border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] placeholder:text-muted-foreground dark:placeholder:text-[#e3ae72]/50 focus:border-[#271024] dark:focus:border-[#e3ae72]"
                 />
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground dark:text-[#e3ae72]/60">
                 Must be at least 8 characters
               </p>
             </div>
 
             {/* Confirm Password */}
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Label htmlFor="confirmPassword" className="text-[#271024] dark:text-[#e3ae72]">Confirm Password</Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-[#e3ae72]/60" />
                 <Input
                   id="confirmPassword"
                   name="confirmPassword"
@@ -138,24 +138,24 @@ export default function SignupPage() {
                   placeholder="••••••••"
                   required
                   disabled={isPending}
-                  className="pl-10"
+                  className="pl-10 bg-white dark:bg-[#1a0a18] border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] placeholder:text-muted-foreground dark:placeholder:text-[#e3ae72]/50 focus:border-[#271024] dark:focus:border-[#e3ae72]"
                 />
               </div>
             </div>
 
             {/* Terms */}
             <div className="flex items-start space-x-2">
-              <Checkbox id="terms" name="terms" required className="mt-0.5" />
+              <Checkbox id="terms" name="terms" required className="mt-0.5 border-[#271024]/30 dark:border-[#e3ae72]/30" />
               <label
                 htmlFor="terms"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#271024] dark:text-[#e3ae72]"
               >
                 I agree to the{" "}
-                <Link href="/terms-and-conditions" className="underline hover:text-[#07264f] dark:hover:text-[#e3ae72]">
+                <Link href="/terms-and-conditions" className="underline hover:text-[#271024] dark:hover:text-[#e3ae72]">
                   terms of service
                 </Link>{" "}
                 and{" "}
-                <Link href="/privacy-policy" className="underline hover:text-[#07264f] dark:hover:text-[#e3ae72]">
+                <Link href="/privacy-policy" className="underline hover:text-[#271024] dark:hover:text-[#e3ae72]">
                   privacy policy
                 </Link>
               </label>
@@ -163,10 +163,10 @@ export default function SignupPage() {
 
             {/* Error */}
             {state?.error && (
-              <div className="space-y-1 rounded-lg bg-destructive/10 p-3">
+              <div className="space-y-1 rounded-lg bg-destructive/10 dark:bg-red-900/20 p-3 border border-destructive/20 dark:border-red-800/30">
                 {Object.entries(state.error).map(([field, errors]) =>
                   errors?.map((error: string) => (
-                    <p key={`${field}-${error}`} className="text-sm text-destructive">
+                    <p key={`${field}-${error}`} className="text-sm text-destructive dark:text-red-300">
                       {error}
                     </p>
                   ))
@@ -178,7 +178,7 @@ export default function SignupPage() {
             <Button
               type="submit"
               disabled={isPending}
-              className="w-full bg-[#07264f] hover:bg-[#07264f]/90 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
+              className="w-full bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
             >
               {isPending ? "Creating account..." : (
                 <>
@@ -194,7 +194,7 @@ export default function SignupPage() {
             <span className="text-muted-foreground">Already have an account? </span>
             <Link
               href="/login"
-              className="font-medium text-[#07264f] hover:text-[#07264f]/80 dark:text-[#e3ae72] dark:hover:text-[#e3ae72]/80"
+              className="font-medium text-[#271024] hover:text-[#271024]/80 dark:text-[#e3ae72] dark:hover:text-[#e3ae72]/80"
             >
               Sign in
             </Link>
@@ -203,9 +203,9 @@ export default function SignupPage() {
       </div>
 
       {/* Right side - Image/Gradient */}
-      <div className="hidden lg:block relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#07264f] via-[#0a3a66] to-[#07264f]" />
-        <div className="absolute inset-0 bg-[url('/hero-image.jpg')] bg-cover bg-center opacity-20" />
+      <div className="hidden lg:block relative bg-[#f5f5f5] dark:bg-[#1a0a18]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#271024] via-[#0a3a66] to-[#271024] dark:from-[#1a0a18] dark:via-[#2d1540] dark:to-[#1a0a18]" />
+        <div className="absolute inset-0 bg-[url('/hero-image.jpg')] bg-cover bg-center opacity-20 dark:opacity-10" />
         <div className="relative h-full flex flex-col justify-center items-center px-12 text-center">
           <blockquote className="max-w-lg space-y-6">
             <p className="text-3xl font-semibold leading-tight text-white">

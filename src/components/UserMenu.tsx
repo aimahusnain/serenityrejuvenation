@@ -49,7 +49,7 @@ export default function UserMenu() {
         <Button
           variant="ghost"
           size="sm"
-          className="hidden sm:flex text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
+          className="hidden sm:flex text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/8 dark:hover:bg-[#e3ae72]/10"
         >
           <LayoutDashboard className="mr-2 size-4" />
           Dashboard
@@ -62,34 +62,34 @@ export default function UserMenu() {
           <Button
             variant="ghost"
             size="sm"
-            className="relative h-9 w-9 rounded-full bg-[#07264f] dark:bg-[#e3ae72] text-white dark:text-[#07264f] hover:bg-[#07264f]/80 dark:hover:bg-[#d49e5e] p-0"
+            className="relative h-9 w-9 rounded-full bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] hover:bg-[#271024]/80 dark:hover:bg-[#d49e5e] p-0"
           >
             <span className="text-sm font-semibold">{userInitials}</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="w-56 border-[#07264f]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]"
+          className="w-56 border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]"
         >
           <div className="flex items-center justify-start gap-2 px-2 py-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#07264f]/10 dark:bg-[#e3ae72]/20 text-[#07264f] dark:text-[#e3ae72]">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#271024]/10 dark:bg-[#e3ae72]/20 text-[#271024] dark:text-[#e3ae72]">
               <User className="h-4 w-4" />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-medium text-[#07264f] dark:text-[#e3ae72]">
+              <span className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
                 {session.user.name || "User"}
               </span>
-              <span className="text-xs text-[#07264f]/60 dark:text-[#e3ae72]/60">
+              <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
                 {session.user.email}
               </span>
             </div>
           </div>
-          <DropdownMenuSeparator className="bg-[#07264f]/10 dark:bg-[#e3ae72]/10" />
+          <DropdownMenuSeparator className="bg-[#271024]/10 dark:bg-[#e3ae72]/10" />
           <DropdownMenuGroup>
             <DropdownMenuItem asChild>
               <Link
                 href={dashboardPath}
-                className="flex cursor-pointer items-center gap-2 text-sm text-[#07264f] dark:text-[#e3ae72]/80 hover:text-[#07264f] dark:hover:text-[#e3ae72]"
+                className="flex cursor-pointer items-center gap-2 text-sm text-[#271024] dark:text-[#e3ae72]/80 hover:text-[#271024] dark:hover:text-[#e3ae72]"
               >
                 <LayoutDashboard className="h-4 w-4" />
                 <span>Dashboard</span>
@@ -98,7 +98,7 @@ export default function UserMenu() {
             <DropdownMenuItem asChild>
               <Link
                 href="/user-dashboard"
-                className="flex cursor-pointer items-center gap-2 text-sm text-[#07264f] dark:text-[#e3ae72]/80 hover:text-[#07264f] dark:hover:text-[#e3ae72]"
+                className="flex cursor-pointer items-center gap-2 text-sm text-[#271024] dark:text-[#e3ae72]/80 hover:text-[#271024] dark:hover:text-[#e3ae72]"
               >
                 <User className="h-4 w-4" />
                 <span>Profile</span>
@@ -107,14 +107,14 @@ export default function UserMenu() {
             <DropdownMenuItem asChild>
               <Link
                 href="/user-dashboard?tab=preferences"
-                className="flex cursor-pointer items-center gap-2 text-sm text-[#07264f] dark:text-[#e3ae72]/80 hover:text-[#07264f] dark:hover:text-[#e3ae72]"
+                className="flex cursor-pointer items-center gap-2 text-sm text-[#271024] dark:text-[#e3ae72]/80 hover:text-[#271024] dark:hover:text-[#e3ae72]"
               >
                 <Settings className="h-4 w-4" />
                 <span>Settings</span>
               </Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
-          <DropdownMenuSeparator className="bg-[#07264f]/10 dark:bg-[#e3ae72]/10" />
+          <DropdownMenuSeparator className="bg-[#271024]/10 dark:bg-[#e3ae72]/10" />
           <DropdownMenuItem
             onClick={handleSignOut}
             disabled={isPending}

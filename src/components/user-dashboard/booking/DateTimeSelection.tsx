@@ -129,7 +129,7 @@ export function DateTimeSelection({
   return (
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#07264f] dark:text-[#e3ae72]">
+        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#271024] dark:text-[#e3ae72]">
           Choose Date & Time
         </h2>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
@@ -152,7 +152,7 @@ export function DateTimeSelection({
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              <h3 className="text-lg font-semibold text-[#07264f] dark:text-[#e3ae72]">
+              <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
                 {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
               </h3>
               <Button
@@ -195,16 +195,16 @@ export function DateTimeSelection({
                     onClick={() => handleDateClick(date)}
                     className={cn(
                       "aspect-square rounded-lg text-sm font-medium transition-all duration-200",
-                      "hover:bg-[#07264f]/10 dark:hover:bg-[#e3ae72]/10",
+                      "hover:bg-[#271024]/10 dark:hover:bg-[#e3ae72]/10",
                       isDisabled && "opacity-30 cursor-not-allowed hover:bg-transparent",
                       isSelected &&
-                        "bg-[#07264f] dark:bg-[#e3ae72] text-white dark:text-[#07264f]",
+                        "bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024]",
                       !isSelected &&
                         !isDisabled &&
-                        "text-[#07264f] dark:text-[#e3ae72]",
+                        "text-[#271024] dark:text-[#e3ae72]",
                       isToday &&
                         !isSelected &&
-                        "border border-[#07264f] dark:border-[#e3ae72]"
+                        "border border-[#271024] dark:border-[#e3ae72]"
                     )}
                   >
                     {date.getDate()}
@@ -219,8 +219,8 @@ export function DateTimeSelection({
         <Card className="border-border/60">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center gap-2 mb-4">
-              <Clock className="w-5 h-5 text-[#07264f] dark:text-[#e3ae72]" />
-              <h3 className="text-lg font-semibold text-[#07264f] dark:text-[#e3ae72]">
+              <Clock className="w-5 h-5 text-[#271024] dark:text-[#e3ae72]" />
+              <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
                 Available Times
               </h3>
             </div>
@@ -238,8 +238,8 @@ export function DateTimeSelection({
                       className={cn(
                         "text-sm",
                         isSelected
-                          ? "bg-[#07264f] dark:bg-[#e3ae72] text-white dark:text-[#07264f] border-[#07264f] dark:border-[#e3ae72]"
-                          : "border-[#07264f]/20 dark:border-[#e3ae72]/20 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/5"
+                          ? "bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] border-[#271024] dark:border-[#e3ae72]"
+                          : "border-[#271024]/20 dark:border-[#e3ae72]/20 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5"
                       )}
                     >
                       {time}
@@ -270,7 +270,7 @@ export function DateTimeSelection({
           onClick={onNext}
           disabled={!canProceed}
           size="lg"
-          className="px-8 sm:px-12 bg-[#07264f] dark:bg-[#e3ae72] text-white dark:text-[#07264f] hover:bg-[#07264f]/80 dark:hover:bg-[#d49e5e]"
+          className="px-8 sm:px-12 bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] hover:bg-[#271024]/80 dark:hover:bg-[#d49e5e]"
         >
           Continue to Add-ons
         </Button>

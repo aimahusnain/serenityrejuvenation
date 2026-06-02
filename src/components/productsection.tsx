@@ -89,11 +89,11 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       }}
       className="relative"
     >
-      <div className="absolute -inset-4 -z-10 rounded-[48px] bg-[#07264f]/4 dark:bg-[#e3ae72]/4 blur-2xl" />
+      <div className="absolute -inset-4 -z-10 rounded-[48px] bg-[#271024]/4 dark:bg-[#e3ae72]/4 blur-2xl" />
 
-      <div className="rounded-[28px] overflow-hidden bg-white dark:bg-[#07264f] border border-[#07264f]/12 dark:border-[#e3ae72]/20 shadow-[0_8px_40px_rgba(7,38,79,0.10)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.3)] h-full flex flex-col">
+      <div className="rounded-[28px] overflow-hidden bg-white dark:bg-[#271024] border border-[#271024]/12 dark:border-[#e3ae72]/20 shadow-[0_8px_40px_rgba(7,38,79,0.10)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.3)] h-full flex flex-col">
         {/* TOP */}
-        <div className="relative bg-[#07264f] dark:bg-[#e3ae72] px-7 pt-7 pb-9">
+        <div className="relative bg-[#271024] dark:bg-[#e3ae72] px-7 pt-7 pb-9">
           <span className="inline-flex items-center gap-1.5 text-[10px] uppercase dark:text-black! text-white/60 bg-white/10 px-3 py-1.5 rounded-full">
             <StarDiamond className="w-2 h-2" />
             Treatment
@@ -150,7 +150,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 <StarDiamond
                   className={`w-2 h-2 ${
                     hoveredBenefit === i
-                      ? "text-[#07264f] dark:text-[#e3ae72]"
+                      ? "text-[#271024] dark:text-[#e3ae72]"
                       : "text-neutral-400"
                   }`}
                 />
@@ -162,7 +162,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           <a
             href={BOOKING_URL}
             target="_blank"
-            className="mt-6 bg-[#07264f] dark:bg-[#e3ae72] text-white dark:text-[#07264f] text-center py-3 rounded-full text-sm uppercase tracking-wider"
+            className="mt-6 bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] text-center py-3 rounded-full text-sm uppercase tracking-wider"
           >
             Book Now
           </a>
@@ -177,21 +177,21 @@ export default function ProductsSection() {
   const products = useProducts();
 
   return (
-    <section className="w-full pt-20 pb-10 bg-white dark:bg-[#07264f]">
+    <section className="w-full pt-20 pb-10 bg-white dark:bg-[#271024]">
       <div className="max-w-7xl mx-auto px-4">
         {/* HEADER */}
         <div className="text-center mb-14">
           <p className="uppercase tracking-widest text-sm dark:text-black! text-white!">
             <Highlighter
               action="highlight"
-              lightColor="#07264f"
+              lightColor="#271024"
               darkColor="#e3ae72"
             >
               Our Products
             </Highlighter>
           </p>
 
-          <h2 className="text-4xl md:text-6xl font-light mt-4 text-[#07264f] dark:text-[#e3ae72]">
+          <h2 className="text-4xl md:text-6xl font-light mt-4 text-[#271024] dark:text-[#e3ae72]">
             Advanced Treatments
           </h2>
         </div>

@@ -40,31 +40,31 @@ export default function Header() {
   };
 
   return (
-    <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#07264f]/95 dark:supports-backdrop-filter:bg-[#07264f]/80 border border-[#07264f]/10 dark:border-[#e3ae72]/15">
+    <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#271024]/95 dark:supports-backdrop-filter:bg-[#271024]/80 border border-[#271024]/10 dark:border-[#e3ae72]/15">
       <div className="flex h-16 max-w-full items-center justify-between px-2">
         {/* Desktop Navigation Menu */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-1">
             {/* Services */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-[#07264f] hover:bg-[#07264f]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10">
+              <NavigationMenuTrigger className="text-[#271024] hover:bg-[#271024]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10">
                 Services
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-white dark:bg-[#07264f] dark:border-[#e3ae72]/15">
-                <div className="grid w-220 grid-cols-3 gap-4 p-6 bg-white dark:bg-[#07264f] dark:border-[#e3ae72]/15">
+              <NavigationMenuContent className="bg-white dark:bg-[#271024] dark:border-[#e3ae72]/15">
+                <div className="grid w-220 grid-cols-3 gap-4 p-6 bg-white dark:bg-[#271024] dark:border-[#e3ae72]/15">
                   {products.map((service) => {
                     const price = Number(service.price ?? 0);
                     return (
                       <div
                         key={service.title}
-                        className="group rounded-lg border border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4 hover:border-[#07264f]/40 dark:hover:border-[#e3ae72]/50 hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/8 transition-all"
+                        className="group rounded-lg border border-[#271024]/15 dark:border-[#e3ae72]/20 p-4 hover:border-[#271024]/40 dark:hover:border-[#e3ae72]/50 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/8 transition-all"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-[#07264f] dark:text-[#e3ae72] text-sm leading-tight">
+                            <h4 className="font-semibold text-[#271024] dark:text-[#e3ae72] text-sm leading-tight">
                               {service.title}
                             </h4>
-                            <p className="text-xs text-[#07264f]/55 dark:text-[#e3ae72]/60 mt-1 line-clamp-2">
+                            <p className="text-xs text-[#271024]/55 dark:text-[#e3ae72]/60 mt-1 line-clamp-2">
                               {service.description}
                             </p>
                           </div>
@@ -99,7 +99,7 @@ export default function Header() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "text-[#07264f] hover:bg-[#07264f]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
+                    "text-[#271024] hover:bg-[#271024]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
                   )}
                 >
                   Gallery
@@ -140,7 +140,7 @@ export default function Header() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="hidden cursor-pointer sm:flex text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
+                  className="hidden cursor-pointer sm:flex text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/8 dark:hover:bg-[#e3ae72]/10"
                 >
                   <User className="mr-2 size-4" />
                   Account
@@ -150,7 +150,7 @@ export default function Header() {
               <Link href="/login">
                 <Button
                   size="sm"
-                  className="sm:flex hidden bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
+                  className="sm:flex hidden bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
                 >
                   <LogIn className="mr-2 size-4" />
                   <span className="hidden sm:inline">Login</span>
@@ -166,17 +166,17 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/8 dark:hover:bg-[#e3ae72]/10"
+                className="text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/8 dark:hover:bg-[#e3ae72]/10"
               >
                 <Menu className="size-6" />
               </Button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-72 bg-white dark:bg-[#07264f] p-0 flex flex-col"
+              className="w-72 bg-white dark:bg-[#271024] p-0 flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-[#07264f]/15 dark:border-[#e3ae72]/20">
+              <div className="flex items-center justify-between px-5 py-4 border-b border-[#271024]/15 dark:border-[#e3ae72]/20">
                 {/* Light mode logo */}
                 <Image
                   src="/logo_dark.png"
@@ -200,7 +200,7 @@ export default function Header() {
                 {/* Services accordion */}
                 <Accordion type="single" collapsible defaultValue="services">
                   <AccordionItem value="services" className="border-none">
-                    <AccordionTrigger className="px-5 py-3 text-sm font-medium text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 hover:no-underline rounded-none">
+                    <AccordionTrigger className="px-5 py-3 text-sm font-medium text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 hover:no-underline rounded-none">
                       Services
                     </AccordionTrigger>
                     <AccordionContent className="pb-1">
@@ -208,17 +208,17 @@ export default function Header() {
                         {products.map((service) => (
                           <div
                             key={service.title}
-                            className="rounded-xl border border-[#07264f]/15 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]/50 px-3 py-2.5 hover:border-[#07264f]/30 dark:hover:border-[#e3ae72]/40 hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/8 transition-all cursor-pointer"
+                            className="rounded-xl border border-[#271024]/15 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]/50 px-3 py-2.5 hover:border-[#271024]/30 dark:hover:border-[#e3ae72]/40 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/8 transition-all cursor-pointer"
                           >
                             <div className="flex items-start justify-between gap-2 mb-1">
-                              <span className="text-xs font-medium text-[#07264f] dark:text-[#e3ae72] leading-snug">
+                              <span className="text-xs font-medium text-[#271024] dark:text-[#e3ae72] leading-snug">
                                 {service.title}
                               </span>
                               <span className="text-[11px] font-medium text-[#e3ae72] whitespace-nowrap pt-px">
                                 ${service.price}.00
                               </span>
                             </div>
-                            <p className="text-[11px] text-[#07264f]/55 dark:text-[#e3ae72]/55 leading-relaxed line-clamp-2">
+                            <p className="text-[11px] text-[#271024]/55 dark:text-[#e3ae72]/55 leading-relaxed line-clamp-2">
                               {service.description}
                             </p>
                           </div>
@@ -228,25 +228,25 @@ export default function Header() {
                   </AccordionItem>
                 </Accordion>
 
-                <div className="h-px bg-[#07264f]/10 dark:bg-[#e3ae72]/15 mx-5 my-1" />
+                <div className="h-px bg-[#271024]/10 dark:bg-[#e3ae72]/15 mx-5 my-1" />
 
                 <Link
                   href="/gallery"
-                  className="flex items-center px-5 py-3 text-sm font-medium text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 transition-colors"
+                  className="flex items-center px-5 py-3 text-sm font-medium text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 transition-colors"
                 >
                   Gallery
                 </Link>
               </div>
 
               {/* Footer actions */}
-              <div className="border-t border-[#07264f]/15 dark:border-[#e3ae72]/20 p-4">
+              <div className="border-t border-[#271024]/15 dark:border-[#e3ae72]/20 p-4">
                 {session ? (
                   <>
                     <Link href={session.user.role === "ADMIN" ? "/admin" : "/user-dashboard"} onClick={() => setTimeout(() => {}, 0)}>
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
+                        className="w-full border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
                       >
                         <User className="mr-2 size-4" />
                         Dashboard
@@ -256,7 +256,7 @@ export default function Header() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
+                        className="w-full border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
                       >
                         <User className="mr-2 size-4" />
                         Profile
@@ -267,7 +267,7 @@ export default function Header() {
                       size="sm"
                       onClick={handleSignOut}
                       disabled={isPending}
-                      className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+                      className="w-full border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
                     >
                       <LogOut className="mr-2 size-4" />
                       {isPending ? "Signing out..." : "Sign Out"}
@@ -279,7 +279,7 @@ export default function Header() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
+                        className="w-full border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
                       >
                         <User className="mr-2 size-4" />
                         Account
@@ -288,7 +288,7 @@ export default function Header() {
                     <Link href="/login" onClick={() => setTimeout(() => {}, 0)}>
                       <Button
                         size="sm"
-                        className="w-full bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
+                        className="w-full bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
                       >
                         <LogIn className="mr-2 size-4" />
                         Login

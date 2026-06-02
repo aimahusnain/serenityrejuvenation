@@ -81,15 +81,15 @@ export default function AdminDashboard({ users, bookings, stats }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#07264f] py-8 px-4">
+    <main className="min-h-screen bg-white dark:bg-[#271024] py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-[#07264f] dark:text-[#e3ae72]">
+            <h1 className="text-3xl font-bold text-[#271024] dark:text-[#e3ae72]">
               Admin Dashboard
             </h1>
-            <p className="text-[#07264f]/60 dark:text-[#e3ae72]/65 mt-2">
+            <p className="text-[#271024]/60 dark:text-[#e3ae72]/65 mt-2">
               Manage users, bookings, and settings
             </p>
           </div>
@@ -97,7 +97,7 @@ export default function AdminDashboard({ users, bookings, stats }: Props) {
             variant="outline"
             onClick={handleSignOut}
             disabled={isPending}
-            className="border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+            className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
           >
             {isPending ? "Signing out..." : (
               <>
@@ -113,17 +113,17 @@ export default function AdminDashboard({ users, bookings, stats }: Props) {
 
         {/* Main Content */}
         <Tabs defaultValue="users" className="mt-8">
-          <TabsList className="grid w-full grid-cols-2 bg-[#07264f]/5 dark:bg-[#e3ae72]/10">
+          <TabsList className="grid w-full grid-cols-2 bg-[#271024]/5 dark:bg-[#e3ae72]/10">
             <TabsTrigger
               value="users"
-              className="data-[state=active]:bg-[#07264f] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#07264f]"
+              className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
             >
               <Users className="h-4 w-4 mr-2" />
               Users
             </TabsTrigger>
             <TabsTrigger
               value="bookings"
-              className="data-[state=active]:bg-[#07264f] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#07264f]"
+              className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
             >
               <Calendar className="h-4 w-4 mr-2" />
               Bookings

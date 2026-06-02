@@ -64,7 +64,7 @@ export function UpcomingAppointmentsWidget({
   return (
     <Card className="border-border/60">
       <CardHeader>
-        <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Upcoming Appointments</CardTitle>
+        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Upcoming Appointments</CardTitle>
         <CardDescription>Your next visits, with quick actions</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -80,7 +80,7 @@ export function UpcomingAppointmentsWidget({
             >
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <p className="font-semibold text-[#07264f] dark:text-[#e3ae72]">{a.serviceName}</p>
+                  <p className="font-semibold text-[#271024] dark:text-[#e3ae72]">{a.serviceName}</p>
                   <Badge className={cn("border-0", statusClass(a.status))}>{a.status}</Badge>
                 </div>
                 <p className="text-sm text-muted-foreground flex items-center gap-1">

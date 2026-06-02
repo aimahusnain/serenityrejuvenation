@@ -187,7 +187,7 @@ export function AdminDashboardShell({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-[#07264f] dark:text-[#e3ae72]">
+        <h2 className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
           {VIEW_TITLES[view] ?? "Admin"}
         </h2>
         <p className="text-sm text-muted-foreground">Spa management control center</p>
@@ -243,7 +243,7 @@ export function AdminDashboardShell({
           <AdminCalendar bookings={filteredBookings} />
           <Card className="border-border/60">
             <CardHeader>
-              <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">All Appointments</CardTitle>
+              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">All Appointments</CardTitle>
               <CardDescription>Conflict detection: overlapping slots highlighted in calendar</CardDescription>
             </CardHeader>
             <CardContent className="overflow-x-auto">
@@ -296,7 +296,7 @@ export function AdminDashboardShell({
         <Card className="border-border/60">
           <CardHeader className="flex flex-col sm:flex-row sm:items-center gap-4">
             <div>
-              <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Clients ({users.length})</CardTitle>
+              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Clients ({users.length})</CardTitle>
             </div>
             <Input placeholder="Search clients…" className="max-w-xs sm:ml-auto" value={clientSearch} onChange={(e) => setClientSearch(e.target.value)} />
           </CardHeader>
@@ -328,7 +328,7 @@ export function AdminDashboardShell({
       {view === "services" && (
         <Card className="border-border/60">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Services & Packages</CardTitle>
+            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Services & Packages</CardTitle>
             <Button size="sm">Add treatment</Button>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -343,7 +343,7 @@ export function AdminDashboardShell({
               </div>
             ))}
             <div className="rounded-lg border border-dashed border-primary/30 p-4 mt-4">
-              <p className="font-medium text-[#07264f] dark:text-[#e3ae72]">Glow Package</p>
+              <p className="font-medium text-[#271024] dark:text-[#e3ae72]">Glow Package</p>
               <p className="text-sm text-muted-foreground">Microneedling + PRP bundle — configure in admin tools</p>
             </div>
           </CardContent>
@@ -357,7 +357,7 @@ export function AdminDashboardShell({
           <KpiCard title="Refunds" value="0" subtitle="No active refunds" icon={XCircle} />
           <Card className="md:col-span-3 border-border/60">
             <CardHeader className="flex flex-row justify-between">
-              <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Transaction Log</CardTitle>
+              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Transaction Log</CardTitle>
               <Button variant="outline" size="sm"><Download className="size-4 mr-1" /> Export Excel</Button>
             </CardHeader>
             <CardContent className="divide-y text-sm">
@@ -414,7 +414,7 @@ function AdminCalendar({
   return (
     <Card className="border-border/60 overflow-x-auto">
       <CardHeader>
-        <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Weekly Schedule</CardTitle>
+        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Weekly Schedule</CardTitle>
         <CardDescription>Click status menu in table to move appointments</CardDescription>
       </CardHeader>
       <CardContent>

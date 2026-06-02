@@ -86,17 +86,17 @@ export default function PurelyRejuvenated() {
   }, [cycle]);
 
   return (
-    <section className="w-full px-6 pt-14 md:pt-20 bg-white dark:bg-[#07264f]">
+    <section className="w-full px-6 pt-14 md:pt-20 bg-white dark:bg-[#271024]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-8 lg:gap-20">
         {/* ── LEFT ── */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start gap-5 mb-6">
-            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[#07264f] dark:text-[#e3ae72] leading-[1.1] tracking-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[#271024] dark:text-[#e3ae72] leading-[1.1] tracking-tight">
               Purely
               <br />
               <Highlighter
                 action="underline"
-                lightColor="#07264f"
+                lightColor="#271024"
                 darkColor="#e3ae72"
               >
                 Rejuvenated
@@ -107,7 +107,7 @@ export default function PurelyRejuvenated() {
             </div>
           </div>
 
-          <p className="text-[15px] leading-relaxed text-[#07264f]/60 dark:text-[#e3ae72]/65 max-w-sm mb-10">
+          <p className="text-[15px] leading-relaxed text-[#271024]/60 dark:text-[#e3ae72]/65 max-w-sm mb-10">
             The serenity that stays with you long after your spa session,
             lasting well even into the next day. No more commuting way back
             home, no more traffic, just pure relaxation.
@@ -119,15 +119,15 @@ export default function PurelyRejuvenated() {
             rel="noopener noreferrer"
             className="
               inline-flex items-center justify-center
-              bg-[#07264f] dark:bg-[#e3ae72]
-              text-white dark:text-[#07264f]
+              bg-[#271024] dark:bg-[#e3ae72]
+              text-white dark:text-[#271024]
               text-sm font-medium tracking-wide
               px-10 py-4 rounded-full
               transition-all duration-200
-              hover:bg-[#07264f]/80 dark:hover:bg-[#d49e5e]
+              hover:bg-[#271024]/80 dark:hover:bg-[#d49e5e]
               active:scale-95
               focus-visible:outline-none focus-visible:ring-2
-              focus-visible:ring-[#07264f] dark:focus-visible:ring-[#e3ae72]
+              focus-visible:ring-[#271024] dark:focus-visible:ring-[#e3ae72]
             "
           >
             Instant Booking
@@ -146,9 +146,9 @@ export default function PurelyRejuvenated() {
                 className={[
                   "flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-500 cursor-not-allowed select-none",
                   isHighlighted &&
-                    "bg-white dark:bg-[#e3ae72] shadow-md border border-[#07264f]/15 dark:border-transparent cursor-default select-auto",
+                    "bg-white dark:bg-[#e3ae72] shadow-md border border-[#271024]/15 dark:border-transparent cursor-default select-auto",
                   isDim &&
-                    "bg-[#07264f]/5 dark:bg-[#07264f]/60 border border-[#07264f]/10 dark:border-[#e3ae72]/10",
+                    "bg-[#271024]/5 dark:bg-[#271024]/60 border border-[#271024]/10 dark:border-[#e3ae72]/10",
                 ]
                   .filter(Boolean)
                   .join(" ")}
@@ -158,9 +158,9 @@ export default function PurelyRejuvenated() {
                   className={[
                     "shrink-0 w-6 h-6 rounded-full text-[11px] font-bold flex items-center justify-center transition-all duration-500",
                     isHighlighted &&
-                      "bg-[#07264f] dark:bg-white text-white dark:text-[#07264f]",
+                      "bg-[#271024] dark:bg-white text-white dark:text-[#271024]",
                     isDim &&
-                      "bg-[#07264f]/15 dark:bg-[#e3ae72]/20 text-[#07264f]/40 dark:text-[#e3ae72]/50",
+                      "bg-[#271024]/15 dark:bg-[#e3ae72]/20 text-[#271024]/40 dark:text-[#e3ae72]/50",
                   ]
                     .filter(Boolean)
                     .join(" ")}
@@ -173,9 +173,9 @@ export default function PurelyRejuvenated() {
                   className={[
                     "text-sm leading-snug transition-all duration-500 flex-1",
                     isHighlighted &&
-                      "font-semibold text-[#07264f] dark:text-[#07264f]",
+                      "font-semibold text-[#271024] dark:text-[#271024]",
                     isDim &&
-                      "font-normal text-[#07264f]/40 dark:text-[#e3ae72]/45",
+                      "font-normal text-[#271024]/40 dark:text-[#e3ae72]/45",
                   ]
                     .filter(Boolean)
                     .join(" ")}
@@ -223,7 +223,7 @@ function SpaFaceIcon() {
         x2="8"
         y2="16"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -233,7 +233,7 @@ function SpaFaceIcon() {
         x2="12"
         y2="12"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -243,7 +243,7 @@ function SpaFaceIcon() {
         x2="20"
         y2="8"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -253,7 +253,7 @@ function SpaFaceIcon() {
         x2="23"
         y2="5"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -262,13 +262,13 @@ function SpaFaceIcon() {
         cy="34"
         r="20"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="1.8"
       />
       <path
         d="M18 28 Q20 14 34 14 Q48 14 50 28"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="1.8"
         fill="none"
         strokeLinecap="round"
@@ -279,7 +279,7 @@ function SpaFaceIcon() {
         x2="27"
         y2="36"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="2"
         strokeLinecap="round"
       />
@@ -289,14 +289,14 @@ function SpaFaceIcon() {
         x2="41"
         y2="36"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="2"
         strokeLinecap="round"
       />
       <path
         d="M27 42 Q34 48 41 42"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="1.8"
         fill="none"
         strokeLinecap="round"
@@ -304,7 +304,7 @@ function SpaFaceIcon() {
       <path
         d="M16 58 Q20 50 34 50 Q48 50 52 58"
         stroke="currentColor"
-        className="text-[#07264f] dark:text-[#e3ae72]"
+        className="text-[#271024] dark:text-[#e3ae72]"
         strokeWidth="1.8"
         fill="none"
         strokeLinecap="round"

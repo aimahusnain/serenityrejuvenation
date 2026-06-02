@@ -35,7 +35,7 @@ export function KpiCard({
         </div>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold tracking-tight text-[#07264f] dark:text-[#e3ae72]">
+        <div className="text-2xl font-bold tracking-tight text-[#271024] dark:text-[#e3ae72]">
           {value}
         </div>
         {subtitle && (

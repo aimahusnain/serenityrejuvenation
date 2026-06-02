@@ -67,7 +67,7 @@ export function BookingSummary({
   return (
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#07264f] dark:text-[#e3ae72]">
+        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#271024] dark:text-[#e3ae72]">
           Review Your Booking
         </h2>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
@@ -80,23 +80,23 @@ export function BookingSummary({
         {/* Service Summary */}
         <Card className="border-border/60">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base flex items-center gap-2 text-[#07264f] dark:text-[#e3ae72]">
+            <CardTitle className="text-base flex items-center gap-2 text-[#271024] dark:text-[#e3ae72]">
               <Sparkles className="w-4 h-4" />
               Treatment
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div>
-              <p className="font-semibold text-[#07264f] dark:text-[#e3ae72]">
+              <p className="font-semibold text-[#271024] dark:text-[#e3ae72]">
                 {service?.title}
               </p>
               <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
                 {service?.description}
               </p>
             </div>
-            <div className="flex justify-between items-center pt-2 border-t border-[#07264f]/10 dark:border-[#e3ae72]/10">
+            <div className="flex justify-between items-center pt-2 border-t border-[#271024]/10 dark:border-[#e3ae72]/10">
               <span className="text-sm text-muted-foreground">Service</span>
-              <span className="font-medium text-[#07264f] dark:text-[#e3ae72]">
+              <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
                 ${servicePrice}
               </span>
             </div>
@@ -106,7 +106,7 @@ export function BookingSummary({
         {/* Date & Time */}
         <Card className="border-border/60">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base flex items-center gap-2 text-[#07264f] dark:text-[#e3ae72]">
+            <CardTitle className="text-base flex items-center gap-2 text-[#271024] dark:text-[#e3ae72]">
               <Calendar className="w-4 h-4" />
               Date & Time
             </CardTitle>
@@ -115,14 +115,14 @@ export function BookingSummary({
             <div className="flex items-start gap-2">
               <Calendar className="w-4 h-4 text-[#e3ae72] mt-0.5 shrink-0" />
               <div>
-                <p className="text-sm font-medium text-[#07264f] dark:text-[#e3ae72]">
+                <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
                   {formattedDate}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-[#e3ae72] shrink-0" />
-              <p className="text-sm font-medium text-[#07264f] dark:text-[#e3ae72]">
+              <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
                 {selectedTime}
               </p>
             </div>
@@ -144,7 +144,7 @@ export function BookingSummary({
         {/* Add-ons & Total */}
         <Card className="border-border/60">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base flex items-center gap-2 text-[#07264f] dark:text-[#e3ae72]">
+            <CardTitle className="text-base flex items-center gap-2 text-[#271024] dark:text-[#e3ae72]">
               <CreditCard className="w-4 h-4" />
               Summary
             </CardTitle>
@@ -165,7 +165,7 @@ export function BookingSummary({
                       <span className="text-muted-foreground">
                         {addOn?.name}
                       </span>
-                      <span className="text-[#07264f] dark:text-[#e3ae72]">
+                      <span className="text-[#271024] dark:text-[#e3ae72]">
                         ${addOn?.price}
                       </span>
                     </div>
@@ -174,9 +174,9 @@ export function BookingSummary({
               </div>
             )}
 
-            <div className="pt-3 border-t border-[#07264f]/10 dark:border-[#e3ae72]/10">
+            <div className="pt-3 border-t border-[#271024]/10 dark:border-[#e3ae72]/10">
               <div className="flex justify-between items-center">
-                <span className="font-medium text-[#07264f] dark:text-[#e3ae72]">
+                <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
                   Total
                 </span>
                 <span className="text-xl font-bold text-[#e3ae72]">
@@ -200,12 +200,12 @@ export function BookingSummary({
       </div>
 
       {/* Payment Note */}
-      <Card className="bg-[#07264f]/5 dark:bg-[#e3ae72]/10 border-[#07264f]/10 dark:border-[#e3ae72]/20">
+      <Card className="bg-[#271024]/5 dark:bg-[#e3ae72]/10 border-[#271024]/10 dark:border-[#e3ae72]/20">
         <CardContent className="p-4">
           <div className="flex items-start gap-3">
-            <CreditCard className="w-5 h-5 text-[#07264f] dark:text-[#e3ae72] shrink-0 mt-0.5" />
+            <CreditCard className="w-5 h-5 text-[#271024] dark:text-[#e3ae72] shrink-0 mt-0.5" />
             <div className="text-sm text-muted-foreground">
-              <p className="font-medium text-[#07264f] dark:text-[#e3ae72] mb-1">
+              <p className="font-medium text-[#271024] dark:text-[#e3ae72] mb-1">
                 Payment Information
               </p>
               <p>
@@ -234,9 +234,9 @@ export function BookingSummary({
           size="lg"
           className={cn(
             "px-8 sm:px-12 min-w-[200px]",
-            "bg-[#07264f] dark:bg-[#e3ae72]",
-            "text-white dark:text-[#07264f]",
-            "hover:bg-[#07264f]/80 dark:hover:bg-[#d49e5e]"
+            "bg-[#271024] dark:bg-[#e3ae72]",
+            "text-white dark:text-[#271024]",
+            "hover:bg-[#271024]/80 dark:hover:bg-[#d49e5e]"
           )}
         >
           {isSubmitting ? (

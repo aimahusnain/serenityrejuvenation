@@ -26,15 +26,15 @@ export function NavMain({
       <SidebarGroupContent className="flex flex-col gap-2 flex-1 min-h-0 h-full">
         <SidebarMenu>
           <SidebarMenuItem className="flex items-center gap-2">
-            <Link href="/user-dashboard/book">
-            <SidebarMenuButton
-              tooltip="Book Appointment"
-              className="min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground"
+            <Link className="w-full" href="/user-dashboard/book">
+              <SidebarMenuButton
+                tooltip="Book Appointment"
+                className="min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground"
               >
-              <CirclePlusIcon />
-              <span>Book Appointment</span>
-            </SidebarMenuButton>
-              </Link>
+                <CirclePlusIcon />
+                <span>Book Appointment</span>
+              </SidebarMenuButton>
+            </Link>
             <Link href="/user-dashboard">
               <Button
                 size="icon"

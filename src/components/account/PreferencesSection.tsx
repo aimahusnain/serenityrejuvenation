@@ -47,26 +47,26 @@ export default function PreferencesSection({ preferences }: Props) {
 
   if (!preferences && !isEditing) {
     return (
-      <Card className="border-[#07264f]/10 dark:border-[#e3ae72]/20">
+      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
         <CardHeader>
-          <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Preferences</CardTitle>
-          <CardDescription className="text-[#07264f]/60 dark:text-[#e3ae72]/65">
+          <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Preferences</CardTitle>
+          <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
             Your account settings
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col items-center justify-center py-12 text-center">
-            <Heart className="h-12 w-12 text-[#07264f]/30 dark:text-[#e3ae72]/30 mb-4" />
-            <h3 className="text-lg font-semibold text-[#07264f] dark:text-[#e3ae72] mb-2">
+            <Heart className="h-12 w-12 text-[#271024]/30 dark:text-[#e3ae72]/30 mb-4" />
+            <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">
               No preferences set
             </h3>
-            <p className="text-sm text-[#07264f]/60 dark:text-[#e3ae72]/65 max-w-xs mb-4">
+            <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 max-w-xs mb-4">
               Your preferences haven&apos;t been configured yet.
             </p>
             <Button
               variant="outline"
               onClick={() => setIsEditing(true)}
-              className="border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+              className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
             >
               <Edit2 className="h-4 w-4 mr-2" />
               Set Preferences
@@ -78,11 +78,11 @@ export default function PreferencesSection({ preferences }: Props) {
   }
 
   return (
-    <Card className="border-[#07264f]/10 dark:border-[#e3ae72]/20">
+    <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
-          <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Preferences</CardTitle>
-          <CardDescription className="text-[#07264f]/60 dark:text-[#e3ae72]/65">
+          <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Preferences</CardTitle>
+          <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
             {isEditing ? "Edit your preferences" : "Manage your account settings and notifications"}
           </CardDescription>
         </div>
@@ -91,7 +91,7 @@ export default function PreferencesSection({ preferences }: Props) {
             variant="ghost"
             size="sm"
             onClick={() => setIsEditing(true)}
-            className="text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+            className="text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
           >
             <Edit2 className="h-4 w-4 mr-2" />
             Edit
@@ -102,16 +102,16 @@ export default function PreferencesSection({ preferences }: Props) {
         {isEditing ? (
           <form action={handleSave} className="space-y-6">
             {/* Email Notifications */}
-            <div className="flex items-center justify-between p-4 rounded-xl border border-[#07264f]/10 dark:border-[#e3ae72]/15 bg-[#07264f]/5 dark:bg-[#e3ae72]/5">
+            <div className="flex items-center justify-between p-4 rounded-xl border border-[#271024]/10 dark:border-[#e3ae72]/15 bg-[#271024]/5 dark:bg-[#e3ae72]/5">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#07264f]/10 dark:bg-[#e3ae72]/20">
-                  <Bell className="h-5 w-5 text-[#07264f] dark:text-[#e3ae72]" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/10 dark:bg-[#e3ae72]/20">
+                  <Bell className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
                 </div>
                 <div>
-                  <Label htmlFor="emailNotifications" className="text-[#07264f] dark:text-[#e3ae72] font-medium">
+                  <Label htmlFor="emailNotifications" className="text-[#271024] dark:text-[#e3ae72] font-medium">
                     Email Notifications
                   </Label>
-                  <p className="text-xs text-[#07264f]/60 dark:text-[#e3ae72]/60">
+                  <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
                     Receive updates about bookings and offers
                   </p>
                 </div>
@@ -125,7 +125,7 @@ export default function PreferencesSection({ preferences }: Props) {
 
             {/* Phone Number */}
             <div className="space-y-2">
-              <Label htmlFor="phone" className="text-[#07264f] dark:text-[#e3ae72]">
+              <Label htmlFor="phone" className="text-[#271024] dark:text-[#e3ae72]">
                 Phone Number
               </Label>
               <Input
@@ -134,7 +134,7 @@ export default function PreferencesSection({ preferences }: Props) {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="(555) 123-4567"
-                className="border-[#07264f]/15 focus:border-[#07264f] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
+                className="border-[#271024]/15 focus:border-[#271024] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
               />
               <p className="text-xs text-muted-foreground">
                 Optional contact number for appointment reminders
@@ -162,7 +162,7 @@ export default function PreferencesSection({ preferences }: Props) {
               <Button
                 type="submit"
                 disabled={isPending}
-                className="bg-[#07264f] hover:bg-[#07264f]/80 text-white dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]"
+                className="bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
               >
                 {isPending ? "Saving..." : (
                   <>
@@ -180,7 +180,7 @@ export default function PreferencesSection({ preferences }: Props) {
                   setEmailNotifications(preferences?.emailNotifications ?? true);
                 }}
                 disabled={isPending}
-                className="border-[#07264f]/20 dark:border-[#e3ae72]/30 text-[#07264f] dark:text-[#e3ae72] hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/10"
+                className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
               >
                 <X className="h-4 w-4 mr-2" />
                 Cancel
@@ -191,17 +191,17 @@ export default function PreferencesSection({ preferences }: Props) {
           <>
             {/* Email Notifications */}
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#07264f]/8 dark:bg-[#e3ae72]/20">
-                <Bell className="h-5 w-5 text-[#07264f] dark:text-[#e3ae72]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
+                <Bell className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
               </div>
               <div className="flex-1">
-                <Label className="text-[#07264f]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
                   Email Notifications
                 </Label>
-                <p className="text-[#07264f] dark:text-[#e3ae72]/90 font-medium mt-1">
+                <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
                   {preferences?.emailNotifications ? "Enabled" : "Disabled"}
                 </p>
-                <p className="text-xs text-[#07264f]/50 dark:text-[#e3ae72]/50 mt-1">
+                <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 mt-1">
                   Receive updates about your bookings and special offers
                 </p>
               </div>
@@ -209,17 +209,17 @@ export default function PreferencesSection({ preferences }: Props) {
 
             {/* Phone Number */}
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#07264f]/8 dark:bg-[#e3ae72]/20">
-                <Phone className="h-5 w-5 text-[#07264f] dark:text-[#e3ae72]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
+                <Phone className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
               </div>
               <div className="flex-1">
-                <Label className="text-[#07264f]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
                   Phone Number
                 </Label>
-                <p className="text-[#07264f] dark:text-[#e3ae72]/90 font-medium mt-1">
+                <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
                   {preferences?.phone || "Not set"}
                 </p>
-                <p className="text-xs text-[#07264f]/50 dark:text-[#e3ae72]/50 mt-1">
+                <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 mt-1">
                   Optional contact number for appointment reminders
                 </p>
               </div>
@@ -227,11 +227,11 @@ export default function PreferencesSection({ preferences }: Props) {
 
             {/* Preferred Services */}
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#07264f]/8 dark:bg-[#e3ae72]/20">
-                <Heart className="h-5 w-5 text-[#07264f] dark:text-[#e3ae72]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
+                <Heart className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
               </div>
               <div className="flex-1">
-                <Label className="text-[#07264f]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
                   Preferred Services
                 </Label>
                 {preferences?.preferredServices && preferences.preferredServices.length > 0 ? (
@@ -239,18 +239,18 @@ export default function PreferencesSection({ preferences }: Props) {
                     {preferences.preferredServices.map((service, index) => (
                       <span
                         key={index}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#07264f]/10 text-[#07264f] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]"
+                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#271024]/10 text-[#271024] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]"
                       >
                         {service}
                       </span>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-[#07264f] dark:text-[#e3ae72]/90 font-medium mt-1">
+                  <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
                     No preferred services selected
                   </p>
                 )}
-                <p className="text-xs text-[#07264f]/50 dark:text-[#e3ae72]/50 mt-1">
+                <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 mt-1">
                   Services you frequently book
                 </p>
               </div>
@@ -258,14 +258,14 @@ export default function PreferencesSection({ preferences }: Props) {
 
             {/* Last Updated */}
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#07264f]/8 dark:bg-[#e3ae72]/20">
-                <Mail className="h-5 w-5 text-[#07264f] dark:text-[#e3ae72]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
+                <Mail className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
               </div>
               <div className="flex-1">
-                <Label className="text-[#07264f]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
                   Last Updated
                 </Label>
-                <p className="text-[#07264f] dark:text-[#e3ae72]/90 font-medium mt-1">
+                <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
                   {preferences && new Date(preferences.updatedAt).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",

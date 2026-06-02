@@ -146,11 +146,11 @@ function BeforeAfterSlider({
           move(e.touches[0].clientX);
         }}
       >
-        <div className="w-11 h-11 rounded-full bg-white shadow-xl flex items-center justify-center border-2 border-white/80 ring-1 ring-[#07264f]/10">
+        <div className="w-11 h-11 rounded-full bg-white shadow-xl flex items-center justify-center border-2 border-white/80 ring-1 ring-[#271024]/10">
           <svg
             viewBox="0 0 20 20"
             fill="none"
-            className="w-5 h-5 text-[#07264f]"
+            className="w-5 h-5 text-[#271024]"
           >
             <path
               d="M6 10l-3 3m0 0l3 3m-3-3h14m0 0l-3-3m3 3l-3 3"
@@ -209,7 +209,7 @@ export default function ShowcaseSection() {
   const slide = slides[active];
 
   return (
-    <section className="w-full bg-white dark:bg-[#07264f] overflow-hidden">
+    <section className="w-full bg-white dark:bg-[#271024] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
           {/* ── LEFT ─────────────────────────────────────────────── */}
@@ -223,7 +223,7 @@ export default function ShowcaseSection() {
             </div>
 
             {/* Heading */}
-            <h2 className="text-4xl md:text-5xl font-serif font-semibold text-[#07264f] dark:text-[#e3ae72] leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-serif font-semibold text-[#271024] dark:text-[#e3ae72] leading-[1.1] tracking-tight">
               Visible change.
               <br />
               <span className="relative inline-block">
@@ -232,7 +232,7 @@ export default function ShowcaseSection() {
               </span>
             </h2>
 
-            <p className="text-base leading-[1.85] text-[#07264f]/58 dark:text-[#e3ae72]/62 max-w-92.5">
+            <p className="text-base leading-[1.85] text-[#271024]/58 dark:text-[#e3ae72]/62 max-w-92.5">
               Every transformation is real — no filters, no edits. Drag the
               slider to see exactly what our treatments deliver.
             </p>
@@ -241,17 +241,17 @@ export default function ShowcaseSection() {
             <div className="grid grid-cols-3 gap-4 py-2">
               {stats.map(({ value, label }) => (
                 <div key={label} className="flex flex-col gap-1.5">
-                  <span className="text-3xl font-serif font-semibold text-[#07264f] dark:text-[#e3ae72]">
+                  <span className="text-3xl font-serif font-semibold text-[#271024] dark:text-[#e3ae72]">
                     {value}
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.14em] text-[#07264f]/42 dark:text-[#e3ae72]/48 leading-snug">
+                  <span className="text-[11px] uppercase tracking-[0.14em] text-[#271024]/42 dark:text-[#e3ae72]/48 leading-snug">
                     {label}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="h-px bg-[#07264f]/8 dark:bg-[#e3ae72]/12" />
+            <div className="h-px bg-[#271024]/8 dark:bg-[#e3ae72]/12" />
 
             {/* Active slide info — updates with carousel */}
             <div
@@ -266,15 +266,15 @@ export default function ShowcaseSection() {
                   <p className="text-[11px] uppercase tracking-[0.18em] text-[#e3ae72] font-semibold">
                     {slide.subtitle}
                   </p>
-                  <h3 className="text-xl font-serif font-semibold text-[#07264f] dark:text-[#e3ae72] mt-0.5">
+                  <h3 className="text-xl font-serif font-semibold text-[#271024] dark:text-[#e3ae72] mt-0.5">
                     {slide.treatment}
                   </h3>
                 </div>
-                <span className="text-lg font-semibold text-[#07264f] dark:text-[#e3ae72]">
+                <span className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
                   {slide.price}
                 </span>
               </div>
-              <p className="text-sm leading-relaxed text-[#07264f]/55 dark:text-[#e3ae72]/60">
+              <p className="text-sm leading-relaxed text-[#271024]/55 dark:text-[#e3ae72]/60">
                 {slide.desc}
               </p>
             </div>
@@ -286,8 +286,8 @@ export default function ShowcaseSection() {
                 className="
                   inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full
                   text-sm font-medium transition-all duration-200 group
-                  bg-[#07264f] text-white hover:bg-[#07264f]/82
-                  dark:bg-[#e3ae72] dark:text-[#07264f] dark:hover:bg-[#d49e5e]
+                  bg-[#271024] text-white hover:bg-[#271024]/82
+                  dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]
                 "
               >
                 Book This Treatment
@@ -302,7 +302,7 @@ export default function ShowcaseSection() {
           {/* ── RIGHT ────────────────────────────────────────────── */}
           <div className="flex-1 w-full flex flex-col gap-5 lg:max-w-125">
             {/* Card */}
-            <div className="relative w-full aspect-4/5 rounded-3xl overflow-hidden shadow-2xl shadow-[#07264f]/12 dark:shadow-black/40 bg-[#07264f]/5 dark:bg-[#e3ae72]/5">
+            <div className="relative w-full aspect-4/5 rounded-3xl overflow-hidden shadow-2xl shadow-[#271024]/12 dark:shadow-black/40 bg-[#271024]/5 dark:bg-[#e3ae72]/5">
               {/* Before/After slider — fades on slide change */}
               <div
                 className="absolute inset-0 transition-opacity duration-300"
@@ -318,7 +318,7 @@ export default function ShowcaseSection() {
 
               {/* Top left tag */}
               <div className="absolute top-5 left-5 z-30 pointer-events-none">
-                <span className="text-[10px] uppercase tracking-widest font-semibold px-3 py-1.5 rounded-full bg-[#e3ae72] text-[#07264f]">
+                <span className="text-[10px] uppercase tracking-widest font-semibold px-3 py-1.5 rounded-full bg-[#e3ae72] text-[#271024]">
                   {slide.tag}
                 </span>
               </div>
@@ -383,11 +383,11 @@ export default function ShowcaseSection() {
                     aria-label={`Go to ${s.treatment}`}
                     className={`transition-all duration-300 rounded-full overflow-hidden border-2 ${
                       i === active
-                        ? "border-[#07264f] dark:border-[#e3ae72] w-10 h-10 opacity-100"
+                        ? "border-[#271024] dark:border-[#e3ae72] w-10 h-10 opacity-100"
                         : "border-transparent w-8 h-8 opacity-45 hover:opacity-70"
                     }`}
                   >
-                    <div className="relative w-full h-full bg-[#07264f]/10 dark:bg-[#e3ae72]/10">
+                    <div className="relative w-full h-full bg-[#271024]/10 dark:bg-[#e3ae72]/10">
                       <Image
                         src={s.after}
                         alt={s.treatment}
@@ -400,7 +400,7 @@ export default function ShowcaseSection() {
               </div>
 
               {/* Counter */}
-              <span className="text-xs font-medium tabular-nums text-[#07264f]/38 dark:text-[#e3ae72]/42">
+              <span className="text-xs font-medium tabular-nums text-[#271024]/38 dark:text-[#e3ae72]/42">
                 {String(active + 1).padStart(2, "0")} /{" "}
                 {String(slides.length).padStart(2, "0")}
               </span>

@@ -60,19 +60,19 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
 
   return (
     <Sidebar collapsible="icon" side="left" className="border-r border-gray-200 dark:border-gray-800" {...props}>
-      <SidebarHeader className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#07264f]">
+      <SidebarHeader className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#271024]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="flex aspect-square size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#e3ae72] to-[#d49e5e] text-[#07264f] shadow-lg">
+                <div className="flex aspect-square size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#e3ae72] to-[#d49e5e] text-[#271024] shadow-lg">
                   <TrendingUp className="size-5" />
                 </div>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-sm font-semibold text-[#07264f] dark:text-[#e3ae72]">
+                  <span className="text-sm font-semibold text-[#271024] dark:text-[#e3ae72]">
                     Admin
                   </span>
-                  <span className="text-xs text-[#07264f]/60 dark:text-[#e3ae72]/60">
+                  <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
                     Management Dashboard
                   </span>
                 </div>
@@ -81,7 +81,7 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="bg-gray-50/50 dark:bg-[#07264f]/50">
+      <SidebarContent className="bg-gray-50/50 dark:bg-[#271024]/50">
         <div className="px-3 py-2">
           <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 px-3 mb-2">
             MENU
@@ -91,7 +91,7 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           </Suspense>
         </div>
       </SidebarContent>
-      <SidebarFooter className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#07264f]">
+      <SidebarFooter className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#271024]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
@@ -108,14 +108,14 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           <SidebarMenuItem>
             <SidebarMenuButton size="sm" asChild className="cursor-pointer">
               <div className="flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#e3ae72] to-[#d49e5e] text-[#07264f]">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#e3ae72] to-[#d49e5e] text-[#271024]">
                   <span className="text-xs font-bold">{userInitials}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-[#07264f] dark:text-[#e3ae72]">
+                  <span className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
                     {session?.user?.name || "Admin"}
                   </span>
-                  <span className="text-xs text-[#07264f]/60 dark:text-[#e3ae72]/60">
+                  <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
                     {session?.user?.email}
                   </span>
                 </div>

@@ -19,13 +19,13 @@ export default function StatsCards({ stats }: Props) {
       title: "Total Users",
       value: stats.totalUsers,
       icon: Users,
-      color: "text-[#07264f] dark:text-[#e3ae72]",
+      color: "text-[#271024] dark:text-[#e3ae72]",
     },
     {
       title: "Total Bookings",
       value: stats.totalBookings,
       icon: Calendar,
-      color: "text-[#07264f] dark:text-[#e3ae72]",
+      color: "text-[#271024] dark:text-[#e3ae72]",
     },
     {
       title: "Pending",
@@ -43,7 +43,7 @@ export default function StatsCards({ stats }: Props) {
       title: "Completed",
       value: stats.completedBookings,
       icon: Check,
-      color: "text-[#07264f] dark:text-[#e3ae72]/80",
+      color: "text-[#271024] dark:text-[#e3ae72]/80",
     },
   ];
 
@@ -54,10 +54,10 @@ export default function StatsCards({ stats }: Props) {
         return (
           <Card
             key={index}
-            className="border-[#07264f]/10 dark:border-[#e3ae72]/20 hover:shadow-md transition-shadow"
+            className="border-[#271024]/10 dark:border-[#e3ae72]/20 hover:shadow-md transition-shadow"
           >
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardDescription className="text-[#07264f]/60 dark:text-[#e3ae72]/65 text-sm">
+              <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65 text-sm">
                 {card.title}
               </CardDescription>
               <Icon className={`h-4 w-4 ${card.color}`} />

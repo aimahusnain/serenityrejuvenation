@@ -162,7 +162,7 @@ export function UserDashboardShell({
     <div className="flex flex-col gap-3 rounded-xl border border-border/60 bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="space-y-1">
         <div className="flex items-center gap-2">
-          <p className="font-semibold text-[#07264f] dark:text-[#e3ae72]">{b.serviceName}</p>
+          <p className="font-semibold text-[#271024] dark:text-[#e3ae72]">{b.serviceName}</p>
           <Badge className={cn("border-0", statusClass(b.status))}>{b.status}</Badge>
         </div>
         <p className="text-sm text-muted-foreground flex items-center gap-1">
@@ -198,7 +198,7 @@ export function UserDashboardShell({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-[#07264f] dark:text-[#e3ae72]">
+        <h2 className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
           {VIEW_TITLES[view] ?? "Dashboard"}
         </h2>
         <p className="text-sm text-muted-foreground">
@@ -223,7 +223,7 @@ export function UserDashboardShell({
           <div className="grid gap-6 lg:grid-cols-3">
             <Card className="lg:col-span-2 border-border/60">
               <CardHeader>
-                <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Upcoming Appointments</CardTitle>
+                <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Upcoming Appointments</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {upcoming.length === 0 ? (
@@ -233,18 +233,18 @@ export function UserDashboardShell({
                 )}
               </CardContent>
             </Card>
-            <Card className="border-border/60 bg-gradient-to-br from-[#07264f]/5 to-primary/5 dark:from-[#e3ae72]/10">
+            <Card className="border-border/60 bg-gradient-to-br from-[#271024]/5 to-primary/5 dark:from-[#e3ae72]/10">
               <CardHeader>
-                <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">For You</CardTitle>
+                <CardTitle className="text-[#271024] dark:text-[#e3ae72]">For You</CardTitle>
                 <CardDescription>Personal recommendations</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 text-sm">
                 <div>
-                  <p className="font-medium text-[#07264f] dark:text-[#e3ae72]">Recommended next</p>
+                  <p className="font-medium text-[#271024] dark:text-[#e3ae72]">Recommended next</p>
                   <p className="text-muted-foreground mt-1">{recommendNextTreatment(enriched)}</p>
                 </div>
                 <div>
-                  <p className="font-medium text-[#07264f] dark:text-[#e3ae72]">Maintenance plan</p>
+                  <p className="font-medium text-[#271024] dark:text-[#e3ae72]">Maintenance plan</p>
                   <p className="text-muted-foreground mt-1">
                     Book every 8–12 weeks to maintain results from your last treatment.
                   </p>
@@ -300,7 +300,7 @@ export function UserDashboardShell({
       {view === "book" && (
         <Card className="max-w-xl border-border/60">
           <CardHeader>
-            <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Book New Appointment</CardTitle>
+            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Book New Appointment</CardTitle>
             <CardDescription>Select service, add-ons, and preferred time</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -359,7 +359,7 @@ export function UserDashboardShell({
             <Card key={b.id} className="border-border/60">
               <CardContent className="pt-6 flex flex-col sm:flex-row sm:justify-between gap-4">
                 <div>
-                  <p className="font-semibold text-[#07264f] dark:text-[#e3ae72]">{b.serviceName}</p>
+                  <p className="font-semibold text-[#271024] dark:text-[#e3ae72]">{b.serviceName}</p>
                   <p className="text-sm text-muted-foreground">{new Date(b.date).toLocaleDateString()}</p>
                   {b.notes && <p className="text-xs mt-2 text-muted-foreground">Notes: {b.notes}</p>}
                   <p className="text-xs mt-1 text-muted-foreground italic">Provider notes available after visit</p>
@@ -378,7 +378,7 @@ export function UserDashboardShell({
       {view === "payments" && (
         <Card className="border-border/60">
           <CardHeader>
-            <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Payment History</CardTitle>
+            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Payment History</CardTitle>
           </CardHeader>
           <CardContent className="divide-y">
             {completed.map((b) => (
@@ -404,7 +404,7 @@ export function UserDashboardShell({
           <KpiCard title="Points Balance" value={String(loyaltyPoints)} subtitle="Redeem at 500 pts" icon={Gift} />
           <Card className="border-border/60 md:col-span-2">
             <CardHeader>
-              <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">Membership Tiers</CardTitle>
+              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Membership Tiers</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
               <div className="flex justify-between rounded-lg border p-3 border-primary/20 bg-primary/5">

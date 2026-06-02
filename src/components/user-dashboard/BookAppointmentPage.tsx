@@ -8,6 +8,7 @@ import { DateTimeSelection } from "./booking/DateTimeSelection";
 import { AddOnsSelection } from "./booking/AddOnsSelection";
 import { BookingSummary } from "./booking/BookingSummary";
 import type { ProductLite } from "@/lib/dashboard";
+import { Highlighter } from "../ui/highlighter";
 
 const STEPS = [
   { id: 1, label: "Service" },
@@ -153,10 +154,12 @@ export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#07264f] dark:text-[#e3ae72] leading-tight">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#271024] dark:text-[#e3ae72] leading-tight">
             Book Your
-            <span className="block mt-1 text-[#e3ae72] dark:text-[#07264f]">
+            <span className="block mt-1 text-[#e3ae72] dark:text-[#271024]">
+              <Highlighter lightColor="#271024" darkColor="#e3ae72">
               Appointment
+              </Highlighter>
             </span>
           </h1>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg mx-auto">

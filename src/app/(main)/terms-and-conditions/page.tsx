@@ -143,21 +143,21 @@ export default function TermsAndConditionsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#07264f]/5 to-transparent dark:from-[#e3ae72]/5">
+    <div className="min-h-screen bg-gradient-to-b from-[#271024]/5 to-transparent dark:from-[#e3ae72]/5">
       {/* Header */}
-      <div className="bg-[#07264f] dark:bg-[#e3ae72] py-16">
+      <div className="bg-[#271024] dark:bg-[#e3ae72] py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 dark:bg-[#07264f]/10 mb-6">
-              <FileText className="w-8 h-8 text-white dark:text-[#07264f]" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 dark:bg-[#271024]/10 mb-6">
+              <FileText className="w-8 h-8 text-white dark:text-[#271024]" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white dark:text-[#07264f] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-white dark:text-[#271024] mb-4">
               Terms & Conditions
             </h1>
-            <p className="text-xl text-white/80 dark:text-[#07264f]/80">
+            <p className="text-xl text-white/80 dark:text-[#271024]/80">
               Please review our terms for appointments, payments, and services.
             </p>
-            <p className="text-sm text-white/60 dark:text-[#07264f]/60 mt-4">
+            <p className="text-sm text-white/60 dark:text-[#271024]/60 mt-4">
               Last Updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
             </p>
           </div>
@@ -168,11 +168,11 @@ export default function TermsAndConditionsPage() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-12">
           {/* Introduction */}
-          <div className="bg-white dark:bg-[#07264f] rounded-2xl p-8 shadow-sm border border-[#07264f]/10 dark:border-[#e3ae72]/20">
-            <p className="text-[#07264f]/70 dark:text-[#e3ae72]/70 leading-relaxed text-lg">
-              Welcome to <strong className="text-[#07264f] dark:text-[#e3ae72]">Serenity Rejuvenation</strong>. These Terms and Conditions govern your use of our website, booking services, and all spa treatments provided by our establishment.
+          <div className="bg-white dark:bg-[#271024] rounded-2xl p-8 shadow-sm border border-[#271024]/10 dark:border-[#e3ae72]/20">
+            <p className="text-[#271024]/70 dark:text-[#e3ae72]/70 leading-relaxed text-lg">
+              Welcome to <strong className="text-[#271024] dark:text-[#e3ae72]">Serenity Rejuvenation</strong>. These Terms and Conditions govern your use of our website, booking services, and all spa treatments provided by our establishment.
             </p>
-            <p className="text-[#07264f]/70 dark:text-[#e3ae72]/70 leading-relaxed text-lg mt-4">
+            <p className="text-[#271024]/70 dark:text-[#e3ae72]/70 leading-relaxed text-lg mt-4">
               Please read these terms carefully before using our services. By booking an appointment or making a purchase, you acknowledge that you have read, understood, and agree to be bound by these terms.
             </p>
           </div>
@@ -183,14 +183,14 @@ export default function TermsAndConditionsPage() {
             return (
               <div
                 key={sectionIndex}
-                className="bg-white dark:bg-[#07264f] rounded-2xl shadow-sm border border-[#07264f]/10 dark:border-[#e3ae72]/20 overflow-hidden"
+                className="bg-white dark:bg-[#271024] rounded-2xl shadow-sm border border-[#271024]/10 dark:border-[#e3ae72]/20 overflow-hidden"
               >
                 {/* Section Header */}
-                <div className="bg-[#07264f]/5 dark:bg-[#e3ae72]/10 px-8 py-6 flex items-center gap-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#07264f] dark:bg-[#e3ae72]">
-                    <Icon className="w-6 h-6 text-white dark:text-[#07264f]" />
+                <div className="bg-[#271024]/5 dark:bg-[#e3ae72]/10 px-8 py-6 flex items-center gap-4">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#271024] dark:bg-[#e3ae72]">
+                    <Icon className="w-6 h-6 text-white dark:text-[#271024]" />
                   </div>
-                  <h2 className="text-2xl font-bold text-[#07264f] dark:text-[#e3ae72]">
+                  <h2 className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
                     {section.title}
                   </h2>
                 </div>
@@ -202,14 +202,14 @@ export default function TermsAndConditionsPage() {
                       key={itemIndex}
                       className={`pb-6 ${
                         itemIndex < section.content.length - 1
-                          ? "border-b border-[#07264f]/10 dark:border-[#e3ae72]/15"
+                          ? "border-b border-[#271024]/10 dark:border-[#e3ae72]/15"
                           : ""
                       }`}
                     >
-                      <h3 className="text-lg font-semibold text-[#07264f] dark:text-[#e3ae72] mb-2">
+                      <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">
                         {item.heading}
                       </h3>
-                      <p className="text-[#07264f]/60 dark:text-[#e3ae72]/70 leading-relaxed">
+                      <p className="text-[#271024]/60 dark:text-[#e3ae72]/70 leading-relaxed">
                         {item.text}
                       </p>
                     </div>
@@ -220,9 +220,9 @@ export default function TermsAndConditionsPage() {
           })}
 
           {/* Contact Section */}
-          <div className="bg-gradient-to-br from-[#07264f] to-[#0a3a66] dark:from-[#e3ae72] dark:to-[#d49e5e] rounded-2xl p-8 text-white dark:text-[#07264f]">
+          <div className="bg-gradient-to-br from-[#271024] to-[#0a3a66] dark:from-[#e3ae72] dark:to-[#d49e5e] rounded-2xl p-8 text-white dark:text-[#271024]">
             <h2 className="text-2xl font-bold mb-4">Questions About Our Terms?</h2>
-            <p className="text-white/80 dark:text-[#07264f]/80 mb-6">
+            <p className="text-white/80 dark:text-[#271024]/80 mb-6">
               If you have any questions about these Terms and Conditions or need clarification on any policies, please contact our customer service team:
             </p>
             <div className="space-y-2">
@@ -230,8 +230,8 @@ export default function TermsAndConditionsPage() {
               <p><strong>Phone:</strong> (555) 123-4567</p>
               <p><strong>Hours:</strong> Daily 8:00 AM - 5:00 PM</p>
             </div>
-            <div className="mt-6 pt-6 border-t border-white/20 dark:border-[#07264f]/20">
-              <p className="text-sm text-white/70 dark:text-[#07264f]/70">
+            <div className="mt-6 pt-6 border-t border-white/20 dark:border-[#271024]/20">
+              <p className="text-sm text-white/70 dark:text-[#271024]/70">
                 We appreciate your business and look forward to serving you at Serenity Rejuvenation.
               </p>
             </div>
@@ -241,7 +241,7 @@ export default function TermsAndConditionsPage() {
           <div className="text-center pt-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-[#07264f] dark:text-[#e3ae72] hover:text-[#07264f]/80 dark:hover:text-[#e3ae72]/80 font-medium transition-colors"
+              className="inline-flex items-center gap-2 text-[#271024] dark:text-[#e3ae72] hover:text-[#271024]/80 dark:hover:text-[#e3ae72]/80 font-medium transition-colors"
             >
               ← Back to Home
             </Link>

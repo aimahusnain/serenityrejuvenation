@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { BookAppointmentPage } from "@/components/user-dashboard/BookAppointmentPage";
 import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 export default async function BookAppointmentPageRoute() {
   const session = await auth();
@@ -22,11 +24,21 @@ export default async function BookAppointmentPageRoute() {
   }));
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#07264f]">
-      <SiteHeader />
-      <main className="flex-1">
-        <BookAppointmentPage services={productLite} />
-      </main>
-    </div>
+    <SidebarProvider
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
+      }
+    >
+      <AppSidebar variant="inset" />
+      <SidebarInset>
+        <SiteHeader />
+        <main className="flex-1">
+          <BookAppointmentPage services={productLite} />
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

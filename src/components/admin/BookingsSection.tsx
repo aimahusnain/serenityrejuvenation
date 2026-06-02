@@ -32,7 +32,7 @@ const statusColors = {
   CONFIRMED: "bg-green-500/20 text-green-700 dark:bg-green-500/30 dark:text-green-400",
   PENDING: "bg-yellow-500/20 text-yellow-700 dark:bg-yellow-500/30 dark:text-yellow-400",
   CANCELLED: "bg-red-500/20 text-red-700 dark:bg-red-500/30 dark:text-red-400",
-  COMPLETED: "bg-[#07264f]/10 text-[#07264f] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]",
+  COMPLETED: "bg-[#271024]/10 text-[#271024] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]",
 };
 
 const statusIcons = {
@@ -68,58 +68,58 @@ export default function BookingsSection({ bookings, onUpdate }: Props) {
   };
 
   return (
-    <Card className="border-[#07264f]/10 dark:border-[#e3ae72]/20">
+    <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
       <CardHeader>
-        <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">
+        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
           All Bookings ({bookings.length})
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-[#07264f]/5 dark:bg-[#e3ae72]/10">
+            <thead className="bg-[#271024]/5 dark:bg-[#e3ae72]/10">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Customer
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Service ID
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Date & Time
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Notes
                 </th>
-                <th className="px-4 py-3 text-right text-xs font-semibold text-[#07264f] dark:text-[#e3ae72] uppercase tracking-wider">
+                <th className="px-4 py-3 text-right text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#07264f]/10 dark:divide-[#e3ae72]/10">
+            <tbody className="divide-y divide-[#271024]/10 dark:divide-[#e3ae72]/10">
               {bookings.map((booking) => {
                 const StatusIcon = statusIcons[booking.status];
                 return (
-                  <tr key={booking.id} className="hover:bg-[#07264f]/5 dark:hover:bg-[#e3ae72]/5">
+                  <tr key={booking.id} className="hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5">
                     <td className="px-4 py-3">
                       <div>
-                        <p className="text-sm font-medium text-[#07264f] dark:text-[#e3ae72]/90">
+                        <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]/90">
                           {booking.user.name || "—"}
                         </p>
-                        <p className="text-xs text-[#07264f]/60 dark:text-[#e3ae72]/60">
+                        <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
                           {booking.user.email || "—"}
                         </p>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#07264f] dark:text-[#e3ae72]/90">
+                    <td className="px-4 py-3 text-sm text-[#271024] dark:text-[#e3ae72]/90">
                       {booking.serviceId}
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#07264f] dark:text-[#e3ae72]/90">
+                    <td className="px-4 py-3 text-sm text-[#271024] dark:text-[#e3ae72]/90">
                       <div className="flex items-center gap-2">
-                        <Calendar className="h-3 w-3 text-[#07264f]/50 dark:text-[#e3ae72]/50" />
+                        <Calendar className="h-3 w-3 text-[#271024]/50 dark:text-[#e3ae72]/50" />
                         {new Date(booking.date).toLocaleString()}
                       </div>
                     </td>
@@ -133,7 +133,7 @@ export default function BookingsSection({ bookings, onUpdate }: Props) {
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#07264f]/60 dark:text-[#e3ae72]/60">
+                    <td className="px-4 py-3 text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">
                       {booking.notes || "—"}
                     </td>
                     <td className="px-4 py-3 text-right">
@@ -142,16 +142,16 @@ export default function BookingsSection({ bookings, onUpdate }: Props) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="h-8 w-8 p-0 text-[#07264f] dark:text-[#e3ae72]"
+                            className="h-8 w-8 p-0 text-[#271024] dark:text-[#e3ae72]"
                           >
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                           align="end"
-                          className="border-[#07264f]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#07264f]"
+                          className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]"
                         >
-                          <div className="px-2 py-1.5 text-xs font-semibold text-[#07264f]/60 dark:text-[#e3ae72]/60">
+                          <div className="px-2 py-1.5 text-xs font-semibold text-[#271024]/60 dark:text-[#e3ae72]/60">
                             Change Status
                           </div>
                           {getStatusOptions(booking.status).map((status) => {
@@ -160,7 +160,7 @@ export default function BookingsSection({ bookings, onUpdate }: Props) {
                               <DropdownMenuItem
                                 key={status}
                                 onClick={() => handleStatusChange(booking.id, status)}
-                                className="cursor-pointer text-[#07264f] dark:text-[#e3ae72]/80"
+                                className="cursor-pointer text-[#271024] dark:text-[#e3ae72]/80"
                               >
                                 <Icon className="h-4 w-4 mr-2" />
                                 Mark as {status.toLowerCase()}
@@ -177,7 +177,7 @@ export default function BookingsSection({ bookings, onUpdate }: Props) {
                 <tr>
                   <td
                     colSpan={6}
-                    className="px-4 py-8 text-center text-[#07264f]/60 dark:text-[#e3ae72]/60"
+                    className="px-4 py-8 text-center text-[#271024]/60 dark:text-[#e3ae72]/60"
                   >
                     No bookings found
                   </td>

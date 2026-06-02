@@ -40,7 +40,7 @@ export function AddOnsSelection({
   return (
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#07264f] dark:text-[#e3ae72]">
+        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#271024] dark:text-[#e3ae72]">
           Enhance Your Experience
         </h2>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
@@ -53,7 +53,7 @@ export function AddOnsSelection({
         {/* Add-ons */}
         <Card className="border-border/60">
           <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2 text-[#07264f] dark:text-[#e3ae72]">
+            <CardTitle className="text-lg flex items-center gap-2 text-[#271024] dark:text-[#e3ae72]">
               <Sparkles className="w-5 h-5" />
               Available Add-ons
             </CardTitle>
@@ -70,8 +70,8 @@ export function AddOnsSelection({
                   className={cn(
                     "w-full justify-between h-auto py-3 px-4 transition-all duration-200",
                     isSelected
-                      ? "border-[#07264f] dark:border-[#e3ae72] bg-[#07264f]/5 dark:bg-[#e3ae72]/10"
-                      : "border-[#07264f]/15 dark:border-[#e3ae72]/20"
+                      ? "border-[#271024] dark:border-[#e3ae72] bg-[#271024]/5 dark:bg-[#e3ae72]/10"
+                      : "border-[#271024]/15 dark:border-[#e3ae72]/20"
                   )}
                 >
                   <div className="flex items-center gap-3">
@@ -79,16 +79,16 @@ export function AddOnsSelection({
                       className={cn(
                         "w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-200",
                         isSelected
-                          ? "border-[#07264f] dark:border-[#e3ae72] bg-[#07264f] dark:bg-[#e3ae72]"
-                          : "border-[#07264f]/30 dark:border-[#e3ae72]/30"
+                          ? "border-[#271024] dark:border-[#e3ae72] bg-[#271024] dark:bg-[#e3ae72]"
+                          : "border-[#271024]/30 dark:border-[#e3ae72]/30"
                       )}
                     >
                       {isSelected && (
-                        <Check className="w-3 h-3 text-white dark:text-[#07264f]" />
+                        <Check className="w-3 h-3 text-white dark:text-[#271024]" />
                       )}
                     </div>
                     <div className="text-left">
-                      <p className="font-medium text-[#07264f] dark:text-[#e3ae72]">
+                      <p className="font-medium text-[#271024] dark:text-[#e3ae72]">
                         {addOn.name}
                       </p>
                       <p className="text-xs text-muted-foreground">
@@ -102,9 +102,9 @@ export function AddOnsSelection({
             })}
 
             {selectedAddOns.length > 0 && (
-              <div className="pt-3 border-t border-[#07264f]/10 dark:border-[#e3ae72]/10">
+              <div className="pt-3 border-t border-[#271024]/10 dark:border-[#e3ae72]/10">
                 <div className="flex justify-between items-center text-sm font-medium">
-                  <span className="text-[#07264f] dark:text-[#e3ae72]">
+                  <span className="text-[#271024] dark:text-[#e3ae72]">
                     Add-ons total
                   </span>
                   <span className="text-[#e3ae72]">${totalAddOnPrice}</span>
@@ -117,7 +117,7 @@ export function AddOnsSelection({
         {/* Special Requests */}
         <Card className="border-border/60">
           <CardHeader>
-            <CardTitle className="text-lg text-[#07264f] dark:text-[#e3ae72]">
+            <CardTitle className="text-lg text-[#271024] dark:text-[#e3ae72]">
               Special Requests
             </CardTitle>
           </CardHeader>
@@ -131,7 +131,7 @@ export function AddOnsSelection({
                 placeholder="Let us know about any allergies, preferences, or questions you have..."
                 value={notes}
                 onChange={(e) => onNotesChange(e.target.value)}
-                className="min-h-32 resize-none border-[#07264f]/15 dark:border-[#e3ae72]/20 focus:border-[#07264f] dark:focus:border-[#e3ae72]"
+                className="min-h-32 resize-none border-[#271024]/15 dark:border-[#e3ae72]/20 focus:border-[#271024] dark:focus:border-[#e3ae72]"
               />
             </div>
             <p className="text-xs text-muted-foreground">
@@ -162,7 +162,7 @@ export function AddOnsSelection({
         <Button
           onClick={onNext}
           size="lg"
-          className="px-8 sm:px-12 bg-[#07264f] dark:bg-[#e3ae72] text-white dark:text-[#07264f] hover:bg-[#07264f]/80 dark:hover:bg-[#d49e5e]"
+          className="px-8 sm:px-12 bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] hover:bg-[#271024]/80 dark:hover:bg-[#d49e5e]"
         >
           Review Booking
         </Button>

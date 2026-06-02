@@ -23,7 +23,7 @@ export interface EnrichedBooking extends BookingLite {
 }
 
 export const BRAND = {
-  navy: "#07264f",
+  navy: "#271024",
   gold: "#e3ae72",
 } as const;
 

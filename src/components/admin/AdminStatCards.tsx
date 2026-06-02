@@ -85,7 +85,7 @@ export function AdminStatCards({
         return (
           <Card
             key={index}
-            className="relative overflow-hidden border-0 shadow-md bg-white dark:bg-[#07264f]/50 hover:shadow-lg transition-shadow"
+            className="relative overflow-hidden border-0 shadow-md bg-white dark:bg-[#271024]/50 hover:shadow-lg transition-shadow"
           >
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardDescription className="text-sm font-medium text-gray-600 dark:text-gray-400">

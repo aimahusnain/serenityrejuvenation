@@ -92,18 +92,18 @@ export default async function UserDashboardPage() {
                       location="Serenity Rejuvenation Med Spa"
                     />
                   </div>
-                  <Card className="border-border/60 bg-linear-to-br from-[#07264f]/5 to-primary/5 dark:from-[#e3ae72]/10">
+                  <Card className="border-border/60 bg-linear-to-br from-[#271024]/5 to-primary/5 dark:from-[#e3ae72]/10">
                     <CardHeader>
-                      <CardTitle className="text-[#07264f] dark:text-[#e3ae72]">For You</CardTitle>
+                      <CardTitle className="text-[#271024] dark:text-[#e3ae72]">For You</CardTitle>
                       <CardDescription>Personal recommendations</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4 text-sm">
                       <div>
-                        <p className="font-medium text-[#07264f] dark:text-[#e3ae72]">Recommended next treatment</p>
+                        <p className="font-medium text-[#271024] dark:text-[#e3ae72]">Recommended next treatment</p>
                         <p className="text-muted-foreground mt-1">{recommended}</p>
                       </div>
                       <div>
-                        <p className="font-medium text-[#07264f] dark:text-[#e3ae72]">Maintenance plan suggestion</p>
+                        <p className="font-medium text-[#271024] dark:text-[#e3ae72]">Maintenance plan suggestion</p>
                         <p className="text-muted-foreground mt-1">
                           Book every 8-12 weeks to maintain results and stay on track.
                         </p>
