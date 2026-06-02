@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -92,7 +91,9 @@ export function DateTimeSelection({
   ];
 
   const handleDateClick = (date: Date) => {
-    if (date < new Date().setHours(0, 0, 0, 0)) return;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (date < today) return;
 
     setSelectedDate(date);
     onDateSelect(date);
