@@ -182,6 +182,44 @@ export function getNextBooking(bookings: EnrichedBooking[]) {
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
 }
 
+export function formatAppointmentCountdown(
+  nextBooking: EnrichedBooking | undefined
+): { countdown: string; detail: string } {
+  if (!nextBooking) {
+    return { countdown: "—", detail: "Book your first visit" };
+  }
+  const diff = new Date(nextBooking.date).getTime() - Date.now();
+  const detail = nextBooking.serviceName;
+  if (diff <= 0) {
+    return { countdown: "Today", detail };
+  }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const countdown = days > 0 ? `${days}d ${hours}h` : `${hours}h`;
+  return { countdown, detail };
+}
+
+export function computeUserDashboardStats(
+  bookings: BookingLite[],
+  products: ProductLite[]
+) {
+  const enriched = enrichBookings(bookings, products);
+  const upcoming = enriched.filter(
+    (b) => b.status === "PENDING" || b.status === "CONFIRMED"
+  );
+  const completed = enriched.filter((b) => b.status === "COMPLETED");
+  const lifetimeSpending = completed.reduce((sum, b) => sum + b.servicePrice, 0);
+  const { countdown, detail } = formatAppointmentCountdown(getNextBooking(enriched));
+
+  return {
+    upcomingAppointments: upcoming.length,
+    totalTreatments: completed.length,
+    lifetimeSpending,
+    nextAppointmentCountdown: countdown,
+    nextAppointmentDetail: detail,
+  };
+}
+
 export function recommendNextTreatment(bookings: EnrichedBooking[]): string {
   if (bookings.length === 0) return "Microneedling — ideal for first-time skin renewal";
   const completed = bookings.filter((b) => b.status === "COMPLETED");

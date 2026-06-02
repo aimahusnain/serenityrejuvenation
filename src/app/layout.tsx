@@ -10,7 +10,7 @@ import ThemeContextProvider from "@/components/ThemeContextProvider";
 
 import { ProductsProvider } from "@/components/ProductsProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { prisma } from "@/lib/prisma";
+import { getProducts } from "@/lib/product";
 
 const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,9 +24,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const products = await prisma.product.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  const products = await getProducts();
 
   const session = await auth();
 
