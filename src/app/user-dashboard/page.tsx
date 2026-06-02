@@ -1,6 +1,12 @@
+import { AppSidebar } from "@/components/app-sidebar";
+import { ChartPieDonutActive } from "@/components/chart-pie-donut-active";
+import { TreatmentTimelineChart } from "@/components/dashboard/charts";
+import { SectionCards } from "@/components/section-cards";
+import { SiteHeader } from "@/components/site-header";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { UpcomingAppointmentsWidget } from "@/components/user-dashboard/UpcomingAppointmentsWidget";
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
 import {
   buildMonthlyTimeline,
   buildSpendingPie,
@@ -10,22 +16,16 @@ import {
   getNextBooking,
   recommendNextTreatment,
 } from "@/lib/dashboard";
-import { AppSidebar } from "@/components/app-sidebar";
-import { SectionCards } from "@/components/section-cards";
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { ChartPieDonutActive } from "@/components/chart-pie-donut-active";
-import { UpcomingAppointmentsWidget } from "@/components/user-dashboard/UpcomingAppointmentsWidget";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { TreatmentTimelineChart } from "@/components/dashboard/charts";
+import { prisma } from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 export default async function UserDashboardPage() {
   const session = await auth();
-  if (!session?.user) redirect("/login");
+  // Middleware will handle authentication redirect
 
   const [user, products] = await Promise.all([
     prisma.user.findUnique({
-      where: { id: session.user.id },
+      where: { id: session.user.id  },
       include: { bookings: { orderBy: { date: "desc" } } },
     }),
     prisma.product.findMany({ orderBy: { title: "asc" } }),

@@ -9,7 +9,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default async function AdminPage() {
   const session = await auth();
-  if (!session?.user || session.user.role !== "ADMIN") redirect("/login");
+  // Middleware will handle authentication and role checks
 
   const [users, bookings, products, counts] = await Promise.all([
     prisma.user.findMany({

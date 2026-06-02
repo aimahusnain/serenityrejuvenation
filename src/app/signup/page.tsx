@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { signup } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Mail, Lock, User, ArrowRight, Sparkles } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, Sparkles, Loader2, AlertCircle } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 type SignupState = {
   error?: {
@@ -23,26 +24,42 @@ export default function SignupPage() {
   const router = useRouter();
   const { data: session, status, update } = useSession();
   const [state, formAction, isPending] = useActionState(signup, null);
+  const isRedirecting = useRef(false);
 
-  // Redirect to dashboard when logged in
+  // Handle successful signup - let middleware handle redirect
   useEffect(() => {
-    if (status === "authenticated" && session?.user) {
-      router.push("/user-dashboard");
-    }
-  }, [status, session, router]);
+    const handleSignupSuccess = async () => {
+      if (state?.success && !isRedirecting.current) {
+        isRedirecting.current = true;
 
-  // Refresh session and redirect on successful signup
-  useEffect(() => {
-    if (state?.success) {
-      // Refresh the session to get the latest data
-      update().then(() => {
-        // After session is updated, redirect will happen in the other effect
-      });
-    }
+        // Refresh session to update authentication state
+        await update();
+
+        // Let middleware handle the redirect - just wait a moment
+        await new Promise(resolve => setTimeout(resolve, 300));
+        window.location.href = "/user-dashboard";
+      }
+    };
+
+    handleSignupSuccess();
   }, [state?.success, update]);
 
+  // Show loading state during form submission
+  if (isPending || isRedirecting.current) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#271024]">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-[#271024] dark:text-[#e3ae72]" />
+          <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
+            {isPending ? "Creating account..." : "Setting up your account..."}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen grid lg:grid-cols-2 bg-white dark:bg-[#271024]">
+    <div className="min-h-screen grid lg:grid-cols-2 bg-white dark:bg-[#271024] relative">
       {/* Left side - Form */}
       <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#271024]">
         <div className="mx-auto w-full max-w-sm">
@@ -163,15 +180,20 @@ export default function SignupPage() {
 
             {/* Error */}
             {state?.error && (
-              <div className="space-y-1 rounded-lg bg-destructive/10 dark:bg-red-900/20 p-3 border border-destructive/20 dark:border-red-800/30">
-                {Object.entries(state.error).map(([field, errors]) =>
-                  errors?.map((error: string) => (
-                    <p key={`${field}-${error}`} className="text-sm text-destructive dark:text-red-300">
-                      {error}
-                    </p>
-                  ))
-                )}
-              </div>
+              <Alert variant="destructive" className="border-[#271024]/20 dark:border-red-800/30">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>
+                  <div className="space-y-1">
+                    {Object.entries(state.error).map(([field, errors]) =>
+                      errors?.map((error: string) => (
+                        <p key={`${field}-${error}`} className="text-sm">
+                          {error}
+                        </p>
+                      ))
+                    )}
+                  </div>
+                </AlertDescription>
+              </Alert>
             )}
 
             {/* Submit */}

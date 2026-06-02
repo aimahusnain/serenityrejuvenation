@@ -8,9 +8,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 
 export default async function BookAppointmentPageRoute() {
   const session = await auth();
-  if (!session?.user) {
-    redirect("/login?redirect=/user-dashboard/book");
-  }
+  // Middleware will handle authentication redirect
 
   const products = await prisma.product.findMany({
     orderBy: { title: "asc" },

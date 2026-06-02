@@ -6,10 +6,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { User, Mail, Calendar, Shield, Edit2, Check, X } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { User, Mail, Calendar, Shield, Edit2, Check, X, AlertCircle, CheckCircle2 } from "lucide-react";
 import { updateProfile } from "@/app/actions/auth";
 import { useRouter } from "next/navigation";
-import { AlertCircle } from "lucide-react";
 
 interface User {
   id: string;
@@ -109,18 +109,20 @@ export default function ProfileSection({ user }: Props) {
 
             {/* Error Message */}
             {state?.error && (
-              <div className="flex items-center gap-2 p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
+              <Alert variant="destructive" className="border-[#271024]/20 dark:border-red-800/30">
                 <AlertCircle className="h-4 w-4" />
-                {state.error}
-              </div>
+                <AlertDescription>{state.error}</AlertDescription>
+              </Alert>
             )}
 
             {/* Success Message */}
             {state?.success && (
-              <div className="flex items-center gap-2 p-3 rounded-lg bg-green-500/10 text-green-600 dark:text-green-400 text-sm">
-                <Check className="h-4 w-4" />
-                Profile updated successfully!
-              </div>
+              <Alert className="border-green-500/20 dark:border-green-800/30 bg-green-500/10 dark:bg-green-900/20">
+                <CheckCircle2 className="h-4 w-4 text-green-700 dark:text-green-400" />
+                <AlertDescription className="text-green-700 dark:text-green-400">
+                  Profile updated successfully!
+                </AlertDescription>
+              </Alert>
             )}
 
             {/* Action Buttons */}

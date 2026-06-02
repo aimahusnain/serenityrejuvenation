@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { login } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Mail, Lock, ArrowRight, Sparkles } from "lucide-react";
+import { Mail, Lock, ArrowRight, Sparkles, Loader2, AlertCircle } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 type LoginState = {
   error?: string | null;
@@ -21,27 +22,42 @@ export default function LoginPage() {
   const router = useRouter();
   const { data: session, status, update } = useSession();
   const [state, formAction, isPending] = useActionState(login, null);
+  const isRedirecting = useRef(false);
 
-  // Redirect to dashboard when logged in
+  // Handle successful login - let middleware handle redirect
   useEffect(() => {
-    if (status === "authenticated" && session?.user) {
-      const dashboard = session.user.role === "ADMIN" ? "/admin" : "/user-dashboard";
-      router.push(dashboard);
-    }
-  }, [status, session, router]);
+    const handleLoginSuccess = async () => {
+      if (state?.success && !isRedirecting.current) {
+        isRedirecting.current = true;
 
-  // Refresh session and redirect on successful login
-  useEffect(() => {
-    if (state?.success) {
-      // Refresh the session to get the latest data
-      update().then(() => {
-        // After session is updated, redirect will happen in the other effect
-      });
-    }
-  }, [state?.success, update]);
+        // Refresh session to update authentication state
+        await update();
+
+        // Let middleware handle the redirect - just wait a moment
+        await new Promise(resolve => setTimeout(resolve, 300));
+        window.location.href = session?.user?.role === "ADMIN" ? "/admin" : "/user-dashboard";
+      }
+    };
+
+    handleLoginSuccess();
+  }, [state?.success, update, session?.user?.role]);
+
+  // Show loading state during form submission
+  if (isPending || isRedirecting.current) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#271024]">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-[#271024] dark:text-[#e3ae72]" />
+          <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
+            {isPending ? "Signing in..." : "Redirecting..."}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2 bg-white dark:bg-[#271024]">
+    <div className="min-h-screen grid lg:grid-cols-2 bg-white dark:bg-[#271024] relative">
       {/* Left side - Form */}
       <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#271024]">
         <div className="mx-auto w-full max-w-sm">
@@ -123,9 +139,12 @@ export default function LoginPage() {
 
             {/* Error */}
             {state?.error && (
-              <div className="rounded-lg bg-destructive/10 dark:bg-red-900/20 p-3 text-sm text-destructive dark:text-red-300 border border-destructive/20 dark:border-red-800/30">
-                {state.error}
-              </div>
+              <Alert variant="destructive" className="border-[#271024]/20 dark:border-red-800/30">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>
+                  {state.error}
+                </AlertDescription>
+              </Alert>
             )}
 
             {/* Submit */}
