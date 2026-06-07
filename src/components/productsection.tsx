@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { Highlighter } from "./ui/highlighter";
 import { useProducts } from "./ProductsProvider";
 
@@ -14,9 +16,6 @@ type Product = {
   image: string;
   benefits: string[];
 };
-
-/* ── BOOKING URL ── */
-const BOOKING_URL = "https://your-booking-url.com";
 
 /* ── ICON ── */
 function StarDiamond({ className = "" }: { className?: string }) {
@@ -34,10 +33,14 @@ function StarDiamond({ className = "" }: { className?: string }) {
 
 /* ── PRODUCT CARD ── */
 function ProductCard({ product, index }: { product: Product; index: number }) {
+  const { data: session } = useSession();
   const [visible, setVisible] = useState(false);
   const [hoveredBenefit, setHoveredBenefit] = useState<number | null>(null);
   const [priceRevealed, setPriceRevealed] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  // Determine where to send the user based on auth status
+  const bookUrl = session?.user ? "/user-dashboard/book" : "/login";
 
   const cardRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -159,13 +162,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             ))}
           </ul>
 
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            className="mt-6 bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] text-center py-3 rounded-full text-sm uppercase tracking-wider"
+          <Link
+            href={bookUrl}
+            className="mt-6 block bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] text-center py-3 rounded-full text-sm uppercase tracking-wider"
           >
             Book Now
-          </a>
+          </Link>
         </div>
       </div>
     </div>

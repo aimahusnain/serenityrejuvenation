@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Calendar, MessageSquare } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,7 +24,13 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({ service, showInquiryButton = false }: ServiceCardProps) {
+  const { data: session } = useSession();
   const isContactForPrice = service.requiresInquiry || !service.price;
+
+  // Determine where to send the user based on auth status
+  const bookUrl = session?.user
+    ? `/user-dashboard/book?service=${service.id}`
+    : `/login?redirect=/user-dashboard/book?service=${service.id}`;
 
   return (
     <Card className="group overflow-hidden border-border/60 hover:shadow-lg transition-all duration-300">
@@ -72,7 +79,7 @@ export function ServiceCard({ service, showInquiryButton = false }: ServiceCardP
         {isContactForPrice || showInquiryButton ? (
           <InquiryForm service={service} />
         ) : (
-          <Link href={`/book?service=${service.id}`} className="w-full">
+          <Link href={bookUrl} className="w-full">
             <Button
               className="w-full bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
             >

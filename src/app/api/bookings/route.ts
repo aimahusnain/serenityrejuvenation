@@ -14,18 +14,50 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
+    const bookingDate = new Date(date);
+
+    // Check for conflicting existing bookings (same date and hour)
+    const startOfHour = new Date(bookingDate);
+    startOfHour.setMinutes(0, 0, 0);
+
+    const endOfHour = new Date(bookingDate);
+    endOfHour.setMinutes(59, 59, 999);
+
+    const conflictingBooking = await prisma.booking.findFirst({
+      where: {
+        date: {
+          gte: startOfHour,
+          lte: endOfHour,
+        },
+        status: {
+          in: ["PENDING", "CONFIRMED"],
+        },
+      },
+    });
+
+    if (conflictingBooking) {
+      return NextResponse.json(
+        {
+          error: "This time slot is already booked. Please choose a different time.",
+          conflictingTime: conflictingBooking.date,
+        },
+        { status: 409 } // 409 Conflict
+      );
+    }
+
     const booking = await prisma.booking.create({
       data: {
         userId: session.user.id,
         serviceId,
-        date: new Date(date),
+        date: bookingDate,
         notes: notes ?? null,
         status: "PENDING",
       },
     });
 
     return NextResponse.json({ success: true, booking });
-  } catch {
+  } catch (error) {
+    console.error("Booking creation error:", error);
     return NextResponse.json({ error: "Failed to create booking" }, { status: 500 });
   }
 }
