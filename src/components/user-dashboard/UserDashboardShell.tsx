@@ -34,16 +34,15 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import ProfileSection from "@/components/account/ProfileSection";
 import PreferencesSection from "@/components/account/PreferencesSection";
 import {
@@ -195,60 +194,72 @@ export function UserDashboardShell({
       </div>
       {(b.status === "PENDING" || b.status === "CONFIRMED") && (
         <div className="flex gap-2">
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
+          <Dialog>
+            <DialogTrigger asChild>
               <Button variant="outline" size="sm" disabled={isPending}>
                 Cancel
               </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle className="text-[#271024] dark:text-[#e3ae72]">Cancel Appointment?</AlertDialogTitle>
-                <AlertDialogDescription>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Cancel Appointment?</DialogTitle>
+                <DialogDescription>
                   Are you sure you want to cancel your {b.serviceName} appointment on{" "}
                   {new Date(b.date).toLocaleDateString("en-US", {
                     weekday: "long",
                     month: "long",
                     day: "numeric",
                   })}? This action cannot be undone.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel className="border-[#271024]/20 dark:border-[#e3ae72]/30">Keep Appointment</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={() => cancelBooking(b.id)}
-                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                >
-                  Yes, Cancel
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+                    Keep Appointment
+                  </Button>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Button
+                    onClick={() => cancelBooking(b.id)}
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                  >
+                    Yes, Cancel
+                  </Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
 
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
+          <Dialog>
+            <DialogTrigger asChild>
               <Button variant="secondary" size="sm">
                 Reschedule
               </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle className="text-[#271024] dark:text-[#e3ae72]">Reschedule Appointment?</AlertDialogTitle>
-                <AlertDialogDescription>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Reschedule Appointment?</DialogTitle>
+                <DialogDescription>
                   Would you like to reschedule your {b.serviceName} appointment? You'll be able to select a new date and time that works better for you.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel className="border-[#271024]/20 dark:border-[#e3ae72]/30">Keep Current Time</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={() => window.location.href = "/contact"}
-                  className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
-                >
-                  Continue to Reschedule
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+                    Keep Current Time
+                  </Button>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Button
+                    onClick={() => window.location.href = "/contact"}
+                    className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                  >
+                    Continue to Reschedule
+                  </Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       )}
     </div>
@@ -315,7 +326,7 @@ export function UserDashboardShell({
                     <CardDescription>Your scheduled wellness sessions</CardDescription>
                   </div>
                   {upcoming.length > 3 && (
-                    <Button variant="ghost" size="sm" onClick={() => router.push("/user-dashboard?view=appointments")}>
+                    <Button variant="ghost" size="sm" onClick={() => router.push("/user-dashboard/appointments")}>
                       View all
                     </Button>
                   )}

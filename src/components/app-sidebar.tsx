@@ -22,7 +22,7 @@ const data = {
   navMain: [
     {
       title: "My Appointments",
-      url: "/appointments",
+      url: "/user-dashboard/appointments",
       image: "https://plus.unsplash.com/premium_photo-1661404164814-9d3c137097aa?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       icon: (
         <CalendarPlus
@@ -31,7 +31,7 @@ const data = {
     },
     {
       title: "Treatment History",
-      url: "/treatment-history",
+      url: "/user-dashboard/treatments",
       image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       icon: (
         <ListIcon
@@ -40,7 +40,7 @@ const data = {
     },
     {
       title: "Payments",
-      url: "/payment-history",
+      url: "/user-dashboard/payments",
       image: "https://images.unsplash.com/photo-1713947506242-8fcae733d158?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       icon: (
         <RiSecurePaymentFill

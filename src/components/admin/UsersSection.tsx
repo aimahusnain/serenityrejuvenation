@@ -11,16 +11,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreVertical, Shield, Trash2, UserPlus } from "lucide-react";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface User {
   id: string;
@@ -198,34 +196,37 @@ export default function UsersSection({ users, onUpdate }: Props) {
       </Card>
 
       {/* Delete Confirmation Dialog */}
-      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <AlertDialogContent className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]">
-          <AlertDialogHeader>
-            <AlertDialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]">
+          <DialogHeader>
+            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
               Delete User Account
-            </AlertDialogTitle>
-            <AlertDialogDescription className="text-[#271024]/70 dark:text-[#e3ae72]/70">
+            </DialogTitle>
+            <DialogDescription className="text-[#271024]/70 dark:text-[#e3ae72]/70">
               Are you sure you want to delete{" "}
               <strong>{selectedUser?.name || selectedUser?.email}</strong>
               ? This action cannot be undone. All associated data including bookings
               will be permanently deleted.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose
               className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72]"
+              asChild
             >
-              Cancel
-            </AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleDeleteUser}
-              className="bg-red-600 hover:bg-red-700 text-white"
-            >
-              Delete
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button
+                onClick={handleDeleteUser}
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                Delete
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
