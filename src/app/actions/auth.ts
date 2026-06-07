@@ -118,8 +118,8 @@ export async function logout() {
 }
 
 const updateProfileSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters").optional(),
-  phone: z.string().optional(),
+  name: z.string().min(2, "Name must be at least 2 characters").nullish(),
+  phone: z.string().nullish(),
   emailNotifications: z.boolean().optional(),
   preferredServices: z.array(z.string()).optional(),
 });

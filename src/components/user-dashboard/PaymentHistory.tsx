@@ -46,7 +46,7 @@ interface PaymentHistoryProps {
   products: ProductLite[];
 }
 
-type TimeFilter = "all" | "this_month" | "last_3_months" | "last_6_months" | "this_year";
+type TimeFilter = "all" | "this_month" | "last_3_months" | "last_6_months" | "this_year" | "custom";
 type SortOption = "date_desc" | "date_asc" | "amount_desc" | "amount_asc";
 
 export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
@@ -57,6 +57,8 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
   const [selectedPayment, setSelectedPayment] = useState<ReturnType<typeof enrichBookings>[0] | null>(null);
   const [invoiceDialogOpen, setInvoiceDialogOpen] = useState(false);
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
 
   const enriched = useMemo(() => enrichBookings(bookings, products), [bookings, products]);
 
@@ -124,6 +126,22 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
       filtered = filtered.filter((b) => new Date(b.date) >= sixMonthsAgo);
     } else if (timeFilter === "this_year") {
       filtered = filtered.filter((b) => new Date(b.date).getFullYear() === now.getFullYear());
+    } else if (timeFilter === "custom" && (dateFrom || dateTo)) {
+      // Custom date range filter
+      filtered = filtered.filter((b) => {
+        const d = new Date(b.date);
+        if (dateFrom) {
+          const from = new Date(dateFrom);
+          from.setHours(0, 0, 0, 0);
+          if (d < from) return false;
+        }
+        if (dateTo) {
+          const to = new Date(dateTo);
+          to.setHours(23, 59, 59, 999);
+          if (d > to) return false;
+        }
+        return true;
+      });
     }
 
     // Search filter
@@ -153,7 +171,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
     });
 
     return filtered;
-  }, [allPayments, timeFilter, sortOption, searchQuery]);
+  }, [allPayments, timeFilter, sortOption, searchQuery, dateFrom, dateTo]);
 
   const handleExport = (format: "csv") => {
     if (format === "csv") {
@@ -391,8 +409,39 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
                   <SelectItem value="last_3_months">Last 3 Months</SelectItem>
                   <SelectItem value="last_6_months">Last 6 Months</SelectItem>
                   <SelectItem value="this_year">This Year</SelectItem>
+                  <SelectItem value="custom">Custom Range</SelectItem>
                 </SelectContent>
               </Select>
+
+              {/* Custom Date Range */}
+              {timeFilter === "custom" && (
+                <div className="flex items-center gap-2">
+                  <Input
+                    type="date"
+                    value={dateFrom}
+                    onChange={(e) => setDateFrom(e.target.value)}
+                    className="w-[140px] border-[#271024]/20 dark:border-[#e3ae72]/30"
+                  />
+                  <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">to</span>
+                  <Input
+                    type="date"
+                    value={dateTo}
+                    onChange={(e) => setDateTo(e.target.value)}
+                    className="w-[140px] border-[#271024]/20 dark:border-[#e3ae72]/30"
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setDateFrom("");
+                      setDateTo("");
+                    }}
+                    className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+                  >
+                    Clear
+                  </Button>
+                </div>
+              )}
 
               {/* Sort */}
               <Select value={sortOption} onValueChange={(v: SortOption) => setSortOption(v)}>
@@ -580,16 +629,20 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
 
       {/* Invoice Dialog */}
       <Dialog open={invoiceDialogOpen} onOpenChange={setInvoiceDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-3xl max-h-[90vh]">
           <DialogHeader>
             <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Invoice</DialogTitle>
             <DialogDescription>
               {selectedPayment?.serviceName} - Invoice #{selectedPayment?.id.slice(0, 8).toUpperCase()}
             </DialogDescription>
           </DialogHeader>
-          <div className="max-h-[60vh] overflow-auto">
+          <div className="max-h-[60vh] overflow-auto border border-[#271024]/10 dark:border-[#e3ae72]/20 rounded-lg">
             {selectedPayment && (
-              <div dangerouslySetInnerHTML={{ __html: generateInvoice(selectedPayment) }} />
+              <iframe
+                srcDoc={generateInvoice(selectedPayment)}
+                className="w-full h-[500px] border-0"
+                title="Invoice"
+              />
             )}
           </div>
           <DialogFooter>
@@ -682,11 +735,11 @@ function PaymentRecordCard({
   return (
     <div
       className={cn(
-        "p-4 sm:p-6 transition-all hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5",
+        "p-4 sm:p-6 transition-all hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5 max-w-2xl",
         isExpanded && "bg-[#271024]/5 dark:bg-[#e3ae72]/5"
       )}
     >
-      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 max-w-2xl">
         <div className="space-y-3 flex-1">
           <div className="flex flex-col sm:flex-row sm:items-start gap-3">
             <div className="flex-1">
