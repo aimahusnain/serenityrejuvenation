@@ -8,10 +8,10 @@ import {
   Calendar,
   DollarSign,
   Package,
-  Settings,
   LogOut,
   TrendingUp,
   Heart,
+  MessageSquare,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useTransition } from "react";
@@ -35,7 +35,7 @@ const data = {
     { title: "Clients", url: "/admin?view=clients", icon: Users, view: "clients" },
     { title: "Services", url: "/admin?view=services", icon: Package, view: "services" },
     { title: "Finance", url: "/admin?view=finance", icon: DollarSign, view: "finance" },
-    { title: "Staff", url: "/admin?view=staff", icon: Settings, view: "staff" },
+    { title: "Inquiries", url: "/admin?view=inquiries", icon: MessageSquare, view: "inquiries" },
   ],
 };
 
@@ -59,8 +59,8 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
     : session?.user?.email?.[0].toUpperCase() || "A";
 
   return (
-    <Sidebar collapsible="icon" side="left" className="border-r border-gray-200 dark:border-gray-800" {...props}>
-      <SidebarHeader className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#271024]">
+    <Sidebar collapsible="icon" side="left" className="border-r border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#1a1a1a]" {...props}>
+      <SidebarHeader className="border-b border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#1a1a1a]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
@@ -81,9 +81,9 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="bg-gray-50/50 dark:bg-[#271024]/50">
+      <SidebarContent className="bg-gray-50/50 dark:bg-[#271024]/30">
         <div className="px-3 py-2">
-          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 px-3 mb-2">
+          <p className="text-xs font-semibold text-[#271024]/60 dark:text-[#e3ae72]/60 px-3 mb-2">
             MENU
           </p>
           <Suspense fallback={null}>
@@ -91,7 +91,7 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           </Suspense>
         </div>
       </SidebarContent>
-      <SidebarFooter className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#271024]">
+      <SidebarFooter className="border-t border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#1a1a1a]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton

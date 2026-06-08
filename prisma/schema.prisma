@@ -163,3 +163,18 @@ model UserPreferences {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+// Staff/Technician model for admin dashboard
+model Staff {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  role        String
+  email       String?
+  phone       String?
+  rating      Float    @default(0)
+  isActive    Boolean  @default(true)
+  clientsServed Int   @default(0)
+  revenueGenerated Float @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

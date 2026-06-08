@@ -265,7 +265,7 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
 
               {/* Time Filter */}
               <Select value={timeFilter} onValueChange={(v: TimeFilter) => setTimeFilter(v)}>
-                <SelectTrigger className="w-[140px] border-[#271024]/20 dark:border-[#e3ae72]/30">
+                <SelectTrigger className="w-35 border-[#271024]/20 dark:border-[#e3ae72]/30">
                   <SelectValue placeholder="Time" />
                 </SelectTrigger>
                 <SelectContent>

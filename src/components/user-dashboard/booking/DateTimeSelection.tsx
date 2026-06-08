@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface DateTimeSelectionProps {
@@ -35,6 +35,9 @@ export function DateTimeSelection({
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [availableSlots, setAvailableSlots] = useState<string[]>(TIME_SLOTS);
+  const [isLoadingSlots, setIsLoadingSlots] = useState(false);
+  const [slotsError, setSlotsError] = useState<string | null>(null);
 
   // Generate calendar days for current month
   const calendarDays = useMemo(() => {
@@ -75,6 +78,40 @@ export function DateTimeSelection({
     return days;
   }, [currentMonth]);
 
+  // Fetch available time slots when a date is selected
+  useEffect(() => {
+    if (selectedDate) {
+      const fetchAvailableSlots = async () => {
+        setIsLoadingSlots(true);
+        setSlotsError(null);
+        try {
+          // Format date as YYYY-MM-DD for the API
+          const dateStr = selectedDate.toISOString().split('T')[0];
+          const res = await fetch(`/api/bookings/available-slots?date=${dateStr}`);
+          if (res.ok) {
+            const data = await res.json();
+            setAvailableSlots(data.availableSlots);
+          } else {
+            // If API fails, show all slots (fallback)
+            setAvailableSlots(TIME_SLOTS);
+            setSlotsError("Couldn't check availability. All times shown.");
+          }
+        } catch (error) {
+          console.error("Error fetching available slots:", error);
+          setAvailableSlots(TIME_SLOTS);
+          setSlotsError("Couldn't check availability. All times shown.");
+        } finally {
+          setIsLoadingSlots(false);
+        }
+      };
+
+      fetchAvailableSlots();
+    } else {
+      // Reset to all slots when no date is selected
+      setAvailableSlots(TIME_SLOTS);
+    }
+  }, [selectedDate]);
+
   const monthNames = [
     "January",
     "February",
@@ -100,8 +137,11 @@ export function DateTimeSelection({
   };
 
   const handleTimeClick = (time: string) => {
-    setSelectedTime(time);
-    onTimeSelect(time);
+    // Only allow selection if the slot is available
+    if (availableSlots.includes(time)) {
+      setSelectedTime(time);
+      onTimeSelect(time);
+    }
   };
 
   const canProceed = selectedDate && selectedTime;
@@ -227,26 +267,57 @@ export function DateTimeSelection({
             </div>
 
             {selectedDate ? (
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                {TIME_SLOTS.map((time) => {
-                  const isSelected = selectedTime === time;
+              <div className="space-y-4">
+                {isLoadingSlots ? (
+                  <div className="flex flex-col items-center justify-center h-48 text-muted-foreground">
+                    <Loader2 className="h-6 w-6 animate-spin mb-2" />
+                    <p className="text-sm">Checking availability...</p>
+                  </div>
+                ) : availableSlots.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center h-48 text-muted-foreground text-center px-4">
+                    <Clock className="h-8 w-8 mb-2 opacity-50" />
+                    <p className="text-sm font-medium">No slots available</p>
+                    <p className="text-xs mt-1">All time slots are booked for this date</p>
+                  </div>
+                ) : (
+                  <>
+                    {slotsError && (
+                      <div className="text-xs text-amber-600 dark:text-amber-400 text-center p-2 bg-amber-500/10 rounded-lg">
+                        {slotsError}
+                      </div>
+                    )}
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                      {TIME_SLOTS.map((time) => {
+                        const isAvailable = availableSlots.includes(time);
+                        const isSelected = selectedTime === time;
 
-                  return (
-                    <Button
-                      key={time}
-                      variant={isSelected ? "default" : "outline"}
-                      onClick={() => handleTimeClick(time)}
-                      className={cn(
-                        "text-sm",
-                        isSelected
-                          ? "bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] border-[#271024] dark:border-[#e3ae72]"
-                          : "border-[#271024]/20 dark:border-[#e3ae72]/20 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5"
-                      )}
-                    >
-                      {time}
-                    </Button>
-                  );
-                })}
+                        return (
+                          <Button
+                            key={time}
+                            variant={isSelected ? "default" : "outline"}
+                            onClick={() => handleTimeClick(time)}
+                            disabled={!isAvailable}
+                            className={cn(
+                              "text-sm",
+                              isSelected
+                                ? "bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] border-[#271024] dark:border-[#e3ae72]"
+                                : isAvailable
+                                  ? "border-[#271024]/20 dark:border-[#e3ae72]/20 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5"
+                                  : "opacity-40 cursor-not-allowed border-dashed"
+                            )}
+                          >
+                            {time}
+                          </Button>
+                        );
+                      })}
+                    </div>
+                    {availableSlots.length < TIME_SLOTS.length && (
+                      <p className="text-xs text-center text-muted-foreground">
+                        {availableSlots.length} of {TIME_SLOTS.length} slots available
+                      </p>
+                    )}
+                  </>
+                )}
               </div>
             ) : (
               <div className="flex items-center justify-center h-48 text-muted-foreground text-sm">

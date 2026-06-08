@@ -420,14 +420,14 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
                     type="date"
                     value={dateFrom}
                     onChange={(e) => setDateFrom(e.target.value)}
-                    className="w-[140px] border-[#271024]/20 dark:border-[#e3ae72]/30"
+                    className="w-35 border-[#271024]/20 dark:border-[#e3ae72]/30"
                   />
                   <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">to</span>
                   <Input
                     type="date"
                     value={dateTo}
                     onChange={(e) => setDateTo(e.target.value)}
-                    className="w-[140px] border-[#271024]/20 dark:border-[#e3ae72]/30"
+                    className="w-35 border-[#271024]/20 dark:border-[#e3ae72]/30"
                   />
                   <Button
                     variant="outline"
@@ -445,7 +445,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
 
               {/* Sort */}
               <Select value={sortOption} onValueChange={(v: SortOption) => setSortOption(v)}>
-                <SelectTrigger className="w-[140px] border-[#271024]/20 dark:border-[#e3ae72]/30">
+                <SelectTrigger className="w-35 border-[#271024]/20 dark:border-[#e3ae72]/30">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -463,7 +463,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
       {/* Statistics Cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {/* Total Paid */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm bg-gradient-to-br from-[#271024]/5 to-[#e3ae72]/5 dark:from-[#e3ae72]/10 dark:to-[#271024]/10">
+        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm bg-linear-to-br from-[#271024]/5 to-[#e3ae72]/5 dark:from-[#e3ae72]/10 dark:to-[#271024]/10">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[#271024]/10 dark:bg-[#e3ae72]/20">
@@ -572,7 +572,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
                     </div>
                     <div className="h-2 rounded-full bg-[#271024]/10 dark:bg-[#e3ae72]/10 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-[#271024] to-[#e3ae72]"
+                        className="h-full rounded-full bg-linear-to-r from-[#271024] to-[#e3ae72]"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
@@ -640,7 +640,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
             {selectedPayment && (
               <iframe
                 srcDoc={generateInvoice(selectedPayment)}
-                className="w-full h-[500px] border-0"
+                className="w-full h-125 border-0"
                 title="Invoice"
               />
             )}

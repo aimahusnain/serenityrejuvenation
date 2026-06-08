@@ -5,6 +5,7 @@ export interface ProductLite {
   title: string;
   price: string | null;
   description: string;
+  image?: string;
   requiresInquiry?: boolean;
 }
 

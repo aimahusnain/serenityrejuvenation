@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
   SidebarGroup,
@@ -21,6 +22,9 @@ export function NavMain({
     icon?: React.ReactNode;
   }[];
 }) {
+  const { data: session } = useSession();
+  const dashboardPath = session?.user?.role === "ADMIN" ? "/admin" : "/user-dashboard";
+
   return (
     <SidebarGroup className="min-h-[75%]">
       <SidebarGroupContent className="flex flex-col gap-2 flex-1 min-h-0 h-full">
@@ -35,7 +39,7 @@ export function NavMain({
                 <span>Book Appointment</span>
               </SidebarMenuButton>
             </Link>
-            <Link href="/user-dashboard">
+            <Link href={dashboardPath}>
               <Button
                 size="icon"
                 className="size-8 group-data-[collapsible=icon]:opacity-0"

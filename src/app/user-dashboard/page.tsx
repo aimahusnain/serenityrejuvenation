@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { UpcomingAppointmentsWidget } from "@/components/user-dashboard/UpcomingAppointmentsWidget";
+import { UserInquiriesSection } from "@/components/user-dashboard/UserInquiriesSection";
 import { auth } from "@/lib/auth";
 import {
   buildMonthlyTimeline,
@@ -19,7 +20,7 @@ import {
 } from "@/lib/dashboard";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { Calendar, Sparkles, TrendingUp, BookOpen } from "lucide-react";
+import { Calendar, Sparkles, TrendingUp, BookOpen, MessageSquare } from "lucide-react";
 
 export default async function UserDashboardPage() {
   const session = await auth();
@@ -28,12 +29,16 @@ export default async function UserDashboardPage() {
     redirect("/login");
   }
 
-  const [user, products] = await Promise.all([
+  const [user, products, inquiries] = await Promise.all([
     prisma.user.findUnique({
       where: { id: session.user.id  },
       include: { bookings: { orderBy: { date: "desc" } } },
     }),
     prisma.product.findMany({ orderBy: { title: "asc" } }),
+    prisma.serviceInquiry.findMany({
+      where: { userId: session.user.id },
+      orderBy: { createdAt: "desc" },
+    }),
   ]);
 
   if (!user) redirect("/login");
@@ -66,6 +71,21 @@ export default async function UserDashboardPage() {
   const recommended = recommendNextTreatment(enriched);
   const next = getNextBooking(enriched);
   const countdown = formatAppointmentCountdown(next);
+
+  // Enrich inquiries with service details
+  const inquiriesWithServices = await Promise.all(
+    inquiries.map(async (inquiry) => {
+      const service = await prisma.product.findUnique({
+        where: { id: inquiry.serviceId },
+        select: { id: true, title: true, description: true, image: true },
+      });
+      return {
+        ...inquiry,
+        service: service || { id: inquiry.serviceId, title: "Unknown Service", description: "" },
+        createdAt: inquiry.createdAt.toISOString(),
+      };
+    })
+  );
 
   return (
     <SidebarProvider
@@ -239,6 +259,9 @@ export default async function UserDashboardPage() {
                       </Link>
                     </CardContent>
                   </Card>
+
+                  {/* My Inquiries */}
+                  <UserInquiriesSection inquiries={inquiriesWithServices} onUpdate={() => {}} />
                 </div>
               </div>
             </div>

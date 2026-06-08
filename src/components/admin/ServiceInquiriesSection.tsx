@@ -160,9 +160,13 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
       if (res.ok) {
         setQuoteDialogOpen(false);
         window.location.reload();
+      } else {
+        const error = await res.json().catch(() => ({ error: "Failed to send quote" }));
+        alert(error.error || "Failed to send quote. Please try again.");
       }
     } catch (error) {
       console.error("Failed to submit quote:", error);
+      alert("Network error. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -188,9 +192,13 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
       if (res.ok) {
         setCounterDialogOpen(false);
         window.location.reload();
+      } else {
+        const error = await res.json().catch(() => ({ error: "Failed to respond" }));
+        alert(error.error || "Failed to respond. Please try again.");
       }
     } catch (error) {
       console.error("Failed to respond to counter:", error);
+      alert("Network error. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }

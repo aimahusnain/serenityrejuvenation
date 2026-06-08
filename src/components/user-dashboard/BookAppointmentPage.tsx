@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useTransition, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { StepProgress } from "./booking/StepProgress";
 import { ServiceSelection } from "./booking/ServiceSelection";
 import { DateTimeSelection } from "./booking/DateTimeSelection";
@@ -25,6 +25,7 @@ interface BookAppointmentPageProps {
 
 export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
 
   // Step state
@@ -40,6 +41,18 @@ export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
     type: "success" | "error";
     text: string;
   } | null>(null);
+
+  // Check for service query parameter and pre-select if valid
+  useEffect(() => {
+    const serviceParam = searchParams.get("service");
+    if (serviceParam) {
+      // Check if the service exists in our services list
+      const serviceExists = services.find((s) => s.id === serviceParam);
+      if (serviceExists) {
+        setSelectedService(serviceParam);
+      }
+    }
+  }, [searchParams, services]);
 
   const selectedServiceData = services.find((s) => s.id === selectedService);
 
