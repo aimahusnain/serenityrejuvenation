@@ -74,7 +74,7 @@ const statusConfig = {
   },
   QUOTED: {
     label: "Quote Sent",
-    className: "bg-blue-500/15 text-blue-700 dark:text-blue-400 border-blue-500/20",
+    className: "bg-[#e3ae72]/15 text-[#271024] dark:text-[#e3ae72] border-[#e3ae72]/30",
   },
   ACCEPTED: {
     label: "Accepted",
@@ -86,11 +86,11 @@ const statusConfig = {
   },
   COUNTERED: {
     label: "Countered",
-    className: "bg-purple-500/15 text-purple-700 dark:text-purple-400 border-purple-500/20",
+    className: "bg-amber-500/15 text-amber-700 dark:text-amber-400 border-amber-500/20",
   },
   CANCELLED: {
     label: "Cancelled",
-    className: "bg-gray-500/15 text-gray-700 dark:text-gray-400 border-gray-500/20",
+    className: "bg-[#271024]/15 text-[#271024] dark:text-[#e3ae72]/80 border-[#271024]/30",
   },
 };
 
@@ -331,10 +331,10 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
 
                       {/* Current Quote */}
                       {inquiry.proposedPrice && (
-                        <div className="bg-blue-500/10 dark:bg-blue-500/20 rounded-lg p-3">
+                        <div className="bg-[#e3ae72]/10 dark:bg-[#e3ae72]/20 rounded-lg p-3">
                           <div className="flex items-center gap-2 text-sm">
-                            <DollarSign className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                            <span className="font-medium text-blue-700 dark:text-blue-400">
+                            <DollarSign className="h-4 w-4 text-[#271024] dark:text-[#e3ae72]" />
+                            <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
                               Your quote: ${inquiry.proposedPrice.toFixed(2)}
                             </span>
                           </div>
@@ -359,11 +359,11 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
 
                       {/* Counter Offer */}
                       {inquiry.status === "COUNTERED" && inquiry.counterOffer && (
-                        <div className="bg-purple-500/10 dark:bg-purple-500/20 rounded-lg p-3">
+                        <div className="bg-amber-500/10 dark:bg-amber-500/20 rounded-lg p-3">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2 text-sm">
-                              <DollarSign className="h-4 w-4 text-purple-600 dark:text-purple-400" />
-                              <span className="font-medium text-purple-700 dark:text-purple-400">
+                              <DollarSign className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                              <span className="font-medium text-amber-700 dark:text-amber-400">
                                 Counter: ${inquiry.counterOffer.toFixed(2)}
                               </span>
                             </div>
@@ -557,8 +557,8 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
           </DialogHeader>
           <div className="space-y-4 py-4">
             {selectedInquiry?.counterNote && (
-              <div className="bg-purple-500/10 dark:bg-purple-500/20 rounded-lg p-3">
-                <p className="text-sm text-purple-700 dark:text-purple-400">
+              <div className="bg-amber-500/10 dark:bg-amber-500/20 rounded-lg p-3">
+                <p className="text-sm text-amber-700 dark:text-amber-400">
                   Customer note: "{selectedInquiry.counterNote}"
                 </p>
               </div>
@@ -595,13 +595,13 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
                   className={cn(
                     "w-full flex items-center gap-3 p-3 rounded-lg border text-left transition-colors",
                     !acceptCounter
-                      ? "border-blue-500 bg-blue-500/10"
-                      : "border-border/60 hover:border-blue-500/50"
+                      ? "border-[#e3ae72] bg-[#e3ae72]/10"
+                      : "border-border/60 hover:border-[#e3ae72]/50"
                   )}
                 >
                   <DollarSign className={cn(
                     "h-5 w-5",
-                    !acceptCounter ? "text-blue-600" : "text-muted-foreground"
+                    !acceptCounter ? "text-[#271024] dark:text-[#e3ae72]" : "text-muted-foreground"
                   )} />
                   <div>
                     <p className="font-medium">Propose New Price</p>

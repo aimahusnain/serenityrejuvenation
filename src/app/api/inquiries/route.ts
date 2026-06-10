@@ -196,6 +196,22 @@ export async function PATCH(request: NextRequest) {
 
         const { acceptCounter, newPrice, message } = data;
         if (acceptCounter) {
+          // Check if inquiry already has a booking (already accepted)
+          if (inquiry.bookingId) {
+            // Verify the booking still exists
+            const existingBooking = await prisma.booking.findUnique({
+              where: { id: inquiry.bookingId },
+            });
+
+            if (existingBooking) {
+              return NextResponse.json({
+                success: true,
+                booking: existingBooking,
+                message: "Booking already created for this inquiry.",
+              });
+            }
+          }
+
           // User accepted counter-offer, create booking
           const booking = await prisma.booking.create({
             data: {
@@ -262,6 +278,22 @@ export async function PATCH(request: NextRequest) {
             { error: "No quote to accept" },
             { status: 400 }
           );
+        }
+
+        // Check if inquiry already has a booking (already accepted)
+        if (inquiry.bookingId) {
+          // Verify the booking still exists
+          const existingBooking = await prisma.booking.findUnique({
+            where: { id: inquiry.bookingId },
+          });
+
+          if (existingBooking) {
+            return NextResponse.json({
+              success: true,
+              booking: existingBooking,
+              message: "Booking already confirmed! Check your dashboard for details.",
+            });
+          }
         }
 
         // Create booking

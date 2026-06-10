@@ -105,10 +105,10 @@ export function AdminStatCards({
               </div>
             </CardHeader>
             <CardContent>
-              <CardTitle className="text-3xl font-bold text-gray-900 dark:text-white">
+              <CardTitle className="text-3xl font-bold text-gray-900 dark:text-[#e3ae72]">
                 {stat.value}
               </CardTitle>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+              <p className="text-sm text-gray-600 dark:text-[#e3ae72]/70 mt-2">
                 {stat.description}
               </p>
             </CardContent>

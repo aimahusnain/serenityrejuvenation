@@ -71,7 +71,7 @@ export default async function AdminPage() {
   return (
     <SidebarProvider>
       <AdminSidebar />
-      <SidebarInset className="flex flex-1 flex-col bg-white dark:bg-[#1a1a1a]">
+      <SidebarInset className="flex flex-1 flex-col bg-white dark:bg-[#271024]">
         <SiteHeader title="Admin Panel" />
         <div className="flex-1 overflow-auto bg-[#f8f9fa]/50 dark:bg-[#271024]/30">
           <div className="container mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-8">

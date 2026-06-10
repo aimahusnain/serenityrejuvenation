@@ -262,7 +262,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
 
   return (
     <>
-      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#1a1a1a]">
+      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
             <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
@@ -285,7 +285,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
             services.map((service) => (
               <div
                 key={service.id}
-                className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-lg border border-[#271024]/10 dark:border-[#e3ae72]/20 p-4 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5 transition-colors bg-white dark:bg-[#1a1a1a]"
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-lg border border-[#271024]/10 dark:border-[#e3ae72]/20 p-4 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5 transition-colors bg-white dark:bg-[#271024]"
               >
                 <div className="flex items-center gap-4 flex-1 min-w-0">
                   {service.image && (
@@ -328,7 +328,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                       <MoreVertical className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="bg-white dark:bg-[#1a1a1a] border-[#271024]/10 dark:border-[#e3ae72]/20">
+                  <DropdownMenuContent align="end" className="bg-white dark:bg-[#271024] border-[#271024]/10 dark:border-[#e3ae72]/20">
                     <DropdownMenuItem onClick={() => openEditDialog(service)} className="text-[#271024] dark:text-[#e3ae72]/80">
                       <Edit className="h-4 w-4 mr-2" />
                       Edit
@@ -350,7 +350,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
 
       {/* Add/Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-md bg-white dark:bg-[#1a1a1a]">
+        <DialogContent className="max-w-md bg-white dark:bg-[#271024]">
           <DialogHeader>
             <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
               {editingService ? "Edit Service" : "Add New Service"}
@@ -516,7 +516,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
 
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <AlertDialogContent className="bg-white dark:bg-[#1a1a1a]">
+        <AlertDialogContent className="bg-white dark:bg-[#271024]">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-[#271024] dark:text-[#e3ae72]">Delete Service</AlertDialogTitle>
             <AlertDialogDescription>
