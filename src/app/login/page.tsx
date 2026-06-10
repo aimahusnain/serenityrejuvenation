@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
 import { login } from "@/app/actions/auth";
@@ -20,6 +20,8 @@ type LoginState = {
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectParam = searchParams.get("redirect");
   const { data: session, status, update } = useSession();
   const [state, formAction, isPending] = useActionState(login, null);
   const isRedirecting = useRef(false);
@@ -35,12 +37,19 @@ export default function LoginPage() {
 
         // Let middleware handle the redirect - just wait a moment
         await new Promise(resolve => setTimeout(resolve, 300));
-        window.location.href = session?.user?.role === "ADMIN" ? "/admin" : "/user-dashboard";
+
+        // If there's a redirect parameter, use it
+        if (redirectParam) {
+          window.location.href = redirectParam;
+        } else {
+          // Otherwise redirect based on role
+          window.location.href = session?.user?.role === "ADMIN" ? "/admin" : "/user-dashboard";
+        }
       }
     };
 
     handleLoginSuccess();
-  }, [state?.success, update, session?.user?.role]);
+  }, [state?.success, update, session?.user?.role, redirectParam]);
 
   // Show loading state during form submission
   if (isPending || isRedirecting.current) {

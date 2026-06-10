@@ -9,8 +9,19 @@ const authRoutes = ["/login", "/signup"];
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
-  const isLoggedIn = !!req.auth;
-  const isAdmin = req.auth?.user?.role === "ADMIN";
+
+  // Get session with proper null checks
+  const session = req.auth;
+  const isLoggedIn = !!session?.user;
+  const isAdmin = session?.user?.role === "ADMIN";
+
+  // Debug logging (only in development)
+  if (process.env.NODE_ENV === "development") {
+    console.log("[Middleware] Path:", pathname);
+    console.log("[Middleware] isLoggedIn:", isLoggedIn);
+    console.log("[Middleware] isAdmin:", isAdmin);
+    console.log("[Middleware] session:", session ? "present" : "missing");
+  }
 
   // Check if the route is protected
   const isProtectedRoute = protectedRoutes.some((route) =>
@@ -26,14 +37,31 @@ export default auth((req) => {
     return NextResponse.redirect(new URL(redirectUrl, req.url));
   }
 
-  // Redirect unauthenticated users to login
+  // Redirect unauthenticated users to login with redirect
   if (!isLoggedIn && isProtectedRoute) {
-    return NextResponse.redirect(new URL("/login", req.url));
+    const loginUrl = new URL("/login", req.url);
+    loginUrl.searchParams.set("redirect", pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
   // Role-based access control for admin routes
-  if (pathname.startsWith("/admin") && !isAdmin) {
-    return NextResponse.redirect(new URL("/user-dashboard", req.url));
+  // User must be logged in AND be admin to access /admin
+  if (pathname.startsWith("/admin")) {
+    if (!isLoggedIn) {
+      const loginUrl = new URL("/login", req.url);
+      loginUrl.searchParams.set("redirect", pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+    if (!isAdmin) {
+      // Regular users trying to access admin go to their dashboard
+      return NextResponse.redirect(new URL("/user-dashboard", req.url));
+    }
+  }
+
+  // Role-based access control for user dashboard
+  // Admins can also view user dashboard, but regular users cannot see admin
+  if (pathname.startsWith("/user-dashboard") && isLoggedIn && !isAdmin && session?.user?.role !== "USER") {
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
   return NextResponse.next();

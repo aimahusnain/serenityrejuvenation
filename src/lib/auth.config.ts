@@ -5,26 +5,7 @@ export const authConfig = {
     signIn: "/login",
     error: "/login",
   },
-  callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
-      const isOnUserDashboard = nextUrl.pathname.startsWith("/user-dashboard");
-      const isOnAdmin = nextUrl.pathname.startsWith("/admin");
-
-      if ((isOnUserDashboard || isOnAdmin) && !isLoggedIn) {
-        return false;
-      }
-
-      if (isOnAdmin && auth?.user?.role !== "ADMIN") {
-        return false;
-      }
-
-      if (isOnUserDashboard && auth?.user?.role !== "USER") {
-        return false;
-      }
-
-      return true;
-    },
-  },
+  // Note: Authorization is handled in middleware.ts
+  // We don't use the authorized callback here to avoid conflicts
   providers: [],
 } satisfies NextAuthConfig;

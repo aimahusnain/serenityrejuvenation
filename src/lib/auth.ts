@@ -14,10 +14,16 @@ const loginSchema = z.object({
 
 const config = {
   ...authConfig,
-  adapter: PrismaAdapter(prisma),
+  // Note: PrismaAdapter is optional with JWT strategy
+  // Keeping it for potential future OAuth providers
+  // adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt" as const,
-    maxAge: 30 * 24 * 60 * 60,
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  pages: {
+    signIn: "/login",
+    error: "/login",
   },
   providers: [
     Credentials({
@@ -57,7 +63,6 @@ const config = {
     }),
   ],
   callbacks: {
-    ...authConfig.callbacks,
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
