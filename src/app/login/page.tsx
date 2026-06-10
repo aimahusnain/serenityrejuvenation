@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { useEffect, useRef } from "react";
-import { login } from "@/app/actions/auth";
+import { signIn, useSession } from "next-auth/react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,64 +12,68 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Mail, Lock, ArrowRight, Sparkles, Loader2, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
-type LoginState = {
-  error?: string | null;
-  success?: boolean;
-  role?: string | null;
-} | null;
-
 export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectParam = searchParams.get("redirect");
-  const { data: session, status, update } = useSession();
-  const [state, formAction, isPending] = useActionState(login, null);
-  const isRedirecting = useRef(false);
+  const { data: session, status } = useSession();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState(false);
 
-  // Handle successful login
+  // Redirect if already logged in
   useEffect(() => {
-    const handleLoginSuccess = async () => {
-      if (state?.success && !isRedirecting.current) {
-        isRedirecting.current = true;
+    if (status === "authenticated" && session?.user) {
+      const destination = redirectParam || (session.user.role === "ADMIN" ? "/admin" : "/user-dashboard");
+      console.log("[Login] Already authenticated, redirecting to:", destination);
+      router.push(destination);
+    }
+  }, [status, session, redirectParam, router]);
 
-        // Debug logging
-        console.log("[Login] Success state:", state);
-        console.log("[Login] User role from server:", state.role);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setIsPending(true);
 
-        // Refresh session to ensure it's updated on the client
-        await update();
+    try {
+      console.log("[Login] Attempting sign in with:", { email, redirectParam });
 
-        // Small delay to ensure session cookie is set
-        await new Promise(resolve => setTimeout(resolve, 300));
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
 
-        // Determine redirect destination based on the returned role
-        let destination = "/user-dashboard"; // default for regular users
+      console.log("[Login] Sign in result:", result);
 
-        // If there's a redirect parameter, use it
-        if (redirectParam) {
-          destination = redirectParam;
-        } else if (state.role === "ADMIN") {
-          destination = "/admin";
-        }
-
-        console.log("[Login] Redirecting to:", destination);
-
-        // Navigate using window.location for hard refresh
-        window.location.href = destination;
+      if (result?.error) {
+        setError("Invalid email or password");
+        setIsPending(false);
+        return;
       }
-    };
 
-    handleLoginSuccess();
-  }, [state?.success, update, session?.user?.role, redirectParam]);
+      // Success - get the session to determine redirect
+      // We need to wait a bit for the session to be available
+      setTimeout(() => {
+        // Force a hard refresh to let middleware handle the redirect
+        window.location.href = redirectParam || "/admin";
+      }, 100);
+    } catch (err) {
+      console.error("[Login] Error:", err);
+      setError("Something went wrong. Please try again.");
+      setIsPending(false);
+    }
+  };
 
-  // Show loading state during form submission or redirect
-  if (isPending || isRedirecting.current) {
+  // Show loading state during form submission
+  if (isPending) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#271024]">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="h-8 w-8 animate-spin text-[#271024] dark:text-[#e3ae72]" />
           <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
-            {isPending ? "Signing in..." : "Redirecting..."}
+            Signing in...
           </p>
         </div>
       </div>
@@ -105,7 +108,7 @@ export default function LoginPage() {
           </div>
 
           {/* Form */}
-          <form action={formAction} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email */}
             <div className="space-y-2">
               <Label htmlFor="email" className="text-[#271024] dark:text-[#e3ae72]">
@@ -115,9 +118,10 @@ export default function LoginPage() {
                 <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-[#e3ae72]/60" />
                 <Input
                   id="email"
-                  name="email"
                   type="email"
                   placeholder="m@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={isPending}
                   className="pl-10 bg-white dark:bg-[#1a0a18] border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] placeholder:text-muted-foreground dark:placeholder:text-[#e3ae72]/50 focus:border-[#271024] dark:focus:border-[#e3ae72]"
@@ -142,8 +146,9 @@ export default function LoginPage() {
                 <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-[#e3ae72]/60" />
                 <Input
                   id="password"
-                  name="password"
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   disabled={isPending}
                   className="pl-10 bg-white dark:bg-[#1a0a18] border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] placeholder:text-muted-foreground dark:placeholder:text-[#e3ae72]/50 focus:border-[#271024] dark:focus:border-[#e3ae72]"
@@ -155,7 +160,6 @@ export default function LoginPage() {
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="remember"
-                name="remember"
                 className="border-[#271024]/30 dark:border-[#e3ae72]/30"
               />
               <label
@@ -167,10 +171,10 @@ export default function LoginPage() {
             </div>
 
             {/* Error Alert */}
-            {state?.error && (
+            {error && (
               <Alert variant="destructive" className="border-[#271024]/20 dark:border-red-800/30">
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{state.error}</AlertDescription>
+                <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
 
