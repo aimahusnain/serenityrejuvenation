@@ -261,7 +261,7 @@ export default async function UserDashboardPage() {
                   </Card>
 
                   {/* My Inquiries */}
-                  <UserInquiriesSection inquiries={inquiriesWithServices} onUpdate={() => {}} />
+                  <UserInquiriesSection inquiries={inquiriesWithServices} />
                 </div>
               </div>
             </div>

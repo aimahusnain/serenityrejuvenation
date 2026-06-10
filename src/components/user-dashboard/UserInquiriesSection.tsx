@@ -39,7 +39,7 @@ interface Inquiry {
 
 interface Props {
   inquiries: Inquiry[];
-  onUpdate: (inquiries: Inquiry[]) => void;
+  onUpdate?: (inquiries: Inquiry[]) => void;
 }
 
 const statusConfig = {
