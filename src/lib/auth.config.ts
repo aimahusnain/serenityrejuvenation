@@ -43,6 +43,14 @@ export const authConfig: NextAuthConfig = {
             return null;
           }
 
+          // Debug logging
+          console.log("[Auth] User found:", {
+            id: user.id,
+            email: user.email,
+            role: user.role,
+            roleType: typeof user.role,
+          });
+
           return {
             id: user.id,
             email: user.email,
@@ -50,7 +58,8 @@ export const authConfig: NextAuthConfig = {
             image: user.image ?? "",
             role: user.role,
           };
-        } catch {
+        } catch (error) {
+          console.error("[Auth] Authorization error:", error);
           return null;
         }
       },
@@ -64,6 +73,11 @@ export const authConfig: NextAuthConfig = {
         token.email = user.email;
         token.name = user.name;
         token.image = user.image;
+        console.log("[Auth JWT] Token after user set:", {
+          id: token.id,
+          role: token.role,
+          roleType: typeof token.role,
+        });
       }
       return token;
     },
@@ -74,6 +88,11 @@ export const authConfig: NextAuthConfig = {
         session.user.email = token.email as string;
         session.user.name = token.name as string;
         session.user.image = token.image as string;
+        console.log("[Auth Session] Session after set:", {
+          id: session.user.id,
+          role: session.user.role,
+          roleType: typeof session.user.role,
+        });
       }
       return session;
     },

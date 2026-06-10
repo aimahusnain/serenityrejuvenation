@@ -25,12 +25,14 @@ export default auth((req) => {
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
 
   // Debug logging (development only)
-  if (process.env.NODE_ENV === "development" && (pathname.startsWith("/admin") || pathname.startsWith("/login"))) {
+  if (process.env.NODE_ENV === "development") {
     console.log(`[Middleware] ${pathname}`, {
       isLoggedIn,
       isAdmin,
       isUser,
       hasSession: !!session,
+      sessionUser: session?.user,
+      userRole: session?.user?.role,
     });
   }
 

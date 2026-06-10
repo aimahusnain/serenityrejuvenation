@@ -16,6 +16,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 type LoginState = {
   error?: string | null;
   success?: boolean;
+  role?: string | null;
 } | null;
 
 export default function LoginPage() {
@@ -32,21 +33,27 @@ export default function LoginPage() {
       if (state?.success && !isRedirecting.current) {
         isRedirecting.current = true;
 
-        // Refresh session to get latest data
+        // Debug logging
+        console.log("[Login] Success state:", state);
+        console.log("[Login] User role from server:", state.role);
+
+        // Refresh session to ensure it's updated on the client
         await update();
 
-        // Small delay to ensure session is updated
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        // Small delay to ensure session cookie is set
+        await new Promise(resolve => setTimeout(resolve, 300));
 
-        // Determine redirect destination
+        // Determine redirect destination based on the returned role
         let destination = "/user-dashboard"; // default for regular users
 
         // If there's a redirect parameter, use it
         if (redirectParam) {
           destination = redirectParam;
-        } else if (session?.user?.role === "ADMIN") {
+        } else if (state.role === "ADMIN") {
           destination = "/admin";
         }
+
+        console.log("[Login] Redirecting to:", destination);
 
         // Navigate using window.location for hard refresh
         window.location.href = destination;

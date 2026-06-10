@@ -28,6 +28,7 @@ type SignupState = {
 type LoginState = {
   error?: string | null;
   success?: boolean;
+  role?: string | null;
 } | null;
 
 type UpdateProfileState = {
@@ -109,6 +110,25 @@ export async function login(prevState: LoginState, formData: FormData) {
   }
 
   try {
+    // First, get the user to check their role
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { id: true, email: true, name: true, role: true, password: true },
+    });
+
+    if (!user || !user.password) {
+      return { error: "Invalid email or password" };
+    }
+
+    // Verify password
+    const bcrypt = await import("bcryptjs");
+    const isValid = await bcrypt.compare(password, user.password);
+
+    if (!isValid) {
+      return { error: "Invalid email or password" };
+    }
+
+    // Sign in with credentials
     const result = await signIn("credentials", {
       email,
       password,
@@ -120,7 +140,8 @@ export async function login(prevState: LoginState, formData: FormData) {
       return { error: "Invalid email or password" };
     }
 
-    return { success: true };
+    // Return success with user role for client-side redirect
+    return { success: true, role: user.role };
   } catch (error) {
     console.error("Login error:", error);
     return { error: "Invalid email or password" };
