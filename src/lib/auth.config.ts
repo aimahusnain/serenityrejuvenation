@@ -20,6 +20,20 @@ export const authConfig: NextAuthConfig = {
     signIn: "/login",
     error: "/login",
   },
+  // Production cookie configuration
+  cookies: {
+    sessionToken: {
+      name: "authjs.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        // Allow cookies to work across www and non-www subdomains
+        domain: process.env.NODE_ENV === "production" ? ".serenityrejuvenation.org" : undefined,
+      },
+    },
+  },
   providers: [
     Credentials({
       name: "credentials",
