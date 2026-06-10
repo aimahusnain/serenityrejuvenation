@@ -26,32 +26,37 @@ export default function LoginPage() {
   const [state, formAction, isPending] = useActionState(login, null);
   const isRedirecting = useRef(false);
 
-  // Handle successful login - let middleware handle redirect
+  // Handle successful login
   useEffect(() => {
     const handleLoginSuccess = async () => {
       if (state?.success && !isRedirecting.current) {
         isRedirecting.current = true;
 
-        // Refresh session to update authentication state
+        // Refresh session to get latest data
         await update();
 
-        // Let middleware handle the redirect - just wait a moment
-        await new Promise(resolve => setTimeout(resolve, 300));
+        // Small delay to ensure session is updated
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        // Determine redirect destination
+        let destination = "/user-dashboard"; // default for regular users
 
         // If there's a redirect parameter, use it
         if (redirectParam) {
-          window.location.href = redirectParam;
-        } else {
-          // Otherwise redirect based on role
-          window.location.href = session?.user?.role === "ADMIN" ? "/admin" : "/user-dashboard";
+          destination = redirectParam;
+        } else if (session?.user?.role === "ADMIN") {
+          destination = "/admin";
         }
+
+        // Navigate using window.location for hard refresh
+        window.location.href = destination;
       }
     };
 
     handleLoginSuccess();
   }, [state?.success, update, session?.user?.role, redirectParam]);
 
-  // Show loading state during form submission
+  // Show loading state during form submission or redirect
   if (isPending || isRedirecting.current) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#271024]">
@@ -96,7 +101,9 @@ export default function LoginPage() {
           <form action={formAction} className="space-y-6">
             {/* Email */}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-[#271024] dark:text-[#e3ae72]">Email</Label>
+              <Label htmlFor="email" className="text-[#271024] dark:text-[#e3ae72]">
+                Email
+              </Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-[#e3ae72]/60" />
                 <Input
@@ -114,7 +121,9 @@ export default function LoginPage() {
             {/* Password */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password" className="text-[#271024] dark:text-[#e3ae72]">Password</Label>
+                <Label htmlFor="password" className="text-[#271024] dark:text-[#e3ae72]">
+                  Password
+                </Label>
                 <Link
                   href="#"
                   className="text-xs text-muted-foreground hover:text-[#271024] dark:hover:text-[#e3ae72]"
@@ -137,7 +146,11 @@ export default function LoginPage() {
 
             {/* Remember me */}
             <div className="flex items-center space-x-2">
-              <Checkbox id="remember" name="remember" className="border-[#271024]/30 dark:border-[#e3ae72]/30" />
+              <Checkbox
+                id="remember"
+                name="remember"
+                className="border-[#271024]/30 dark:border-[#e3ae72]/30"
+              />
               <label
                 htmlFor="remember"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#271024] dark:text-[#e3ae72]"
@@ -146,17 +159,15 @@ export default function LoginPage() {
               </label>
             </div>
 
-            {/* Error */}
+            {/* Error Alert */}
             {state?.error && (
               <Alert variant="destructive" className="border-[#271024]/20 dark:border-red-800/30">
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>
-                  {state.error}
-                </AlertDescription>
+                <AlertDescription>{state.error}</AlertDescription>
               </Alert>
             )}
 
-            {/* Submit */}
+            {/* Submit Button */}
             <Button
               type="submit"
               disabled={isPending}
@@ -185,11 +196,17 @@ export default function LoginPage() {
           {/* Terms */}
           <p className="mt-6 text-xs text-muted-foreground text-center">
             By continuing, you agree to our{" "}
-            <Link href="/terms-and-conditions" className="underline hover:text-[#271024] dark:hover:text-[#e3ae72]">
+            <Link
+              href="/terms-and-conditions"
+              className="underline hover:text-[#271024] dark:hover:text-[#e3ae72]"
+            >
               Terms of Service
             </Link>{" "}
             and{" "}
-            <Link href="/privacy-policy" className="underline hover:text-[#271024] dark:hover:text-[#e3ae72]">
+            <Link
+              href="/privacy-policy"
+              className="underline hover:text-[#271024] dark:hover:text-[#e3ae72]"
+            >
               Privacy Policy
             </Link>
           </p>

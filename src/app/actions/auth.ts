@@ -22,6 +22,7 @@ type SignupState = {
     [key: string]: string[];
   } | null;
   success?: boolean;
+  message?: string;
 } | null;
 
 type LoginState = {
@@ -29,6 +30,12 @@ type LoginState = {
   success?: boolean;
 } | null;
 
+type UpdateProfileState = {
+  error?: string | null;
+  success?: boolean;
+} | null;
+
+// ==================== SIGN UP ====================
 export async function signup(prevState: SignupState, formData: FormData) {
   const validatedFields = signupSchema.safeParse({
     name: formData.get("name"),
@@ -43,47 +50,56 @@ export async function signup(prevState: SignupState, formData: FormData) {
 
   const { name, email, password } = validatedFields.data;
 
-  const existingUser = await prisma.user.findUnique({
-    where: { email },
-  });
+  try {
+    // Check if user already exists
+    const existingUser = await prisma.user.findUnique({
+      where: { email },
+    });
 
-  if (existingUser) {
-    return { error: { email: ["Email already exists"] } };
-  }
+    if (existingUser) {
+      return { error: { email: ["Email already exists"] } };
+    }
 
-  const hashedPassword = await hash(password, 12);
+    // Hash password
+    const hashedPassword = await hash(password, 12);
 
-  const user = await prisma.user.create({
-    data: {
-      name,
+    // Create user
+    const user = await prisma.user.create({
+      data: {
+        name,
+        email,
+        password: hashedPassword,
+        role: "USER",
+      },
+    });
+
+    // Create user preferences
+    await prisma.userPreferences.create({
+      data: {
+        userId: user.id,
+        emailNotifications: true,
+      },
+    });
+
+    // Sign in the user after signup
+    const result = await signIn("credentials", {
       email,
-      password: hashedPassword,
-      role: "USER",
-    },
-  });
+      password,
+      redirect: false,
+    });
 
-  await prisma.userPreferences.create({
-    data: {
-      userId: user.id,
-      emailNotifications: true,
-    },
-  });
+    if (result?.error) {
+      return { success: true, message: "Account created! Please log in." };
+    }
 
-  // Sign in the user after signup (without redirect)
-  const result = await signIn("credentials", {
-    email,
-    password,
-    redirect: false,
-  });
-
-  if (result?.error) {
-    // User created but sign in failed - return success with note
-    return { success: true, message: "Account created! Please log in." };
+    return { success: true };
+  } catch (error) {
+    console.error("Signup error:", error);
+    return { error: { _form: ["Failed to create account. Please try again."] } };
   }
-
-  return { success: true };
 }
 
+// ==================== LOGIN ====================
 export async function login(prevState: LoginState, formData: FormData) {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
@@ -93,7 +109,6 @@ export async function login(prevState: LoginState, formData: FormData) {
   }
 
   try {
-    // Use signIn without redirect to handle client-side
     const result = await signIn("credentials", {
       email,
       password,
@@ -101,10 +116,10 @@ export async function login(prevState: LoginState, formData: FormData) {
     });
 
     if (result?.error) {
+      console.error("Login error:", result.error);
       return { error: "Invalid email or password" };
     }
 
-    // Return success so client can handle redirect
     return { success: true };
   } catch (error) {
     console.error("Login error:", error);
@@ -112,22 +127,18 @@ export async function login(prevState: LoginState, formData: FormData) {
   }
 }
 
+// ==================== LOGOUT ====================
 export async function logout() {
   await signOut();
   redirect("/");
 }
 
+// ==================== UPDATE PROFILE ====================
 const updateProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").nullish(),
   phone: z.string().nullish(),
   emailNotifications: z.boolean().optional(),
-  preferredServices: z.array(z.string()).optional(),
 });
-
-type UpdateProfileState = {
-  error?: string | null;
-  success?: boolean;
-} | null;
 
 export async function updateProfile(prevState: UpdateProfileState, formData: FormData) {
   const session = await auth();
@@ -143,7 +154,6 @@ export async function updateProfile(prevState: UpdateProfileState, formData: For
       emailNotifications: formData.get("emailNotifications") === "true",
     };
 
-    // Validate only the fields that are being updated
     const validatedFields = updateProfileSchema.safeParse(data);
 
     if (!validatedFields.success) {
@@ -168,7 +178,9 @@ export async function updateProfile(prevState: UpdateProfileState, formData: For
         where: { userId: session.user.id },
         data: {
           ...(validatedFields.data.phone !== undefined && { phone: validatedFields.data.phone }),
-          ...(validatedFields.data.emailNotifications !== undefined && { emailNotifications: validatedFields.data.emailNotifications }),
+          ...(validatedFields.data.emailNotifications !== undefined && {
+            emailNotifications: validatedFields.data.emailNotifications,
+          }),
         },
       });
     } else {
@@ -189,6 +201,7 @@ export async function updateProfile(prevState: UpdateProfileState, formData: For
   }
 }
 
+// ==================== DELETE ACCOUNT ====================
 export async function deleteAccount() {
   const session = await auth();
 
@@ -207,12 +220,12 @@ export async function deleteAccount() {
       where: { userId: session.user.id },
     });
 
-    // Delete user sessions
+    // Delete user sessions (if using database sessions)
     await prisma.session.deleteMany({
       where: { userId: session.user.id },
     });
 
-    // Delete user accounts
+    // Delete user accounts (OAuth)
     await prisma.account.deleteMany({
       where: { userId: session.user.id },
     });

@@ -4,63 +4,65 @@ import { auth } from "@/lib/auth";
 
 // Routes that require authentication
 const protectedRoutes = ["/user-dashboard", "/admin"];
-// Routes that should redirect authenticated users
-const authRoutes = ["/login", "/signup"];
+// Routes that should redirect authenticated users away
+const authRoutes = ["/login", "/signup", "/log-in"];
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
-
-  // Get session with proper null checks
   const session = req.auth;
+
+  // Get authentication state
   const isLoggedIn = !!session?.user;
   const isAdmin = session?.user?.role === "ADMIN";
+  const isUser = session?.user?.role === "USER";
 
-  // Debug logging (only in development)
-  if (process.env.NODE_ENV === "development") {
-    console.log("[Middleware] Path:", pathname);
-    console.log("[Middleware] isLoggedIn:", isLoggedIn);
-    console.log("[Middleware] isAdmin:", isAdmin);
-    console.log("[Middleware] session:", session ? "present" : "missing");
-  }
-
-  // Check if the route is protected
+  // Check if route is protected
   const isProtectedRoute = protectedRoutes.some((route) =>
     pathname.startsWith(route)
   );
 
-  // Check if the route is for auth only
+  // Check if route is auth-only (should redirect authenticated users)
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
 
-  // Redirect authenticated users away from auth pages
+  // Debug logging (development only)
+  if (process.env.NODE_ENV === "development" && (pathname.startsWith("/admin") || pathname.startsWith("/login"))) {
+    console.log(`[Middleware] ${pathname}`, {
+      isLoggedIn,
+      isAdmin,
+      isUser,
+      hasSession: !!session,
+    });
+  }
+
+  // 1. Redirect authenticated users away from auth pages
   if (isLoggedIn && isAuthRoute) {
+    // Admin goes to /admin, users go to /user-dashboard
     const redirectUrl = isAdmin ? "/admin" : "/user-dashboard";
     return NextResponse.redirect(new URL(redirectUrl, req.url));
   }
 
-  // Redirect unauthenticated users to login with redirect
+  // 2. Protect routes that require authentication
   if (!isLoggedIn && isProtectedRoute) {
     const loginUrl = new URL("/login", req.url);
+    // Store the intended destination
     loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  // Role-based access control for admin routes
-  // User must be logged in AND be admin to access /admin
+  // 3. Role-based access control for /admin
   if (pathname.startsWith("/admin")) {
     if (!isLoggedIn) {
-      const loginUrl = new URL("/login", req.url);
-      loginUrl.searchParams.set("redirect", pathname);
-      return NextResponse.redirect(loginUrl);
+      return NextResponse.redirect(new URL("/login", req.url));
     }
     if (!isAdmin) {
-      // Regular users trying to access admin go to their dashboard
+      // Non-admin users trying to access admin get redirected to their dashboard
       return NextResponse.redirect(new URL("/user-dashboard", req.url));
     }
   }
 
-  // Role-based access control for user dashboard
-  // Admins can also view user dashboard, but regular users cannot see admin
-  if (pathname.startsWith("/user-dashboard") && isLoggedIn && !isAdmin && session?.user?.role !== "USER") {
+  // 4. Role-based access for /user-dashboard
+  // Admins can access user-dashboard, but regular users cannot access admin
+  if (pathname.startsWith("/user-dashboard") && isLoggedIn && !isAdmin && !isUser) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
