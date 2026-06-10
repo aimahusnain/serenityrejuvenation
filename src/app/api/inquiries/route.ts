@@ -108,8 +108,18 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("Failed to create inquiry:", error);
+
+    // Return more detailed error for debugging
+    const errorMessage = error instanceof Error
+      ? error.message
+      : "Unknown error";
+
     return NextResponse.json(
-      { error: "Failed to submit inquiry" },
+      {
+        error: "Failed to submit inquiry",
+        details: errorMessage,
+        ...(process.env.NODE_ENV === 'development' && { stack: error instanceof Error ? error.stack : undefined })
+      },
       { status: 500 }
     );
   }
