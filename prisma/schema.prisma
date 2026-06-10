@@ -129,8 +129,7 @@ model ServiceInquiry {
   counterNote     String?     // User's counter reasoning
   adminResponse   String?     // Admin's response to counter
 
-  // Final booking details (when accepted)
-  bookingId       String?     @unique  // Created booking ID
+  bookingId       String?     // Created booking ID (one-to-one relationship enforced in app logic)
 
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
