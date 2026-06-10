@@ -61,7 +61,7 @@ export const authConfig: NextAuthConfig = {
       if (user) {
         token.id = user.id;
         token.role = user.role;
-        token.email = user.email;
+        token.email = user.email ?? undefined;
       }
       return token;
     },
@@ -69,7 +69,7 @@ export const authConfig: NextAuthConfig = {
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.role = token.role as string;
-        session.user.email = token.email as string;
+        session.user.email = token.email ?? session.user.email;
       }
       return session;
     },
@@ -105,6 +105,10 @@ declare module "next-auth" {
   }
 
   interface User {
+    id: string;
+    email: string;
+    name?: string | null;
+    image?: string | null;
     role: string;
   }
 }
@@ -113,6 +117,6 @@ declare module "next-auth/jwt" {
   interface JWT {
     id?: string;
     role?: string;
-    email?: string;
+    email?: string | null;
   }
 }
