@@ -42,14 +42,17 @@ export async function createSquarePayment(params: {
       sourceId: params.sourceId,
       idempotencyKey: params.idempotencyKey,
       locationId: LOCATION_ID!,
+      acceptPartialAuthorization: false,
       autocomplete: true,
       amountMoney: {
-        amount: BigInt(params.amountMoney.amount),
-        currency: params.amountMoney.currency as any,
+                    amount: BigInt("500"),
+            currency: "USD",
+        // amount: BigInt(params.amountMoney.amount),
+        // currency: params.amountMoney.currency as any,
       },
-      ...(params.customerId && { customerId: params.customerId }),
-      ...(params.referenceId && { referenceId: params.referenceId }),
-      ...(params.note && { note: params.note }),
+      // ...(params.customerId && { customerId: params.customerId }),
+      // ...(params.referenceId && { referenceId: params.referenceId }),
+      // ...(params.note && { note: params.note }),
     });
 
     return { success: true, payment: result.payment };

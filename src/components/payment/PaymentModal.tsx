@@ -43,6 +43,8 @@ export function PaymentModal({
 
   const handlePaymentError = (error: string) => {
     console.error("Payment error:", error);
+    // Close the modal and trigger cleanup
+    onClose();
   };
 
   return (

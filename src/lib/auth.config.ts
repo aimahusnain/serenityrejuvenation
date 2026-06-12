@@ -102,11 +102,6 @@ export const authConfig: NextAuthConfig = {
         session.user.email = token.email as string;
         session.user.name = token.name as string;
         session.user.image = token.image as string;
-        console.log("[Auth Session] Session after set:", {
-          id: session.user.id,
-          role: session.user.role,
-          roleType: typeof session.user.role,
-        });
       }
       return session;
     },

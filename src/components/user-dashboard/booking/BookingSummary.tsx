@@ -124,6 +124,10 @@ export function BookingSummary({
         setPendingBookingId(data.booking.id);
         // Show payment modal
         setShowPayment(true);
+      } else if (res.status === 409) {
+        // 409 Conflict - slot already booked, show error
+        const data = await res.json().catch(() => ({}));
+        setBookingError(data.error || "This time slot is already booked. Please choose a different time.");
       } else {
         const data = await res.json().catch(() => ({}));
         setBookingError(data.error || "Failed to create booking. Please try again.");

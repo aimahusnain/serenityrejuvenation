@@ -55,12 +55,12 @@ export async function POST(req: NextRequest) {
         currency: "USD",
       },
       idempotencyKey,
-      referenceId: bookingId || productId,
-      note: product?.title
-        ? `Payment for ${product.title}`
-        : bookingId
-        ? `Payment for booking ${bookingId}`
-        : "Service payment",
+      // referenceId: bookingId || productId,
+      // note: product?.title
+      //   ? `Payment for ${product.title}`
+      //   : bookingId
+      //   ? `Payment for booking ${bookingId}`
+      //   : "Service payment",
     });
 
     if (!result.success) {

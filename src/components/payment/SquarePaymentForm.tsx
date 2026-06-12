@@ -58,7 +58,8 @@ export function SquarePaymentForm({
       try {
         // Load Square Web Payments SDK
         const script = document.createElement("script");
-        script.src = process.env.SQUARE_ENVIRONMENT === "production"
+        // Use NEXT_PUBLIC prefix for client-side access
+        script.src = process.env.NEXT_PUBLIC_SQUARE_ENVIRONMENT === "production"
           ? "https://web.squarecdn.com/v1/square.js"
           : "https://sandbox.web.squarecdn.com/v1/square.js";
         script.async = true;
@@ -78,6 +79,11 @@ export function SquarePaymentForm({
         const applicationId = process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID;
         const locationId = process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID;
 
+        console.log("Square SDK Config:", {
+          applicationId,
+          locationId,
+          env: process.env.NEXT_PUBLIC_SQUARE_ENVIRONMENT
+        });
 
         // Validate config before initializing
         if (!applicationId || applicationId === "undefined" || applicationId.trim() === "") {
