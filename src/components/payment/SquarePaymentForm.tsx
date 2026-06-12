@@ -78,7 +78,6 @@ export function SquarePaymentForm({
         const applicationId = process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID;
         const locationId = process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID;
 
-        console.log("Square config:", { applicationId, locationId });
 
         // Validate config before initializing
         if (!applicationId || applicationId === "undefined" || applicationId.trim() === "") {
