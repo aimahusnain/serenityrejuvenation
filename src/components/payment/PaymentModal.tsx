@@ -43,8 +43,11 @@ export function PaymentModal({
 
   const handlePaymentError = (error: string) => {
     console.error("Payment error:", error);
-    // Close the modal and trigger cleanup
-    onClose();
+    // Only close on actual payment processing errors, not initialization errors
+    // Initialization errors are shown within the payment form
+    if (!error.includes("Failed to initialize")) {
+      onClose();
+    }
   };
 
   return (

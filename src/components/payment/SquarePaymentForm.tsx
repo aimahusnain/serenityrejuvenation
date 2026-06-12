@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -46,8 +46,38 @@ export function SquarePaymentForm({
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const initAttemptedRef = useRef(false);
+
+  // Wait for container to be in DOM with retry
+  const waitForContainer = (retries = 10, delay = 100): Promise<HTMLElement> => {
+    return new Promise((resolve, reject) => {
+      let attempts = 0;
+
+      const checkContainer = () => {
+        attempts++;
+        const container = document.getElementById("card-container");
+
+        if (container) {
+          resolve(container);
+        } else if (attempts >= retries) {
+          reject(new Error(`Card container not found after ${retries} attempts`));
+        } else {
+          setTimeout(checkContainer, delay);
+        }
+      };
+
+      checkContainer();
+    });
+  };
 
   useEffect(() => {
+    // Prevent multiple initializations
+    if (initAttemptedRef.current) {
+      return;
+    }
+    initAttemptedRef.current = true;
+
     let isMounted = true;
     let scriptElement: HTMLScriptElement | null = null;
 
@@ -55,7 +85,6 @@ export function SquarePaymentForm({
       try {
         // Load Square Web Payments SDK
         const script = document.createElement("script");
-        // Use NEXT_PUBLIC prefix for client-side access
         script.src = process.env.NEXT_PUBLIC_SQUARE_ENVIRONMENT === "production"
           ? "https://web.squarecdn.com/v1/square.js"
           : "https://sandbox.web.squarecdn.com/v1/square.js";
@@ -63,13 +92,13 @@ export function SquarePaymentForm({
 
         await new Promise((resolve, reject) => {
           script.onload = resolve;
-          script.onerror = reject;
+          script.onerror = () => reject(new Error("Failed to load Square SDK script"));
           document.head.appendChild(script);
           scriptElement = script;
         });
 
         if (!window.Square) {
-          throw new Error("Failed to load Square SDK");
+          throw new Error("Square SDK not loaded");
         }
 
         // Get config values
@@ -82,15 +111,16 @@ export function SquarePaymentForm({
           env: process.env.NEXT_PUBLIC_SQUARE_ENVIRONMENT
         });
 
-        // Validate config before initializing
+        // Validate config
         if (!applicationId || applicationId === "undefined" || applicationId.trim() === "") {
-          throw new Error("Square Application ID is missing. Please check your .env file for NEXT_PUBLIC_SQUARE_APPLICATION_ID");
+          throw new Error("Square Application ID is missing");
         }
 
         if (!locationId || locationId === "undefined" || locationId.trim() === "") {
-          throw new Error("Square Location ID is missing. Please check your .env file for NEXT_PUBLIC_SQUARE_LOCATION_ID");
+          throw new Error("Square Location ID is missing");
         }
 
+        // Initialize payments
         const payments = window.Square.payments(applicationId, locationId);
 
         const cardInstance = await payments.card({
@@ -113,13 +143,10 @@ export function SquarePaymentForm({
           },
         });
 
-        // Wait for DOM to be ready
-        await new Promise(resolve => setTimeout(resolve, 100));
+        // Wait for container to be available with retry
+        const container = await waitForContainer(20, 150);
 
-        const container = document.getElementById("card-container");
-        if (!container) {
-          throw new Error("Card container element not found");
-        }
+        if (!isMounted) return;
 
         await cardInstance.attach("#card-container");
 
@@ -130,22 +157,27 @@ export function SquarePaymentForm({
       } catch (err) {
         console.error("Square initialization error:", err);
         if (isMounted) {
-          setError("Failed to initialize payment form. Please refresh and try again.");
+          const errorMsg = err instanceof Error ? err.message : "Failed to initialize payment form";
+          setError(errorMsg);
           setLoading(false);
-          onError?.("Failed to initialize payment form");
+          // Don't call onError immediately - let user see the error in the modal
         }
       }
     }
 
-    initializeSquare();
+    // Delay initialization to allow modal to finish opening
+    const timer = setTimeout(() => {
+      initializeSquare();
+    }, 300);
 
     return () => {
       isMounted = false;
+      clearTimeout(timer);
       if (scriptElement && scriptElement.parentNode) {
         scriptElement.parentNode.removeChild(scriptElement);
       }
     };
-  }, [onError]);
+  }, []); // Empty deps - run once per mount
 
   const handlePayment = async () => {
     if (!card) return;
@@ -233,7 +265,11 @@ export function SquarePaymentForm({
 
         <div className="space-y-2">
           <label className="text-sm font-medium">Card Information</label>
-          <div id="card-container" className="min-h-[44px] rounded-lg border" />
+          <div
+            ref={containerRef}
+            id="card-container"
+            className="min-h-[44px] rounded-lg border"
+          />
         </div>
 
         {error && (
