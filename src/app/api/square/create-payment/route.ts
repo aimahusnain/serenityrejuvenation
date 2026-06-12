@@ -16,26 +16,13 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { sourceId, amount, bookingId, productId } = body;
+    const { sourceId, amount, productId } = body;
 
     if (!sourceId || !amount) {
       return NextResponse.json(
         { error: "Missing required fields: sourceId, amount" },
         { status: 400 }
       );
-    }
-
-    // Verify the booking belongs to the user
-    let booking;
-    if (bookingId) {
-      booking = await prisma.booking.findUnique({
-        where: { id: bookingId },
-        include: { user: true },
-      });
-
-      if (!booking || booking.userId !== session.user.id) {
-        return NextResponse.json({ error: "Invalid booking" }, { status: 400 });
-      }
     }
 
     // Get product details if productId is provided
@@ -55,63 +42,50 @@ export async function POST(req: NextRequest) {
         currency: "USD",
       },
       idempotencyKey,
-      // referenceId: bookingId || productId,
-      // note: product?.title
-      //   ? `Payment for ${product.title}`
-      //   : bookingId
-      //   ? `Payment for booking ${bookingId}`
-      //   : "Service payment",
     });
 
     if (!result.success) {
-      // If payment failed and we have a booking, update its status
-      if (bookingId) {
-        await prisma.booking.update({
-          where: { id: bookingId },
-          data: { status: "CANCELLED" },
-        });
-      }
-
       return NextResponse.json(
         { error: result.error, details: result.errors },
         { status: 400 }
       );
     }
 
-    // Create or update payment record in database
-    const payment = await prisma.payment.upsert({
-      where: {
-        bookingId: (bookingId || "") as string,
-      },
-      create: {
+    // Create payment record in database
+    // Convert BigInt to string for JSON serialization
+    const paymentMetadata = JSON.stringify(result.payment, (key, value) =>
+      typeof value === 'bigint' ? value.toString() : value
+    );
+
+    const payment = await prisma.payment.create({
+      data: {
         userId: session.user.id,
-        bookingId: bookingId || null,
         amount,
         currency: "USD",
         status: "COMPLETED",
         squarePaymentId: result.payment?.id || null,
         squareReceiptUrl: result.payment?.receiptUrl || null,
-        metadata: JSON.stringify(result.payment),
-      },
-      update: {
-        status: "COMPLETED",
-        squarePaymentId: result.payment?.id || null,
-        squareReceiptUrl: result.payment?.receiptUrl || null,
-        metadata: JSON.stringify(result.payment),
-        error: null,
+        metadata: paymentMetadata,
       },
     });
 
-    // If we have a booking, update it with payment reference and confirm it
-    if (bookingId) {
-      await prisma.booking.update({
-        where: { id: bookingId },
-        data: {
-          paymentId: payment.id,
-          status: "CONFIRMED",
-        },
-      });
-    }
+    // Convert BigInt to string for JSON serialization
+    const serializeBigInt = (obj: any): any => {
+      if (typeof obj === 'bigint') {
+        return obj.toString();
+      }
+      if (Array.isArray(obj)) {
+        return obj.map(serializeBigInt);
+      }
+      if (obj && typeof obj === 'object') {
+        const serialized: any = {};
+        for (const key in obj) {
+          serialized[key] = serializeBigInt(obj[key]);
+        }
+        return serialized;
+      }
+      return obj;
+    };
 
     return NextResponse.json({
       success: true,
@@ -122,7 +96,7 @@ export async function POST(req: NextRequest) {
         squarePaymentId: payment.squarePaymentId,
         receiptUrl: payment.squareReceiptUrl,
       },
-      squarePayment: result.payment,
+      squarePayment: serializeBigInt(result.payment),
     });
   } catch (error) {
     console.error("Payment creation error:", error);

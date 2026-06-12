@@ -1,14 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
+import { Loader2, CheckCircle, AlertCircle, Lock, CreditCard } from "lucide-react";
 
 interface SquarePaymentFormProps {
   amount: number;
-  bookingId?: string;
   productId?: string;
   onSuccess?: (payment: any) => void;
   onError?: (error: string) => void;
@@ -35,7 +34,6 @@ declare global {
 
 export function SquarePaymentForm({
   amount,
-  bookingId,
   productId,
   onSuccess,
   onError,
@@ -46,105 +44,80 @@ export function SquarePaymentForm({
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerReady, setContainerReady] = useState(false);
+  const [sdkLoaded, setSdkLoaded] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const initAttemptedRef = useRef(false);
 
-  // Wait for container to be in DOM with retry
-  const waitForContainer = (retries = 10, delay = 100): Promise<HTMLElement> => {
-    return new Promise((resolve, reject) => {
-      let attempts = 0;
-
-      const checkContainer = () => {
-        attempts++;
-        const container = document.getElementById("card-container");
-
-        if (container) {
-          resolve(container);
-        } else if (attempts >= retries) {
-          reject(new Error(`Card container not found after ${retries} attempts`));
-        } else {
-          setTimeout(checkContainer, delay);
-        }
-      };
-
-      checkContainer();
-    });
-  };
+  const containerRef = useCallback((node: HTMLDivElement | null) => {
+    if (node) {
+      console.log("Container mounted in DOM");
+      setContainerReady(true);
+    }
+  }, []);
 
   useEffect(() => {
-    // Prevent multiple initializations
-    if (initAttemptedRef.current) {
-      return;
-    }
+    if (sdkLoaded || initAttemptedRef.current) return;
     initAttemptedRef.current = true;
 
-    let isMounted = true;
     let scriptElement: HTMLScriptElement | null = null;
+
+    const script = document.createElement("script");
+    script.src = process.env.NEXT_PUBLIC_SQUARE_ENVIRONMENT === "production"
+      ? "https://web.squarecdn.com/v1/square.js"
+      : "https://sandbox.web.squarecdn.com/v1/square.js";
+    script.async = true;
+
+    script.onload = () => {
+      console.log("Square SDK loaded");
+      setSdkLoaded(true);
+    };
+
+    script.onerror = () => {
+      console.error("Failed to load Square SDK");
+      setError("Failed to load payment provider. Please refresh and try again.");
+      setLoading(false);
+    };
+
+    document.head.appendChild(script);
+    scriptElement = script;
+
+    return () => {
+      if (scriptElement && scriptElement.parentNode) {
+        scriptElement.parentNode.removeChild(scriptElement);
+      }
+    };
+  }, [sdkLoaded]);
+
+  useEffect(() => {
+    if (!sdkLoaded || !containerReady || card) return;
+
+    let isMounted = true;
 
     async function initializeSquare() {
       try {
-        // Load Square Web Payments SDK
-        const script = document.createElement("script");
-        script.src = process.env.NEXT_PUBLIC_SQUARE_ENVIRONMENT === "production"
-          ? "https://web.squarecdn.com/v1/square.js"
-          : "https://sandbox.web.squarecdn.com/v1/square.js";
-        script.async = true;
-
-        await new Promise((resolve, reject) => {
-          script.onload = resolve;
-          script.onerror = () => reject(new Error("Failed to load Square SDK script"));
-          document.head.appendChild(script);
-          scriptElement = script;
-        });
-
         if (!window.Square) {
-          throw new Error("Square SDK not loaded");
+          throw new Error("Square SDK not available");
         }
 
-        // Get config values
         const applicationId = process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID;
         const locationId = process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID;
 
-        console.log("Square SDK Config:", {
-          applicationId,
-          locationId,
-          env: process.env.NEXT_PUBLIC_SQUARE_ENVIRONMENT
-        });
-
-        // Validate config
         if (!applicationId || applicationId === "undefined" || applicationId.trim() === "") {
-          throw new Error("Square Application ID is missing");
+          throw new Error("Square Application ID is missing from environment");
         }
 
         if (!locationId || locationId === "undefined" || locationId.trim() === "") {
-          throw new Error("Square Location ID is missing");
+          throw new Error("Square Location ID is missing from environment");
         }
 
-        // Initialize payments
         const payments = window.Square.payments(applicationId, locationId);
 
-        const cardInstance = await payments.card({
-          style: {
-            ".input-container": {
-              borderColor: "#ccc",
-              borderRadius: "8px",
-            },
-            ".input-container.is-focus": {
-              borderColor: "#4a90e2",
-            },
-            ".input-container.is-invalid": {
-              borderColor: "#e74c3c",
-            },
-            "input": {
-              backgroundColor: "#fff",
-              color: "#333",
-              fontSize: "16px",
-            },
-          },
-        });
+        // Detect dark mode
+        const darkMode = document.documentElement.classList.contains('dark');
+        setIsDarkMode(darkMode);
 
-        // Wait for container to be available with retry
-        const container = await waitForContainer(20, 150);
+        const cardInstance = await payments.card();
 
         if (!isMounted) return;
 
@@ -160,24 +133,16 @@ export function SquarePaymentForm({
           const errorMsg = err instanceof Error ? err.message : "Failed to initialize payment form";
           setError(errorMsg);
           setLoading(false);
-          // Don't call onError immediately - let user see the error in the modal
         }
       }
     }
 
-    // Delay initialization to allow modal to finish opening
-    const timer = setTimeout(() => {
-      initializeSquare();
-    }, 300);
+    initializeSquare();
 
     return () => {
       isMounted = false;
-      clearTimeout(timer);
-      if (scriptElement && scriptElement.parentNode) {
-        scriptElement.parentNode.removeChild(scriptElement);
-      }
     };
-  }, []); // Empty deps - run once per mount
+  }, [sdkLoaded, containerReady, card]);
 
   const handlePayment = async () => {
     if (!card) return;
@@ -186,18 +151,15 @@ export function SquarePaymentForm({
     setError(null);
 
     try {
-      // Tokenize the card
       const tokenResult = await card.tokenize();
 
       if (tokenResult.status === "OK") {
-        // Create payment via our API
         const response = await fetch("/api/square/create-payment", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             sourceId: tokenResult.token,
             amount,
-            bookingId,
             productId,
           }),
         });
@@ -208,13 +170,30 @@ export function SquarePaymentForm({
           setSuccess(true);
           onSuccess?.(result);
         } else {
-          setError(result.error || "Payment failed");
-          onError?.(result.error || "Payment failed");
+          let errorMessage = result.error || "Payment failed";
+
+          if (result.details?.[0]?.code === "INVALID_EXPIRATION") {
+            errorMessage = "Invalid card expiration date. Use a valid future date.";
+          } else if (result.details?.[0]?.code === "CARD_DECLINED") {
+            errorMessage = "Card was declined. Please try a different card.";
+          } else if (result.details?.[0]?.detail) {
+            errorMessage = result.details[0].detail;
+          }
+
+          setError(errorMessage);
+          onError?.(errorMessage);
         }
       } else {
-        const error = tokenResult.errors?.[0]?.message || "Tokenization failed";
-        setError(error);
-        onError?.(error);
+        const errorDetail = tokenResult.errors?.[0]?.detail || tokenResult.errors?.[0]?.message || "Tokenization failed";
+        const errorCode = tokenResult.errors?.[0]?.code;
+
+        let userMessage = errorDetail;
+        if (errorCode === "INVALID_EXPIRATION") {
+          userMessage = "Invalid card expiration date. Use a valid future date.";
+        }
+
+        setError(userMessage);
+        onError?.(userMessage);
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "Payment processing error";
@@ -225,80 +204,93 @@ export function SquarePaymentForm({
     }
   };
 
-  if (loading) {
-    return (
-      <Card>
-        <CardContent className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-        </CardContent>
-      </Card>
-    );
-  }
-
   if (success) {
     return (
-      <Card>
-        <CardContent className="flex flex-col items-center justify-center py-12 text-center">
-          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Payment Successful!</h3>
-          <p className="text-muted-foreground">
-            Your booking has been confirmed.
-          </p>
-        </CardContent>
-      </Card>
+      <div className="flex flex-col items-center justify-center py-8 text-center animate-in fade-in-50 slide-in-from-bottom-4 duration-500">
+        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center mb-6 shadow-lg">
+          <CheckCircle className="h-10 w-10 text-white" strokeWidth={2.5} />
+        </div>
+        <h3 className="text-2xl font-semibold mb-2 text-[#271024]">Payment Successful!</h3>
+        <p className="text-muted-foreground">
+          Your booking has been confirmed. Redirecting...
+        </p>
+      </div>
     );
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Payment Details</CardTitle>
-        <CardDescription>
-          Complete your payment for {serviceTitle}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="flex items-baseline justify-between">
-          <span className="text-muted-foreground">Total Amount</span>
-          <span className="text-2xl font-bold">${amount.toFixed(2)}</span>
+    <div className="space-y-5">
+      {/* Amount Display - Clean & Modern */}
+      <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50 rounded-2xl p-5 border border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">Total Amount</p>
+            <p className="text-xs text-gray-500 dark:text-gray-500 mt-0.5">Secure payment</p>
+          </div>
+          <span className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+            ${amount.toFixed(2)}
+          </span>
         </div>
+      </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Card Information</label>
+      {/* Card Input - Clean Container */}
+      <div className="space-y-2">
+        <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+          Payment Information
+        </label>
+        <div className="bg-white dark:bg-gray-800 rounded-xl border-2 border-gray-200 dark:border-gray-700 p-1 shadow-sm">
           <div
             ref={containerRef}
             id="card-container"
-            className="min-h-[44px] rounded-lg border"
+            className="min-h-[56px]"
           />
         </div>
-
-        {error && (
-          <Alert variant="destructive">
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
+        {loading && (
+          <div className="flex items-center justify-center py-6">
+            <Loader2 className="h-5 w-5 animate-spin text-gray-400" />
+          </div>
         )}
+      </div>
 
-        <Button
-          onClick={handlePayment}
-          disabled={processing}
-          className="w-full"
-          size="lg"
-        >
-          {processing ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Processing...
-            </>
-          ) : (
-            `Pay $${amount.toFixed(2)}`
-          )}
-        </Button>
+      {/* Error Display */}
+      {error && (
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4">
+          <div className="flex items-start gap-3">
+            <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400 shrink-0 mt-0.5" />
+            <p className="text-sm text-red-800 dark:text-red-300">{error}</p>
+          </div>
+        </div>
+      )}
 
-        <p className="text-xs text-center text-muted-foreground">
-          Secured by Square Payments
-        </p>
-      </CardContent>
-    </Card>
+      {/* Submit Button - Modern & Clean */}
+      <Button
+        onClick={handlePayment}
+        disabled={processing || loading || !card}
+        className="w-full h-13 text-base font-semibold rounded-xl bg-gray-900 dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-100 text-white dark:text-gray-900 shadow-xl shadow-gray-900/10 dark:shadow-white/5 transition-all duration-200 disabled:opacity-50"
+        size="lg"
+      >
+        {processing ? (
+          <>
+            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+            Processing...
+          </>
+        ) : (
+          <>
+            <Lock className="mr-2 h-5 w-5" />
+            Pay ${amount.toFixed(2)}
+          </>
+        )}
+      </Button>
+
+      {/* Security Note */}
+      <div className="flex items-center justify-center gap-2 pt-1">
+        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full">
+          <Lock className="h-3.5 w-3.5 text-gray-500 dark:text-gray-400" />
+          <span className="text-xs text-gray-600 dark:text-gray-400">
+            Secured by Square
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }
