@@ -28,10 +28,7 @@ interface SquareCard {
 declare global {
   interface Window {
     Square: {
-      payments: (config: {
-        locationId: string;
-        applicationId: string;
-      }) => SquarePayments;
+      payments: (applicationId: string, locationId: string) => SquarePayments;
     };
   }
 }
@@ -94,10 +91,7 @@ export function SquarePaymentForm({
           throw new Error("Square Location ID is missing. Please check your .env file for NEXT_PUBLIC_SQUARE_LOCATION_ID");
         }
 
-        const payments = window.Square.payments({
-          locationId,
-          applicationId,
-        });
+        const payments = window.Square.payments(applicationId, locationId);
 
         const cardInstance = await payments.card({
           style: {
@@ -118,6 +112,14 @@ export function SquarePaymentForm({
             },
           },
         });
+
+        // Wait for DOM to be ready
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        const container = document.getElementById("card-container");
+        if (!container) {
+          throw new Error("Card container element not found");
+        }
 
         await cardInstance.attach("#card-container");
 
