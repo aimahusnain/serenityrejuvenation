@@ -68,17 +68,25 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Extract the booked hours
+    // Extract the booked hours using UTC for consistency
     const bookedHours = new Set<number>();
     for (const booking of bookedSlots) {
       const bookingDate = new Date(booking.date);
-      bookedHours.add(bookingDate.getHours());
+      // Use getUTCHours() to match UTC-based storage
+      // When user selects "9:00 AM" in EDT (UTC-4), it's stored as 13:00 UTC
+      bookedHours.add(bookingDate.getUTCHours());
     }
 
     // Filter out booked slots
+    // Need to convert time slot to UTC hour for comparison
+    // Create a date for the selected day at each slot time to get UTC hour
     const availableSlots = ALL_TIME_SLOTS.filter((slot) => {
-      const hour = timeToHour(slot);
-      return !bookedHours.has(hour);
+      const hour = timeToHour(slot); // Local hour (9 for "9:00 AM")
+      // Create a temporary date to convert local hour to UTC hour
+      const tempDate = new Date(selectedDate);
+      tempDate.setHours(hour, 0, 0, 0);
+      const utcHour = tempDate.getUTCHours();
+      return !bookedHours.has(utcHour);
     });
 
     return NextResponse.json({

@@ -17,11 +17,22 @@ export async function POST(request: NextRequest) {
     const bookingDate = new Date(date);
 
     // Check for conflicting existing bookings (same date and hour)
-    const startOfHour = new Date(bookingDate);
-    startOfHour.setMinutes(0, 0, 0);
+    // Use UTC methods to avoid timezone issues
+    const startOfHour = new Date(Date.UTC(
+      bookingDate.getUTCFullYear(),
+      bookingDate.getUTCMonth(),
+      bookingDate.getUTCDate(),
+      bookingDate.getUTCHours(),
+      0, 0, 0
+    ));
 
-    const endOfHour = new Date(bookingDate);
-    endOfHour.setMinutes(59, 59, 999);
+    const endOfHour = new Date(Date.UTC(
+      bookingDate.getUTCFullYear(),
+      bookingDate.getUTCMonth(),
+      bookingDate.getUTCDate(),
+      bookingDate.getUTCHours(),
+      59, 59, 999
+    ));
 
     const conflictingBooking = await prisma.booking.findFirst({
       where: {

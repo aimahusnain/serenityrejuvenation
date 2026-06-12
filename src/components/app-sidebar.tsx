@@ -15,7 +15,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { CalendarPlus, CircleHelpIcon, ListIcon, Settings2Icon } from "lucide-react"
+import { CalendarPlus, CircleHelpIcon, ListIcon, Settings2Icon, MessageSquare } from "lucide-react"
 import { RiSecurePaymentFill } from "react-icons/ri"
 
 const data = {
@@ -26,6 +26,15 @@ const data = {
       image: "https://plus.unsplash.com/premium_photo-1661404164814-9d3c137097aa?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       icon: (
         <CalendarPlus
+        />
+      ),
+    },
+    {
+      title: "My Inquiries",
+      url: "/user-dashboard/inquiries",
+      image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      icon: (
+        <MessageSquare
         />
       ),
     },

@@ -84,6 +84,9 @@ export default async function AdminPage() {
                   title: p.title,
                   price: p.price,
                   description: p.description,
+                  image: p.image,
+                  benefits: p.benefits,
+                  requiresInquiry: p.requiresInquiry,
                 }))}
                 stats={{
                   totalUsers,

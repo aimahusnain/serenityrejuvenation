@@ -8,8 +8,8 @@ export default function ThemeContextProvider({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-        <ThemeProvider attribute="class" defaultTheme="dark">{children}</ThemeProvider>
-    </html>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+      {children}
+    </ThemeProvider>
   );
 }

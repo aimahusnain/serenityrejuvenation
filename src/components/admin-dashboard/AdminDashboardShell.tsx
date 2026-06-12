@@ -383,7 +383,7 @@ export function AdminDashboardShell({
             price: p.price,
             description: p.description,
             image: p.image || "/images/placeholder.jpg",
-            benefits: [],
+            benefits: p.benefits || [],
             requiresInquiry: p.requiresInquiry || false,
           }))}
         />
