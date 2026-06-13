@@ -114,7 +114,7 @@ export function BookingSummary({
     setShowPayment(true);
   };
 
-  const handlePaymentSuccess = async () => {
+  const handlePaymentSuccess = async (paymentResult: any) => {
     // Payment completed successfully
     // NOW create the actual booking
     try {
@@ -145,6 +145,7 @@ export function BookingSummary({
           date: bookingDate.toISOString(),
           notes: finalNotes || undefined,
           status: "CONFIRMED", // Payment succeeded, so booking is confirmed
+          paymentId: paymentResult.paymentId, // Link the payment to the booking
         }),
       });
 

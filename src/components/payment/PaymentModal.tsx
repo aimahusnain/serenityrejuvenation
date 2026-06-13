@@ -14,7 +14,7 @@ interface PaymentModalProps {
   amount: number;
   productId?: string;
   serviceTitle?: string;
-  onSuccess?: () => void;
+  onSuccess?: (paymentResult: any) => void;
 }
 
 export function PaymentModal({
@@ -27,10 +27,10 @@ export function PaymentModal({
 }: PaymentModalProps) {
   const [paymentCompleted, setPaymentCompleted] = useState(false);
 
-  const handlePaymentSuccess = () => {
+  const handlePaymentSuccess = (paymentResult: any) => {
     setPaymentCompleted(true);
     setTimeout(() => {
-      onSuccess?.();
+      onSuccess?.(paymentResult);
       onClose();
       setPaymentCompleted(false);
     }, 2000);

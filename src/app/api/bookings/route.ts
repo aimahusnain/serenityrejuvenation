@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { serviceId, date, notes } = await request.json();
+    const { serviceId, date, notes, status, paymentId } = await request.json();
     if (!serviceId || !date) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
@@ -62,7 +62,8 @@ export async function POST(request: NextRequest) {
         serviceId,
         date: bookingDate,
         notes: notes ?? null,
-        status: "PENDING",
+        status: status || "PENDING",
+        paymentId: paymentId || null,
       },
     });
 
