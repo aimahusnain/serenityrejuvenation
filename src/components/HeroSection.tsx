@@ -22,6 +22,7 @@ const HeroSection = ({
   delay = 5000,
 }: HeroSectionProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [nextIndex, setNextIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
@@ -30,27 +31,66 @@ const HeroSection = ({
 
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
+        setNextIndex((prev) => (prev + 1) % images.length);
         setIsTransitioning(false);
-      }, 500);
+      }, 1000);
     }, delay);
 
     return () => clearInterval(interval);
   }, [delay, images]);
 
+  const handleDotClick = (index: number) => {
+    setNextIndex(index);
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setIsTransitioning(false);
+    }, 1000);
+  };
+
+  const currentImage = images[currentIndex];
+  const upcomingImage = images[nextIndex];
+
   return (
     <div className="relative overflow-hidden rounded-t-2xl">
-      {/* Single Image for both Mobile and Desktop */}
-      <div className={`w-full h-100 md:h-168.75 relative transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
-        <Image
-          src={images[currentIndex]}
-          alt={`Hero ${currentIndex + 1}`}
-          width={1920}
-          height={1080}
-          className="w-full h-full object-cover object-right"
-          priority
-          loading="eager"
-          sizes="100vw"
-        />
+      {/* Image Container with Crossfade */}
+      <div className="relative w-full h-100 md:h-168.75">
+        {/* Current Image */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            isTransitioning ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <Image
+            src={currentImage}
+            alt={`Hero ${currentIndex + 1}`}
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover object-right"
+            priority={currentIndex === 0}
+            loading={currentIndex === 0 ? "eager" : "lazy"}
+            sizes="100vw"
+          />
+        </div>
+
+        {/* Next Image (fades in on top) */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            isTransitioning ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={upcomingImage}
+            alt={`Hero ${nextIndex + 1}`}
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover object-right"
+            priority={nextIndex === 0}
+            loading={nextIndex === 0 ? "eager" : "lazy"}
+            sizes="100vw"
+          />
+        </div>
       </div>
 
       {/* Dots Indicator */}
@@ -59,14 +99,8 @@ const HeroSection = ({
           {images.map((_, index) => (
             <button
               key={index}
-              onClick={() => {
-                setIsTransitioning(true);
-                setTimeout(() => {
-                  setCurrentIndex(index);
-                  setIsTransitioning(false);
-                }, 500);
-              }}
-              className={`w-2 h-2 rounded-full transition-all ${
+              onClick={() => handleDotClick(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? "bg-white w-8"
                   : "bg-white/50 hover:bg-white/70"
