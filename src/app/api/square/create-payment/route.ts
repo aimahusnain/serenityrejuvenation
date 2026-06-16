@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     const payment = await prisma.payment.create({
       data: {
         userId: session.user.id,
-        bookingId: null, // No booking yet - will be linked after booking is created
+        // bookingId omitted - will be linked after booking is created
         amount,
         currency: "USD",
         status: "COMPLETED",

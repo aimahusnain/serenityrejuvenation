@@ -16,7 +16,7 @@ interface SquarePaymentFormProps {
 
 // Square Web Payments SDK types
 interface SquarePayments {
-  card: (options: any) => Promise<SquareCard>;
+  card: (options?: any) => Promise<SquareCard>;
 }
 
 interface SquareCard {

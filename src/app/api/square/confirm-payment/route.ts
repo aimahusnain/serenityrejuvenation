@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
     // If payment is completed and has a booking, confirm the booking
     if (newStatus === "COMPLETED" && payment.booking) {
       await prisma.booking.update({
-        where: { id: payment.bookingId },
+        where: { id: payment.bookingId! },
         data: { status: "CONFIRMED" },
       });
     }
