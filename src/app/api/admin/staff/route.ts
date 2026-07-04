@@ -5,10 +5,16 @@ import { prisma } from "@/lib/prisma";
 // GET /api/admin/staff - List all staff
 export async function GET(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const staff = await prisma.staff.findMany({
@@ -25,10 +31,16 @@ export async function GET(request: NextRequest) {
 // POST /api/admin/staff - Create new staff member
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const body = await request.json();
@@ -62,10 +74,16 @@ export async function POST(request: NextRequest) {
 // PATCH /api/admin/staff - Update staff member
 export async function PATCH(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const body = await request.json();
@@ -99,10 +117,16 @@ export async function PATCH(request: NextRequest) {
 // DELETE /api/admin/staff - Delete staff member
 export async function DELETE(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const body = await request.json();

@@ -8,10 +8,16 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await auth();
-
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const { id } = await params;
@@ -45,10 +51,16 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await auth();
-
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const { id } = await params;
@@ -130,10 +142,22 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await auth();
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    let isAdmin = false;
+    let userId = null;
 
-    if (!session?.user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key has full admin access
+      isAdmin = true;
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+      isAdmin = session.user.role === "ADMIN";
+      userId = session.user.id;
     }
 
     const { id } = await params;
@@ -147,8 +171,7 @@ export async function DELETE(
     }
 
     // Allow users to delete their own PENDING bookings, or admins to delete any booking
-    const isOwner = existingBooking.userId === session.user.id;
-    const isAdmin = session.user.role === "ADMIN";
+    const isOwner = userId === existingBooking.userId;
 
     if (!isOwner && !isAdmin) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

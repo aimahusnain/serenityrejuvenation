@@ -4,10 +4,16 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const { date, excludeBookingId } = await request.json();

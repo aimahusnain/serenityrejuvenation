@@ -5,10 +5,19 @@ import { prisma } from "@/lib/prisma";
 // PATCH /api/admin/users - Update user role or delete user
 export async function PATCH(request: NextRequest) {
   try {
-    const session = await auth();
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    let currentUserId = null;
 
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+      currentUserId = session.user.id;
     }
 
     const body = await request.json();
@@ -22,8 +31,8 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: "Invalid role" }, { status: 400 });
     }
 
-    // Prevent admin from changing their own role
-    if (userId === session.user.id) {
+    // Prevent admin from changing their own role (only applies to session auth)
+    if (currentUserId && userId === currentUserId) {
       return NextResponse.json({ error: "Cannot modify your own role" }, { status: 400 });
     }
 
@@ -42,10 +51,19 @@ export async function PATCH(request: NextRequest) {
 // DELETE /api/admin/users - Delete a user
 export async function DELETE(request: NextRequest) {
   try {
-    const session = await auth();
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    let currentUserId = null;
 
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+      currentUserId = session.user.id;
     }
 
     const body = await request.json();
@@ -55,8 +73,8 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "Missing userId" }, { status: 400 });
     }
 
-    // Prevent admin from deleting themselves
-    if (userId === session.user.id) {
+    // Prevent admin from deleting themselves (only applies to session auth)
+    if (currentUserId && userId === currentUserId) {
       return NextResponse.json({ error: "Cannot delete your own account" }, { status: 400 });
     }
 

@@ -5,10 +5,16 @@ import { prisma } from "@/lib/prisma";
 // PATCH /api/admin/bookings - Update booking status
 export async function PATCH(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user || session.user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // Check for API key authentication first
+    const apiKey = request.headers.get('x-api-key');
+    if (apiKey === process.env.ADMIN_API_KEY) {
+      // API key is valid, proceed with request
+    } else {
+      // Fall back to session authentication
+      const session = await auth();
+      if (!session?.user || session.user.role !== "ADMIN") {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const body = await request.json();
