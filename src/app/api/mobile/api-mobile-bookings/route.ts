@@ -63,15 +63,28 @@ export async function POST(request: NextRequest) {
             id: true,
             name: true,
             email: true,
-            phone: true,
           },
         },
       },
     });
 
+    // Get user phone from preferences if needed
+    const userPreferences = await prisma.userPreferences.findUnique({
+      where: { userId },
+      select: { phone: true },
+    });
+
+    const responseBooking = updatedBooking ? {
+      ...updatedBooking,
+      user: updatedBooking.user ? {
+        ...updatedBooking.user,
+        phone: userPreferences?.phone || null,
+      } : null,
+    } : null;
+
     return NextResponse.json({
       success: true,
-      booking: updatedBooking,
+      booking: responseBooking,
       message: 'Booking created successfully',
     });
   } catch (error) {
