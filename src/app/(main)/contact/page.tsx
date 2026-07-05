@@ -35,7 +35,7 @@ type SocialLink = {
 const CONTACT_FIELDS: ContactField[] = [
   {
     title: "Quick Contact",
-    lines: ["aimahusnain@gmail.com"],
+    lines: ["shavondareedy@yahoo.com"],
     icon: (
       <svg
         className="h-4.5 w-4.5"
