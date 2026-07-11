@@ -12,23 +12,15 @@ const PrataFont = Prata({
 const HeroSection1 = () => {
 
   return (
-      <div className="flex sm:items-center flex-col justify-center h-fit mb-5">
+      <div className="flex items-start sm:items-center flex-col justify-center h-fit mb-5">
                       <div className="mt-5 mb-3">
                         {/* Light mode logo */}
                         <Image
-                          src="/logo_dark.png"
+                          src="/topimage.jpeg"
                           alt="Serenity Rejuvenation"
                           width={250}
                           height={100}
-                          className="object-contain dark:hidden"
-                        />
-                        {/* Dark mode logo */}
-                        <Image
-                          src="/logo_light.png"
-                          alt="Serenity Rejuvenation"
-                          width={250}
-                          height={100}
-                          className="object-contain hidden dark:block"
+                          className="object-contain"
                         />
                       </div>
         <h1 className="text-[3.2rem] sm:text-7xl font-bold dark:text-white text-black mb-3 leading-tight">

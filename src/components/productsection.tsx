@@ -41,6 +41,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
   // Determine where to send the user based on auth status
   const bookUrl = session?.user ? "/user-dashboard/book" : "/login";
+  const glpLink =
+    "https://agiletelehealth.com/serenity-rejuvenation?utm_pid=serenity-rejuvenation";
+  const isGlpOneProduct =
+    /glp-1/i.test(product.title) ||
+    /glp-1/i.test(product.description) ||
+    product.benefits.some((benefit) => /glp-1/i.test(benefit));
 
   const cardRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -138,9 +144,20 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
         {/* BOTTOM */}
         <div className="px-7 pt-6 pb-7 flex flex-col flex-1">
-          <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-5">
+          <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-4">
             {product.description}
           </p>
+
+          {isGlpOneProduct && (
+            <a
+              href={glpLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-[#271024] dark:text-[#e3ae72] hover:underline"
+            >
+              Buy the required GLP-1 product here
+            </a>
+          )}
 
           <ul className="space-y-2 flex-1">
             {product.benefits.map((b, i) => (
