@@ -41,7 +41,7 @@ export default function Header() {
 
   return (
     <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#271024]/95 dark:supports-backdrop-filter:bg-[#271024]/80 border border-[#271024]/10 dark:border-[#e3ae72]/15">
-      <div className="flex flex-col lg:flex-row p-5 h-44 max-w-full items-center justify-between px-2">
+      <div className="flex h-24 max-w-full items-center justify-between px-2">
         {/* Desktop Navigation Menu */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-1">
@@ -113,21 +113,21 @@ export default function Header() {
 
         <Link href="/" className="flex items-center space-x-2 mr-18">
           {/* Light mode logo */}
-<Image
-  src="/logo_dark.png"
-  alt="Serenity Rejuvenation"
-  className="dark:hidden h-auto"
-  width={380}
-  height={480}
-/>
-
-<Image
-  src="/logo_light.png"
-  alt="Serenity Rejuvenation"
-  className="hidden dark:block h-auto"
-  width={380}
-  height={480}
-/>
+          <Image
+            src="/logo_dark.png"
+            alt="Serenity Rejuvenation"
+            className="max-h-full dark:hidden"
+            width={130}
+            height={200}
+          />
+          {/* Dark mode logo */}
+          <Image
+            src="/logo_light.png"
+            alt="Serenity Rejuvenation"
+            className="max-h-full hidden dark:block"
+            width={130}
+            height={200}
+          />
         </Link>
 
         {/* Right side buttons */}
