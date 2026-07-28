@@ -106,6 +106,18 @@ export default function Header() {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/color-changer" passHref>
+                <NavigationMenuLink
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    "text-[#271024] hover:bg-[#271024]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
+                  )}
+                >
+                  COLOR CHANGER
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
