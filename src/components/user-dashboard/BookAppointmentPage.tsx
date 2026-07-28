@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useTransition, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { StepProgress } from "./booking/StepProgress";
 import { ServiceSelection } from "./booking/ServiceSelection";
 import { DateTimeSelection } from "./booking/DateTimeSelection";
 import { AddOnsSelection } from "./booking/AddOnsSelection";
 import { BookingSummary } from "./booking/BookingSummary";
+import { InquiryForm } from "@/components/service-inquiry";
 import type { ProductLite } from "@/lib/dashboard";
 import { Highlighter } from "../ui/highlighter";
+import { AlertCircle } from "lucide-react";
 
 const STEPS = [
   { id: 1, label: "Service" },
@@ -23,6 +25,7 @@ interface BookAppointmentPageProps {
 
 export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
 
   // Step state
@@ -39,7 +42,23 @@ export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
     text: string;
   } | null>(null);
 
+  // Check for service query parameter and pre-select if valid
+  useEffect(() => {
+    const serviceParam = searchParams.get("service");
+    if (serviceParam) {
+      // Check if the service exists in our services list
+      const serviceExists = services.find((s) => s.id === serviceParam);
+      if (serviceExists) {
+        setSelectedService(serviceParam);
+      }
+    }
+  }, [searchParams, services]);
+
   const selectedServiceData = services.find((s) => s.id === selectedService);
+
+  // Check if service requires inquiry (no price or explicitly marked)
+  const requiresInquiry =
+    selectedServiceData?.requiresInquiry || !selectedServiceData?.price;
 
   const handleServiceSelect = (serviceId: string) => {
     setSelectedService(serviceId);
@@ -89,7 +108,15 @@ export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
     // Combine date and time
     const [time, period] = selectedTime.split(" ");
     const [hours, minutes] = time.split(":").map(Number);
-    const adjustedHours = period === "PM" && hours !== 12 ? hours + 12 : hours;
+    // Convert 12-hour to 24-hour format
+    const adjustedHours =
+      period === "PM"
+        ? hours === 12
+          ? 12
+          : hours + 12
+        : hours === 12
+          ? 0
+          : hours;
 
     const bookingDate = new Date(selectedDate);
     bookingDate.setHours(adjustedHours, minutes, 0, 0);
@@ -131,7 +158,11 @@ export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
           });
           setTimeout(() => {
             router.push("/user-dashboard");
-            router.refresh();
+            // Refresh after navigation to ensure data is up-to-date
+            setTimeout(() => {
+              router.refresh();
+              window.location.reload();
+            }, 100);
           }, 2000);
         } else {
           const data = await res.json().catch(() => ({}));
@@ -168,6 +199,19 @@ export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
           </p>
         </div>
 
+        {/* Inquiry Required Notice */}
+        {selectedService && requiresInquiry && (
+          <div className="max-w-3xl mx-auto mb-6 p-4 rounded-lg bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 flex items-start gap-3">
+            <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="font-medium">This service requires a consultation</p>
+              <p className="text-sm mt-1 opacity-90">
+                Pricing for <strong>{selectedServiceData?.title}</strong> is determined after a personalized consultation. Submit your inquiry and we'll contact you to discuss details and pricing.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Step Progress */}
         <StepProgress steps={STEPS} currentStep={currentStep} />
 
@@ -192,41 +236,59 @@ export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
               selectedService={selectedService}
               onSelect={handleServiceSelect}
               onNext={handleNext}
+              requiresInquiryCheck={true}
             />
           )}
 
-          {currentStep === 2 && (
-            <DateTimeSelection
-              onDateSelect={handleDateSelect}
-              onTimeSelect={handleTimeSelect}
-              onNext={handleNext}
-              onBack={handleBack}
-            />
-          )}
+          {/* If service requires inquiry, show inquiry form instead of booking flow */}
+          {selectedService && requiresInquiry && currentStep === 1 ? (
+            <div className="mt-8 flex justify-center">
+              <InquiryForm
+                service={selectedServiceData || {
+                  id: selectedService,
+                  title: "Service",
+                  description: "",
+                  price: null,
+                  requiresInquiry: true
+                }}
+              />
+            </div>
+          ) : (
+            <>
+              {currentStep === 2 && (
+                <DateTimeSelection
+                  onDateSelect={handleDateSelect}
+                  onTimeSelect={handleTimeSelect}
+                  onNext={handleNext}
+                  onBack={handleBack}
+                />
+              )}
 
-          {currentStep === 3 && (
-            <AddOnsSelection
-              selectedAddOns={selectedAddOns}
-              onToggleAddOn={handleToggleAddOn}
-              notes={notes}
-              onNotesChange={setNotes}
-              onNext={handleNext}
-              onBack={handleBack}
-              onSkip={handleSkip}
-            />
-          )}
+              {currentStep === 3 && (
+                <AddOnsSelection
+                  selectedAddOns={selectedAddOns}
+                  onToggleAddOn={handleToggleAddOn}
+                  notes={notes}
+                  onNotesChange={setNotes}
+                  onNext={handleNext}
+                  onBack={handleBack}
+                  onSkip={handleSkip}
+                />
+              )}
 
-          {currentStep === 4 && (
-            <BookingSummary
-              service={selectedServiceData || null}
-              selectedDate={selectedDate}
-              selectedTime={selectedTime}
-              selectedAddOns={selectedAddOns}
-              notes={notes}
-              onSubmit={handleSubmit}
-              onBack={handleBack}
-              isSubmitting={isPending}
-            />
+              {currentStep === 4 && (
+                <BookingSummary
+                  service={selectedServiceData || null}
+                  selectedDate={selectedDate}
+                  selectedTime={selectedTime}
+                  selectedAddOns={selectedAddOns}
+                  notes={notes}
+                  onSubmit={handleSubmit}
+                  onBack={handleBack}
+                  isSubmitting={isPending}
+                />
+              )}
+            </>
           )}
         </div>
       </div>

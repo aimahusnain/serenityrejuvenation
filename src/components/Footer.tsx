@@ -4,18 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { RiInstagramFill } from "react-icons/ri";
 import { FaFacebook } from "react-icons/fa";
-
-const services = [
-  { title: "Microneedling", href: "/services/microneedling" },
-  { title: "Microneedling with PRP", href: "/services/microneedling-prp" },
-  { title: "Microneedling with PRF", href: "/services/microneedling-prf" },
-  { title: "Microneedling with Sculptra®", href: "/services/microneedling-sculptra" },
-  { title: "PRP Therapy", href: "/services/prp" },
-  { title: "PRF Therapy", href: "/services/prf" },
-  { title: "Facial Session", href: "/services/facial" },
-];
+import { useProducts } from "./ProductsProvider";
+import { useSession } from "next-auth/react";
 
 export default function Footer() {
+  const products = useProducts();
+  const { data: session } = useSession();
   return (
     <footer className="w-full bg-white dark:bg-[#271024]">
 
@@ -99,16 +93,21 @@ export default function Footer() {
               Services
             </p>
             <ul className="flex flex-col gap-3">
-              {services.map((s) => (
-                <li key={s.title}>
-                  <Link
-                    href={s.href}
-                    className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60 hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors duration-150"
-                  >
-                    {s.title}
-                  </Link>
-                </li>
-              ))}
+              {products.map((product) => {
+                const bookUrl = session?.user
+                  ? `/user-dashboard/book?service=${product.id}`
+                  : `/login?redirect=/user-dashboard/book?service=${product.id}`;
+                return (
+                  <li key={product.id}>
+                    <Link
+                      href={bookUrl}
+                      className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60 hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors duration-150"
+                    >
+                      {product.title}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -147,7 +146,7 @@ export default function Footer() {
                 </p>
               </div>
               <Link
-                href="/booking"
+                href="/contact"
                 className="
                   inline-flex items-center justify-center self-start
                   px-6 py-2.5 rounded-full text-sm font-medium

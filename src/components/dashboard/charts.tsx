@@ -33,7 +33,7 @@ export function TreatmentTimelineChart({
   data: { month: string; treatments: number }[];
 }) {
   return (
-    <Card className="border-border/60">
+    <Card className="border-border/60 shadow-sm">
       <CardHeader>
         <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Treatment History</CardTitle>
         <CardDescription>How often you book treatments over time</CardDescription>
@@ -50,7 +50,8 @@ export function TreatmentTimelineChart({
               dataKey="treatments"
               stroke="var(--color-treatments)"
               strokeWidth={2}
-              dot={{ fill: "var(--color-treatments)" }}
+              dot={{ fill: "var(--color-treatments)", r: 4 }}
+              activeDot={{ r: 6 }}
             />
           </LineChart>
         </ChartContainer>

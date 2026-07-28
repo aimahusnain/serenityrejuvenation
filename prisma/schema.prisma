@@ -8,14 +8,15 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  price       String?
-  description String
-  image       String
-  benefits    String[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  title          String
+  price          String?
+  description    String
+  image          String
+  benefits       String[]
+  requiresInquiry Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 // NextAuth v5 models - MongoDB compatible
@@ -60,9 +61,11 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts  Account[]
-  sessions  Session[]
-  bookings  Booking[]
+  accounts   Account[]
+  sessions   Session[]
+  bookings   Booking[]
+  inquiries  ServiceInquiry[]
+  payments   Payment[]
   preferences UserPreferences?
 }
 
@@ -90,10 +93,12 @@ model Booking {
   date        DateTime
   status      BookingStatus @default(PENDING)
   notes       String?
+  paymentId   String?       @db.ObjectId  // Link to payment
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payment Payment?
 
   @@index([userId])
   @@index([date])
@@ -104,6 +109,77 @@ enum BookingStatus {
   CONFIRMED
   CANCELLED
   COMPLETED
+}
+
+// Payment model for tracking Square transactions
+model Payment {
+  id              String        @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String        @db.ObjectId
+  bookingId       String?       @unique @db.ObjectId  // One-to-one with booking (optional - payment can exist before booking)
+  amount          Float
+  currency        String        @default("USD")
+  status          PaymentStatus @default(PENDING)
+  squarePaymentId String?       @unique  // Square's payment ID
+  squareReceiptUrl String?      // Receipt URL from Square
+  error           String?       // Error message if failed
+  metadata        String?       // Additional JSON data
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  booking Booking? @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+// Service Inquiry Model for "Contact for Price" services with negotiation
+model ServiceInquiry {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String   @db.ObjectId
+  serviceId       String   @db.ObjectId
+  name            String
+  email           String
+  phone           String
+  preferredDate   String?
+  preferredTime   String?
+  notes           String?
+  status          InquiryStatus @default(PENDING)
+
+  // Negotiation fields
+  proposedPrice   Float?      // Price proposed by admin
+  proposedDate    String?     // Date proposed by admin
+  proposedTime    String?     // Time proposed by admin
+  counterOffer    Float?      // User's counter price
+  counterNote     String?     // User's counter reasoning
+  adminResponse   String?     // Admin's response to counter
+
+  bookingId       String?     // Created booking ID (one-to-one relationship enforced in app logic)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum InquiryStatus {
+  PENDING         // Initial inquiry
+  QUOTED          // Admin sent price quote
+  ACCEPTED        // User accepted quote -> booking created
+  DECLINED        // User declined quote
+  COUNTERED       // User sent counter-offer
+  CANCELLED       // Inquiry cancelled
 }
 
 // User preferences for account dashboard
@@ -117,4 +193,19 @@ model UserPreferences {
   updatedAt           DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Staff/Technician model for admin dashboard
+model Staff {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  role        String
+  email       String?
+  phone       String?
+  rating      Float    @default(0)
+  isActive    Boolean  @default(true)
+  clientsServed Int   @default(0)
+  revenueGenerated Float @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

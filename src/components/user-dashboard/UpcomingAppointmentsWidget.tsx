@@ -1,6 +1,7 @@
 "use client"
 
-import { useMemo, useTransition } from "react"
+import Link from "next/link"
+import { useMemo, useTransition, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Calendar, Clock, MapPin, Stethoscope } from "lucide-react"
 
@@ -8,16 +9,15 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 
 type Appointment = {
@@ -40,12 +40,14 @@ export function UpcomingAppointmentsWidget({
   const [isPending, startTransition] = useTransition()
 
   const upcoming = useMemo(() => {
-    const now = Date.now()
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+
     return appointments
       .filter(
         (a) =>
           (a.status === "PENDING" || a.status === "CONFIRMED") &&
-          new Date(a.date).getTime() >= now
+          new Date(a.date).getTime() >= today.getTime()
       )
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
       .slice(0, 3)
@@ -73,21 +75,29 @@ export function UpcomingAppointmentsWidget({
   }
 
   return (
-    <Card className="border-border/60">
+    <Card className="border-border/60 shadow-sm">
       <CardHeader>
         <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Upcoming Appointments</CardTitle>
         <CardDescription>Your next visits, with quick actions</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
         {upcoming.length === 0 ? (
-          <div className="py-8 text-center text-sm text-muted-foreground">
-            No upcoming appointments yet.
+          <div className="flex flex-col items-center justify-center py-12 text-center">
+            <div className="p-4 rounded-full bg-[#271024]/5 dark:bg-[#e3ae72]/10 mb-4">
+              <Calendar className="h-8 w-8 text-[#271024] dark:text-[#e3ae72]" />
+            </div>
+            <p className="text-sm text-muted-foreground mb-2">No upcoming appointments yet.</p>
+            <Link href="/user-dashboard/book">
+              <button className="inline-flex items-center justify-center rounded-lg bg-[#271024] px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]">
+                Book Your First Visit
+              </button>
+            </Link>
           </div>
         ) : (
           upcoming.map((a) => (
             <div
               key={a.id}
-              className="flex flex-col gap-3 rounded-xl border border-border/60 bg-card p-4 sm:flex-row sm:items-center sm:justify-between"
+              className="flex flex-col gap-3 rounded-xl border border-border/60 bg-card p-4 sm:flex-row sm:items-center sm:justify-between hover:border-[#271024]/20 dark:hover:border-[#e3ae72]/30 transition-colors"
             >
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
@@ -118,8 +128,8 @@ export function UpcomingAppointmentsWidget({
                 </p>
               </div>
               <div className="flex gap-2">
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
+                <Dialog>
+                  <DialogTrigger asChild>
                     <Button
                       variant="outline"
                       size="sm"
@@ -127,55 +137,67 @@ export function UpcomingAppointmentsWidget({
                     >
                       Cancel
                     </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle className="text-[#271024] dark:text-[#e3ae72]">Cancel Appointment?</AlertDialogTitle>
-                      <AlertDialogDescription>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Cancel Appointment?</DialogTitle>
+                      <DialogDescription>
                         Are you sure you want to cancel your {a.serviceName} appointment on{" "}
                         {new Date(a.date).toLocaleDateString("en-US", {
                           weekday: "long",
                           month: "long",
                           day: "numeric",
                         })}? This action cannot be undone.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel className="border-[#271024]/20 dark:border-[#e3ae72]/30">Keep Appointment</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => cancel(a.id)}
-                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                      >
-                        Yes, Cancel Appointment
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+                          Keep Appointment
+                        </Button>
+                      </DialogClose>
+                      <DialogClose asChild>
+                        <Button
+                          onClick={() => cancel(a.id)}
+                          className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                        >
+                          Yes, Cancel Appointment
+                        </Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
 
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
+                <Dialog>
+                  <DialogTrigger asChild>
                     <Button variant="secondary" size="sm">
                       Reschedule
                     </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle className="text-[#271024] dark:text-[#e3ae72]">Reschedule Appointment?</AlertDialogTitle>
-                      <AlertDialogDescription>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Reschedule Appointment?</DialogTitle>
+                      <DialogDescription>
                         Would you like to reschedule your {a.serviceName} appointment? You'll be able to select a new date and time that works better for you.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel className="border-[#271024]/20 dark:border-[#e3ae72]/30">Keep Current Time</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => window.location.href = "/contact"}
-                        className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
-                      >
-                        Continue to Reschedule
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+                          Keep Current Time
+                        </Button>
+                      </DialogClose>
+                      <DialogClose asChild>
+                        <Button
+                          onClick={() => window.location.href = "/contact"}
+                          className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                        >
+                          Continue to Reschedule
+                        </Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           ))

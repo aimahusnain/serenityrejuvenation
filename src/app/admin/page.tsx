@@ -11,7 +11,7 @@ export default async function AdminPage() {
   const session = await auth();
   // Middleware will handle authentication and role checks
 
-  const [users, bookings, products, counts] = await Promise.all([
+  const [users, bookings, products, counts, inquiries] = await Promise.all([
     prisma.user.findMany({
       where: { role: "USER" },
       select: {
@@ -37,16 +37,43 @@ export default async function AdminPage() {
       prisma.booking.count({ where: { status: "COMPLETED" } }),
       prisma.booking.count({ where: { status: "CANCELLED" } }),
     ]),
+    prisma.serviceInquiry.findMany({
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    }),
   ]);
 
   const [totalUsers, totalBookings, pending, confirmed, completed, cancelled] = counts;
 
+  // Enrich inquiries with service details
+  const inquiriesWithServices = await Promise.all(
+    inquiries.map(async (inquiry) => {
+      const service = await prisma.product.findUnique({
+        where: { id: inquiry.serviceId },
+        select: { id: true, title: true, description: true, image: true },
+      });
+      return {
+        ...inquiry,
+        service: service || { id: inquiry.serviceId, title: "Unknown Service", description: "" },
+        createdAt: inquiry.createdAt.toISOString(),
+      };
+    })
+  );
+
   return (
     <SidebarProvider>
       <AdminSidebar />
-      <SidebarInset className="flex flex-1 flex-col bg-muted/20">
+      <SidebarInset className="flex flex-1 flex-col bg-white dark:bg-[#271024]">
         <SiteHeader title="Admin Panel" />
-        <div className="flex-1 overflow-auto">
+        <div className="flex-1 overflow-auto bg-[#f8f9fa]/50 dark:bg-[#271024]/30">
           <div className="container mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-8">
             <Suspense fallback={<div className="text-muted-foreground text-sm">Loading…</div>}>
               <AdminDashboardShell
@@ -57,6 +84,9 @@ export default async function AdminPage() {
                   title: p.title,
                   price: p.price,
                   description: p.description,
+                  image: p.image,
+                  benefits: p.benefits,
+                  requiresInquiry: p.requiresInquiry,
                 }))}
                 stats={{
                   totalUsers,
@@ -66,6 +96,7 @@ export default async function AdminPage() {
                   completed,
                   cancelled,
                 }}
+                inquiries={inquiriesWithServices}
               />
             </Suspense>
           </div>

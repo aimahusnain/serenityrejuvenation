@@ -282,7 +282,7 @@ export default function ShowcaseSection() {
             {/* CTAs */}
             <div className="flex items-center gap-4">
               <Link
-                href="/booking"
+                href="/user-dashboard/book"
                 className="
                   inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full
                   text-sm font-medium transition-all duration-200 group

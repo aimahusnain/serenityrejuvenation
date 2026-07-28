@@ -41,7 +41,7 @@ export default function Header() {
 
   return (
     <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#271024]/95 dark:supports-backdrop-filter:bg-[#271024]/80 border border-[#271024]/10 dark:border-[#e3ae72]/15">
-      <div className="flex h-16 max-w-full items-center justify-between px-2">
+      <div className="flex h-24 max-w-full items-center justify-between px-2">
         {/* Desktop Navigation Menu */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-1">
@@ -54,9 +54,13 @@ export default function Header() {
                 <div className="grid w-220 grid-cols-3 gap-4 p-6 bg-white dark:bg-[#271024] dark:border-[#e3ae72]/15">
                   {products.map((service) => {
                     const price = Number(service.price ?? 0);
+                    const bookUrl = session?.user
+                      ? `/user-dashboard/book?service=${service.id}`
+                      : `/login?redirect=/user-dashboard/book?service=${service.id}`;
                     return (
-                      <div
+                      <Link
                         key={service.title}
+                        href={bookUrl}
                         className="group rounded-lg border border-[#271024]/15 dark:border-[#e3ae72]/20 p-4 hover:border-[#271024]/40 dark:hover:border-[#e3ae72]/50 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/8 transition-all"
                       >
                         <div className="flex items-start justify-between">
@@ -71,22 +75,20 @@ export default function Header() {
                           <div className="text-right ml-2 max-w-15">
                             <p className="text-xs font-semibold text-[#e3ae72]">
                               {price > 0 ? (
-                                price.toFixed(2)
+                                `$${price.toFixed(0)}`
                               ) : (
-                                <>
-                                  {" "}
-                                  <Link
-                                    href="/contact"
-                                    className="text-xs font-bold italic hover:underline"
-                                  >
-                                    Contact  for  Pricing{" "}
-                                  </Link>
-                                </>
+                                <Link
+                                  href="/contact"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="text-xs font-bold italic hover:underline"
+                                >
+                                  Contact
+                                </Link>
                               )}
                             </p>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     );
                   })}
                 </div>
@@ -217,24 +219,30 @@ export default function Header() {
                     </AccordionTrigger>
                     <AccordionContent className="pb-1">
                       <div className="flex flex-col gap-1 px-3">
-                        {products.map((service) => (
-                          <div
-                            key={service.title}
-                            className="rounded-xl border border-[#271024]/15 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]/50 px-3 py-2.5 hover:border-[#271024]/30 dark:hover:border-[#e3ae72]/40 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/8 transition-all cursor-pointer"
-                          >
-                            <div className="flex items-start justify-between gap-2 mb-1">
-                              <span className="text-xs font-medium text-[#271024] dark:text-[#e3ae72] leading-snug">
-                                {service.title}
-                              </span>
-                              <span className="text-[11px] font-medium text-[#e3ae72] whitespace-nowrap pt-px">
-                                ${service.price}.00
-                              </span>
-                            </div>
-                            <p className="text-[11px] text-[#271024]/55 dark:text-[#e3ae72]/55 leading-relaxed line-clamp-2">
-                              {service.description}
-                            </p>
-                          </div>
-                        ))}
+                        {products.map((service) => {
+                          const bookUrl = session?.user
+                            ? `/user-dashboard/book?service=${service.id}`
+                            : `/login?redirect=/user-dashboard/book?service=${service.id}`;
+                          return (
+                            <Link
+                              key={service.id}
+                              href={bookUrl}
+                              className="rounded-xl border border-[#271024]/15 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]/50 px-3 py-2.5 hover:border-[#271024]/30 dark:hover:border-[#e3ae72]/40 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/8 transition-all cursor-pointer"
+                            >
+                              <div className="flex items-start justify-between gap-2 mb-1">
+                                <span className="text-xs font-medium text-[#271024] dark:text-[#e3ae72] leading-snug">
+                                  {service.title}
+                                </span>
+                                <span className="text-[11px] font-medium text-[#e3ae72] whitespace-nowrap pt-px">
+                                  {service.price ? `$${service.price}.00` : "Contact"}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-[#271024]/55 dark:text-[#e3ae72]/55 leading-relaxed line-clamp-2">
+                                {service.description}
+                              </p>
+                            </Link>
+                          );
+                        })}
                       </div>
                     </AccordionContent>
                   </AccordionItem>

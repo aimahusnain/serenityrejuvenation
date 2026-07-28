@@ -49,15 +49,15 @@ export function ChartPieDonutActive({ data }: { data: SpendingSlice[] }) {
   const ACTIVE_INDEX = 0
 
   return (
-    <Card className="flex flex-col mt-8 w-full max-w-md">
+    <Card className="border-border/60 shadow-sm">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Spending Breakdown</CardTitle>
-        <CardDescription>Botox vs PRP vs Microneedling vs Other</CardDescription>
+        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Investment Breakdown</CardTitle>
+        <CardDescription>By treatment category (completed & scheduled)</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="mx-auto aspect-square max-h-[240px]"
         >
           <PieChart>
             <ChartTooltip
@@ -85,17 +85,17 @@ export function ChartPieDonutActive({ data }: { data: SpendingSlice[] }) {
               <Label
                 value={`$${total.toLocaleString()}`}
                 position="center"
-                className="fill-foreground text-lg font-semibold"
+                className="fill-foreground text-base font-semibold text-[#271024] dark:text-[#e3ae72]"
               />
             </Pie>
           </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 leading-none font-medium">
-          Total spend from completed appointments <DollarSign className="h-4 w-4" />
+      <CardFooter className="flex-col gap-2 text-sm border-t border-border/40 pt-4">
+        <div className="flex items-center gap-2 leading-none font-medium text-[#271024] dark:text-[#e3ae72]">
+          Total from completed & scheduled <DollarSign className="h-4 w-4" />
         </div>
-        <div className="leading-none text-muted-foreground">
+        <div className="leading-none text-muted-foreground text-xs">
           Hover to see category values
         </div>
       </CardFooter>

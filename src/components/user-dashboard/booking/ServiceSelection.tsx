@@ -2,6 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Sparkles, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ProductLite } from "@/lib/dashboard";
@@ -11,6 +12,7 @@ interface ServiceSelectionProps {
   selectedService: string | null;
   onSelect: (serviceId: string) => void;
   onNext: () => void;
+  requiresInquiryCheck?: boolean;
 }
 
 export function ServiceSelection({
@@ -18,7 +20,12 @@ export function ServiceSelection({
   selectedService,
   onSelect,
   onNext,
+  requiresInquiryCheck = false,
 }: ServiceSelectionProps) {
+  // Check if selected service requires inquiry
+  const selectedServiceData = services.find((s) => s.id === selectedService);
+  const requiresInquiry = selectedServiceData?.requiresInquiry || !selectedServiceData?.price;
+
   return (
     <div className="space-y-6">
       <div className="text-center space-y-2">
@@ -35,6 +42,7 @@ export function ServiceSelection({
         {services.map((service) => {
           const isSelected = selectedService === service.id;
           const price = service.price ? `$${service.price}` : "Contact for pricing";
+          const serviceRequiresInquiry = service.requiresInquiry || !service.price;
 
           return (
             <Card
@@ -52,9 +60,16 @@ export function ServiceSelection({
                 {/* Header */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] group-hover:text-[#271024] dark:group-hover:text-[#e3ae72]">
-                      {service.title}
-                    </h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] group-hover:text-[#271024] dark:group-hover:text-[#e3ae72]">
+                        {service.title}
+                      </h3>
+                      {serviceRequiresInquiry && (
+                        <Badge className="bg-[#e3ae72] text-[#271024] text-xs">
+                          Contact for Price
+                        </Badge>
+                      )}
+                    </div>
                     <p className="text-sm font-medium text-[#e3ae72] dark:text-[#e3ae72]/80 mt-1">
                       {price}
                     </p>
@@ -90,17 +105,28 @@ export function ServiceSelection({
         })}
       </div>
 
-      {/* Continue Button */}
-      <div className="flex justify-center pt-4">
-        <Button
-          onClick={onNext}
-          disabled={!selectedService}
-          size="lg"
-          className="px-8 sm:px-12 bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] hover:bg-[#271024]/80 dark:hover:bg-[#d49e5e]"
-        >
-          Continue to Date & Time
-        </Button>
-      </div>
+      {/* Continue Button - Hide if service requires inquiry */}
+      {!requiresInquiryCheck || !requiresInquiry ? (
+        <div className="flex justify-center pt-4">
+          <Button
+            onClick={onNext}
+            disabled={!selectedService}
+            size="lg"
+            className="px-8 sm:px-12 bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024] hover:bg-[#271024]/80 dark:hover:bg-[#d49e5e]"
+          >
+            Continue to Date & Time
+          </Button>
+        </div>
+      ) : (
+        <div className="flex justify-center pt-4">
+          <p className="text-sm text-muted-foreground">
+            <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
+              {selectedServiceData?.title}
+            </span>{" "}
+            requires a consultation. Please use the inquiry form below.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

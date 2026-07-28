@@ -12,7 +12,12 @@ import {
   Download,
   Filter,
   UserCog,
+  MessageSquare,
 } from "lucide-react";
+import ServiceInquiriesSection from "@/components/admin/ServiceInquiriesSection";
+import { ServicesManagementSection } from "@/components/admin/ServicesManagementSection";
+import { ClientProfileDialog } from "@/components/admin/ClientProfileDialog";
+import { BookingRescheduleDialog } from "@/components/admin/BookingRescheduleDialog";
 import { KpiCard } from "@/components/dashboard/kpi-card";
 import {
   RevenueTrendChart,
@@ -58,6 +63,7 @@ import {
   type BookingLite,
 } from "@/lib/dashboard";
 import { cn } from "@/lib/utils";
+import { exportTransactionsToCSV, printData } from "@/lib/export";
 
 interface AdminUser {
   id: string;
@@ -72,11 +78,33 @@ interface AdminBooking extends BookingLite {
   user: { name: string | null; email: string | null };
 }
 
-const STAFF = [
-  { name: "Dr. Shavonda Fields", role: "Lead Aesthetician", clients: 48, revenue: 12400, rating: 4.9 },
-  { name: "Sarah M.", role: "Injector Specialist", clients: 32, revenue: 8900, rating: 4.8 },
-  { name: "Lisa K.", role: "Skin Therapist", clients: 28, revenue: 6200, rating: 4.7 },
-];
+interface AdminInquiry {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  preferredDate: string | null;
+  preferredTime: string | null;
+  notes: string | null;
+  status: "PENDING" | "QUOTED" | "ACCEPTED" | "DECLINED" | "COUNTERED" | "CANCELLED";
+  proposedPrice: number | null;
+  proposedDate: string | null;
+  proposedTime: string | null;
+  counterOffer: number | null;
+  counterNote: string | null;
+  adminResponse: string | null;
+  createdAt: string;
+  service: {
+    id: string;
+    title: string;
+    description: string;
+  };
+  user?: {
+    id: string;
+    name: string | null;
+    email: string | null;
+  };
+}
 
 const VIEW_TITLES: Record<string, string> = {
   overview: "Operations Overview",
@@ -84,7 +112,7 @@ const VIEW_TITLES: Record<string, string> = {
   clients: "Client Management",
   services: "Services & Treatments",
   finance: "Payments & Finance",
-  staff: "Staff Management",
+  inquiries: "Service Inquiries",
 };
 
 export function AdminDashboardShell({
@@ -92,6 +120,7 @@ export function AdminDashboardShell({
   bookings,
   products,
   stats,
+  inquiries,
 }: {
   users: AdminUser[];
   bookings: AdminBooking[];
@@ -104,15 +133,21 @@ export function AdminDashboardShell({
     completed: number;
     cancelled: number;
   };
+  inquiries: AdminInquiry[];
 }) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const view = searchParams.get("view") ?? "overview";
   const [isPending, startTransition] = useTransition();
   const [localBookings, setLocalBookings] = useState(bookings);
+  const [localInquiries, setLocalInquiries] = useState(inquiries);
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [filterTreatment, setFilterTreatment] = useState<string>("all");
   const [clientSearch, setClientSearch] = useState("");
+  const [selectedClientId, setSelectedClientId] = useState<string | null>(null);
+  const [clientDialogOpen, setClientDialogOpen] = useState(false);
+  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
+  const [rescheduleDialogOpen, setRescheduleDialogOpen] = useState(false);
 
   const enriched = useMemo(
     () => enrichBookings(localBookings, products),
@@ -272,6 +307,14 @@ export function AdminDashboardShell({
                               <Button variant="ghost" size="icon" disabled={isPending}><MoreVertical className="size-4" /></Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
+                              {(b.status === "PENDING" || b.status === "CONFIRMED") && (
+                                <DropdownMenuItem onClick={() => {
+                                  setSelectedBookingId(b.id);
+                                  setRescheduleDialogOpen(true);
+                                }}>
+                                  Reschedule
+                                </DropdownMenuItem>
+                              )}
                               {["PENDING", "CONFIRMED", "COMPLETED", "CANCELLED"]
                                 .filter((s) => s !== b.status)
                                 .map((s) => (
@@ -312,7 +355,14 @@ export function AdminDashboardShell({
               </TableHeader>
               <TableBody>
                 {filteredUsers.map((u) => (
-                  <TableRow key={u.id}>
+                  <TableRow
+                    key={u.id}
+                    className="cursor-pointer hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5"
+                    onClick={() => {
+                      setSelectedClientId(u.id);
+                      setClientDialogOpen(true);
+                    }}
+                  >
                     <TableCell className="font-medium">{u.name ?? "—"}</TableCell>
                     <TableCell>{u.email}</TableCell>
                     <TableCell>{u._count.bookings}</TableCell>
@@ -326,28 +376,17 @@ export function AdminDashboardShell({
       )}
 
       {view === "services" && (
-        <Card className="border-border/60">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Services & Packages</CardTitle>
-            <Button size="sm">Add treatment</Button>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            {products.map((p) => (
-              <div key={p.id} className="flex justify-between items-center rounded-lg border p-4">
-                <div>
-                  <p className="font-medium">{p.title}</p>
-                  <p className="text-xs text-muted-foreground line-clamp-1">{p.description}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Duration: ~60 min</p>
-                </div>
-                <p className="font-semibold text-[#e3ae72]">{p.price ?? "Contact"}</p>
-              </div>
-            ))}
-            <div className="rounded-lg border border-dashed border-primary/30 p-4 mt-4">
-              <p className="font-medium text-[#271024] dark:text-[#e3ae72]">Glow Package</p>
-              <p className="text-sm text-muted-foreground">Microneedling + PRP bundle — configure in admin tools</p>
-            </div>
-          </CardContent>
-        </Card>
+        <ServicesManagementSection
+          initialServices={products.map((p) => ({
+            id: p.id,
+            title: p.title,
+            price: p.price,
+            description: p.description,
+            image: p.image || "/images/placeholder.jpg",
+            benefits: p.benefits || [],
+            requiresInquiry: p.requiresInquiry || false,
+          }))}
+        />
       )}
 
       {view === "finance" && (
@@ -358,7 +397,23 @@ export function AdminDashboardShell({
           <Card className="md:col-span-3 border-border/60">
             <CardHeader className="flex flex-row justify-between">
               <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Transaction Log</CardTitle>
-              <Button variant="outline" size="sm"><Download className="size-4 mr-1" /> Export Excel</Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const transactions = enriched
+                    .filter((b) => b.status === "COMPLETED")
+                    .map((b) => ({
+                      serviceName: b.serviceName,
+                      date: new Date(b.date).toLocaleDateString(),
+                      amount: b.servicePrice,
+                      status: b.status,
+                    }));
+                  exportTransactionsToCSV(transactions, `transactions-${new Date().toISOString().split('T')[0]}`);
+                }}
+              >
+                <Download className="size-4 mr-1" /> Export CSV
+              </Button>
             </CardHeader>
             <CardContent className="divide-y text-sm">
               {enriched.filter((b) => b.status === "COMPLETED").map((b) => (
@@ -372,27 +427,27 @@ export function AdminDashboardShell({
         </div>
       )}
 
-      {view === "staff" && (
-        <div className="grid gap-4 md:grid-cols-3">
-          {STAFF.map((s) => (
-            <Card key={s.name} className="border-border/60">
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <UserCog className="size-5 text-primary" />
-                  {s.name}
-                </CardTitle>
-                <CardDescription>{s.role}</CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm space-y-2">
-                <p>Clients served: <strong>{s.clients}</strong></p>
-                <p>Revenue: <strong>${s.revenue.toLocaleString()}</strong></p>
-                <p>Rating: <strong>{s.rating}</strong> ★</p>
-                <Button variant="outline" size="sm" className="w-full mt-2">Edit schedule</Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      {view === "inquiries" && (
+        <ServiceInquiriesSection
+          inquiries={localInquiries}
+          onUpdate={setLocalInquiries}
+        />
       )}
+
+      {/* Client Profile Dialog */}
+      <ClientProfileDialog
+        clientId={selectedClientId}
+        open={clientDialogOpen}
+        onOpenChange={setClientDialogOpen}
+      />
+
+      {/* Booking Reschedule Dialog */}
+      <BookingRescheduleDialog
+        bookingId={selectedBookingId}
+        open={rescheduleDialogOpen}
+        onOpenChange={setRescheduleDialogOpen}
+        onSuccess={() => router.refresh()}
+      />
     </div>
   );
 }

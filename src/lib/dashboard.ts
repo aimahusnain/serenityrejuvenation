@@ -5,6 +5,9 @@ export interface ProductLite {
   title: string;
   price: string | null;
   description: string;
+  image?: string;
+  benefits?: string[];
+  requiresInquiry?: boolean;
 }
 
 export interface BookingLite {
@@ -68,22 +71,30 @@ export function buildMonthlyTimeline(bookings: EnrichedBooking[]) {
     const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
     months[key] = (months[key] ?? 0) + 1;
   }
-  return Object.entries(months)
-    .sort(([a], [b]) => a.localeCompare(b))
-    .slice(-8)
-    .map(([month, count]) => ({
-      month: new Date(month + "-01").toLocaleDateString("en-US", {
-        month: "short",
-        year: "2-digit",
-      }),
-      treatments: count,
-    }));
+  // Sort by date and take last 6 months, plus any future months
+  const sortedEntries = Object.entries(months).sort(([a], [b]) => a.localeCompare(b));
+  const currentMonth = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, "0")}`;
+
+  // Get past 6 months and up to 2 future months
+  const pastSixMonths = sortedEntries.filter(([key]) => key <= currentMonth).slice(-6);
+  const futureMonths = sortedEntries.filter(([key]) => key > currentMonth).slice(0, 2);
+
+  return [...pastSixMonths, ...futureMonths].map(([month, count]) => ({
+    month: new Date(month + "-01").toLocaleDateString("en-US", {
+      month: "short",
+      year: "2-digit",
+    }),
+    treatments: count,
+  }));
 }
 
 export function buildSpendingPie(bookings: EnrichedBooking[]) {
-  const completed = bookings.filter((b) => b.status === "COMPLETED");
+  // Include both completed and upcoming (pending/confirmed) bookings
+  const active = bookings.filter((b) =>
+    b.status === "COMPLETED" || b.status === "PENDING" || b.status === "CONFIRMED"
+  );
   const groups: Record<string, number> = {};
-  for (const b of completed) {
+  for (const b of active) {
     const cat = categorizeTreatment(b.serviceName);
     groups[cat] = (groups[cat] ?? 0) + b.servicePrice;
   }
@@ -91,7 +102,7 @@ export function buildSpendingPie(bookings: EnrichedBooking[]) {
   if (entries.length === 0) {
     return [
       { name: "Botox", value: 0, fill: "var(--chart-1)" },
-      { name: "PRP / PRF", value: 0, fill: "var(--chart-2)" },
+      { name: "PRP", value: 0, fill: "var(--chart-2)" },
       { name: "Microneedling", value: 0, fill: "var(--chart-3)" },
       { name: "Other", value: 0, fill: "var(--chart-4)" },
     ];
@@ -173,13 +184,20 @@ export function buildOccupancyHeatmap(bookings: BookingLite[]) {
 
 export function getNextBooking(bookings: EnrichedBooking[]) {
   const now = Date.now();
-  return bookings
-    .filter(
-      (b) =>
-        (b.status === "CONFIRMED" || b.status === "PENDING") &&
-        new Date(b.date).getTime() > now
-    )
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const future = bookings
+    .filter((b) => {
+      const bookingDate = new Date(b.date);
+      const isValidStatus = b.status === "CONFIRMED" || b.status === "PENDING";
+      // Check if booking is today or in the future
+      const isTodayOrFuture = bookingDate.getTime() >= today.getTime();
+      return isValidStatus && isTodayOrFuture;
+    })
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  return future[0];
 }
 
 export function formatAppointmentCountdown(
@@ -204,17 +222,29 @@ export function computeUserDashboardStats(
   products: ProductLite[]
 ) {
   const enriched = enrichBookings(bookings, products);
-  const upcoming = enriched.filter(
-    (b) => b.status === "PENDING" || b.status === "CONFIRMED"
-  );
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcoming = enriched.filter((b) => {
+    const isValidStatus = b.status === "PENDING" || b.status === "CONFIRMED";
+    const bookingDate = new Date(b.date);
+    const isTodayOrFuture = bookingDate.getTime() >= today.getTime();
+    return isValidStatus && isTodayOrFuture;
+  });
+
   const completed = enriched.filter((b) => b.status === "COMPLETED");
   const lifetimeSpending = completed.reduce((sum, b) => sum + b.servicePrice, 0);
+
+  // Calculate pending spending from upcoming appointments
+  const pendingSpending = upcoming.reduce((sum, b) => sum + b.servicePrice, 0);
+  const totalSpending = lifetimeSpending + pendingSpending;
+
   const { countdown, detail } = formatAppointmentCountdown(getNextBooking(enriched));
 
   return {
     upcomingAppointments: upcoming.length,
-    totalTreatments: completed.length,
-    lifetimeSpending,
+    totalTreatments: enriched.length,
+    lifetimeSpending: totalSpending,
     nextAppointmentCountdown: countdown,
     nextAppointmentDetail: detail,
   };

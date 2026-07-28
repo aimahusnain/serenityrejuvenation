@@ -85,14 +85,14 @@ export function AdminClientsTable({ users }: Props) {
             <Crown className="h-3 w-3 mr-1" />
             VIP: {vipCount}
           </Badge>
-          <Badge variant="outline" className="bg-green-500/10 border-green-500/20">
+          <Badge variant="outline" className="bg-[#e3ae72]/10 border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72]">
             <Star className="h-3 w-3 mr-1" />
             Regular: {regularCount}
           </Badge>
-          <Badge variant="outline" className="bg-gray-500/10 border-gray-500/20">
+          <Badge variant="outline" className="bg-[#271024]/10 border-[#271024]/30 text-[#271024] dark:text-[#e3ae72]/80">
             New: {newCount}
           </Badge>
-          <Badge variant="outline" className="bg-yellow-500/10 border-yellow-500/20">
+          <Badge variant="outline" className="bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-400">
             Irregular: {irregularCount}
           </Badge>
         </div>

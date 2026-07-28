@@ -12,6 +12,7 @@ import {
   History,
   CreditCard,
   Gift,
+  MessageSquare,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useTransition } from "react";
@@ -31,10 +32,11 @@ import Link from "next/link";
 const data = {
   navMain: [
     { title: "Overview", url: "/user-dashboard?view=overview", icon: Home, view: "overview" },
-    { title: "My Appointments", url: "/user-dashboard?view=appointments", icon: Calendar, view: "appointments" },
+    { title: "My Appointments", url: "/user-dashboard/appointments", icon: Calendar, view: "appointments" },
     { title: "Book Appointment", url: "/user-dashboard?view=book", icon: CalendarPlus, view: "book" },
-    { title: "Treatment History", url: "/user-dashboard?view=history", icon: History, view: "history" },
-    { title: "Payments", url: "/user-dashboard?view=payments", icon: CreditCard, view: "payments" },
+    { title: "My Inquiries", url: "/user-dashboard/inquiries", icon: MessageSquare, view: "inquiries" },
+    { title: "Treatment History", url: "/user-dashboard/treatments", icon: History, view: "treatments" },
+    { title: "Payments", url: "/user-dashboard/payments", icon: CreditCard, view: "payments" },
     { title: "Profile", url: "/user-dashboard?view=profile", icon: User, view: "profile" },
     { title: "Loyalty", url: "/user-dashboard?view=loyalty", icon: Gift, view: "loyalty" },
   ],

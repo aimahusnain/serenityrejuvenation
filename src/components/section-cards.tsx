@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { CalendarIcon, ClockIcon, DollarSignIcon, SparklesIcon } from "lucide-react"
 
 export type SectionCardsStats = {
   upcomingAppointments: number
@@ -35,62 +34,61 @@ export function SectionCards({ stats = defaultStats }: { stats?: SectionCardsSta
       badge: stats.upcomingAppointments > 0 ? "Scheduled" : "None booked",
       footerTitle: stats.upcomingAppointments > 0 ? "Visits on your calendar" : "Schedule your next treatment",
       footerDetail: "Pending & confirmed visits",
-      icon: CalendarIcon,
     },
     {
-      description: "Total Treatments Taken",
+      description: "Total Treatments",
       value: String(stats.totalTreatments),
-      badge: stats.totalTreatments > 0 ? "Completed" : "Get started",
+      badge: stats.totalTreatments > 0 ? "All bookings" : "Get started",
       footerTitle:
         stats.totalTreatments > 0
           ? "Your wellness journey"
           : "Your first treatment awaits",
-      footerDetail: "Completed sessions",
-      icon: SparklesIcon,
+      footerDetail: "Completed & scheduled sessions",
     },
     {
-      description: "Lifetime Spending",
+      description: "Total Investment",
       value: `$${stats.lifetimeSpending.toLocaleString()}`,
       badge: "All time",
       footerTitle: "Investment in you",
-      footerDetail: "From completed visits",
-      icon: DollarSignIcon,
+      footerDetail: "From completed & scheduled visits",
     },
     {
-      description: "Next Appointment Countdown",
+      description: "Next Appointment",
       value: stats.nextAppointmentCountdown,
       badge: stats.nextAppointmentCountdown !== "—" ? "Coming up" : "Open slot",
       footerTitle: stats.nextAppointmentDetail ?? "No visit scheduled",
       footerDetail: "Until your next session",
-      icon: ClockIcon,
     },
   ] as const
 
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4 dark:*:data-[slot=card]:bg-card">
-      {cards.map((card) => {
-        const Icon = card.icon
-        return (
-          <Card key={card.description} className="@container/card">
-            <CardHeader>
-              <CardDescription>{card.description}</CardDescription>
-              <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-                {card.value}
-              </CardTitle>
-              <CardAction>
-                <Badge variant="outline">{card.badge}</Badge>
-              </CardAction>
-            </CardHeader>
-            <CardFooter className="flex-col items-start gap-1.5 text-sm">
-              <div className="line-clamp-1 flex gap-2 font-medium">
-                {card.footerTitle}
-                <Icon className="size-4 shrink-0 text-primary" />
-              </div>
-              <div className="text-muted-foreground">{card.footerDetail}</div>
-            </CardFooter>
-          </Card>
-        )
-      })}
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {cards.map((card) => (
+        <Card key={card.description} className="@container/card hover:shadow-md transition-shadow duration-200 border-border/60">
+          <CardHeader className="space-y-3">
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">
+              {card.description}
+            </CardDescription>
+            <CardTitle className="text-3xl font-bold tabular-nums text-[#271024] dark:text-[#e3ae72]">
+              {card.value}
+            </CardTitle>
+            <CardAction>
+              <Badge
+                variant="outline"
+                className="text-xs px-2.5 py-0.5 border-[#271024]/20 dark:border-[#e3ae72]/30"
+              >
+                {card.badge}
+              </Badge>
+            </CardAction>
+          </CardHeader>
+          <CardFooter className="flex-col items-start gap-1.5 text-sm border-t border-border/40 pt-4">
+            <div className="font-medium text-[#271024] dark:text-[#e3ae72]">
+              {card.footerTitle}
+            </div>
+            <div className="text-xs text-muted-foreground">{card.footerDetail}</div>
+          </CardFooter>
+        </Card>
+      ))}
     </div>
   )
 }
