@@ -23,14 +23,14 @@ const HeroSection1 = () => {
                           className="object-contain"
                         />
                       </div>
-        <h1 className="text-[3.2rem] sm:text-7xl font-bold dark:text-white text-black mb-3 leading-tight">
+        <h1 className="text-[3.2rem] sm:text-7xl font-bold text-[var(--home-text)] mb-3 leading-tight">
           Serenity{" "}
           <span className={PrataFont.className}>Rejuvenation</span>
         </h1>
 
         <Link href="/contact">
           <Button
-            className="px-5 mt-1 text-black hover:text-white bg-[#e3ae72] hover:bg-[#150c07] text-md rounded-full cursor-pointer"
+            className="px-5 mt-1 text-[var(--home-on-accent)] hover:opacity-90 bg-[var(--home-accent)] text-md rounded-full cursor-pointer"
             size="lg"
           >
             CONTACT US

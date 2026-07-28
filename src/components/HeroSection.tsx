@@ -55,7 +55,7 @@ const HeroSection = ({
   return (
     <div className="relative overflow-hidden rounded-t-2xl">
       {/* Mobile: solid background + text block ABOVE the image */}
-      <div className="md:hidden bg-[#150c07] w-full p-6 flex flex-col items-center justify-center text-center">
+      <div className="md:hidden bg-[var(--home-purple)] w-full p-6 flex flex-col items-center justify-center text-center">
         <h1 className="text-[2.2rem] sm:text-3xl font-bold text-white mb-3 leading-tight">
           Serenity{" "}
           <span className={PrataFont.className}>Rejuvenation</span>
@@ -63,7 +63,7 @@ const HeroSection = ({
 
         <Link href="/contact">
           <Button
-            className="px-5 mt-1 text-black hover:text-white bg-[#e3ae72] hover:bg-[#150c07] text-sm rounded-full cursor-pointer"
+            className="px-5 mt-1 text-[var(--home-on-accent)] hover:opacity-90 bg-[var(--home-accent)] text-sm rounded-full cursor-pointer"
             size="lg"
           >
             CONTACT US
@@ -128,7 +128,7 @@ const HeroSection = ({
         )}
 
         {/* Button over image - desktop only now, since mobile version is above the image */}
-        <div className="hidden md:flex absolute bottom-5 left-5 backdrop-blur-sm w-fit rounded-lg p-5 bg-[#e3ae72]/40 max-w-md flex-col items-start justify-start z-10">
+        <div className="hidden md:flex absolute bottom-5 left-5 backdrop-blur-sm w-fit rounded-lg p-5 bg-[color-mix(in_srgb,var(--home-accent)_40%,transparent)] max-w-md flex-col items-start justify-start z-10">
           <h1 className="text-6xl font-bold text-white mb-4 leading-tight text-left">
             Serenity{" "}
             <span className={PrataFont.className}>Rejuvenation</span>
@@ -136,7 +136,7 @@ const HeroSection = ({
 
           <Link href="/contact">
             <Button
-              className="px-5 mt-1 text-black hover:text-white bg-[#e3ae72] hover:bg-[#150c07] text-sm rounded-full cursor-pointer"
+              className="px-5 mt-1 text-[var(--home-on-accent)] hover:opacity-90 bg-[var(--home-accent)] text-sm rounded-full cursor-pointer"
               size="lg"
             >
               CONTACT US

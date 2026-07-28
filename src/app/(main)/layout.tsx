@@ -1,7 +1,6 @@
 import { auth } from "@/lib/auth";
 import { SessionProvider } from "next-auth/react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import MainLayoutChrome from "@/components/MainLayoutChrome";
 import { ProductsProvider } from "@/components/ProductsProvider";
 import { prisma } from "@/lib/prisma";
 
@@ -17,14 +16,10 @@ export default async function MainLayout({
   const session = await auth();
 
   return (
-    <div className="antialiased bg-white dark:bg-[#271024]">
     <SessionProvider session={session}>
       <ProductsProvider initialProducts={products}>
-        <Header />
-        {children}
-        <Footer />
+        <MainLayoutChrome>{children}</MainLayoutChrome>
       </ProductsProvider>
     </SessionProvider>
-    </div>
   );
 }

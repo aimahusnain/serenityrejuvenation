@@ -27,11 +27,17 @@ import {
 import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 import { useProducts } from "@/components/ProductsProvider";
 import UserMenu from "@/components/UserMenu";
+import { getHeaderThemeClasses, type HeaderVariant } from "@/lib/header-home-theme";
+import { useHomeThemeUi } from "@/components/home/HomeThemeUiContext";
 
-export default function Header() {
+export default function Header({ variant = "default" }: { variant?: HeaderVariant }) {
   const products = useProducts();
   const { data: session } = useSession();
   const [isPending, startTransition] = useTransition();
+  const t = getHeaderThemeClasses(variant);
+  const { darkBg } = useHomeThemeUi();
+  const isHome = variant === "home";
+  const showLightLogo = isHome ? darkBg : false;
 
   const handleSignOut = () => {
     startTransition(async () => {
@@ -40,18 +46,18 @@ export default function Header() {
   };
 
   return (
-    <nav className="mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#271024]/95 dark:supports-backdrop-filter:bg-[#271024]/80 border border-[#271024]/10 dark:border-[#e3ae72]/15">
+    <nav className={t.nav}>
       <div className="flex h-24 max-w-full items-center justify-between px-2">
         {/* Desktop Navigation Menu */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-1">
             {/* Services */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-[#271024] hover:bg-[#271024]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10">
+              <NavigationMenuTrigger className={t.menuTrigger}>
                 Services
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-white dark:bg-[#271024] dark:border-[#e3ae72]/15">
-                <div className="grid w-220 grid-cols-3 gap-4 p-6 bg-white dark:bg-[#271024] dark:border-[#e3ae72]/15">
+              <NavigationMenuContent className={t.menuContent}>
+                <div className={cn("grid w-220 grid-cols-3 gap-4 p-6", t.menuGrid)}>
                   {products.map((service) => {
                     const price = Number(service.price ?? 0);
                     const bookUrl = session?.user
@@ -61,19 +67,19 @@ export default function Header() {
                       <Link
                         key={service.title}
                         href={bookUrl}
-                        className="group rounded-lg border border-[#271024]/15 dark:border-[#e3ae72]/20 p-4 hover:border-[#271024]/40 dark:hover:border-[#e3ae72]/50 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/8 transition-all"
+                        className={t.serviceCard}
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-[#271024] dark:text-[#e3ae72] text-sm leading-tight">
+                            <h4 className={t.serviceTitle}>
                               {service.title}
                             </h4>
-                            <p className="text-xs text-[#271024]/55 dark:text-[#e3ae72]/60 mt-1 line-clamp-2">
+                            <p className={t.serviceDesc}>
                               {service.description}
                             </p>
                           </div>
                           <div className="text-right ml-2 max-w-15">
-                            <p className="text-xs font-semibold text-[#e3ae72]">
+                            <p className={t.price}>
                               {price > 0 ? (
                                 `$${price.toFixed(0)}`
                               ) : (
@@ -101,22 +107,12 @@ export default function Header() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "text-[#271024] hover:bg-[#271024]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
+                    isHome
+                      ? t.menuTrigger
+                      : "text-[#271024] hover:bg-[#271024]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
                   )}
                 >
                   Gallery
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/color-changer" passHref>
-                <NavigationMenuLink
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    "text-[#271024] hover:bg-[#271024]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
-                  )}
-                >
-                  COLOR CHANGER
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
@@ -128,15 +124,20 @@ export default function Header() {
           <Image
             src="/logo_dark.png"
             alt="Serenity Rejuvenation"
-            className="max-h-full dark:hidden"
+            className={cn(
+              "max-h-full",
+              isHome ? (showLightLogo ? "hidden" : "block") : "dark:hidden",
+            )}
             width={130}
             height={200}
           />
-          {/* Dark mode logo */}
           <Image
             src="/logo_light.png"
             alt="Serenity Rejuvenation"
-            className="max-h-full hidden dark:block"
+            className={cn(
+              "max-h-full",
+              isHome ? (showLightLogo ? "block" : "hidden") : "hidden dark:block",
+            )}
             width={130}
             height={200}
           />
@@ -144,7 +145,7 @@ export default function Header() {
 
         {/* Right side buttons */}
         <div className="flex items-center space-x-2 md:space-x-4">
-          <AnimatedThemeToggler />
+          {!isHome && <AnimatedThemeToggler />}
 
           {session ? (
             <UserMenu />
@@ -154,7 +155,12 @@ export default function Header() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="hidden cursor-pointer sm:flex text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/8 dark:hover:bg-[#e3ae72]/10"
+                  className={cn(
+                    "hidden cursor-pointer sm:flex",
+                    isHome
+                      ? t.ghostBtn
+                      : "text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/8 dark:hover:bg-[#e3ae72]/10",
+                  )}
                 >
                   <User className="mr-2 size-4" />
                   Account
@@ -164,7 +170,12 @@ export default function Header() {
               <Link href="/login">
                 <Button
                   size="sm"
-                  className="sm:flex hidden bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                  className={cn(
+                    "sm:flex hidden",
+                    isHome
+                      ? t.primaryBtn
+                      : "bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]",
+                  )}
                 >
                   <LogIn className="mr-2 size-4" />
                   <span className="hidden sm:inline">Login</span>
@@ -180,32 +191,41 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/8 dark:hover:bg-[#e3ae72]/10"
+                className={cn(
+                  isHome
+                    ? t.ghostBtn
+                    : "text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/8 dark:hover:bg-[#e3ae72]/10",
+                )}
               >
                 <Menu className="size-6" />
               </Button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-72 bg-white dark:bg-[#271024] p-0 flex flex-col"
+              className={t.sheet}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-[#271024]/15 dark:border-[#e3ae72]/20">
+              <div className={t.sheetHeader}>
                 {/* Light mode logo */}
                 <Image
                   src="/logo_dark.png"
                   alt="Serenity Rejuvenation"
                   width={100}
                   height={60}
-                  className="object-contain dark:hidden"
+                  className={cn(
+                    "object-contain",
+                    isHome ? (showLightLogo ? "hidden" : "block") : "dark:hidden",
+                  )}
                 />
-                {/* Dark mode logo */}
                 <Image
                   src="/logo_light.png"
                   alt="Serenity Rejuvenation"
                   width={100}
                   height={60}
-                  className="object-contain hidden dark:block"
+                  className={cn(
+                    "object-contain",
+                    isHome ? (showLightLogo ? "block" : "hidden") : "hidden dark:block",
+                  )}
                 />
               </div>
 
@@ -214,7 +234,7 @@ export default function Header() {
                 {/* Services accordion */}
                 <Accordion type="single" collapsible defaultValue="services">
                   <AccordionItem value="services" className="border-none">
-                    <AccordionTrigger className="px-5 py-3 text-sm font-medium text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 hover:no-underline rounded-none">
+                    <AccordionTrigger className={t.accordionTrigger}>
                       Services
                     </AccordionTrigger>
                     <AccordionContent className="pb-1">
@@ -227,17 +247,36 @@ export default function Header() {
                             <Link
                               key={service.id}
                               href={bookUrl}
-                              className="rounded-xl border border-[#271024]/15 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]/50 px-3 py-2.5 hover:border-[#271024]/30 dark:hover:border-[#e3ae72]/40 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/8 transition-all cursor-pointer"
+                              className={t.mobileServiceCard}
                             >
                               <div className="flex items-start justify-between gap-2 mb-1">
-                                <span className="text-xs font-medium text-[#271024] dark:text-[#e3ae72] leading-snug">
+                                <span
+                                  className={cn(
+                                    "text-xs font-medium leading-snug",
+                                    isHome
+                                      ? "text-[var(--home-text)]"
+                                      : "text-[#271024] dark:text-[#e3ae72]",
+                                  )}
+                                >
                                   {service.title}
                                 </span>
-                                <span className="text-[11px] font-medium text-[#e3ae72] whitespace-nowrap pt-px">
+                                <span
+                                  className={cn(
+                                    "text-[11px] font-medium whitespace-nowrap pt-px",
+                                    isHome ? "text-[var(--home-accent)]" : "text-[#e3ae72]",
+                                  )}
+                                >
                                   {service.price ? `$${service.price}.00` : "Contact"}
                                 </span>
                               </div>
-                              <p className="text-[11px] text-[#271024]/55 dark:text-[#e3ae72]/55 leading-relaxed line-clamp-2">
+                              <p
+                                className={cn(
+                                  "text-[11px] leading-relaxed line-clamp-2",
+                                  isHome
+                                    ? "text-[var(--home-text)]/55"
+                                    : "text-[#271024]/55 dark:text-[#e3ae72]/55",
+                                )}
+                              >
                                 {service.description}
                               </p>
                             </Link>
@@ -248,25 +287,25 @@ export default function Header() {
                   </AccordionItem>
                 </Accordion>
 
-                <div className="h-px bg-[#271024]/10 dark:bg-[#e3ae72]/15 mx-5 my-1" />
+                <div className={t.mobileDivider} />
 
                 <Link
                   href="/gallery"
-                  className="flex items-center px-5 py-3 text-sm font-medium text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 transition-colors"
+                  className={t.mobileLink}
                 >
                   Gallery
                 </Link>
               </div>
 
               {/* Footer actions */}
-              <div className="border-t border-[#271024]/15 dark:border-[#e3ae72]/20 p-4">
+              <div className={t.sheetFooter}>
                 {session ? (
                   <>
                     <Link href={session.user.role === "ADMIN" ? "/admin" : "/user-dashboard"} onClick={() => setTimeout(() => {}, 0)}>
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
+                        className={cn(t.outlineBtn, "mb-2")}
                       >
                         <User className="mr-2 size-4" />
                         Dashboard
@@ -276,7 +315,7 @@ export default function Header() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
+                        className={cn(t.outlineBtn, "mb-2")}
                       >
                         <User className="mr-2 size-4" />
                         Profile
@@ -287,7 +326,7 @@ export default function Header() {
                       size="sm"
                       onClick={handleSignOut}
                       disabled={isPending}
-                      className="w-full border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                      className={t.outlineBtn}
                     >
                       <LogOut className="mr-2 size-4" />
                       {isPending ? "Signing out..." : "Sign Out"}
@@ -299,7 +338,7 @@ export default function Header() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 mb-2"
+                        className={cn(t.outlineBtn, "mb-2")}
                       >
                         <User className="mr-2 size-4" />
                         Account
@@ -308,7 +347,7 @@ export default function Header() {
                     <Link href="/login" onClick={() => setTimeout(() => {}, 0)}>
                       <Button
                         size="sm"
-                        className="w-full bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                        className={cn("w-full", isHome ? t.primaryBtn : "bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]")}
                       >
                         <LogIn className="mr-2 size-4" />
                         Login
