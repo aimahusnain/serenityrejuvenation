@@ -1,6 +1,4 @@
 import { Suspense } from "react";
-import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { SiteHeader } from "@/components/account/SiteHeader";
@@ -8,9 +6,6 @@ import { AdminDashboardShell } from "@/components/admin-dashboard/AdminDashboard
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default async function AdminPage() {
-  const session = await auth();
-  // Middleware will handle authentication and role checks
-
   const [users, bookings, products, counts, inquiries] = await Promise.all([
     prisma.user.findMany({
       where: { role: "USER" },

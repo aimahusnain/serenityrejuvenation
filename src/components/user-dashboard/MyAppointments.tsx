@@ -1,28 +1,9 @@
 "use client";
 
-import { useState, useMemo, useTransition } from "react";
-import { useRouter } from "next/navigation";
-import {
-  Calendar,
-  CalendarDays,
-  Clock,
-  MapPin,
-  User,
-  Video,
-  Phone,
-  X,
-  Search,
-  Filter,
-  ChevronLeft,
-  ChevronRight,
-  MoreVertical,
-  List,
-} from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogClose,
@@ -30,9 +11,9 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  DialogTitle
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -40,10 +21,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { cn } from "@/lib/utils";
-import type { BookingLite, ProductLite, BookingStatus } from "@/lib/dashboard";
+import type { BookingLite, BookingStatus, ProductLite } from "@/lib/dashboard";
 import { enrichBookings } from "@/lib/dashboard";
+import { cn } from "@/lib/utils";
+import {
+  Calendar,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  List,
+  MapPin,
+  Search,
+  User,
+  X
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useMemo, useState, useTransition } from "react";
 
 interface MyAppointmentsProps {
   bookings: BookingLite[];

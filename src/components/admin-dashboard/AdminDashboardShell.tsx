@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useMemo, useState, useTransition } from "react";
+import { Fragment, useEffect, useMemo, useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Users,
@@ -11,8 +11,7 @@ import {
   Sparkles,
   Download,
   Filter,
-  UserCog,
-  MessageSquare,
+  Ban,
 } from "lucide-react";
 import ServiceInquiriesSection from "@/components/admin/ServiceInquiriesSection";
 import { ServicesManagementSection } from "@/components/admin/ServicesManagementSection";
@@ -50,6 +49,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { MoreVertical } from "lucide-react";
 import {
   enrichBookings,
@@ -106,6 +113,12 @@ interface AdminInquiry {
   };
 }
 
+interface BlockedDay {
+  id?: string;
+  date: string;
+  reason: string | null;
+}
+
 const VIEW_TITLES: Record<string, string> = {
   overview: "Operations Overview",
   appointments: "Appointment Management",
@@ -148,6 +161,62 @@ export function AdminDashboardShell({
   const [clientDialogOpen, setClientDialogOpen] = useState(false);
   const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
   const [rescheduleDialogOpen, setRescheduleDialogOpen] = useState(false);
+
+  // Blocked days state
+  const [blockedDays, setBlockedDays] = useState<BlockedDay[]>([]);
+  const [blockedDaysLoading, setBlockedDaysLoading] = useState(false);
+  const [blockDialogOpen, setBlockDialogOpen] = useState(false);
+  const [blockDate, setBlockDate] = useState("");
+  const [blockReason, setBlockReason] = useState("");
+  const [blockActionPending, setBlockActionPending] = useState(false);
+
+  const fetchBlockedDays = async () => {
+    setBlockedDaysLoading(true);
+    try {
+      const res = await fetch("/api/admin/blocked-days");
+      if (res.ok) {
+        const data = await res.json();
+        setBlockedDays(data.blockedDays ?? []);
+      }
+    } catch (error) {
+      console.error("Error fetching blocked days:", error);
+    } finally {
+      setBlockedDaysLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchBlockedDays();
+  }, []);
+
+  const isDayBlocked = (d: Date) =>
+    blockedDays.some((b) => new Date(b.date).toDateString() === d.toDateString());
+
+  const getBlockedReason = (d: Date) =>
+    blockedDays.find((b) => new Date(b.date).toDateString() === d.toDateString())?.reason ?? null;
+
+  const toggleBlockDay = async (dateStr: string, reason?: string) => {
+    const already = blockedDays.some(
+      (b) => new Date(b.date).toDateString() === new Date(dateStr).toDateString()
+    );
+    setBlockActionPending(true);
+    try {
+      const res = await fetch("/api/admin/blocked-days", {
+        method: already ? "DELETE" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ date: dateStr, reason }),
+      });
+      if (res.ok) {
+        await fetchBlockedDays();
+      } else {
+        console.error("Failed to toggle blocked day", await res.text());
+      }
+    } catch (error) {
+      console.error("Error toggling blocked day:", error);
+    } finally {
+      setBlockActionPending(false);
+    }
+  };
 
   const enriched = useMemo(
     () => enrichBookings(localBookings, products),
@@ -271,11 +340,98 @@ export function AdminDashboardShell({
                 ))}
               </SelectContent>
             </Select>
+
+            <Dialog open={blockDialogOpen} onOpenChange={setBlockDialogOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm" className="ml-2">
+                  <Ban className="size-4 mr-1" /> Block a Day
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Block a day from booking</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-3">
+                  <Input
+                    type="date"
+                    value={blockDate}
+                    onChange={(e) => setBlockDate(e.target.value)}
+                  />
+                  <Input
+                    placeholder="Reason (optional, e.g. Holiday)"
+                    value={blockReason}
+                    onChange={(e) => setBlockReason(e.target.value)}
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Existing bookings on this day won&apos;t be cancelled — this only prevents new bookings.
+                  </p>
+                </div>
+                <DialogFooter>
+                  <Button
+                    disabled={!blockDate || blockActionPending}
+                    onClick={async () => {
+                      if (!blockDate) return;
+                      await toggleBlockDay(new Date(blockDate).toISOString(), blockReason || undefined);
+                      setBlockDate("");
+                      setBlockReason("");
+                      setBlockDialogOpen(false);
+                    }}
+                  >
+                    {blockActionPending ? "Blocking…" : "Block Day"}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
             <p className="text-xs text-muted-foreground ml-auto">
               Drag calendar — use filters; reschedule via status updates
             </p>
           </div>
-          <AdminCalendar bookings={filteredBookings} />
+
+          <AdminCalendar
+            bookings={filteredBookings}
+            blockedDays={blockedDays}
+            onToggleBlock={(dateStr) => toggleBlockDay(dateStr)}
+            actionPending={blockActionPending}
+          />
+
+          {blockedDays.length > 0 && (
+            <Card className="border-border/60">
+              <CardHeader>
+                <CardTitle className="text-sm text-[#271024] dark:text-[#e3ae72]">Blocked Days</CardTitle>
+                <CardDescription>New bookings are prevented on these days. Existing bookings are unaffected.</CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-wrap gap-2">
+                {blockedDays
+                  .slice()
+                  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                  .map((b) => (
+                    <Badge
+                      key={b.date}
+                      variant="outline"
+                      className="flex items-center gap-2 py-1.5 px-2.5 border-red-500/30 bg-red-500/10 text-red-700"
+                    >
+                      <span>
+                        {new Date(b.date).toLocaleDateString(undefined, {
+                          weekday: "short",
+                          month: "short",
+                          day: "numeric",
+                        })}
+                        {b.reason ? ` — ${b.reason}` : ""}
+                      </span>
+                      <button
+                        className="text-red-700 hover:underline text-xs"
+                        disabled={blockActionPending}
+                        onClick={() => toggleBlockDay(b.date)}
+                      >
+                        Unblock
+                      </button>
+                    </Badge>
+                  ))}
+              </CardContent>
+            </Card>
+          )}
+
           <Card className="border-border/60">
             <CardHeader>
               <CardTitle className="text-[#271024] dark:text-[#e3ae72]">All Appointments</CardTitle>
@@ -454,8 +610,14 @@ export function AdminDashboardShell({
 
 function AdminCalendar({
   bookings,
+  blockedDays,
+  onToggleBlock,
+  actionPending,
 }: {
   bookings: ReturnType<typeof enrichBookings>;
+  blockedDays: BlockedDay[];
+  onToggleBlock: (dateISOString: string) => void;
+  actionPending: boolean;
 }) {
   const now = new Date();
   const days: Date[] = [];
@@ -466,20 +628,53 @@ function AdminCalendar({
   }
   const hours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
+  const isBlocked = (d: Date) =>
+    blockedDays.some((b) => new Date(b.date).toDateString() === d.toDateString());
+
+  const blockedReason = (d: Date) =>
+    blockedDays.find((b) => new Date(b.date).toDateString() === d.toDateString())?.reason ?? null;
+
   return (
     <Card className="border-border/60 overflow-x-auto">
       <CardHeader>
         <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Weekly Schedule</CardTitle>
-        <CardDescription>Click status menu in table to move appointments</CardDescription>
+        <CardDescription>Click status menu in table to move appointments. Use Block/Unblock below each date to prevent new bookings.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-[60px_repeat(7,1fr)] gap-1 min-w-[700px]">
           <div />
-          {days.map((d) => (
-            <div key={d.toISOString()} className="text-center text-xs font-medium p-2 border-b">
-              {d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
-            </div>
-          ))}
+          {days.map((d) => {
+            const blocked = isBlocked(d);
+            const reason = blockedReason(d);
+            return (
+              <div
+                key={d.toISOString()}
+                className={cn(
+                  "text-center text-xs font-medium p-2 border-b",
+                  blocked && "bg-red-500/10"
+                )}
+              >
+                <div className={cn(blocked && "text-red-700")}>
+                  {d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
+                </div>
+                {blocked && reason && (
+                  <div className="text-[9px] text-red-600 truncate" title={reason}>
+                    {reason}
+                  </div>
+                )}
+                <button
+                  disabled={actionPending}
+                  className={cn(
+                    "mt-1 text-[10px] underline disabled:opacity-50",
+                    blocked ? "text-red-600" : "text-muted-foreground"
+                  )}
+                  onClick={() => onToggleBlock(d.toISOString())}
+                >
+                  {blocked ? "Unblock" : "Block"}
+                </button>
+              </div>
+            );
+          })}
           {hours.map((h) => (
             <Fragment key={h}>
               <div className="text-xs text-muted-foreground py-4 pr-2 text-right">
@@ -494,13 +689,15 @@ function AdminCalendar({
                   );
                 });
                 const conflict = slotBookings.length > 1;
+                const blocked = isBlocked(d);
                 return (
                   <div
                     key={`${d.toISOString()}-${h}`}
                     className={cn(
                       "min-h-12 border rounded p-1 text-[10px]",
+                      blocked && "bg-red-500/5",
                       conflict && "ring-2 ring-red-500/50 bg-red-500/10",
-                      slotBookings.length === 1 && "bg-primary/15 border-primary/30"
+                      !conflict && slotBookings.length === 1 && "bg-primary/15 border-primary/30"
                     )}
                   >
                     {slotBookings.map((b) => (
