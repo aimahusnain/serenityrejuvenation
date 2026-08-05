@@ -38,6 +38,29 @@ export function DateTimeSelection({
   const [availableSlots, setAvailableSlots] = useState<string[]>(TIME_SLOTS);
   const [isLoadingSlots, setIsLoadingSlots] = useState(false);
   const [slotsError, setSlotsError] = useState<string | null>(null);
+  const [blockedDates, setBlockedDates] = useState<Set<string>>(new Set());
+  const [dayFullyBlocked, setDayFullyBlocked] = useState(false);
+
+  // Fetch blocked days once on mount so the calendar can gray them out
+  useEffect(() => {
+    const fetchBlockedDays = async () => {
+      try {
+        const res = await fetch("/api/admin/blocked-days");
+        if (res.ok) {
+          const data = await res.json();
+          const dates: string[] = (data.blockedDays ?? []).map(
+            (b: { date: string }) => new Date(b.date).toDateString()
+          );
+          setBlockedDates(new Set(dates));
+        }
+      } catch (error) {
+        console.error("Error fetching blocked days:", error);
+      }
+    };
+    fetchBlockedDays();
+  }, []);
+
+  const isDateBlocked = (date: Date) => blockedDates.has(date.toDateString());
 
   // Generate calendar days for current month
   const calendarDays = useMemo(() => {
@@ -53,30 +76,34 @@ export function DateTimeSelection({
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const days: Array<{ date: Date; isCurrentMonth: boolean; isDisabled: boolean }> = [];
+    const days: Array<{ date: Date; isCurrentMonth: boolean; isDisabled: boolean; isBlocked: boolean }> = [];
 
     // Add empty slots for days before the first of the month
     for (let i = 0; i < startDayOfWeek; i++) {
+      const date = new Date(year, month, 1 - (startDayOfWeek - i));
       days.push({
-        date: new Date(year, month, 1 - (startDayOfWeek - i)),
+        date,
         isCurrentMonth: false,
         isDisabled: true,
+        isBlocked: false,
       });
     }
 
     // Add days of the current month
     for (let day = 1; day <= totalDays; day++) {
       const date = new Date(year, month, day);
-      const isDisabled = date < today;
+      const isPast = date < today;
+      const blocked = isDateBlocked(date);
       days.push({
         date,
         isCurrentMonth: true,
-        isDisabled,
+        isDisabled: isPast || blocked,
+        isBlocked: blocked && !isPast,
       });
     }
 
     return days;
-  }, [currentMonth]);
+  }, [currentMonth, blockedDates]);
 
   // Fetch available time slots when a date is selected
   useEffect(() => {
@@ -84,6 +111,7 @@ export function DateTimeSelection({
       const fetchAvailableSlots = async () => {
         setIsLoadingSlots(true);
         setSlotsError(null);
+        setDayFullyBlocked(false);
         try {
           // Format date as YYYY-MM-DD for the API
           const dateStr = selectedDate.toISOString().split('T')[0];
@@ -91,6 +119,9 @@ export function DateTimeSelection({
           if (res.ok) {
             const data = await res.json();
             setAvailableSlots(data.availableSlots);
+            if (data.blocked) {
+              setDayFullyBlocked(true);
+            }
           } else {
             // If API fails, show all slots (fallback)
             setAvailableSlots(TIME_SLOTS);
@@ -109,6 +140,7 @@ export function DateTimeSelection({
     } else {
       // Reset to all slots when no date is selected
       setAvailableSlots(TIME_SLOTS);
+      setDayFullyBlocked(false);
     }
   }, [selectedDate]);
 
@@ -127,10 +159,13 @@ export function DateTimeSelection({
     "December",
   ];
 
-  const handleDateClick = (date: Date) => {
+  const handleDateClick = (date: Date, isDisabled: boolean) => {
+    if (isDisabled) return;
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     if (date < today) return;
+    if (isDateBlocked(date)) return;
 
     setSelectedDate(date);
     onDateSelect(date);
@@ -223,6 +258,7 @@ export function DateTimeSelection({
               {calendarDays.map((dayObj, index) => {
                 const date = dayObj.date;
                 const isDisabled = dayObj.isDisabled;
+                const isBlocked = dayObj.isBlocked;
                 const isSelected = isDateSelected(date);
                 const isToday =
                   date.getDate() === new Date().getDate() &&
@@ -233,11 +269,14 @@ export function DateTimeSelection({
                   <button
                     key={index}
                     disabled={isDisabled}
-                    onClick={() => handleDateClick(date)}
+                    title={isBlocked ? "This day is unavailable for booking" : undefined}
+                    onClick={() => handleDateClick(date, isDisabled)}
                     className={cn(
-                      "aspect-square rounded-lg text-sm font-medium transition-all duration-200",
+                      "aspect-square rounded-lg text-sm font-medium transition-all duration-200 relative",
                       "hover:bg-[#271024]/10 dark:hover:bg-[#e3ae72]/10",
                       isDisabled && "opacity-30 cursor-not-allowed hover:bg-transparent",
+                      isBlocked &&
+                        "opacity-40 cursor-not-allowed hover:bg-transparent line-through decoration-1",
                       isSelected &&
                         "bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024]",
                       !isSelected &&
@@ -252,6 +291,17 @@ export function DateTimeSelection({
                   </button>
                 );
               })}
+            </div>
+
+            <div className="flex items-center gap-4 mt-4 text-xs text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <span className="inline-block w-3 h-3 rounded-sm border border-[#271024]/30 dark:border-[#e3ae72]/30" />
+                Available
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="inline-block w-3 h-3 rounded-sm opacity-40 line-through decoration-1 border border-muted-foreground/40" />
+                Unavailable
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -272,6 +322,12 @@ export function DateTimeSelection({
                   <div className="flex flex-col items-center justify-center h-48 text-muted-foreground">
                     <Loader2 className="h-6 w-6 animate-spin mb-2" />
                     <p className="text-sm">Checking availability...</p>
+                  </div>
+                ) : dayFullyBlocked ? (
+                  <div className="flex flex-col items-center justify-center h-48 text-muted-foreground text-center px-4">
+                    <Clock className="h-8 w-8 mb-2 opacity-50" />
+                    <p className="text-sm font-medium">This day is unavailable</p>
+                    <p className="text-xs mt-1">Please choose a different date</p>
                   </div>
                 ) : availableSlots.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-48 text-muted-foreground text-center px-4">
