@@ -20,7 +20,7 @@ export default function NailTechSection() {
       </div>
 
       {/* ── MIDDLE: Vertical scrolling ticker ── */}
-      <div className="hidden md:flex flex-col items-center justify-start w-14 shrink-0 bg-[var(--home-bg)] overflow-hidden">
+      <div className="hidden md:flex flex-col items-center justify-start w-14 shrink-0 bg-(--home-bg) overflow-hidden">
         <div className="flex flex-col items-center animate-ticker-scroll">
           {TICKER_ITEMS.map((_, i) => (
             <TickerGroup key={i} />
@@ -32,19 +32,19 @@ export default function NailTechSection() {
       <div className="flex-1 bg-[color-mix(in_srgb,var(--home-accent)_70%,transparent)] flex items-center justify-center px-8 py-14 md:py-0 md:px-14 lg:px-20">
         <div className="max-w-sm w-full">
           {/* Heading */}
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-[52px] font-bold text-[var(--home-purple)] leading-[1.1] mb-6 relative inline-block">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-[52px] font-bold text-[#2d063f] leading-[1.1] mb-6 relative inline-block">
             Experienced
             <br />
             Serenity
             {/* Decorative curl underline */}
             <span
-              className="absolute bottom-1.5 w-16 h-4 border-b-[2.5px] border-r-[2.5px] border-[var(--home-purple)] rounded-br-[20px]"
+              className="absolute bottom-1.5 w-16 h-4 border-b-[2.5px] border-r-[2.5px] border-[#2d063f] rounded-br-[20px]"
               aria-hidden="true"
             />
           </h1>
 
           {/* Body copy */}
-          <p className="text-[15.5px] leading-[1.75] text-[var(--home-purple)]/80 mb-10 font-normal">
+          <p className="text-[15.5px] leading-[1.75] text-[#2d063f]/80 mb-10 font-normal">
             Our trained technicians use only the highest quality products and
             latest techniques to ensure your skin is not just beautiful, but
             healthy too.

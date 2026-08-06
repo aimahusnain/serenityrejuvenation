@@ -37,7 +37,7 @@ export default function SpaLoader() {
       className={`
         fixed inset-0 z-50 flex flex-col items-center justify-center gap-2
         transition-opacity duration-800 ease-in-out
-        bg-white dark:bg-[#7a219f]
+        bg-[#2d063f]
       `}
       style={{
         opacity: fading ? 0 : 1,
