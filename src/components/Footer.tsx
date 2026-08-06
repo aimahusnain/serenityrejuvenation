@@ -52,12 +52,11 @@ export default function Footer({ variant = "default" }: { variant?: FooterVarian
 
             <div className={t.contact}>
               <a href="tel:+18174877378" className={t.contactLink}>
-                +1 (817) 487-7378
+              470-841-3262
               </a>
               <address className="not-italic leading-relaxed">
-                1870 The Exchange SE, Ste 220<br />
-                PMB 213900<br />
-                Atlanta, Georgia 30339
+              Address 2289 Peachtree Rd Suite 2 <br />
+              Atlanta Ga 30309
               </address>
             </div>
 

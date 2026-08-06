@@ -35,7 +35,7 @@ type SocialLink = {
 const CONTACT_FIELDS: ContactField[] = [
   {
     title: "Quick Contact",
-    lines: ["shavondareedy@yahoo.com"],
+    lines: ["serenity3ntrust5@yahoo.com"],
     icon: (
       <svg
         className="h-4.5 w-4.5"
@@ -53,7 +53,7 @@ const CONTACT_FIELDS: ContactField[] = [
   },
   {
     title: "Phone Number",
-    lines: ["+1 (817) 487-7378"],
+    lines: ["470-841-3262"],
     icon: (
       <svg
         className="h-4.5 w-4.5"
@@ -89,8 +89,8 @@ const CONTACT_FIELDS: ContactField[] = [
   {
     title: "Headquarters",
     lines: [
-      "1870 The Exchange SE, Ste 220",
-      "PMB 213900",
+      "Address 2289 Peachtree",
+      "Rd Suite 2",
       "Atlanta, Georgia 30339",
     ],
     icon: (
