@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ChartPieDonutActive } from "@/components/chart-pie-donut-active";
 import { TreatmentTimelineChart } from "@/components/dashboard/charts";
@@ -19,8 +18,9 @@ import {
   recommendNextTreatment,
 } from "@/lib/dashboard";
 import { prisma } from "@/lib/prisma";
+import { BookOpen, Calendar, Sparkles, TrendingUp } from "lucide-react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Calendar, Sparkles, TrendingUp, BookOpen, MessageSquare } from "lucide-react";
 
 export default async function UserDashboardPage() {
   const session = await auth();
@@ -95,7 +95,7 @@ export default async function UserDashboardPage() {
           "--header-height": "calc(var(--spacing) * 12)",
         } as React.CSSProperties
       }
-    >
+className="bg-[#26043e]!"    >
       <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader />

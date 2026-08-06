@@ -38,6 +38,7 @@ export default async function TreatmentsHistoryPage() {
           "--header-height": "calc(var(--spacing) * 12)",
         } as React.CSSProperties
       }
+      className="bg-[#26043e]!"
     >
       <AppSidebar variant="inset" />
       <SidebarInset>
