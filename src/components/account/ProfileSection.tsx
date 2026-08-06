@@ -56,11 +56,11 @@ export default function ProfileSection({ user }: Props) {
   };
 
   return (
-    <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+    <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
-          <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Profile Information</CardTitle>
-          <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
+          <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Profile Information</CardTitle>
+          <CardDescription className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
             {isEditing ? "Edit your personal details" : "Your personal account details"}
           </CardDescription>
         </div>
@@ -69,7 +69,7 @@ export default function ProfileSection({ user }: Props) {
             variant="ghost"
             size="sm"
             onClick={() => setIsEditing(true)}
-            className="text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+            className="text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
           >
             <Edit2 className="h-4 w-4 mr-2" />
             Edit
@@ -81,7 +81,7 @@ export default function ProfileSection({ user }: Props) {
           <form action={handleSave} className="space-y-4">
             {/* Edit Name */}
             <div className="space-y-2">
-              <Label htmlFor="edit-name" className="text-[#271024] dark:text-[#e3ae72]">
+              <Label htmlFor="edit-name" className="text-[#7a219f] dark:text-[#efcafe]">
                 Full Name
               </Label>
               <Input
@@ -89,27 +89,27 @@ export default function ProfileSection({ user }: Props) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your full name"
-                className="border-[#271024]/15 focus:border-[#271024] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
+                className="border-[#7a219f]/15 focus:border-[#7a219f] dark:border-[#efcafe]/20 dark:focus:border-[#efcafe]"
               />
             </div>
 
             {/* Email Display - Read only */}
             <div className="space-y-2">
-              <Label htmlFor="edit-email" className="text-[#271024] dark:text-[#e3ae72]">
+              <Label htmlFor="edit-email" className="text-[#7a219f] dark:text-[#efcafe]">
                 Email
               </Label>
               <Input
                 id="edit-email"
                 value={user.email || ""}
                 disabled
-                className="border-[#271024]/15 focus:border-[#271024] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72] opacity-50"
+                className="border-[#7a219f]/15 focus:border-[#7a219f] dark:border-[#efcafe]/20 dark:focus:border-[#efcafe] opacity-50"
               />
               <p className="text-xs text-muted-foreground">Email cannot be changed</p>
             </div>
 
             {/* Error Message */}
             {state?.error && (
-              <Alert variant="destructive" className="border-[#271024]/20 dark:border-red-800/30">
+              <Alert variant="destructive" className="border-[#7a219f]/20 dark:border-red-800/30">
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>{state.error}</AlertDescription>
               </Alert>
@@ -130,7 +130,7 @@ export default function ProfileSection({ user }: Props) {
               <Button
                 type="submit"
                 disabled={isPending}
-                className="bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                className="bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
               >
                 {isPending ? "Saving..." : (
                   <>
@@ -144,7 +144,7 @@ export default function ProfileSection({ user }: Props) {
                 variant="outline"
                 onClick={handleCancel}
                 disabled={isPending}
-                className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
               >
                 <X className="h-4 w-4 mr-2" />
                 Cancel
@@ -155,14 +155,14 @@ export default function ProfileSection({ user }: Props) {
           <>
             {/* Name */}
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                <User className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                <User className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
               </div>
               <div className="flex-1">
-                <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                   Full Name
                 </Label>
-                <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                   {user.name || "Not set"}
                 </p>
               </div>
@@ -170,14 +170,14 @@ export default function ProfileSection({ user }: Props) {
 
             {/* Email */}
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                <Mail className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                <Mail className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
               </div>
               <div className="flex-1">
-                <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                   Email Address
                 </Label>
-                <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                   {user.email || "Not set"}
                 </p>
               </div>
@@ -185,19 +185,19 @@ export default function ProfileSection({ user }: Props) {
 
             {/* Role */}
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                <Shield className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                <Shield className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
               </div>
               <div className="flex-1">
-                <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                   Account Role
                 </Label>
                 <p className="mt-1">
                   <span
                     className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
                       user.role === "ADMIN"
-                        ? "bg-[#e3ae72] text-[#271024]"
-                        : "bg-[#271024]/10 text-[#271024] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]"
+                        ? "bg-[#efcafe] text-[#7a219f]"
+                        : "bg-[#7a219f]/10 text-[#7a219f] dark:bg-[#efcafe]/20 dark:text-[#efcafe]"
                     }`}
                   >
                     {user.role}
@@ -208,14 +208,14 @@ export default function ProfileSection({ user }: Props) {
 
             {/* Member Since */}
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                <Calendar className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                <Calendar className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
               </div>
               <div className="flex-1">
-                <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                   Member Since
                 </Label>
-                <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                   {formatDate(user.createdAt)}
                 </p>
               </div>
@@ -223,14 +223,14 @@ export default function ProfileSection({ user }: Props) {
 
             {/* Last Updated */}
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                <Calendar className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                <Calendar className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
               </div>
               <div className="flex-1">
-                <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                   Last Updated
                 </Label>
-                <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                   {formatDate(user.updatedAt)}
                 </p>
               </div>

@@ -82,61 +82,61 @@ export default function UsersSection({ users, onUpdate }: Props) {
 
   return (
     <>
-      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+      <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
         <CardHeader>
-          <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+          <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
             All Users ({users.length})
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-[#271024]/5 dark:bg-[#e3ae72]/10">
+              <thead className="bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
                 <tr>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#7a219f] dark:text-[#efcafe] uppercase tracking-wider">
                     Name
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#7a219f] dark:text-[#efcafe] uppercase tracking-wider">
                     Email
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#7a219f] dark:text-[#efcafe] uppercase tracking-wider">
                     Role
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#7a219f] dark:text-[#efcafe] uppercase tracking-wider">
                     Bookings
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#7a219f] dark:text-[#efcafe] uppercase tracking-wider">
                     Joined
                   </th>
-                  <th className="px-4 py-3 text-right text-xs font-semibold text-[#271024] dark:text-[#e3ae72] uppercase tracking-wider">
+                  <th className="px-4 py-3 text-right text-xs font-semibold text-[#7a219f] dark:text-[#efcafe] uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#271024]/10 dark:divide-[#e3ae72]/10">
+              <tbody className="divide-y divide-[#7a219f]/10 dark:divide-[#efcafe]/10">
                 {users.map((user) => (
-                  <tr key={user.id} className="hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5">
-                    <td className="px-4 py-3 text-sm text-[#271024] dark:text-[#e3ae72]/90">
+                  <tr key={user.id} className="hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/5">
+                    <td className="px-4 py-3 text-sm text-[#7a219f] dark:text-[#efcafe]/90">
                       {user.name || "—"}
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#271024] dark:text-[#e3ae72]/90">
+                    <td className="px-4 py-3 text-sm text-[#7a219f] dark:text-[#efcafe]/90">
                       {user.email || "—"}
                     </td>
                     <td className="px-4 py-3">
                       <span
                         className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ${
                           user.role === "ADMIN"
-                            ? "bg-[#e3ae72] text-[#271024]"
-                            : "bg-[#271024]/10 text-[#271024] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]"
+                            ? "bg-[#efcafe] text-[#7a219f]"
+                            : "bg-[#7a219f]/10 text-[#7a219f] dark:bg-[#efcafe]/20 dark:text-[#efcafe]"
                         }`}
                       >
                         {user.role}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#271024] dark:text-[#e3ae72]/90">
+                    <td className="px-4 py-3 text-sm text-[#7a219f] dark:text-[#efcafe]/90">
                       {user._count.bookings}
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#271024] dark:text-[#e3ae72]/90">
+                    <td className="px-4 py-3 text-sm text-[#7a219f] dark:text-[#efcafe]/90">
                       {new Date(user.createdAt).toLocaleDateString()}
                     </td>
                     <td className="px-4 py-3 text-right">
@@ -145,21 +145,21 @@ export default function UsersSection({ users, onUpdate }: Props) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="h-8 w-8 p-0 text-[#271024] dark:text-[#e3ae72]"
+                            className="h-8 w-8 p-0 text-[#7a219f] dark:text-[#efcafe]"
                           >
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                           align="end"
-                          className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]"
+                          className="border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]"
                         >
                           <DropdownMenuItem
                             onClick={() => handleRoleChange(
                               user.id,
                               user.role === "ADMIN" ? "USER" : "ADMIN"
                             )}
-                            className="cursor-pointer text-[#271024] dark:text-[#e3ae72]/80"
+                            className="cursor-pointer text-[#7a219f] dark:text-[#efcafe]/80"
                           >
                             <Shield className="h-4 w-4 mr-2" />
                             Make {user.role === "ADMIN" ? "User" : "Admin"}
@@ -183,7 +183,7 @@ export default function UsersSection({ users, onUpdate }: Props) {
                   <tr>
                     <td
                       colSpan={6}
-                      className="px-4 py-8 text-center text-[#271024]/60 dark:text-[#e3ae72]/60"
+                      className="px-4 py-8 text-center text-[#7a219f]/60 dark:text-[#efcafe]/60"
                     >
                       No users found
                     </td>
@@ -197,12 +197,12 @@ export default function UsersSection({ users, onUpdate }: Props) {
 
       {/* Delete Confirmation Dialog */}
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]">
+        <DialogContent className="border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]">
           <DialogHeader>
-            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+            <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">
               Delete User Account
             </DialogTitle>
-            <DialogDescription className="text-[#271024]/70 dark:text-[#e3ae72]/70">
+            <DialogDescription className="text-[#7a219f]/70 dark:text-[#efcafe]/70">
               Are you sure you want to delete{" "}
               <strong>{selectedUser?.name || selectedUser?.email}</strong>
               ? This action cannot be undone. All associated data including bookings
@@ -211,7 +211,7 @@ export default function UsersSection({ users, onUpdate }: Props) {
           </DialogHeader>
           <DialogFooter>
             <DialogClose
-              className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72]"
+              className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe]"
               asChild
             >
               <Button variant="outline">Cancel</Button>

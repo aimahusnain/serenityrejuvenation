@@ -1,8 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import type { HomeThemeColors } from "@/lib/home-theme";
-import { defaultHomeThemeColors } from "@/components/home/HomeColorCustomizer";
+import { defaultHomeThemeColors, type HomeThemeColors } from "@/lib/home-theme";
 
 const HomeThemeColorsContext = createContext<HomeThemeColors>(defaultHomeThemeColors());
 

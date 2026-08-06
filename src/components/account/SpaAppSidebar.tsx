@@ -68,14 +68,14 @@ export function SpaAppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="flex aspect-square size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#271024] to-[#0a3a66] text-white dark:from-[#e3ae72] dark:to-[#d49e5e] shadow-lg">
+                <div className="flex aspect-square size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#7a219f] to-[#0a3a66] text-white dark:from-[#efcafe] dark:to-[#7a219f] shadow-lg">
                   <Heart className="size-5" />
                 </div>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-sm font-semibold text-[#271024] dark:text-[#e3ae72]">
+                  <span className="text-sm font-semibold text-[#7a219f] dark:text-[#efcafe]">
                     Serenity
                   </span>
-                  <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+                  <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
                     {session?.user?.role === "ADMIN" ? "Admin Panel" : "Member Dashboard"}
                   </span>
                 </div>
@@ -94,7 +94,7 @@ export function SpaAppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>
           </Suspense>
         </div>
       </SidebarContent>
-      <SidebarFooter className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#271024]">
+      <SidebarFooter className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#7a219f]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
@@ -111,14 +111,14 @@ export function SpaAppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>
           <SidebarMenuItem>
             <SidebarMenuButton size="sm" asChild className="cursor-pointer">
               <div className="flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#271024] to-[#0a3a66] text-white dark:from-[#e3ae72] dark:to-[#d49e5e]">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#7a219f] to-[#0a3a66] text-white dark:from-[#efcafe] dark:to-[#7a219f]">
                   <span className="text-xs font-bold">{userInitials}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
+                  <span className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">
                     {session?.user?.name || "User"}
                   </span>
-                  <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+                  <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
                     {session?.user?.email}
                   </span>
                 </div>

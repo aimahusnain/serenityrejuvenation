@@ -77,18 +77,18 @@ export function UpcomingAppointmentsWidget({
   return (
     <Card className="border-border/60 shadow-sm">
       <CardHeader>
-        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Upcoming Appointments</CardTitle>
+        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Upcoming Appointments</CardTitle>
         <CardDescription>Your next visits, with quick actions</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
         {upcoming.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-center">
-            <div className="p-4 rounded-full bg-[#271024]/5 dark:bg-[#e3ae72]/10 mb-4">
-              <Calendar className="h-8 w-8 text-[#271024] dark:text-[#e3ae72]" />
+            <div className="p-4 rounded-full bg-[#7a219f]/5 dark:bg-[#efcafe]/10 mb-4">
+              <Calendar className="h-8 w-8 text-[#7a219f] dark:text-[#efcafe]" />
             </div>
             <p className="text-sm text-muted-foreground mb-2">No upcoming appointments yet.</p>
             <Link href="/user-dashboard/book">
-              <button className="inline-flex items-center justify-center rounded-lg bg-[#271024] px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]">
+              <button className="inline-flex items-center justify-center rounded-lg bg-[#7a219f] px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]">
                 Book Your First Visit
               </button>
             </Link>
@@ -97,11 +97,11 @@ export function UpcomingAppointmentsWidget({
           upcoming.map((a) => (
             <div
               key={a.id}
-              className="flex flex-col gap-3 rounded-xl border border-border/60 bg-card p-4 sm:flex-row sm:items-center sm:justify-between hover:border-[#271024]/20 dark:hover:border-[#e3ae72]/30 transition-colors"
+              className="flex flex-col gap-3 rounded-xl border border-border/60 bg-card p-4 sm:flex-row sm:items-center sm:justify-between hover:border-[#7a219f]/20 dark:hover:border-[#efcafe]/30 transition-colors"
             >
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <p className="font-semibold text-[#271024] dark:text-[#e3ae72]">{a.serviceName}</p>
+                  <p className="font-semibold text-[#7a219f] dark:text-[#efcafe]">{a.serviceName}</p>
                   <Badge className={cn("border-0", statusClass(a.status))}>{a.status}</Badge>
                 </div>
                 <p className="text-sm text-muted-foreground flex items-center gap-1">
@@ -140,7 +140,7 @@ export function UpcomingAppointmentsWidget({
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Cancel Appointment?</DialogTitle>
+                      <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">Cancel Appointment?</DialogTitle>
                       <DialogDescription>
                         Are you sure you want to cancel your {a.serviceName} appointment on{" "}
                         {new Date(a.date).toLocaleDateString("en-US", {
@@ -152,7 +152,7 @@ export function UpcomingAppointmentsWidget({
                     </DialogHeader>
                     <DialogFooter>
                       <DialogClose asChild>
-                        <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+                        <Button variant="outline" className="border-[#7a219f]/20 dark:border-[#efcafe]/30">
                           Keep Appointment
                         </Button>
                       </DialogClose>
@@ -176,21 +176,21 @@ export function UpcomingAppointmentsWidget({
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Reschedule Appointment?</DialogTitle>
+                      <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">Reschedule Appointment?</DialogTitle>
                       <DialogDescription>
                         Would you like to reschedule your {a.serviceName} appointment? You'll be able to select a new date and time that works better for you.
                       </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
                       <DialogClose asChild>
-                        <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+                        <Button variant="outline" className="border-[#7a219f]/20 dark:border-[#efcafe]/30">
                           Keep Current Time
                         </Button>
                       </DialogClose>
                       <DialogClose asChild>
                         <Button
                           onClick={() => window.location.href = "/contact"}
-                          className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                          className="bg-[#7a219f] text-white hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                         >
                           Continue to Reschedule
                         </Button>

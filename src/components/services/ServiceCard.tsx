@@ -34,7 +34,7 @@ export function ServiceCard({ service, showInquiryButton = false }: ServiceCardP
 
   return (
     <Card className="group overflow-hidden border-border/60 hover:shadow-lg transition-all duration-300">
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#271024]/5 dark:bg-[#e3ae72]/10">
+      <div className="relative aspect-[4/3] overflow-hidden bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
         {service.image ? (
           <img
             src={service.image}
@@ -43,11 +43,11 @@ export function ServiceCard({ service, showInquiryButton = false }: ServiceCardP
           />
         ) : (
           <div className="flex items-center justify-center h-full">
-            <Calendar className="h-16 w-16 text-[#271024]/20 dark:text-[#e3ae72]/20" />
+            <Calendar className="h-16 w-16 text-[#7a219f]/20 dark:text-[#efcafe]/20" />
           </div>
         )}
         {isContactForPrice && (
-          <Badge className="absolute top-3 right-3 bg-[#e3ae72] text-[#271024]">
+          <Badge className="absolute top-3 right-3 bg-[#efcafe] text-[#7a219f]">
             Contact for Price
           </Badge>
         )}
@@ -56,11 +56,11 @@ export function ServiceCard({ service, showInquiryButton = false }: ServiceCardP
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1">
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72] line-clamp-1">
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe] line-clamp-1">
               {service.title}
             </CardTitle>
             {service.price && !isContactForPrice ? (
-              <p className="text-lg font-semibold text-[#e3ae72] dark:text-[#271024] mt-1">
+              <p className="text-lg font-semibold text-[#efcafe] dark:text-[#7a219f] mt-1">
                 ${service.price}
               </p>
             ) : (
@@ -81,7 +81,7 @@ export function ServiceCard({ service, showInquiryButton = false }: ServiceCardP
         ) : (
           <Link href={bookUrl} className="w-full">
             <Button
-              className="w-full bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+              className="w-full bg-[#7a219f] text-white hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
             >
               Book Now
             </Button>

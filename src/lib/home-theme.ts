@@ -1,6 +1,6 @@
-export const DEFAULT_HOME_BG = "#ffffff";
-export const DEFAULT_HOME_ACCENT = "#e3ae72";
-export const DEFAULT_HOME_PURPLE = "#271024";
+export const DEFAULT_HOME_BG = "#2d063f";
+export const DEFAULT_HOME_ACCENT = "#efcafe";
+export const DEFAULT_HOME_PURPLE = "#7a219f";
 
 export const HOME_THEME_STORAGE_KEY = "serenity-home-theme-v1";
 
@@ -9,6 +9,14 @@ export type HomeThemeColors = {
   accent: string;
   purple: string;
 };
+
+export function defaultHomeThemeColors(): HomeThemeColors {
+  return {
+    background: DEFAULT_HOME_BG,
+    accent: DEFAULT_HOME_ACCENT,
+    purple: DEFAULT_HOME_PURPLE,
+  };
+}
 
 export function isColorDark(hex: string): boolean {
   const normalized = hex.replace("#", "");

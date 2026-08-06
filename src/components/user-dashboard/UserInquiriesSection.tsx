@@ -166,7 +166,7 @@ export function UserInquiriesSection({ inquiries, onUpdate }: Props) {
     return (
       <Card className="border-border/60">
         <CardHeader>
-          <CardTitle className="text-[#271024] dark:text-[#e3ae72] flex items-center gap-2">
+          <CardTitle className="text-[#7a219f] dark:text-[#efcafe] flex items-center gap-2">
             <MessageSquare className="h-5 w-5" />
             My Inquiries
           </CardTitle>
@@ -186,7 +186,7 @@ export function UserInquiriesSection({ inquiries, onUpdate }: Props) {
     <>
       <Card className="border-border/60">
         <CardHeader>
-          <CardTitle className="text-[#271024] dark:text-[#e3ae72] flex items-center gap-2">
+          <CardTitle className="text-[#7a219f] dark:text-[#efcafe] flex items-center gap-2">
             <MessageSquare className="h-5 w-5" />
             My Inquiries
           </CardTitle>
@@ -204,7 +204,7 @@ export function UserInquiriesSection({ inquiries, onUpdate }: Props) {
                 {/* Header */}
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex-1">
-                    <h3 className="font-semibold text-[#271024] dark:text-[#e3ae72]">
+                    <h3 className="font-semibold text-[#7a219f] dark:text-[#efcafe]">
                       {inquiry.service.title}
                     </h3>
                     <p className="text-xs text-muted-foreground mt-0.5">
@@ -223,10 +223,10 @@ export function UserInquiriesSection({ inquiries, onUpdate }: Props) {
 
                 {/* Price Quote Section */}
                 {inquiry.proposedPrice && (
-                  <div className="bg-[#271024]/5 dark:bg-[#e3ae72]/10 rounded-lg p-3 mb-3">
+                  <div className="bg-[#7a219f]/5 dark:bg-[#efcafe]/10 rounded-lg p-3 mb-3">
                     <div className="flex items-center gap-2 text-sm">
-                      <DollarSign className="h-4 w-4 text-[#271024] dark:text-[#e3ae72]" />
-                      <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
+                      <DollarSign className="h-4 w-4 text-[#7a219f] dark:text-[#efcafe]" />
+                      <span className="font-medium text-[#7a219f] dark:text-[#efcafe]">
                         ${inquiry.proposedPrice.toFixed(2)}
                       </span>
                     </div>
@@ -321,7 +321,7 @@ export function UserInquiriesSection({ inquiries, onUpdate }: Props) {
       <Dialog open={counterDialogOpen} onOpenChange={setCounterDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+            <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">
               Send Counter-Offer
             </DialogTitle>
             <DialogDescription>
@@ -370,7 +370,7 @@ export function UserInquiriesSection({ inquiries, onUpdate }: Props) {
             <Button
               onClick={handleSubmitCounterOffer}
               disabled={!counterOffer || isSubmitting}
-              className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024]"
+              className="bg-[#7a219f] text-white hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f]"
             >
               {isSubmitting ? "Sending..." : "Send Offer"}
             </Button>

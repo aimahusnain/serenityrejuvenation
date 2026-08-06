@@ -218,10 +218,10 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
           body { font-family: Arial, sans-serif; padding: 40px; max-width: 700px; margin: 0 auto; background: #f9f9f9; }
           .invoice { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
           .header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 40px; }
-          .logo { font-size: 24px; font-weight: bold; color: #271024; }
-          .logo span { color: #e3ae72; }
+          .logo { font-size: 24px; font-weight: bold; color: #7a219f; }
+          .logo span { color: #efcafe; }
           .invoice-info { text-align: right; }
-          .invoice-number { font-size: 18px; font-weight: bold; color: #271024; }
+          .invoice-number { font-size: 18px; font-weight: bold; color: #7a219f; }
           .invoice-date { color: #666; margin-top: 5px; }
 
           .section { margin-bottom: 30px; }
@@ -231,13 +231,13 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
           .bill-to p { margin: 5px 0; }
 
           table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-          th { text-align: left; padding: 12px; background: #f9f9f9; font-weight: 600; color: #271024; border-bottom: 2px solid #e3ae72; }
+          th { text-align: left; padding: 12px; background: #f9f9f9; font-weight: 600; color: #7a219f; border-bottom: 2px solid #efcafe; }
           td { padding: 12px; border-bottom: 1px solid #eee; }
           .text-right { text-align: right; }
 
           .totals { margin-top: 30px; }
           .total-row { display: flex; justify-content: space-between; padding: 10px 0; }
-          .total-row.final { font-size: 20px; font-weight: bold; color: #271024; border-top: 2px solid #271024; padding-top: 20px; margin-top: 10px; }
+          .total-row.final { font-size: 20px; font-weight: bold; color: #7a219f; border-top: 2px solid #7a219f; padding-top: 20px; margin-top: 10px; }
 
           .status { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
           .status-PAID { background: #d4edda; color: #155724; }
@@ -331,10 +331,10 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-[#271024] dark:text-[#e3ae72] font-serif">
+          <h1 className="text-3xl font-bold text-[#7a219f] dark:text-[#efcafe] font-serif">
             Payment History
           </h1>
-          <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 mt-1">
+          <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65 mt-1">
             Track your payments, invoices, and transaction history
           </p>
         </div>
@@ -343,7 +343,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
             <DialogTrigger asChild>
               <Button
                 variant="outline"
-                className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+                className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
               >
                 <Download className="mr-2 h-4 w-4" />
                 Export
@@ -351,7 +351,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+                <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">
                   Export Payment History
                 </DialogTitle>
                 <DialogDescription>
@@ -361,7 +361,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
               <div className="space-y-3 py-4">
                 <Button
                   variant="outline"
-                  className="w-full justify-start border-[#271024]/20 dark:border-[#e3ae72]/30"
+                  className="w-full justify-start border-[#7a219f]/20 dark:border-[#efcafe]/30"
                   onClick={() => handleExport("csv")}
                 >
                   <Download className="mr-2 h-4 w-4" />
@@ -372,7 +372,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
             </DialogContent>
           </Dialog>
           <Button
-            className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+            className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
             onClick={() => router.push("/user-dashboard/book")}
           >
             <Calendar className="mr-2 h-4 w-4" />
@@ -382,17 +382,17 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
       </div>
 
       {/* Filters Toolbar */}
-      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+      <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
         <CardContent className="p-4">
           <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#271024]/40 dark:text-[#e3ae72]/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#7a219f]/40 dark:text-[#efcafe]/40" />
               <Input
                 placeholder="Search payments..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 border-[#271024]/20 dark:border-[#e3ae72]/30"
+                className="pl-10 border-[#7a219f]/20 dark:border-[#efcafe]/30"
               />
             </div>
 
@@ -400,7 +400,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
             <div className="flex flex-wrap gap-3 items-center">
               {/* Time Filter */}
               <Select value={timeFilter} onValueChange={(v: TimeFilter) => setTimeFilter(v)}>
-                <SelectTrigger className="w-[160px] border-[#271024]/20 dark:border-[#e3ae72]/30">
+                <SelectTrigger className="w-[160px] border-[#7a219f]/20 dark:border-[#efcafe]/30">
                   <SelectValue placeholder="Time Period" />
                 </SelectTrigger>
                 <SelectContent>
@@ -420,14 +420,14 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
                     type="date"
                     value={dateFrom}
                     onChange={(e) => setDateFrom(e.target.value)}
-                    className="w-35 border-[#271024]/20 dark:border-[#e3ae72]/30"
+                    className="w-35 border-[#7a219f]/20 dark:border-[#efcafe]/30"
                   />
-                  <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">to</span>
+                  <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">to</span>
                   <Input
                     type="date"
                     value={dateTo}
                     onChange={(e) => setDateTo(e.target.value)}
-                    className="w-35 border-[#271024]/20 dark:border-[#e3ae72]/30"
+                    className="w-35 border-[#7a219f]/20 dark:border-[#efcafe]/30"
                   />
                   <Button
                     variant="outline"
@@ -436,7 +436,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
                       setDateFrom("");
                       setDateTo("");
                     }}
-                    className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+                    className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
                   >
                     Clear
                   </Button>
@@ -445,7 +445,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
 
               {/* Sort */}
               <Select value={sortOption} onValueChange={(v: SortOption) => setSortOption(v)}>
-                <SelectTrigger className="w-35 border-[#271024]/20 dark:border-[#e3ae72]/30">
+                <SelectTrigger className="w-35 border-[#7a219f]/20 dark:border-[#efcafe]/30">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -463,51 +463,51 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
       {/* Statistics Cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {/* Total Paid */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm bg-linear-to-br from-[#271024]/5 to-[#e3ae72]/5 dark:from-[#e3ae72]/10 dark:to-[#271024]/10">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm bg-linear-to-br from-[#7a219f]/5 to-[#efcafe]/5 dark:from-[#efcafe]/10 dark:to-[#7a219f]/10">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[#271024]/10 dark:bg-[#e3ae72]/20">
-                <DollarSign className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+              <div className="p-2 rounded-lg bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
+                <DollarSign className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                   ${totalPaid.toLocaleString()}
                 </p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Total Paid</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Total Paid</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Pending Payments */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-amber-500/10">
                 <Clock className="h-5 w-5 text-amber-600 dark:text-amber-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                   ${pendingPayments.toLocaleString()}
                 </p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Pending</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Pending</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Average Payment */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-emerald-500/10">
                 <TrendingUp className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                   ${avgPayment.toLocaleString()}
                 </p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Avg. Payment</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Avg. Payment</p>
               </div>
             </div>
           </CardContent>
@@ -516,9 +516,9 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
 
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Recent Payments */}
-        <Card className="lg:col-span-2 border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="lg:col-span-2 border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Recent Payments</CardTitle>
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Recent Payments</CardTitle>
             <CardDescription>Your latest transactions</CardDescription>
           </CardHeader>
           <CardContent>
@@ -544,9 +544,9 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
         </Card>
 
         {/* Spending by Treatment */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Spending by Treatment</CardTitle>
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Spending by Treatment</CardTitle>
             <CardDescription>Where your money goes</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -562,17 +562,17 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
                 return (
                   <div key={item.treatment} className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
+                      <span className="font-medium text-[#7a219f] dark:text-[#efcafe]">
                         {item.treatment}
                       </span>
-                      <div className="flex items-center gap-2 text-[#271024]/60 dark:text-[#e3ae72]/60">
+                      <div className="flex items-center gap-2 text-[#7a219f]/60 dark:text-[#efcafe]/60">
                         <span>${item.total.toLocaleString()}</span>
                         <span className="text-xs">({item.count}x)</span>
                       </div>
                     </div>
-                    <div className="h-2 rounded-full bg-[#271024]/10 dark:bg-[#e3ae72]/10 overflow-hidden">
+                    <div className="h-2 rounded-full bg-[#7a219f]/10 dark:bg-[#efcafe]/10 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-linear-to-r from-[#271024] to-[#e3ae72]"
+                        className="h-full rounded-full bg-linear-to-r from-[#7a219f] to-[#efcafe]"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
@@ -585,9 +585,9 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
       </div>
 
       {/* Complete Payment History */}
-      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+      <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
         <CardHeader>
-          <CardTitle className="text-[#271024] dark:text-[#e3ae72]">All Transactions</CardTitle>
+          <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">All Transactions</CardTitle>
           <CardDescription>
             {filteredPayments.length} payment{filteredPayments.length !== 1 ? "s" : ""}
           </CardDescription>
@@ -595,15 +595,15 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
         <CardContent className="p-0">
           {filteredPayments.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <CreditCard className="h-16 w-16 text-[#271024]/20 dark:text-[#e3ae72]/20 mb-4" />
-              <h3 className="text-xl font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">
+              <CreditCard className="h-16 w-16 text-[#7a219f]/20 dark:text-[#efcafe]/20 mb-4" />
+              <h3 className="text-xl font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">
                 No payment history yet
               </h3>
-              <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 max-w-sm mb-6">
+              <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65 max-w-sm mb-6">
                 Your payment history will appear here after booking treatments.
               </p>
               <Button
-                className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                 onClick={() => router.push("/user-dashboard/book")}
               >
                 <Calendar className="mr-2 h-4 w-4" />
@@ -611,7 +611,7 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
               </Button>
             </div>
           ) : (
-            <div className="divide-y divide-[#271024]/10 dark:divide-[#e3ae72]/20">
+            <div className="divide-y divide-[#7a219f]/10 dark:divide-[#efcafe]/20">
               {filteredPayments.map((payment) => (
                 <PaymentRecordCard
                   key={payment.id}
@@ -631,12 +631,12 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
       <Dialog open={invoiceDialogOpen} onOpenChange={setInvoiceDialogOpen}>
         <DialogContent className="max-w-3xl max-h-[90vh]">
           <DialogHeader>
-            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Invoice</DialogTitle>
+            <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">Invoice</DialogTitle>
             <DialogDescription>
               {selectedPayment?.serviceName} - Invoice #{selectedPayment?.id.slice(0, 8).toUpperCase()}
             </DialogDescription>
           </DialogHeader>
-          <div className="max-h-[60vh] overflow-auto border border-[#271024]/10 dark:border-[#e3ae72]/20 rounded-lg">
+          <div className="max-h-[60vh] overflow-auto border border-[#7a219f]/10 dark:border-[#efcafe]/20 rounded-lg">
             {selectedPayment && (
               <iframe
                 srcDoc={generateInvoice(selectedPayment)}
@@ -647,12 +647,12 @@ export function PaymentHistory({ bookings, products }: PaymentHistoryProps) {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+              <Button variant="outline" className="border-[#7a219f]/20 dark:border-[#efcafe]/30">
                 Close
               </Button>
             </DialogClose>
             <Button
-              className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+              className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
               onClick={() => {
                 if (selectedPayment) {
                   const printWindow = window.open("", "_blank");
@@ -684,7 +684,7 @@ function RecentPaymentCard({
   onViewInvoice: () => void;
 }) {
   return (
-    <div className="flex items-center justify-between p-3 rounded-lg border border-[#271024]/10 dark:border-[#e3ae72]/20 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5 transition-colors">
+    <div className="flex items-center justify-between p-3 rounded-lg border border-[#7a219f]/10 dark:border-[#efcafe]/20 hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/5 transition-colors">
       <div className="flex items-center gap-3">
         <div className={cn(
           "p-2 rounded-lg",
@@ -697,23 +697,23 @@ function RecentPaymentCard({
           )}
         </div>
         <div>
-          <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
+          <p className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">
             {payment.serviceName}
           </p>
-          <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+          <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
             {new Date(payment.date).toLocaleDateString()}
           </p>
         </div>
       </div>
       <div className="flex items-center gap-3">
-        <span className="text-sm font-semibold text-[#271024] dark:text-[#e3ae72]">
+        <span className="text-sm font-semibold text-[#7a219f] dark:text-[#efcafe]">
           ${payment.servicePrice.toFixed(2)}
         </span>
         <Button
           variant="ghost"
           size="icon-sm"
           onClick={onViewInvoice}
-          className="text-[#271024]/60 dark:text-[#e3ae72]/60 hover:text-[#271024] dark:hover:text-[#e3ae72]"
+          className="text-[#7a219f]/60 dark:text-[#efcafe]/60 hover:text-[#7a219f] dark:hover:text-[#efcafe]"
         >
           <Receipt className="h-4 w-4" />
         </Button>
@@ -735,8 +735,8 @@ function PaymentRecordCard({
   return (
     <div
       className={cn(
-        "p-4 sm:p-6 transition-all hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5 max-w-2xl",
-        isExpanded && "bg-[#271024]/5 dark:bg-[#e3ae72]/5"
+        "p-4 sm:p-6 transition-all hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/5 max-w-2xl",
+        isExpanded && "bg-[#7a219f]/5 dark:bg-[#efcafe]/5"
       )}
     >
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 max-w-2xl">
@@ -744,7 +744,7 @@ function PaymentRecordCard({
           <div className="flex flex-col sm:flex-row sm:items-start gap-3">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-base sm:text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
+                <h3 className="text-base sm:text-lg font-semibold text-[#7a219f] dark:text-[#efcafe]">
                   {payment.serviceName}
                 </h3>
                 <Badge className={cn(
@@ -756,38 +756,38 @@ function PaymentRecordCard({
                   {payment.status === "COMPLETED" ? "✓ Paid" : "⏳ Pending"}
                 </Badge>
               </div>
-              <div className="flex items-center gap-4 text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">
+              <div className="flex items-center gap-4 text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60">
                 <span>Invoice: #{payment.id.slice(0, 8).toUpperCase()}</span>
                 <span>•</span>
                 <span>{new Date(payment.date).toLocaleDateString()}</span>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-xl font-bold text-[#271024] dark:text-[#e3ae72]">
+              <p className="text-xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                 ${payment.servicePrice.toFixed(2)}
               </p>
             </div>
           </div>
 
           {isExpanded && (
-            <div className="space-y-2 pt-3 border-t border-[#271024]/10 dark:border-[#e3ae72]/20 text-sm">
+            <div className="space-y-2 pt-3 border-t border-[#7a219f]/10 dark:border-[#efcafe]/20 text-sm">
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Treatment Date: </span>
-                  <span className="text-[#271024] dark:text-[#e3ae72]">
+                  <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Treatment Date: </span>
+                  <span className="text-[#7a219f] dark:text-[#efcafe]">
                     {new Date(payment.date).toLocaleString()}
                   </span>
                 </div>
                 <div>
-                  <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Payment Method: </span>
-                  <span className="text-[#271024] dark:text-[#e3ae72]">
+                  <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Payment Method: </span>
+                  <span className="text-[#7a219f] dark:text-[#efcafe]">
                     Credit Card
                   </span>
                 </div>
                 {payment.notes && (
                   <div className="col-span-2 pt-2">
-                    <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Notes: </span>
-                    <span className="text-[#271024] dark:text-[#e3ae72]">{payment.notes}</span>
+                    <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Notes: </span>
+                    <span className="text-[#7a219f] dark:text-[#efcafe]">{payment.notes}</span>
                   </div>
                 )}
               </div>
@@ -800,7 +800,7 @@ function PaymentRecordCard({
             variant="outline"
             size="sm"
             onClick={onViewInvoice}
-            className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+            className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
           >
             <Receipt className="mr-2 h-4 w-4" />
             Invoice
@@ -809,7 +809,7 @@ function PaymentRecordCard({
             variant="ghost"
             size="sm"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-[#271024]/60 dark:text-[#e3ae72]/60 hover:text-[#271024] dark:hover:text-[#e3ae72]"
+            className="text-[#7a219f]/60 dark:text-[#efcafe]/60 hover:text-[#7a219f] dark:hover:text-[#efcafe]"
           >
             {isExpanded ? "Show Less" : "Details"}
           </Button>

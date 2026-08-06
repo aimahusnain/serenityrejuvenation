@@ -185,10 +185,10 @@ export function BookAppointmentPage({ services }: BookAppointmentPageProps) {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#271024] dark:text-[#e3ae72] leading-tight">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#7a219f] dark:text-[#efcafe] leading-tight">
             Book Your
-            <span className="block mt-1 text-[#e3ae72] dark:text-[#271024]">
-              <Highlighter lightColor="#271024" darkColor="#e3ae72">
+            <span className="block mt-1 text-[#efcafe] dark:text-[#7a219f]">
+              <Highlighter lightColor="#7a219f" darkColor="#efcafe">
               Appointment
               </Highlighter>
             </span>

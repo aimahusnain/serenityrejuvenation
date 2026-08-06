@@ -61,7 +61,7 @@ const statusConfig = {
   },
   QUOTED: {
     label: "Price Quote Received",
-    className: "bg-[#e3ae72]/15 text-[#271024] dark:text-[#e3ae72] border-[#e3ae72]/30",
+    className: "bg-[#efcafe]/15 text-[#7a219f] dark:text-[#efcafe] border-[#efcafe]/30",
     description: "You've received a price quote. Review and respond below.",
     icon: "💰",
   },
@@ -275,7 +275,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
       <div className="flex flex-col items-center justify-center min-h-[400px]">
         <div className="text-center">
           <MessageSquare className="h-16 w-16 mx-auto mb-4 text-muted-foreground opacity-50" />
-          <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">
+          <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">
             No inquiries yet
           </h3>
           <p className="text-muted-foreground mb-6">
@@ -283,7 +283,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
           </p>
           <Button
             onClick={() => (window.location.href = "/user-dashboard/book")}
-            className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+            className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
           >
             Browse Services
           </Button>
@@ -297,7 +297,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+          <h1 className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
             My Inquiries
           </h1>
           <p className="text-muted-foreground mt-1">
@@ -311,7 +311,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="px-3 py-2 text-sm border border-[#271024]/20 dark:border-[#e3ae72]/30 rounded-lg bg-white dark:bg-[#271024] text-[#271024] dark:text-[#e3ae72]"
+            className="px-3 py-2 text-sm border border-[#7a219f]/20 dark:border-[#efcafe]/30 rounded-lg bg-white dark:bg-[#7a219f] text-[#7a219f] dark:text-[#efcafe]"
           >
             {filterOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -327,12 +327,12 @@ export default function UserInquiriesPage({ inquiries }: Props) {
         {Object.entries(statusConfig).map(([status, config]) => {
           const count = inquiries.filter((i) => i.status === status).length;
           return (
-            <Card key={status} className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+            <Card key={status} className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{config.icon}</span>
                   <div>
-                    <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">{count}</p>
+                    <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">{count}</p>
                     <p className="text-xs text-muted-foreground">{config.label}</p>
                   </div>
                 </div>
@@ -352,12 +352,12 @@ export default function UserInquiriesPage({ inquiries }: Props) {
           return (
             <Card
               key={inquiry.id}
-              className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]/50"
+              className="border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]/50"
             >
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <CardTitle className="text-[#271024] dark:text-[#e3ae72] mb-1">
+                    <CardTitle className="text-[#7a219f] dark:text-[#efcafe] mb-1">
                       {inquiry.service.title}
                     </CardTitle>
                     <CardDescription className="text-sm">
@@ -375,8 +375,8 @@ export default function UserInquiriesPage({ inquiries }: Props) {
                 <p className="text-sm text-muted-foreground">{config.description}</p>
 
                 {/* Original Inquiry Details */}
-                <div className="bg-[#271024]/5 dark:bg-[#e3ae72]/5 rounded-lg p-4 space-y-2">
-                  <h4 className="text-sm font-semibold text-[#271024] dark:text-[#e3ae72]">
+                <div className="bg-[#7a219f]/5 dark:bg-[#efcafe]/5 rounded-lg p-4 space-y-2">
+                  <h4 className="text-sm font-semibold text-[#7a219f] dark:text-[#efcafe]">
                     Your Request
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -384,7 +384,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4 text-muted-foreground" />
                         <span className="text-muted-foreground">Preferred:</span>
-                        <span className="text-[#271024] dark:text-[#e3ae72]/90">
+                        <span className="text-[#7a219f] dark:text-[#efcafe]/90">
                           {formatDate(inquiry.preferredDate)}
                         </span>
                       </div>
@@ -393,7 +393,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
                       <div className="flex items-center gap-2">
                         <Clock className="h-4 w-4 text-muted-foreground" />
                         <span className="text-muted-foreground">Time:</span>
-                        <span className="text-[#271024] dark:text-[#e3ae72]/90">
+                        <span className="text-[#7a219f] dark:text-[#efcafe]/90">
                           {inquiry.preferredTime}
                         </span>
                       </div>
@@ -408,16 +408,16 @@ export default function UserInquiriesPage({ inquiries }: Props) {
 
                 {/* Price Quote Section */}
                 {inquiry.proposedPrice && (
-                  <div className="bg-[#e3ae72]/10 dark:bg-[#e3ae72]/20 rounded-lg p-4 space-y-3">
+                  <div className="bg-[#efcafe]/10 dark:bg-[#efcafe]/20 rounded-lg p-4 space-y-3">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-semibold text-[#271024] dark:text-[#e3ae72]">
+                      <h4 className="text-sm font-semibold text-[#7a219f] dark:text-[#efcafe]">
                         Admin's Quote
                       </h4>
-                      <Badge className="bg-[#e3ae72] text-[#271024]">Quoted</Badge>
+                      <Badge className="bg-[#efcafe] text-[#7a219f]">Quoted</Badge>
                     </div>
                     <div className="flex items-center gap-2 text-lg">
-                      <DollarSign className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
-                      <span className="font-bold text-[#271024] dark:text-[#e3ae72]">
+                      <DollarSign className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
+                      <span className="font-bold text-[#7a219f] dark:text-[#efcafe]">
                         ${inquiry.proposedPrice.toFixed(2)}
                       </span>
                     </div>
@@ -436,7 +436,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
                       )}
                     </div>
                     {inquiry.adminResponse && (
-                      <p className="text-sm italic text-muted-foreground border-t border-[#271024]/10 dark:border-[#e3ae72]/20 pt-3">
+                      <p className="text-sm italic text-muted-foreground border-t border-[#7a219f]/10 dark:border-[#efcafe]/20 pt-3">
                         "{inquiry.adminResponse}"
                       </p>
                     )}
@@ -495,7 +495,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
 
                 {/* Actions */}
                 {showActions && (
-                  <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-[#271024]/10 dark:border-[#e3ae72]/20">
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-[#7a219f]/10 dark:border-[#efcafe]/20">
                     <Button
                       size="sm"
                       onClick={() => handleAcceptQuote(inquiry)}
@@ -547,7 +547,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
                       <MoreVertical className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]">
+                  <DropdownMenuContent align="end" className="border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]">
                     {inquiry.status === "PENDING" && (
                       <DropdownMenuItem
                         onClick={() => handleCancelInquiry(inquiry)}
@@ -576,7 +576,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
         })}
 
         {filteredInquiries.length === 0 && (
-          <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+          <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
             <CardContent className="py-12 text-center">
               <Filter className="h-12 w-12 mx-auto mb-4 text-muted-foreground opacity-50" />
               <p className="text-muted-foreground">
@@ -597,9 +597,9 @@ export default function UserInquiriesPage({ inquiries }: Props) {
 
       {/* Counter Offer Dialog */}
       <Dialog open={counterDialogOpen} onOpenChange={setCounterDialogOpen}>
-        <DialogContent className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]">
+        <DialogContent className="border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]">
           <DialogHeader>
-            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+            <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">
               Send Counter-Offer
             </DialogTitle>
             <DialogDescription className="text-muted-foreground">
@@ -608,14 +608,14 @@ export default function UserInquiriesPage({ inquiries }: Props) {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
-            <div className="bg-[#271024]/5 dark:bg-[#e3ae72]/5 rounded-lg p-4">
+            <div className="bg-[#7a219f]/5 dark:bg-[#efcafe]/5 rounded-lg p-4">
               <p className="text-sm text-muted-foreground mb-2">Admin's quote:</p>
-              <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+              <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                 ${selectedInquiry?.proposedPrice?.toFixed(2)}
               </p>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="counterOffer" className="text-[#271024] dark:text-[#e3ae72]">
+              <Label htmlFor="counterOffer" className="text-[#7a219f] dark:text-[#efcafe]">
                 Your Offer ($)
               </Label>
               <div className="relative">
@@ -633,7 +633,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="counterNote" className="text-[#271024] dark:text-[#e3ae72]">
+              <Label htmlFor="counterNote" className="text-[#7a219f] dark:text-[#efcafe]">
                 Note (Optional)
               </Label>
               <Textarea
@@ -657,7 +657,7 @@ export default function UserInquiriesPage({ inquiries }: Props) {
             <Button
               onClick={handleSubmitCounterOffer}
               disabled={!counterOffer || isSubmitting}
-              className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+              className="bg-[#7a219f] text-white hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
             >
               {isSubmitting ? (
                 <>

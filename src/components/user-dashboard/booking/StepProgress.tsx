@@ -29,11 +29,11 @@ export function StepProgress({ steps, currentStep }: StepProgressProps) {
                 className={cn(
                   "w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base font-semibold transition-all duration-300 shrink-0",
                   isCompleted &&
-                    "bg-[#271024] dark:bg-[#e3ae72] text-white dark:text-[#271024]",
+                    "bg-[#7a219f] dark:bg-[#efcafe] text-white dark:text-[#7a219f]",
                   isCurrent &&
-                    "bg-white dark:bg-[#271024] border-2 border-[#271024] dark:border-[#e3ae72] text-[#271024] dark:text-[#e3ae72]",
+                    "bg-white dark:bg-[#7a219f] border-2 border-[#7a219f] dark:border-[#efcafe] text-[#7a219f] dark:text-[#efcafe]",
                   step.id > currentStep &&
-                    "bg-white/50 dark:bg-[#271024]/30 text-[#271024]/40 dark:text-[#e3ae72]/40 border-2 border-transparent"
+                    "bg-white/50 dark:bg-[#7a219f]/30 text-[#7a219f]/40 dark:text-[#efcafe]/40 border-2 border-transparent"
                 )}
               >
                 {isCompleted ? (
@@ -46,8 +46,8 @@ export function StepProgress({ steps, currentStep }: StepProgressProps) {
               <span
                 className={cn(
                   "text-xs sm:text-sm font-medium whitespace-nowrap hidden sm:block",
-                  isCurrent && "text-[#271024] dark:text-[#e3ae72]",
-                  isCompleted && "text-[#271024]/70 dark:text-[#e3ae72]/70",
+                  isCurrent && "text-[#7a219f] dark:text-[#efcafe]",
+                  isCompleted && "text-[#7a219f]/70 dark:text-[#efcafe]/70",
                   step.id > currentStep && "text-muted-foreground"
                 )}
               >
@@ -61,8 +61,8 @@ export function StepProgress({ steps, currentStep }: StepProgressProps) {
                 className={cn(
                   "w-8 sm:w-16 h-0.5 mx-1 sm:mx-2 transition-all duration-300",
                   isCompleted
-                    ? "bg-[#271024] dark:bg-[#e3ae72]"
-                    : "bg-[#271024]/15 dark:bg-[#e3ae72]/20"
+                    ? "bg-[#7a219f] dark:bg-[#efcafe]"
+                    : "bg-[#7a219f]/15 dark:bg-[#efcafe]/20"
                 )}
               />
             )}

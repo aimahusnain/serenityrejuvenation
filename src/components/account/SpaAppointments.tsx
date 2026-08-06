@@ -31,7 +31,7 @@ const getStatusColor = (status: string) => {
     case "CANCELLED":
       return "bg-red-500/20 text-red-700 dark:bg-red-500/30 dark:text-red-400 border-red-500/20";
     case "COMPLETED":
-      return "bg-[#271024]/10 text-[#271024] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72] border-[#271024]/20 dark:border-[#e3ae72]/30";
+      return "bg-[#7a219f]/10 text-[#7a219f] dark:bg-[#efcafe]/20 dark:text-[#efcafe] border-[#7a219f]/20 dark:border-[#efcafe]/30";
     default:
       return "";
   }
@@ -50,14 +50,14 @@ export function SpaAppointments({ bookings }: Props) {
   const displayBookings = selectedTab === "upcoming" ? upcomingBookings : pastBookings;
 
   return (
-    <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+    <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
               Appointments
             </CardTitle>
-            <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
+            <CardDescription className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
               Your spa treatment history
             </CardDescription>
           </div>
@@ -66,8 +66,8 @@ export function SpaAppointments({ bookings }: Props) {
               onClick={() => setSelectedTab("upcoming")}
               className={`px-3 py-1 text-sm rounded-md transition-colors ${
                 selectedTab === "upcoming"
-                  ? "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]"
-                  : "text-[#271024]/60 hover:text-[#271024] dark:text-[#e3ae72]/60 dark:hover:text-[#e3ae72]"
+                  ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]"
+                  : "text-[#7a219f]/60 hover:text-[#7a219f] dark:text-[#efcafe]/60 dark:hover:text-[#efcafe]"
               }`}
             >
               Upcoming ({upcomingBookings.length})
@@ -76,8 +76,8 @@ export function SpaAppointments({ bookings }: Props) {
               onClick={() => setSelectedTab("past")}
               className={`px-3 py-1 text-sm rounded-md transition-colors ${
                 selectedTab === "past"
-                  ? "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]"
-                  : "text-[#271024]/60 hover:text-[#271024] dark:text-[#e3ae72]/60 dark:hover:text-[#e3ae72]"
+                  ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]"
+                  : "text-[#7a219f]/60 hover:text-[#7a219f] dark:text-[#efcafe]/60 dark:hover:text-[#efcafe]"
               }`}
             >
               Past ({pastBookings.length})
@@ -88,11 +88,11 @@ export function SpaAppointments({ bookings }: Props) {
       <CardContent>
         {displayBookings.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-center">
-            <Sparkles className="h-12 w-12 text-[#271024]/30 dark:text-[#e3ae72]/30 mb-4" />
-            <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">
+            <Sparkles className="h-12 w-12 text-[#7a219f]/30 dark:text-[#efcafe]/30 mb-4" />
+            <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">
               No {selectedTab} appointments
             </h3>
-            <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65">
+            <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65">
               {selectedTab === "upcoming"
                 ? "Schedule your next treatment to see it here"
                 : "Your completed appointments will appear here"}
@@ -103,21 +103,21 @@ export function SpaAppointments({ bookings }: Props) {
             {displayBookings.map((booking) => (
               <div
                 key={booking.id}
-                className="flex items-center gap-4 p-4 rounded-lg border border-[#271024]/10 dark:border-[#e3ae72]/15 bg-[#271024]/5 dark:bg-[#e3ae72]/5"
+                className="flex items-center gap-4 p-4 rounded-lg border border-[#7a219f]/10 dark:border-[#efcafe]/15 bg-[#7a219f]/5 dark:bg-[#efcafe]/5"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#271024]/10 dark:bg-[#e3ae72]/20">
-                  <Calendar className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
+                  <Calendar className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]/90">
+                    <span className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]/90">
                       Spa Treatment
                     </span>
                     <Badge className={getStatusColor(booking.status)}>
                       {booking.status}
                     </Badge>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">
+                  <div className="flex items-center gap-4 text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60">
                     <div className="flex items-center gap-1">
                       <Clock className="h-3 w-3" />
                       {new Date(booking.date).toLocaleString("en-US", {
@@ -130,7 +130,7 @@ export function SpaAppointments({ bookings }: Props) {
                     </div>
                   </div>
                   {booking.notes && (
-                    <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 mt-1 italic">
+                    <p className="text-xs text-[#7a219f]/50 dark:text-[#efcafe]/50 mt-1 italic">
                       Note: {booking.notes}
                     </p>
                   )}

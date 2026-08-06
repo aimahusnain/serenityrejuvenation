@@ -262,15 +262,15 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
 
   return (
     <>
-      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]">
+      <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
               Services & Treatments
             </CardTitle>
             <CardDescription>Manage your spa services and pricing</CardDescription>
           </div>
-          <Button onClick={openCreateDialog} size="sm" className="bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]">
+          <Button onClick={openCreateDialog} size="sm" className="bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]">
             <Plus className="h-4 w-4 mr-1" />
             Add Service
           </Button>
@@ -285,11 +285,11 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
             services.map((service) => (
               <div
                 key={service.id}
-                className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-lg border border-[#271024]/10 dark:border-[#e3ae72]/20 p-4 hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5 transition-colors bg-white dark:bg-[#271024]"
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-lg border border-[#7a219f]/10 dark:border-[#efcafe]/20 p-4 hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/5 transition-colors bg-white dark:bg-[#7a219f]"
               >
                 <div className="flex items-center gap-4 flex-1 min-w-0">
                   {service.image && (
-                    <div className="h-16 w-16 shrink-0 rounded-lg overflow-hidden bg-[#271024]/5 dark:bg-[#e3ae72]/10">
+                    <div className="h-16 w-16 shrink-0 rounded-lg overflow-hidden bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
                       <img
                         src={service.image}
                         alt={service.title}
@@ -299,7 +299,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <h4 className="font-medium text-[#271024] dark:text-[#e3ae72] truncate">
+                      <h4 className="font-medium text-[#7a219f] dark:text-[#efcafe] truncate">
                         {service.title}
                       </h4>
                       {service.requiresInquiry && (
@@ -312,7 +312,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                       {service.description}
                     </p>
                     <div className="flex items-center gap-3 mt-2">
-                      <span className="text-sm font-semibold text-[#e3ae72] dark:text-[#d49e5e]">
+                      <span className="text-sm font-semibold text-[#efcafe] dark:text-[#7a219f]">
                         {service.price ? `$${service.price}` : "Contact for pricing"}
                       </span>
                       <span className="text-xs text-muted-foreground flex items-center gap-1">
@@ -324,12 +324,12 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                 </div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 text-[#271024] dark:text-[#e3ae72]">
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-[#7a219f] dark:text-[#efcafe]">
                       <MoreVertical className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="bg-white dark:bg-[#271024] border-[#271024]/10 dark:border-[#e3ae72]/20">
-                    <DropdownMenuItem onClick={() => openEditDialog(service)} className="text-[#271024] dark:text-[#e3ae72]/80">
+                  <DropdownMenuContent align="end" className="bg-white dark:bg-[#7a219f] border-[#7a219f]/10 dark:border-[#efcafe]/20">
+                    <DropdownMenuItem onClick={() => openEditDialog(service)} className="text-[#7a219f] dark:text-[#efcafe]/80">
                       <Edit className="h-4 w-4 mr-2" />
                       Edit
                     </DropdownMenuItem>
@@ -350,9 +350,9 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
 
       {/* Add/Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-md bg-white dark:bg-[#271024]">
+        <DialogContent className="max-w-md bg-white dark:bg-[#7a219f]">
           <DialogHeader>
-            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+            <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">
               {editingService ? "Edit Service" : "Add New Service"}
             </DialogTitle>
             <DialogDescription>
@@ -368,7 +368,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                 <Label>Service Image</Label>
                 <div className="flex items-center gap-4">
                   {imagePreview ? (
-                    <div className="relative h-24 w-24 shrink-0 rounded-lg overflow-hidden border border-[#271024]/10 dark:border-[#e3ae72]/20">
+                    <div className="relative h-24 w-24 shrink-0 rounded-lg overflow-hidden border border-[#7a219f]/10 dark:border-[#efcafe]/20">
                       <img
                         src={imagePreview}
                         alt="Preview"
@@ -385,8 +385,8 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                       </Button>
                     </div>
                   ) : (
-                    <div className="h-24 w-24 shrink-0 rounded-lg border-2 border-dashed border-[#271024]/20 dark:border-[#e3ae72]/30 flex items-center justify-center bg-[#271024]/5 dark:bg-[#e3ae72]/5">
-                      <Package className="h-8 w-8 text-[#271024]/30 dark:text-[#e3ae72]/30" />
+                    <div className="h-24 w-24 shrink-0 rounded-lg border-2 border-dashed border-[#7a219f]/20 dark:border-[#efcafe]/30 flex items-center justify-center bg-[#7a219f]/5 dark:bg-[#efcafe]/5">
+                      <Package className="h-8 w-8 text-[#7a219f]/30 dark:text-[#efcafe]/30" />
                     </div>
                   )}
                   <div className="flex-1 space-y-2">
@@ -400,7 +400,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                     />
                     <Label
                       htmlFor="service-image"
-                      className="cursor-pointer inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md border border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10 transition-colors"
+                      className="cursor-pointer inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md border border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10 transition-colors"
                     >
                       <Upload className="h-4 w-4 mr-2" />
                       {imagePreview ? "Change Image" : "Upload Image"}
@@ -420,7 +420,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g., Botox Treatment"
                   required
-                  className="border-[#271024]/10 dark:border-[#e3ae72]/20"
+                  className="border-[#7a219f]/10 dark:border-[#efcafe]/20"
                 />
               </div>
 
@@ -432,7 +432,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                   value={formData.price}
                   onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                   placeholder="e.g., 250"
-                  className="border-[#271024]/10 dark:border-[#e3ae72]/20"
+                  className="border-[#7a219f]/10 dark:border-[#efcafe]/20"
                 />
                 <p className="text-xs text-muted-foreground">
                   Leave empty for "Contact for Price" services
@@ -448,7 +448,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                   placeholder="Describe the service..."
                   rows={3}
                   required
-                  className="border-[#271024]/10 dark:border-[#e3ae72]/20"
+                  className="border-[#7a219f]/10 dark:border-[#efcafe]/20"
                 />
               </div>
 
@@ -459,7 +459,7 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                   value={formData.benefits}
                   onChange={(e) => setFormData({ ...formData, benefits: e.target.value })}
                   placeholder="e.g., Wrinkle reduction, Radiant skin"
-                  className="border-[#271024]/10 dark:border-[#e3ae72]/20"
+                  className="border-[#7a219f]/10 dark:border-[#efcafe]/20"
                 />
               </div>
 
@@ -487,14 +487,14 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
                   setIsDialogOpen(false);
                   resetForm();
                 }}
-                className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72]"
+                className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe]"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={isPending || isUploading}
-                className="bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                className="bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
               >
                 {isUploading ? (
                   <>
@@ -516,16 +516,16 @@ export function ServicesManagementSection({ initialServices }: ServicesManagemen
 
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <AlertDialogContent className="bg-white dark:bg-[#271024]">
+        <AlertDialogContent className="bg-white dark:bg-[#7a219f]">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-[#271024] dark:text-[#e3ae72]">Delete Service</AlertDialogTitle>
+            <AlertDialogTitle className="text-[#7a219f] dark:text-[#efcafe]">Delete Service</AlertDialogTitle>
             <AlertDialogDescription>
               Are you sure you want to delete &quot;{serviceToDelete?.title}&quot;? This
               action cannot be undone. Services with existing bookings cannot be deleted.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72]">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe]">Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700">
               Delete
             </AlertDialogAction>

@@ -105,7 +105,7 @@ export default async function UserDashboardPage() {
               {/* Page Header */}
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-semibold text-[#271024] dark:text-[#e3ae72]">
+                  <h1 className="text-2xl font-semibold text-[#7a219f] dark:text-[#efcafe]">
                     Welcome back{user.name ? `, ${user.name.split(' ')[0]}` : ''}
                   </h1>
                   <p className="text-muted-foreground mt-1">
@@ -114,7 +114,7 @@ export default async function UserDashboardPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Link href="/user-dashboard/book">
-                    <button className="inline-flex items-center justify-center rounded-lg bg-[#271024] px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#271024]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]">
+                    <button className="inline-flex items-center justify-center rounded-lg bg-[#7a219f] px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#7a219f]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]">
                       Book Appointment
                     </button>
                   </Link>
@@ -131,8 +131,8 @@ export default async function UserDashboardPage() {
                   {/* Upcoming Appointments Section */}
                   <div>
                     <div className="flex items-center gap-2 mb-4">
-                      <Calendar className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
-                      <h2 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
+                      <Calendar className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
+                      <h2 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe]">
                         Schedule
                       </h2>
                     </div>
@@ -151,8 +151,8 @@ export default async function UserDashboardPage() {
                   {/* Treatment History Section */}
                   <div>
                     <div className="flex items-center gap-2 mb-4">
-                      <TrendingUp className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
-                      <h2 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
+                      <TrendingUp className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
+                      <h2 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe]">
                         Your Journey
                       </h2>
                     </div>
@@ -168,11 +168,11 @@ export default async function UserDashboardPage() {
                 {/* Right Column - Personalization */}
                 <div className="space-y-6">
                   {/* Personalized Recommendations */}
-                  <Card className="border-border/60 bg-linear-to-br from-[#271024]/5 to-primary/5 dark:from-[#e3ae72]/10 shadow-sm">
+                  <Card className="border-border/60 bg-linear-to-br from-[#7a219f]/5 to-primary/5 dark:from-[#efcafe]/10 shadow-sm">
                     <CardHeader>
                       <div className="flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
-                        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+                        <Sparkles className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
+                        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
                           For You
                         </CardTitle>
                       </div>
@@ -182,14 +182,14 @@ export default async function UserDashboardPage() {
                       {/* Recommended Treatment */}
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
+                          <p className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">
                             Recommended
                           </p>
-                          <span className="text-xs px-2 py-1 rounded-full bg-[#271024]/10 text-[#271024] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]">
+                          <span className="text-xs px-2 py-1 rounded-full bg-[#7a219f]/10 text-[#7a219f] dark:bg-[#efcafe]/20 dark:text-[#efcafe]">
                             Suggested
                           </span>
                         </div>
-                        <p className="text-base font-medium text-[#271024] dark:text-[#e3ae72]">
+                        <p className="text-base font-medium text-[#7a219f] dark:text-[#efcafe]">
                           {recommended}
                         </p>
                       </div>
@@ -214,7 +214,7 @@ export default async function UserDashboardPage() {
                         <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
                           Next Appointment
                         </p>
-                        <p className="text-xl font-semibold text-[#271024] dark:text-[#e3ae72]">
+                        <p className="text-xl font-semibold text-[#7a219f] dark:text-[#efcafe]">
                           {countdown.countdown}
                         </p>
                         <p className="text-xs text-muted-foreground mt-1">
@@ -222,7 +222,7 @@ export default async function UserDashboardPage() {
                         </p>
                         {countdown.countdown === "—" && (
                           <Link href="/user-dashboard/book" className="mt-3">
-                            <button className="w-full inline-flex items-center justify-center rounded-lg bg-[#271024] px-3 py-2 text-xs font-medium text-white shadow-sm transition-colors hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]">
+                            <button className="w-full inline-flex items-center justify-center rounded-lg bg-[#7a219f] px-3 py-2 text-xs font-medium text-white shadow-sm transition-colors hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]">
                               Book Now
                             </button>
                           </Link>
@@ -234,7 +234,7 @@ export default async function UserDashboardPage() {
                   {/* Quick Actions Card */}
                   <Card className="border-border/60 shadow-sm">
                     <CardHeader>
-                      <CardTitle className="text-[#271024] dark:text-[#e3ae72] text-base">
+                      <CardTitle className="text-[#7a219f] dark:text-[#efcafe] text-base">
                         Quick Actions
                       </CardTitle>
                     </CardHeader>

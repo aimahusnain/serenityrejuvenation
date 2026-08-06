@@ -210,7 +210,7 @@ export function SquarePaymentForm({
         <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center mb-6 shadow-lg">
           <CheckCircle className="h-10 w-10 text-white" strokeWidth={2.5} />
         </div>
-        <h3 className="text-2xl font-semibold mb-2 text-[#271024]">Payment Successful!</h3>
+        <h3 className="text-2xl font-semibold mb-2 text-[#7a219f]">Payment Successful!</h3>
         <p className="text-muted-foreground">
           Your booking has been confirmed. Redirecting...
         </p>

@@ -74,7 +74,7 @@ const statusConfig = {
   },
   QUOTED: {
     label: "Quote Sent",
-    className: "bg-[#e3ae72]/15 text-[#271024] dark:text-[#e3ae72] border-[#e3ae72]/30",
+    className: "bg-[#efcafe]/15 text-[#7a219f] dark:text-[#efcafe] border-[#efcafe]/30",
   },
   ACCEPTED: {
     label: "Accepted",
@@ -90,7 +90,7 @@ const statusConfig = {
   },
   CANCELLED: {
     label: "Cancelled",
-    className: "bg-[#271024]/15 text-[#271024] dark:text-[#e3ae72]/80 border-[#271024]/30",
+    className: "bg-[#7a219f]/15 text-[#7a219f] dark:text-[#efcafe]/80 border-[#7a219f]/30",
   },
 };
 
@@ -233,11 +233,11 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
 
   return (
     <>
-      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+      <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-[#271024] dark:text-[#e3ae72] flex items-center gap-2">
+              <CardTitle className="text-[#7a219f] dark:text-[#efcafe] flex items-center gap-2">
                 <MessageSquare className="h-5 w-5" />
                 Service Inquiries
               </CardTitle>
@@ -257,8 +257,8 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
                 className={cn(
                   "px-3 py-1.5 rounded-lg text-sm font-medium transition-colors",
                   filter === status
-                    ? "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]"
-                    : "bg-[#271024]/5 text-[#271024]/70 dark:bg-[#e3ae72]/10 dark:text-[#e3ae72]/70 hover:bg-[#271024]/10"
+                    ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]"
+                    : "bg-[#7a219f]/5 text-[#7a219f]/70 dark:bg-[#efcafe]/10 dark:text-[#efcafe]/70 hover:bg-[#7a219f]/10"
                 )}
               >
                 {status === "all" ? "All" : statusConfig[status].label}
@@ -271,7 +271,7 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
           <div className="space-y-3">
             {filteredInquiries.length === 0 ? (
               <div className="text-center py-12">
-                <MessageSquare className="h-12 w-12 mx-auto text-[#271024]/30 dark:text-[#e3ae72]/30 mb-4" />
+                <MessageSquare className="h-12 w-12 mx-auto text-[#7a219f]/30 dark:text-[#efcafe]/30 mb-4" />
                 <p className="text-muted-foreground">
                   {filter === "all"
                     ? "No inquiries yet"
@@ -282,13 +282,13 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
               filteredInquiries.map((inquiry) => (
                 <div
                   key={inquiry.id}
-                  className="p-4 rounded-lg border border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]/30"
+                  className="p-4 rounded-lg border border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]/30"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 space-y-3">
                       {/* Service & Status */}
                       <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-[#271024] dark:text-[#e3ae72]">
+                        <h3 className="font-semibold text-[#7a219f] dark:text-[#efcafe]">
                           {inquiry.service.title}
                         </h3>
                         <Badge className={cn("border-0", statusConfig[inquiry.status].className)}>
@@ -298,7 +298,7 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
 
                       {/* Customer Info */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-sm">
-                        <div className="flex items-center gap-2 text-[#271024]/70 dark:text-[#e3ae72]/70">
+                        <div className="flex items-center gap-2 text-[#7a219f]/70 dark:text-[#efcafe]/70">
                           <span className="font-medium">{inquiry.name}</span>
                         </div>
                         <div className="flex items-center gap-2 text-muted-foreground">
@@ -331,10 +331,10 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
 
                       {/* Current Quote */}
                       {inquiry.proposedPrice && (
-                        <div className="bg-[#e3ae72]/10 dark:bg-[#e3ae72]/20 rounded-lg p-3">
+                        <div className="bg-[#efcafe]/10 dark:bg-[#efcafe]/20 rounded-lg p-3">
                           <div className="flex items-center gap-2 text-sm">
-                            <DollarSign className="h-4 w-4 text-[#271024] dark:text-[#e3ae72]" />
-                            <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
+                            <DollarSign className="h-4 w-4 text-[#7a219f] dark:text-[#efcafe]" />
+                            <span className="font-medium text-[#7a219f] dark:text-[#efcafe]">
                               Your quote: ${inquiry.proposedPrice.toFixed(2)}
                             </span>
                           </div>
@@ -396,19 +396,19 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 w-8 p-0 text-[#271024] dark:text-[#e3ae72]"
+                          className="h-8 w-8 p-0 text-[#7a219f] dark:text-[#efcafe]"
                         >
                           <MoreVertical className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent
                         align="end"
-                        className="border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]"
+                        className="border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]"
                       >
                         {inquiry.status === "PENDING" && (
                           <DropdownMenuItem
                             onClick={() => openQuoteDialog(inquiry)}
-                            className="cursor-pointer text-[#271024] dark:text-[#e3ae72]/80"
+                            className="cursor-pointer text-[#7a219f] dark:text-[#efcafe]/80"
                           >
                             <DollarSign className="h-4 w-4 mr-2" />
                             Send Price Quote
@@ -417,7 +417,7 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
                         {(inquiry.status === "PENDING" || inquiry.status === "QUOTED") && (
                           <DropdownMenuItem
                             onClick={() => openQuoteDialog(inquiry)}
-                            className="cursor-pointer text-[#271024] dark:text-[#e3ae72]/80"
+                            className="cursor-pointer text-[#7a219f] dark:text-[#efcafe]/80"
                           >
                             <CheckCircle className="h-4 w-4 mr-2" />
                             Update Quote
@@ -447,7 +447,7 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
       <Dialog open={quoteDialogOpen} onOpenChange={setQuoteDialogOpen}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
-            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+            <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">
               Send Price Quote
             </DialogTitle>
             <DialogDescription>
@@ -456,8 +456,8 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
           </DialogHeader>
           <div className="space-y-4 py-4">
             {/* Customer preference reminder */}
-            <div className="bg-[#271024]/5 dark:bg-[#e3ae72]/10 rounded-lg p-3 text-sm">
-              <p className="font-medium text-[#271024] dark:text-[#e3ae72]">
+            <div className="bg-[#7a219f]/5 dark:bg-[#efcafe]/10 rounded-lg p-3 text-sm">
+              <p className="font-medium text-[#7a219f] dark:text-[#efcafe]">
                 Customer's preference:
               </p>
               <p className="text-muted-foreground">
@@ -528,14 +528,14 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
             <Button
               variant="outline"
               onClick={() => setQuoteDialogOpen(false)}
-              className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+              className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
             >
               Cancel
             </Button>
             <Button
               onClick={handleSubmitQuote}
               disabled={!quotePrice || isSubmitting}
-              className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024]"
+              className="bg-[#7a219f] text-white hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f]"
             >
               {isSubmitting ? "Sending..." : "Send Quote"}
             </Button>
@@ -547,7 +547,7 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
       <Dialog open={counterDialogOpen} onOpenChange={setCounterDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+            <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">
               Respond to Counter-Offer
             </DialogTitle>
             <DialogDescription>
@@ -595,13 +595,13 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
                   className={cn(
                     "w-full flex items-center gap-3 p-3 rounded-lg border text-left transition-colors",
                     !acceptCounter
-                      ? "border-[#e3ae72] bg-[#e3ae72]/10"
-                      : "border-border/60 hover:border-[#e3ae72]/50"
+                      ? "border-[#efcafe] bg-[#efcafe]/10"
+                      : "border-border/60 hover:border-[#efcafe]/50"
                   )}
                 >
                   <DollarSign className={cn(
                     "h-5 w-5",
-                    !acceptCounter ? "text-[#271024] dark:text-[#e3ae72]" : "text-muted-foreground"
+                    !acceptCounter ? "text-[#7a219f] dark:text-[#efcafe]" : "text-muted-foreground"
                   )} />
                   <div>
                     <p className="font-medium">Propose New Price</p>
@@ -651,7 +651,7 @@ export default function ServiceInquiriesSection({ inquiries, onUpdate }: Props) 
             <Button
               onClick={handleSubmitCounterResponse}
               disabled={isSubmitting || (!acceptCounter && !newPrice)}
-              className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024]"
+              className="bg-[#7a219f] text-white hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f]"
             >
               {isSubmitting ? "Sending..." : acceptCounter ? "Accept & Create Booking" : "Send New Quote"}
             </Button>

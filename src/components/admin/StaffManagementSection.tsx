@@ -206,7 +206,7 @@ export function StaffManagementSection({ initialStaff = [] }: StaffManagementSec
     <>
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
+          <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe]">
             Staff & Technicians
           </h3>
           <p className="text-sm text-muted-foreground">

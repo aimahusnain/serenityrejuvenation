@@ -27,40 +27,40 @@ export function getFooterThemeClasses(variant: FooterVariant) {
   }
 
   return {
-    root: "w-full bg-white dark:bg-[#271024]",
+    root: "w-full bg-white dark:bg-[#7a219f]",
     accentLine:
-      "h-px bg-linear-to-r from-transparent via-[#271024]/20 dark:via-[#e3ae72]/30 to-transparent",
+      "h-px bg-linear-to-r from-transparent via-[#7a219f]/20 dark:via-[#efcafe]/30 to-transparent",
     heading:
-      "text-[11px] uppercase tracking-[0.18em] font-semibold text-[#271024] dark:text-[#e3ae72]",
+      "text-[11px] uppercase tracking-[0.18em] font-semibold text-[#7a219f] dark:text-[#efcafe]",
     bodyMuted:
-      "text-sm leading-[1.75] text-[#271024]/55 dark:text-[#e3ae72]/60 max-w-65",
-    contact: "flex flex-col gap-2 text-sm text-[#271024]/65 dark:text-[#e3ae72]/65",
-    contactLink: "hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors",
+      "text-sm leading-[1.75] text-[#7a219f]/55 dark:text-[#efcafe]/60 max-w-65",
+    contact: "flex flex-col gap-2 text-sm text-[#7a219f]/65 dark:text-[#efcafe]/65",
+    contactLink: "hover:text-[#7a219f] dark:hover:text-[#efcafe] transition-colors",
     social: `
                     w-9 h-9 rounded-xl flex items-center justify-center
-                    border border-[#271024]/12 dark:border-[#e3ae72]/20
-                    text-[#271024]/50 dark:text-[#e3ae72]/55
-                    hover:bg-[#271024] hover:text-white hover:border-[#271024]
-                    dark:hover:bg-[#e3ae72] dark:hover:text-[#271024] dark:hover:border-[#e3ae72]
+                    border border-[#7a219f]/12 dark:border-[#efcafe]/20
+                    text-[#7a219f]/50 dark:text-[#efcafe]/55
+                    hover:bg-[#7a219f] hover:text-white hover:border-[#7a219f]
+                    dark:hover:bg-[#efcafe] dark:hover:text-[#7a219f] dark:hover:border-[#efcafe]
                     transition-all duration-200
                   `,
-    link: "text-sm text-[#271024]/60 dark:text-[#e3ae72]/60 hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors duration-150",
+    link: "text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60 hover:text-[#7a219f] dark:hover:text-[#efcafe] transition-colors duration-150",
     ctaCard:
-      "rounded-2xl border border-[#271024]/10 dark:border-[#e3ae72]/15 p-6 flex flex-col gap-4 bg-[#271024]/3 dark:bg-[#e3ae72]/5",
+      "rounded-2xl border border-[#7a219f]/10 dark:border-[#efcafe]/15 p-6 flex flex-col gap-4 bg-[#7a219f]/3 dark:bg-[#efcafe]/5",
     ctaTitle:
-      "text-base font-semibold text-[#271024] dark:text-[#e3ae72] leading-snug",
-    ctaDesc: "text-sm text-[#271024]/55 dark:text-[#e3ae72]/60 mt-1",
+      "text-base font-semibold text-[#7a219f] dark:text-[#efcafe] leading-snug",
+    ctaDesc: "text-sm text-[#7a219f]/55 dark:text-[#efcafe]/60 mt-1",
     ctaBtn: `
                   inline-flex items-center justify-center self-start
                   px-6 py-2.5 rounded-full text-sm font-medium
-                  bg-[#271024] text-white hover:bg-[#271024]/85
-                  dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]
+                  bg-[#7a219f] text-white hover:bg-[#7a219f]/85
+                  dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]
                   transition-all duration-200
                 `,
-    divider: "mt-14 h-px bg-[#271024]/8 dark:bg-[#e3ae72]/12",
-    legal: "text-xs text-[#271024]/40 dark:text-[#e3ae72]/40",
-    legalLink: "hover:text-[#271024] dark:hover:text-[#e3ae72] transition-colors",
+    divider: "mt-14 h-px bg-[#7a219f]/8 dark:bg-[#efcafe]/12",
+    legal: "text-xs text-[#7a219f]/40 dark:text-[#efcafe]/40",
+    legalLink: "hover:text-[#7a219f] dark:hover:text-[#efcafe] transition-colors",
     credit:
-      "text-[#e3ae72] hover:text-[#271024] dark:hover:text-white transition-colors font-medium",
+      "text-[#efcafe] hover:text-[#7a219f] dark:hover:text-white transition-colors font-medium",
   };
 }

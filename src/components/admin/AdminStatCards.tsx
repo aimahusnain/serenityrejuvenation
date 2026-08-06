@@ -85,7 +85,7 @@ export function AdminStatCards({
         return (
           <Card
             key={index}
-            className="relative overflow-hidden border-0 shadow-md bg-white dark:bg-[#271024]/50 hover:shadow-lg transition-shadow"
+            className="relative overflow-hidden border-0 shadow-md bg-white dark:bg-[#7a219f]/50 hover:shadow-lg transition-shadow"
           >
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardDescription className="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -105,10 +105,10 @@ export function AdminStatCards({
               </div>
             </CardHeader>
             <CardContent>
-              <CardTitle className="text-3xl font-bold text-gray-900 dark:text-[#e3ae72]">
+              <CardTitle className="text-3xl font-bold text-gray-900 dark:text-[#efcafe]">
                 {stat.value}
               </CardTitle>
-              <p className="text-sm text-gray-600 dark:text-[#e3ae72]/70 mt-2">
+              <p className="text-sm text-gray-600 dark:text-[#efcafe]/70 mt-2">
                 {stat.description}
               </p>
             </CardContent>

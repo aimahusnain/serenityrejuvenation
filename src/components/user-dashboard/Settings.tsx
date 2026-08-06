@@ -242,43 +242,43 @@ export function Settings({ user, preferences }: SettingsProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold text-[#271024] dark:text-[#e3ae72] font-serif">
+        <h2 className="text-3xl font-bold text-[#7a219f] dark:text-[#efcafe] font-serif">
           Settings
         </h2>
-        <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 mt-1">
+        <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65 mt-1">
           Manage your account settings and preferences
         </p>
       </div>
 
       <Tabs defaultValue="account" className="w-full">
-        <TabsList className="bg-[#271024]/5 dark:bg-[#e3ae72]/10">
+        <TabsList className="bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
           <TabsTrigger
             value="account"
-            className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
+            className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
           >
             Account
           </TabsTrigger>
           <TabsTrigger
             value="preferences"
-            className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
+            className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
           >
             Preferences
           </TabsTrigger>
           <TabsTrigger
             value="security"
-            className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
+            className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
           >
             Security
           </TabsTrigger>
           <TabsTrigger
             value="appearance"
-            className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
+            className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
           >
             Appearance
           </TabsTrigger>
           <TabsTrigger
             value="data"
-            className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
+            className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
           >
             Data
           </TabsTrigger>
@@ -286,13 +286,13 @@ export function Settings({ user, preferences }: SettingsProps) {
 
         {/* Account Tab */}
         <TabsContent value="account" className="space-y-6 mt-6">
-          <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+          <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
-                <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+                <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
                   Profile Information
                 </CardTitle>
-                <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
+                <CardDescription className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
                   {isEditingProfile
                     ? "Edit your personal details"
                     : "Your personal account details"}
@@ -305,7 +305,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                   <div className="space-y-2">
                     <Label
                       htmlFor="edit-name"
-                      className="text-[#271024] dark:text-[#e3ae72]"
+                      className="text-[#7a219f] dark:text-[#efcafe]"
                     >
                       Full Name
                     </Label>
@@ -315,14 +315,14 @@ export function Settings({ user, preferences }: SettingsProps) {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your full name"
-                      className="border-[#271024]/15 focus:border-[#271024] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
+                      className="border-[#7a219f]/15 focus:border-[#7a219f] dark:border-[#efcafe]/20 dark:focus:border-[#efcafe]"
                     />
                   </div>
 
                   <div className="space-y-2">
                     <Label
                       htmlFor="edit-email"
-                      className="text-[#271024] dark:text-[#e3ae72]"
+                      className="text-[#7a219f] dark:text-[#efcafe]"
                     >
                       Email
                     </Label>
@@ -330,7 +330,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                       id="edit-email"
                       value={user.email || ""}
                       disabled
-                      className="border-[#271024]/15 focus:border-[#271024] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72] opacity-50"
+                      className="border-[#7a219f]/15 focus:border-[#7a219f] dark:border-[#efcafe]/20 dark:focus:border-[#efcafe] opacity-50"
                     />
                     <p className="text-xs text-muted-foreground">
                       Email cannot be changed
@@ -357,7 +357,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                     <Button
                       type="submit"
                       disabled={isProfilePending}
-                      className="bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                      className="bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                     >
                       {isProfilePending ? "Saving..." : (
                         <>
@@ -374,7 +374,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                         setName(user.name || "");
                       }}
                       disabled={isProfilePending}
-                      className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                      className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
                     >
                       <X className="h-4 w-4 mr-2" />
                       Cancel
@@ -384,47 +384,47 @@ export function Settings({ user, preferences }: SettingsProps) {
               ) : (
                 <>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                      <User className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                      <User className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                     </div>
                     <div className="flex-1">
-                      <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                      <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                         Full Name
                       </Label>
-                      <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                      <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                         {user.name || "Not set"}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                      <Mail className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                      <Mail className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                     </div>
                     <div className="flex-1">
-                      <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                      <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                         Email Address
                       </Label>
-                      <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                      <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                         {user.email || "Not set"}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                      <Shield className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                      <Shield className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                     </div>
                     <div className="flex-1">
-                      <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                      <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                         Account Role
                       </Label>
                       <p className="mt-1">
                         <span
                           className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
                             user.role === "ADMIN"
-                              ? "bg-[#e3ae72] text-[#271024]"
-                              : "bg-[#271024]/10 text-[#271024] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]"
+                              ? "bg-[#efcafe] text-[#7a219f]"
+                              : "bg-[#7a219f]/10 text-[#7a219f] dark:bg-[#efcafe]/20 dark:text-[#efcafe]"
                           }`}
                         >
                           {user.role === "ADMIN" ? "Administrator" : "Member"}
@@ -434,14 +434,14 @@ export function Settings({ user, preferences }: SettingsProps) {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                      <Calendar className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                      <Calendar className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                     </div>
                     <div className="flex-1">
-                      <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                      <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                         Member Since
                       </Label>
-                      <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                      <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                         {formatDate(user.createdAt)}
                       </p>
                     </div>
@@ -453,7 +453,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                 <Button
                   variant="outline"
                   onClick={() => setIsEditingProfile(true)}
-                  className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                  className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
                 >
                   <Edit2 className="h-4 w-4 mr-2" />
                   Edit Profile
@@ -465,13 +465,13 @@ export function Settings({ user, preferences }: SettingsProps) {
 
         {/* Preferences Tab */}
         <TabsContent value="preferences" className="space-y-6 mt-6">
-          <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+          <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
-                <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+                <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
                   Notification Preferences
                 </CardTitle>
-                <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
+                <CardDescription className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
                   Manage how you receive updates
                 </CardDescription>
               </div>
@@ -479,19 +479,19 @@ export function Settings({ user, preferences }: SettingsProps) {
             <CardContent className="space-y-6">
               {isEditingPreferences ? (
                 <form action={handlePreferencesSave} className="space-y-6">
-                  <div className="flex items-center justify-between p-4 rounded-xl border border-[#271024]/10 dark:border-[#e3ae72]/15 bg-[#271024]/5 dark:bg-[#e3ae72]/5">
+                  <div className="flex items-center justify-between p-4 rounded-xl border border-[#7a219f]/10 dark:border-[#efcafe]/15 bg-[#7a219f]/5 dark:bg-[#efcafe]/5">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/10 dark:bg-[#e3ae72]/20">
-                        <Bell className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
+                        <Bell className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                       </div>
                       <div>
                         <Label
                           htmlFor="emailNotifications"
-                          className="text-[#271024] dark:text-[#e3ae72] font-medium"
+                          className="text-[#7a219f] dark:text-[#efcafe] font-medium"
                         >
                           Email Notifications
                         </Label>
-                        <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+                        <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
                           Receive updates about bookings and offers
                         </p>
                       </div>
@@ -507,7 +507,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                   <div className="space-y-2">
                     <Label
                       htmlFor="phone"
-                      className="text-[#271024] dark:text-[#e3ae72]"
+                      className="text-[#7a219f] dark:text-[#efcafe]"
                     >
                       Phone Number
                     </Label>
@@ -518,7 +518,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="(555) 123-4567"
-                      className="border-[#271024]/15 focus:border-[#271024] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72]"
+                      className="border-[#7a219f]/15 focus:border-[#7a219f] dark:border-[#efcafe]/20 dark:focus:border-[#efcafe]"
                     />
                     <p className="text-xs text-muted-foreground">
                       Optional contact number for appointment reminders
@@ -545,7 +545,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                     <Button
                       type="submit"
                       disabled={isPreferencesPending}
-                      className="bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                      className="bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                     >
                       {isPreferencesPending ? "Saving..." : (
                         <>
@@ -563,7 +563,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                         setEmailNotifications(preferences?.emailNotifications ?? true);
                       }}
                       disabled={isPreferencesPending}
-                      className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                      className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
                     >
                       <X className="h-4 w-4 mr-2" />
                       Cancel
@@ -573,45 +573,45 @@ export function Settings({ user, preferences }: SettingsProps) {
               ) : (
                 <>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                      <Bell className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                      <Bell className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                     </div>
                     <div className="flex-1">
-                      <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                      <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                         Email Notifications
                       </Label>
-                      <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                      <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                         {preferences?.emailNotifications ? "Enabled" : "Disabled"}
                       </p>
-                      <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 mt-1">
+                      <p className="text-xs text-[#7a219f]/50 dark:text-[#efcafe]/50 mt-1">
                         Receive updates about your bookings and special offers
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                      <Phone className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                      <Phone className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                     </div>
                     <div className="flex-1">
-                      <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                      <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                         Phone Number
                       </Label>
-                      <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                      <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                         {preferences?.phone || "Not set"}
                       </p>
-                      <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 mt-1">
+                      <p className="text-xs text-[#7a219f]/50 dark:text-[#efcafe]/50 mt-1">
                         Optional contact number for appointment reminders
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                      <Heart className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                      <Heart className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                     </div>
                     <div className="flex-1">
-                      <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                      <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                         Preferred Services
                       </Label>
                       {preferences?.preferredServices &&
@@ -620,18 +620,18 @@ export function Settings({ user, preferences }: SettingsProps) {
                           {preferences.preferredServices.map((service, index) => (
                             <span
                               key={index}
-                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#271024]/10 text-[#271024] dark:bg-[#e3ae72]/20 dark:text-[#e3ae72]"
+                              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#7a219f]/10 text-[#7a219f] dark:bg-[#efcafe]/20 dark:text-[#efcafe]"
                             >
                               {service}
                             </span>
                           ))}
                         </div>
                       ) : (
-                        <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                        <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                           No preferred services selected
                         </p>
                       )}
-                      <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 mt-1">
+                      <p className="text-xs text-[#7a219f]/50 dark:text-[#efcafe]/50 mt-1">
                         Services you frequently book
                       </p>
                     </div>
@@ -643,7 +643,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                 <Button
                   variant="outline"
                   onClick={() => setIsEditingPreferences(true)}
-                  className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                  className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
                 >
                   <Edit2 className="h-4 w-4 mr-2" />
                   Edit Preferences
@@ -655,12 +655,12 @@ export function Settings({ user, preferences }: SettingsProps) {
 
         {/* Security Tab */}
         <TabsContent value="security" className="space-y-6 mt-6">
-          <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+          <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
             <CardHeader>
-              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+              <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
                 Change Password
               </CardTitle>
-              <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
+              <CardDescription className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
                 Update your password to keep your account secure
               </CardDescription>
             </CardHeader>
@@ -679,7 +679,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                   <div className="space-y-2">
                     <Label
                       htmlFor="current-password"
-                      className="text-[#271024] dark:text-[#e3ae72]"
+                      className="text-[#7a219f] dark:text-[#efcafe]"
                     >
                       Current Password
                     </Label>
@@ -689,12 +689,12 @@ export function Settings({ user, preferences }: SettingsProps) {
                         type={showPassword ? "text" : "password"}
                         value={currentPassword}
                         onChange={(e) => setCurrentPassword(e.target.value)}
-                        className="border-[#271024]/15 focus:border-[#271024] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72] pr-10"
+                        className="border-[#7a219f]/15 focus:border-[#7a219f] dark:border-[#efcafe]/20 dark:focus:border-[#efcafe] pr-10"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#271024]/50 dark:text-[#e3ae72]/50 hover:text-[#271024] dark:hover:text-[#e3ae72]"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#7a219f]/50 dark:text-[#efcafe]/50 hover:text-[#7a219f] dark:hover:text-[#efcafe]"
                       >
                         {showPassword ? (
                           <EyeOff className="h-4 w-4" />
@@ -708,7 +708,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                   <div className="space-y-2">
                     <Label
                       htmlFor="new-password"
-                      className="text-[#271024] dark:text-[#e3ae72]"
+                      className="text-[#7a219f] dark:text-[#efcafe]"
                     >
                       New Password
                     </Label>
@@ -718,12 +718,12 @@ export function Settings({ user, preferences }: SettingsProps) {
                         type={showPassword ? "text" : "password"}
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
-                        className="border-[#271024]/15 focus:border-[#271024] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72] pr-10"
+                        className="border-[#7a219f]/15 focus:border-[#7a219f] dark:border-[#efcafe]/20 dark:focus:border-[#efcafe] pr-10"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#271024]/50 dark:text-[#e3ae72]/50 hover:text-[#271024] dark:hover:text-[#e3ae72]"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#7a219f]/50 dark:text-[#efcafe]/50 hover:text-[#7a219f] dark:hover:text-[#efcafe]"
                       >
                         {showPassword ? (
                           <EyeOff className="h-4 w-4" />
@@ -740,7 +740,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                   <div className="space-y-2">
                     <Label
                       htmlFor="confirm-password"
-                      className="text-[#271024] dark:text-[#e3ae72]"
+                      className="text-[#7a219f] dark:text-[#efcafe]"
                     >
                       Confirm New Password
                     </Label>
@@ -750,12 +750,12 @@ export function Settings({ user, preferences }: SettingsProps) {
                         type={showPassword ? "text" : "password"}
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="border-[#271024]/15 focus:border-[#271024] dark:border-[#e3ae72]/20 dark:focus:border-[#e3ae72] pr-10"
+                        className="border-[#7a219f]/15 focus:border-[#7a219f] dark:border-[#efcafe]/20 dark:focus:border-[#efcafe] pr-10"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#271024]/50 dark:text-[#e3ae72]/50 hover:text-[#271024] dark:hover:text-[#e3ae72]"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#7a219f]/50 dark:text-[#efcafe]/50 hover:text-[#7a219f] dark:hover:text-[#efcafe]"
                       >
                         {showPassword ? (
                           <EyeOff className="h-4 w-4" />
@@ -776,7 +776,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                   <div className="flex gap-2 pt-2">
                     <Button
                       type="submit"
-                      className="bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                      className="bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                     >
                       Update Password
                     </Button>
@@ -790,7 +790,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                         setConfirmPassword("");
                         setPasswordError("");
                       }}
-                      className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                      className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
                     >
                       <X className="h-4 w-4 mr-2" />
                       Cancel
@@ -801,7 +801,7 @@ export function Settings({ user, preferences }: SettingsProps) {
                 <Button
                   variant="outline"
                   onClick={() => setIsEditingPassword(true)}
-                  className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                  className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
                 >
                   Change Password
                 </Button>
@@ -809,28 +809,28 @@ export function Settings({ user, preferences }: SettingsProps) {
             </CardContent>
           </Card>
 
-          <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+          <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
             <CardHeader>
-              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+              <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
                 Active Sessions
               </CardTitle>
-              <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
+              <CardDescription className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
                 Manage your active login sessions
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                  <Shield className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                  <Shield className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                 </div>
                 <div className="flex-1">
-                  <Label className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs font-semibold uppercase tracking-wider">
+                  <Label className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs font-semibold uppercase tracking-wider">
                     Current Session
                   </Label>
-                  <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium mt-1">
+                  <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium mt-1">
                     Active now
                   </p>
-                  <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 mt-1">
+                  <p className="text-xs text-[#7a219f]/50 dark:text-[#efcafe]/50 mt-1">
                     {user.email} • This device
                   </p>
                 </div>
@@ -841,26 +841,26 @@ export function Settings({ user, preferences }: SettingsProps) {
 
         {/* Appearance Tab */}
         <TabsContent value="appearance" className="space-y-6 mt-6">
-          <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+          <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
             <CardHeader>
-              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+              <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
                 Theme
               </CardTitle>
-              <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
+              <CardDescription className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
                 Customize the appearance of the application
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="flex items-center justify-between p-4 rounded-xl border border-[#271024]/10 dark:border-[#e3ae72]/15 bg-[#271024]/5 dark:bg-[#e3ae72]/5">
+              <div className="flex items-center justify-between p-4 rounded-xl border border-[#7a219f]/10 dark:border-[#efcafe]/15 bg-[#7a219f]/5 dark:bg-[#efcafe]/5">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/10 dark:bg-[#e3ae72]/20">
-                    <Palette className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
+                    <Palette className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                   </div>
                   <div>
-                    <p className="font-medium text-[#271024] dark:text-[#e3ae72]">
+                    <p className="font-medium text-[#7a219f] dark:text-[#efcafe]">
                       Dark Mode
                     </p>
-                    <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+                    <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
                       Toggle between light and dark themes
                     </p>
                   </div>
@@ -872,8 +872,8 @@ export function Settings({ user, preferences }: SettingsProps) {
                     onClick={() => setTheme("light")}
                     className={
                       theme === "light"
-                        ? "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]"
-                        : "border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                        ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]"
+                        : "border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
                     }
                   >
                     <Sun className="h-4 w-4 mr-1" />
@@ -885,8 +885,8 @@ export function Settings({ user, preferences }: SettingsProps) {
                     onClick={() => setTheme("dark")}
                     className={
                       theme === "dark"
-                        ? "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]"
-                        : "border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                        ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]"
+                        : "border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
                     }
                   >
                     <Moon className="h-4 w-4 mr-1" />
@@ -895,29 +895,29 @@ export function Settings({ user, preferences }: SettingsProps) {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 rounded-xl border border-[#271024]/10 dark:border-[#e3ae72]/15 bg-[#271024]/5 dark:bg-[#e3ae72]/5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/10 dark:bg-[#e3ae72]/20">
-                  <Palette className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+              <div className="flex items-start gap-4 p-4 rounded-xl border border-[#7a219f]/10 dark:border-[#efcafe]/15 bg-[#7a219f]/5 dark:bg-[#efcafe]/5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
+                  <Palette className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium">
+                  <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium">
                     Brand Colors
                   </p>
                   <div className="mt-3 flex gap-3">
                     <div className="flex flex-col items-center gap-1">
-                      <div className="w-12 h-12 rounded-lg bg-[#271024] border-2 border-white/20 shadow-sm" />
-                      <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+                      <div className="w-12 h-12 rounded-lg bg-[#7a219f] border-2 border-white/20 shadow-sm" />
+                      <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
                         Navy
                       </span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                      <div className="w-12 h-12 rounded-lg bg-[#e3ae72] border-2 border-white/20 shadow-sm" />
-                      <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+                      <div className="w-12 h-12 rounded-lg bg-[#efcafe] border-2 border-white/20 shadow-sm" />
+                      <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
                         Gold
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 mt-2">
+                  <p className="text-xs text-[#7a219f]/50 dark:text-[#efcafe]/50 mt-2">
                     Serenity Rejuvenation brand colors
                   </p>
                 </div>
@@ -928,32 +928,32 @@ export function Settings({ user, preferences }: SettingsProps) {
 
         {/* Data Tab */}
         <TabsContent value="data" className="space-y-6 mt-6">
-          <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20">
+          <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
             <CardHeader>
-              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">
+              <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
                 Export Your Data
               </CardTitle>
-              <CardDescription className="text-[#271024]/60 dark:text-[#e3ae72]/65">
+              <CardDescription className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
                 Download a copy of your personal data
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]/20">
-                  <Download className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]/20">
+                  <Download className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-[#271024] dark:text-[#e3ae72]/90 font-medium">
+                  <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium">
                     Personal Information
                   </p>
-                  <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60 mt-1">
+                  <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60 mt-1">
                     Includes your profile, bookings, and payment history
                   </p>
                 </div>
                 <Button
                   variant="outline"
                   onClick={handleExportData}
-                  className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+                  className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Export JSON

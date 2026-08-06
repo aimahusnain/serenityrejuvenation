@@ -36,14 +36,14 @@ export default function AccountDashboard({ user }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#271024] py-8 px-4">
+    <main className="min-h-screen bg-white dark:bg-[#7a219f] py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-[#271024] dark:text-[#e3ae72]">
+            <h1 className="text-3xl font-bold text-[#7a219f] dark:text-[#efcafe]">
               My Account
             </h1>
-            <p className="text-[#271024]/60 dark:text-[#e3ae72]/65">
+            <p className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
               Welcome back, {user.name || "there"}
             </p>
           </div>
@@ -51,29 +51,29 @@ export default function AccountDashboard({ user }: Props) {
             variant="outline"
             onClick={handleSignOut}
             disabled={isPending}
-            className="border-[#271024]/20 dark:border-[#e3ae72]/30 text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/10"
+            className="border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
           >
             {isPending ? "Signing out..." : "Sign Out"}
           </Button>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3 bg-[#271024]/5 dark:bg-[#e3ae72]/10">
+          <TabsList className="grid w-full grid-cols-3 bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
             <TabsTrigger
               value="profile"
-              className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
+              className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
             >
               Profile
             </TabsTrigger>
             <TabsTrigger
               value="bookings"
-              className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
+              className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
             >
               Bookings
             </TabsTrigger>
             <TabsTrigger
               value="preferences"
-              className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]"
+              className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
             >
               Preferences
             </TabsTrigger>

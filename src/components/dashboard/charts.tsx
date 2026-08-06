@@ -35,7 +35,7 @@ export function TreatmentTimelineChart({
   return (
     <Card className="border-border/60 shadow-sm">
       <CardHeader>
-        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Treatment History</CardTitle>
+        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Treatment History</CardTitle>
         <CardDescription>How often you book treatments over time</CardDescription>
       </CardHeader>
       <CardContent>
@@ -72,7 +72,7 @@ export function SpendingPieChart({
   return (
     <Card className="border-border/60">
       <CardHeader>
-        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Spending Breakdown</CardTitle>
+        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Spending Breakdown</CardTitle>
         <CardDescription>By treatment category</CardDescription>
       </CardHeader>
       <CardContent>
@@ -99,7 +99,7 @@ export function RevenueTrendChart({
   return (
     <Card className="border-border/60">
       <CardHeader>
-        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Revenue Trend</CardTitle>
+        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Revenue Trend</CardTitle>
         <CardDescription>Weekly income from completed visits</CardDescription>
       </CardHeader>
       <CardContent>
@@ -135,7 +135,7 @@ export function BookingsBarChart({
   return (
     <Card className="border-border/60">
       <CardHeader>
-        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Bookings by Treatment</CardTitle>
+        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Bookings by Treatment</CardTitle>
         <CardDescription>Distribution across services</CardDescription>
       </CardHeader>
       <CardContent>
@@ -168,7 +168,7 @@ export function ClientGrowthChart({
   return (
     <Card className="border-border/60">
       <CardHeader>
-        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Client Growth</CardTitle>
+        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Client Growth</CardTitle>
         <CardDescription>New registrations by month</CardDescription>
       </CardHeader>
       <CardContent>
@@ -201,7 +201,7 @@ export function OccupancyHeatmap({
   return (
     <Card className="border-border/60">
       <CardHeader>
-        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Occupancy Heatmap</CardTitle>
+        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Occupancy Heatmap</CardTitle>
         <CardDescription>Busier days appear darker (last 5 weeks)</CardDescription>
       </CardHeader>
       <CardContent>

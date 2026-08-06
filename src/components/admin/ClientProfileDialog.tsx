@@ -179,7 +179,7 @@ export function ClientProfileDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl text-[#271024] dark:text-[#e3ae72]">
+          <DialogTitle className="text-2xl text-[#7a219f] dark:text-[#efcafe]">
             {client.name || "Client Profile"}
           </DialogTitle>
           <DialogDescription>View and manage client information</DialogDescription>
@@ -210,30 +210,30 @@ export function ClientProfileDialog({
 
           {/* Stats Cards */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="p-4 rounded-lg border border-[#271024]/10 dark:border-[#e3ae72]/20">
+            <div className="p-4 rounded-lg border border-[#7a219f]/10 dark:border-[#efcafe]/20">
               <div className="flex items-center gap-2 mb-1">
-                <DollarSign className="h-4 w-4 text-[#e3ae72]" />
+                <DollarSign className="h-4 w-4 text-[#efcafe]" />
                 <span className="text-xs text-muted-foreground">Total Spent</span>
               </div>
-              <p className="text-xl font-bold text-[#271024] dark:text-[#e3ae72]">
+              <p className="text-xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                 ${client.totalSpending.toLocaleString()}
               </p>
             </div>
-            <div className="p-4 rounded-lg border border-[#271024]/10 dark:border-[#e3ae72]/20">
+            <div className="p-4 rounded-lg border border-[#7a219f]/10 dark:border-[#efcafe]/20">
               <div className="flex items-center gap-2 mb-1">
                 <Calendar className="h-4 w-4 text-amber-500" />
                 <span className="text-xs text-muted-foreground">Pending</span>
               </div>
-              <p className="text-xl font-bold text-[#271024] dark:text-[#e3ae72]">
+              <p className="text-xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                 ${client.pendingSpending.toLocaleString()}
               </p>
             </div>
-            <div className="p-4 rounded-lg border border-[#271024]/10 dark:border-[#e3ae72]/20">
+            <div className="p-4 rounded-lg border border-[#7a219f]/10 dark:border-[#efcafe]/20">
               <div className="flex items-center gap-2 mb-1">
                 <FileText className="h-4 w-4 text-primary" />
                 <span className="text-xs text-muted-foreground">Completed</span>
               </div>
-              <p className="text-xl font-bold text-[#271024] dark:text-[#e3ae72]">
+              <p className="text-xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                 {client.statusCounts.COMPLETED}
               </p>
             </div>
@@ -241,7 +241,7 @@ export function ClientProfileDialog({
 
           {/* Preferences Section */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-[#271024] dark:text-[#e3ae72]">
+            <h3 className="font-semibold text-[#7a219f] dark:text-[#efcafe]">
               Preferences & Notes
             </h3>
             <div className="grid gap-4">
@@ -287,7 +287,7 @@ export function ClientProfileDialog({
 
           {/* Booking History */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-[#271024] dark:text-[#e3ae72]">
+            <h3 className="font-semibold text-[#7a219f] dark:text-[#efcafe]">
               Booking History
             </h3>
             {client.bookings.length === 0 ? (

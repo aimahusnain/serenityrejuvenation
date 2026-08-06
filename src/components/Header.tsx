@@ -109,7 +109,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                     navigationMenuTriggerStyle(),
                     isHome
                       ? t.menuTrigger
-                      : "text-[#271024] hover:bg-[#271024]/8 dark:text-[#e3ae72] dark:hover:bg-[#e3ae72]/10",
+                      : "text-[#7a219f] hover:bg-[#7a219f]/8 dark:text-[#efcafe] dark:hover:bg-[#efcafe]/10",
                   )}
                 >
                   Gallery
@@ -159,7 +159,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                     "hidden cursor-pointer sm:flex",
                     isHome
                       ? t.ghostBtn
-                      : "text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/8 dark:hover:bg-[#e3ae72]/10",
+                      : "text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/8 dark:hover:bg-[#efcafe]/10",
                   )}
                 >
                   <User className="mr-2 size-4" />
@@ -174,7 +174,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                     "sm:flex hidden",
                     isHome
                       ? t.primaryBtn
-                      : "bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]",
+                      : "bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]",
                   )}
                 >
                   <LogIn className="mr-2 size-4" />
@@ -194,7 +194,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                 className={cn(
                   isHome
                     ? t.ghostBtn
-                    : "text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/8 dark:hover:bg-[#e3ae72]/10",
+                    : "text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/8 dark:hover:bg-[#efcafe]/10",
                 )}
               >
                 <Menu className="size-6" />
@@ -255,7 +255,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                                     "text-xs font-medium leading-snug",
                                     isHome
                                       ? "text-[var(--home-text)]"
-                                      : "text-[#271024] dark:text-[#e3ae72]",
+                                      : "text-[#7a219f] dark:text-[#efcafe]",
                                   )}
                                 >
                                   {service.title}
@@ -263,7 +263,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                                 <span
                                   className={cn(
                                     "text-[11px] font-medium whitespace-nowrap pt-px",
-                                    isHome ? "text-[var(--home-accent)]" : "text-[#e3ae72]",
+                                    isHome ? "text-[var(--home-accent)]" : "text-[#efcafe]",
                                   )}
                                 >
                                   {service.price ? `$${service.price}.00` : "Contact"}
@@ -274,7 +274,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                                   "text-[11px] leading-relaxed line-clamp-2",
                                   isHome
                                     ? "text-[var(--home-text)]/55"
-                                    : "text-[#271024]/55 dark:text-[#e3ae72]/55",
+                                    : "text-[#7a219f]/55 dark:text-[#efcafe]/55",
                                 )}
                               >
                                 {service.description}
@@ -347,7 +347,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                     <Link href="/login" onClick={() => setTimeout(() => {}, 0)}>
                       <Button
                         size="sm"
-                        className={cn("w-full", isHome ? t.primaryBtn : "bg-[#271024] hover:bg-[#271024]/80 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]")}
+                        className={cn("w-full", isHome ? t.primaryBtn : "bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]")}
                       >
                         <LogIn className="mr-2 size-4" />
                         Login

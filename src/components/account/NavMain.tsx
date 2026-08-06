@@ -42,7 +42,7 @@ export function NavMain({ items }: NavMainProps) {
         <SidebarMenuItem key={item.title}>
           <SidebarMenuButton
             asChild
-            className="cursor-pointer data-[active=true]:bg-[#271024]/10 data-[active=true]:text-[#271024] dark:data-[active=true]:bg-[#e3ae72]/10 dark:data-[active=true]:text-[#e3ae72]"
+            className="cursor-pointer data-[active=true]:bg-[#7a219f]/10 data-[active=true]:text-[#7a219f] dark:data-[active=true]:bg-[#efcafe]/10 dark:data-[active=true]:text-[#efcafe]"
             data-active={isActive(item)}
           >
             <Link href={item.url}>

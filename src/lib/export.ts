@@ -107,7 +107,7 @@ export function exportToExcel<T extends Record<string, any>>(
   // Header row
   table += "<thead><tr>";
   keys.forEach((key) => {
-    table += `<th style="background-color: #271024; color: white; padding: 8px; text-align: left;">${String(key)}</th>`;
+    table += `<th style="background-color: #7a219f; color: white; padding: 8px; text-align: left;">${String(key)}</th>`;
   });
   table += "</tr></thead>";
 
@@ -165,9 +165,9 @@ export function printData(data: any[], title: string = "Report"): void {
       <title>${title}</title>
       <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
-        h1 { color: #271024; }
+        h1 { color: #7a219f; }
         table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th { background-color: #271024; color: white; padding: 10px; text-align: left; }
+        th { background-color: #7a219f; color: white; padding: 10px; text-align: left; }
         td { padding: 8px; border: 1px solid #ddd; }
         tr:nth-child(even) { background-color: #f9f9f9; }
         .footer { margin-top: 30px; font-size: 12px; color: #666; }

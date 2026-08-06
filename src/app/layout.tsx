@@ -30,7 +30,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning className={fontSans.variable}>
-      <body className="antialiased bg-white dark:bg-[#271024]">
+      <body className="antialiased">
       <TooltipProvider>
         <SessionProvider session={session}>
           <ThemeContextProvider>

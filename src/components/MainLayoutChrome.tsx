@@ -17,7 +17,7 @@ export default function MainLayoutChrome({
   }
 
   return (
-    <div className="antialiased bg-white dark:bg-[#271024]">
+    <div className="antialiased bg-white dark:bg-[#7a219f]">
       <Header />
       {children}
       <Footer />

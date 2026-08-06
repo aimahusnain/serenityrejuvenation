@@ -1,13 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import HomeColorCustomizer, {
-  defaultHomeThemeColors,
-} from "@/components/home/HomeColorCustomizer";
 import {
-  HOME_THEME_STORAGE_KEY,
+  DEFAULT_HOME_ACCENT,
+  DEFAULT_HOME_BG,
+  DEFAULT_HOME_PURPLE,
   buildHomeThemeStyle,
   isColorDark,
   type HomeThemeColors,
@@ -20,35 +19,19 @@ type Props = {
 };
 
 export default function HomePageShell({ children }: Props) {
-  const [colors, setColors] = useState<HomeThemeColors>(defaultHomeThemeColors);
-
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(HOME_THEME_STORAGE_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw) as Partial<HomeThemeColors>;
-      setColors((prev) => ({
-        background: parsed.background ?? prev.background,
-        accent: parsed.accent ?? prev.accent,
-        purple: parsed.purple ?? prev.purple,
-      }));
-    } catch {
-      /* ignore */
-    }
-  }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem(HOME_THEME_STORAGE_KEY, JSON.stringify(colors));
-  }, [colors]);
+  const colors: HomeThemeColors = useMemo(
+    () => ({
+      background: DEFAULT_HOME_BG,
+      accent: DEFAULT_HOME_ACCENT,
+      purple: DEFAULT_HOME_PURPLE,
+    }),
+    [],
+  );
 
   const themeStyle = useMemo(
     () => buildHomeThemeStyle(colors.background, colors.accent, colors.purple),
     [colors],
   );
-
-  const reset = useCallback(() => {
-    setColors(defaultHomeThemeColors());
-  }, []);
 
   const darkBg = isColorDark(colors.background);
 
@@ -62,7 +45,6 @@ export default function HomePageShell({ children }: Props) {
           <Header variant="home" />
           {children}
           <Footer variant="home" />
-          <HomeColorCustomizer colors={colors} onChange={setColors} onReset={reset} />
         </div>
       </HomeThemeColorsProvider>
     </HomeThemeUiProvider>

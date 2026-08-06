@@ -210,14 +210,14 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
           <title>Treatment History - ${new Date().toLocaleDateString()}</title>
           <style>
             body { font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; }
-            h1 { color: #271024; border-bottom: 2px solid #e3ae72; padding-bottom: 10px; }
+            h1 { color: #7a219f; border-bottom: 2px solid #efcafe; padding-bottom: 10px; }
             .stats { display: flex; justify-content: space-between; margin: 20px 0; padding: 15px; background: #f5f5f5; border-radius: 8px; }
             .stat { text-align: center; }
-            .stat-value { font-size: 24px; font-weight: bold; color: #271024; }
+            .stat-value { font-size: 24px; font-weight: bold; color: #7a219f; }
             .stat-label { font-size: 12px; color: #666; }
             table { width: 100%; border-collapse: collapse; margin-top: 20px; }
             th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-            th { background: #f9f9f9; font-weight: 600; color: #271024; }
+            th { background: #f9f9f9; font-weight: 600; color: #7a219f; }
             .status { padding: 4px 8px; border-radius: 4px; font-size: 12px; }
             .status-COMPLETED { background: #d4edda; color: #155724; }
             .status-CONFIRMED { background: #d1ecf1; color: #0c5460; }
@@ -289,10 +289,10 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-[#271024] dark:text-[#e3ae72] font-serif">
+          <h1 className="text-3xl font-bold text-[#7a219f] dark:text-[#efcafe] font-serif">
             Treatment History
           </h1>
-          <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 mt-1">
+          <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65 mt-1">
             Your complete wellness journey and investment
           </p>
         </div>
@@ -301,7 +301,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
             <DialogTrigger asChild>
               <Button
                 variant="outline"
-                className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+                className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
               >
                 <Download className="mr-2 h-4 w-4" />
                 Export
@@ -309,7 +309,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+                <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">
                   Export Treatment History
                 </DialogTitle>
                 <DialogDescription>
@@ -319,7 +319,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
               <div className="space-y-3 py-4">
                 <Button
                   variant="outline"
-                  className="w-full justify-start border-[#271024]/20 dark:border-[#e3ae72]/30"
+                  className="w-full justify-start border-[#7a219f]/20 dark:border-[#efcafe]/30"
                   onClick={() => handleExport("pdf")}
                 >
                   <FileText className="mr-2 h-4 w-4" />
@@ -328,7 +328,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
                 </Button>
                 <Button
                   variant="outline"
-                  className="w-full justify-start border-[#271024]/20 dark:border-[#e3ae72]/30"
+                  className="w-full justify-start border-[#7a219f]/20 dark:border-[#efcafe]/30"
                   onClick={() => handleExport("csv")}
                 >
                   <Download className="mr-2 h-4 w-4" />
@@ -339,7 +339,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
             </DialogContent>
           </Dialog>
           <Button
-            className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+            className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
             onClick={() => router.push("/user-dashboard/book")}
           >
             <Calendar className="mr-2 h-4 w-4" />
@@ -349,17 +349,17 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
       </div>
 
       {/* Filters Toolbar */}
-      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+      <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
         <CardContent className="p-4">
           <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#271024]/40 dark:text-[#e3ae72]/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#7a219f]/40 dark:text-[#efcafe]/40" />
               <Input
                 placeholder="Search treatments..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 border-[#271024]/20 dark:border-[#e3ae72]/30"
+                className="pl-10 border-[#7a219f]/20 dark:border-[#efcafe]/30"
               />
             </div>
 
@@ -367,7 +367,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
             <div className="flex flex-wrap gap-3 items-center">
               {/* Time Filter */}
               <Select value={timeFilter} onValueChange={(v: TimeFilter) => setTimeFilter(v)}>
-                <SelectTrigger className="w-[160px] border-[#271024]/20 dark:border-[#e3ae72]/30">
+                <SelectTrigger className="w-[160px] border-[#7a219f]/20 dark:border-[#efcafe]/30">
                   <SelectValue placeholder="Time Period" />
                 </SelectTrigger>
                 <SelectContent>
@@ -381,7 +381,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
 
               {/* Sort */}
               <Select value={sortOption} onValueChange={(v: SortOption) => setSortOption(v)}>
-                <SelectTrigger className="w-[140px] border-[#271024]/20 dark:border-[#e3ae72]/30">
+                <SelectTrigger className="w-[140px] border-[#7a219f]/20 dark:border-[#efcafe]/30">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -400,68 +400,68 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
       {/* Statistics Cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* Total Spent */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm bg-gradient-to-br from-[#271024]/5 to-[#e3ae72]/5 dark:from-[#e3ae72]/10 dark:to-[#271024]/10">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm bg-gradient-to-br from-[#7a219f]/5 to-[#efcafe]/5 dark:from-[#efcafe]/10 dark:to-[#7a219f]/10">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[#271024]/10 dark:bg-[#e3ae72]/20">
-                <DollarSign className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+              <div className="p-2 rounded-lg bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
+                <DollarSign className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                   ${totalSpent.toLocaleString()}
                 </p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Total Invested</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Total Invested</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Average Cost */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-emerald-500/10">
                 <TrendingUp className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                   ${averageCost.toLocaleString()}
                 </p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Avg. per Treatment</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Avg. per Treatment</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Total Treatments */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-blue-500/10">
                 <Sparkles className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                   {completedBookings.length}
                 </p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Total Treatments</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Total Treatments</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Most Frequent */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-purple-500/10">
                 <Award className="h-5 w-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <p className="text-lg font-bold text-[#271024] dark:text-[#e3ae72] truncate max-w-[120px]">
+                <p className="text-lg font-bold text-[#7a219f] dark:text-[#efcafe] truncate max-w-[120px]">
                   {mostFrequentTreatment || "—"}
                 </p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Most Popular</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Most Popular</p>
               </div>
             </div>
           </CardContent>
@@ -471,9 +471,9 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
       {/* Treatment Breakdown */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Spending by Treatment Type */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Treatment Breakdown</CardTitle>
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Treatment Breakdown</CardTitle>
             <CardDescription>Your favorite treatments and their costs</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -495,20 +495,20 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
                 return (
                   <div key={treatment} className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
+                      <span className="font-medium text-[#7a219f] dark:text-[#efcafe]">
                         {treatment}
                       </span>
-                      <div className="flex items-center gap-3 text-[#271024]/60 dark:text-[#e3ae72]/60">
+                      <div className="flex items-center gap-3 text-[#7a219f]/60 dark:text-[#efcafe]/60">
                         <span>{count} treatments</span>
-                        <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">
+                        <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">
                           ${totalForTreatment.toLocaleString()}
                         </span>
                         <span className="text-xs">({percentage}%)</span>
                       </div>
                     </div>
-                    <div className="h-2 rounded-full bg-[#271024]/10 dark:bg-[#e3ae72]/10 overflow-hidden">
+                    <div className="h-2 rounded-full bg-[#7a219f]/10 dark:bg-[#efcafe]/10 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-[#271024] to-[#e3ae72]"
+                        className="h-full rounded-full bg-gradient-to-r from-[#7a219f] to-[#efcafe]"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
@@ -520,9 +520,9 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
         </Card>
 
         {/* Monthly Spending Trend */}
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Monthly Spending</CardTitle>
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Monthly Spending</CardTitle>
             <CardDescription>Your investment over the last 6 months</CardDescription>
           </CardHeader>
           <CardContent>
@@ -539,16 +539,16 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
                   return (
                     <div key={item.month} className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-[#271024]/70 dark:text-[#e3ae72]/70">
+                        <span className="text-[#7a219f]/70 dark:text-[#efcafe]/70">
                           {item.month}
                         </span>
-                        <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">
+                        <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">
                           ${item.amount.toLocaleString()}
                         </span>
                       </div>
-                      <div className="h-2 rounded-full bg-[#271024]/10 dark:bg-[#e3ae72]/10 overflow-hidden">
+                      <div className="h-2 rounded-full bg-[#7a219f]/10 dark:bg-[#efcafe]/10 overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-[#271024] dark:bg-[#e3ae72]"
+                          className="h-full rounded-full bg-[#7a219f] dark:bg-[#efcafe]"
                           style={{ width: `${percentage}%` }}
                         />
                       </div>
@@ -562,9 +562,9 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
       </div>
 
       {/* Treatment History List */}
-      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+      <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
         <CardHeader>
-          <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Complete History</CardTitle>
+          <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Complete History</CardTitle>
           <CardDescription>
             {filteredBookings.length} treatment{filteredBookings.length !== 1 ? "s" : ""}
           </CardDescription>
@@ -572,15 +572,15 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
         <CardContent className="p-0">
           {filteredBookings.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <Clock className="h-16 w-16 text-[#271024]/20 dark:text-[#e3ae72]/20 mb-4" />
-              <h3 className="text-xl font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">
+              <Clock className="h-16 w-16 text-[#7a219f]/20 dark:text-[#efcafe]/20 mb-4" />
+              <h3 className="text-xl font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">
                 No treatments yet
               </h3>
-              <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 max-w-sm mb-6">
+              <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65 max-w-sm mb-6">
                 Your treatments will appear here. Book your first treatment to start tracking!
               </p>
               <Button
-                className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                 onClick={() => router.push("/user-dashboard/book")}
               >
                 <Calendar className="mr-2 h-4 w-4" />
@@ -588,7 +588,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
               </Button>
             </div>
           ) : (
-            <div className="divide-y divide-[#271024]/10 dark:divide-[#e3ae72]/20">
+            <div className="divide-y divide-[#7a219f]/10 dark:divide-[#efcafe]/20">
               {filteredBookings.map((booking) => (
                 <TreatmentRecordCard
                   key={booking.id}
@@ -608,7 +608,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
       <Dialog open={receiptDialogOpen} onOpenChange={setReceiptDialogOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Treatment Receipt</DialogTitle>
+            <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">Treatment Receipt</DialogTitle>
             <DialogDescription>
               {selectedTreatment &&
                 enriched.find((b) => b.id === selectedTreatment)?.serviceName}
@@ -623,8 +623,8 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
                 return (
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Date</span>
-                      <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
+                      <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Date</span>
+                      <span className="font-medium text-[#7a219f] dark:text-[#efcafe]">
                         {new Date(booking.date).toLocaleDateString("en-US", {
                           month: "long",
                           day: "numeric",
@@ -633,21 +633,21 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Treatment</span>
-                      <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
+                      <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Treatment</span>
+                      <span className="font-medium text-[#7a219f] dark:text-[#efcafe]">
                         {booking.serviceName}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Amount Paid</span>
-                      <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">
+                      <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Amount Paid</span>
+                      <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">
                         ${booking.servicePrice.toLocaleString()}
                       </span>
                     </div>
-                    <div className="pt-3 border-t border-[#271024]/10 dark:border-[#e3ae72]/20">
+                    <div className="pt-3 border-t border-[#7a219f]/10 dark:border-[#efcafe]/20">
                       <div className="flex justify-between text-base">
-                        <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">Total</span>
-                        <span className="font-bold text-[#271024] dark:text-[#e3ae72]">
+                        <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">Total</span>
+                        <span className="font-bold text-[#7a219f] dark:text-[#efcafe]">
                           ${booking.servicePrice.toLocaleString()}
                         </span>
                       </div>
@@ -659,12 +659,12 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
           )}
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+              <Button variant="outline" className="border-[#7a219f]/20 dark:border-[#efcafe]/30">
                 Close
               </Button>
             </DialogClose>
             <Button
-              className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+              className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
               onClick={() => {
                 const booking = enriched.find((b) => b.id === selectedTreatment);
                 if (!booking) return;
@@ -677,14 +677,14 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
                     <style>
                       body { font-family: Arial, sans-serif; padding: 40px; max-width: 600px; margin: 0 auto; }
                       .header { text-align: center; margin-bottom: 30px; }
-                      .header h1 { color: #271024; margin: 0; }
+                      .header h1 { color: #7a219f; margin: 0; }
                       .header p { color: #666; margin: 5px 0 0; }
-                      .receipt-box { border: 2px dashed #e3ae72; padding: 30px; border-radius: 8px; }
+                      .receipt-box { border: 2px dashed #efcafe; padding: 30px; border-radius: 8px; }
                       .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
                       .row:last-child { border-bottom: none; }
                       .label { color: #666; }
-                      .value { font-weight: 600; color: #271024; }
-                      .total { font-size: 24px; color: #271024; }
+                      .value { font-weight: 600; color: #7a219f; }
+                      .total { font-size: 24px; color: #7a219f; }
                       .footer { margin-top: 30px; text-align: center; color: #999; font-size: 12px; }
                       .badge { display: inline-block; padding: 5px 10px; background: #d4edda; color: #155724; border-radius: 4px; font-size: 12px; }
                     </style>
@@ -718,7 +718,7 @@ export function TreatmentsHistory({ bookings, products }: TreatmentsHistoryProps
                         <span class="value">${booking.notes}</span>
                       </div>
                       ` : ""}
-                      <div class="row" style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #271024;">
+                      <div class="row" style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #7a219f;">
                         <span class="label">Total Paid</span>
                         <span class="value total">$${booking.servicePrice.toFixed(2)}</span>
                       </div>
@@ -766,8 +766,8 @@ function TreatmentRecordCard({
   return (
     <div
       className={cn(
-        "p-4 sm:p-6 transition-all hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5",
-        isExpanded && "bg-[#271024]/5 dark:bg-[#e3ae72]/5"
+        "p-4 sm:p-6 transition-all hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/5",
+        isExpanded && "bg-[#7a219f]/5 dark:bg-[#efcafe]/5"
       )}
     >
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
@@ -775,10 +775,10 @@ function TreatmentRecordCard({
         <div className="space-y-3 flex-1">
           <div className="flex flex-col sm:flex-row sm:items-start gap-3">
             <div className="flex-1">
-              <h3 className="text-base sm:text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
+              <h3 className="text-base sm:text-lg font-semibold text-[#7a219f] dark:text-[#efcafe]">
                 {booking.serviceName}
               </h3>
-              <div className="flex items-center gap-4 mt-1 text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">
+              <div className="flex items-center gap-4 mt-1 text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60">
                 <div className="flex items-center gap-1">
                   <Calendar className="h-3.5 w-3.5" />
                   {appointmentDate.toLocaleDateString("en-US", {
@@ -797,41 +797,41 @@ function TreatmentRecordCard({
               </div>
             </div>
             <div className="text-right">
-              <p className="text-xl font-bold text-[#271024] dark:text-[#e3ae72]">
+              <p className="text-xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                 ${booking.servicePrice.toLocaleString()}
               </p>
-              <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Paid</p>
+              <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Paid</p>
             </div>
           </div>
 
           {/* Expandable Details */}
           {isExpanded && (
-            <div className="space-y-2 pt-3 border-t border-[#271024]/10 dark:border-[#e3ae72]/20">
+            <div className="space-y-2 pt-3 border-t border-[#7a219f]/10 dark:border-[#efcafe]/20">
               <div className="grid gap-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Treatment ID</span>
-                  <span className="text-[#271024] dark:text-[#e3ae72] font-mono text-xs">
+                  <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Treatment ID</span>
+                  <span className="text-[#7a219f] dark:text-[#efcafe] font-mono text-xs">
                     {booking.id.slice(0, 12)}...
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Booking Date</span>
-                  <span className="text-[#271024] dark:text-[#e3ae72]">
+                  <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Booking Date</span>
+                  <span className="text-[#7a219f] dark:text-[#efcafe]">
                     {booking.createdAt
                       ? new Date(booking.createdAt).toLocaleDateString()
                       : "N/A"}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Status</span>
+                  <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Status</span>
                   <Badge className="bg-blue-500/15 text-blue-700 dark:text-blue-400 border-blue-500/20">
                     ✓ Completed
                   </Badge>
                 </div>
                 {booking.notes && (
                   <div className="pt-2">
-                    <span className="text-[#271024]/60 dark:text-[#e3ae72]/60">Notes: </span>
-                    <span className="text-[#271024] dark:text-[#e3ae72]">{booking.notes}</span>
+                    <span className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Notes: </span>
+                    <span className="text-[#7a219f] dark:text-[#efcafe]">{booking.notes}</span>
                   </div>
                 )}
               </div>
@@ -845,7 +845,7 @@ function TreatmentRecordCard({
             variant="outline"
             size="sm"
             onClick={onViewReceipt}
-            className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+            className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
           >
             <Receipt className="mr-2 h-4 w-4" />
             Receipt
@@ -854,7 +854,7 @@ function TreatmentRecordCard({
             variant="ghost"
             size="sm"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-[#271024]/60 dark:text-[#e3ae72]/60 hover:text-[#271024] dark:hover:text-[#e3ae72]"
+            className="text-[#7a219f]/60 dark:text-[#efcafe]/60 hover:text-[#7a219f] dark:hover:text-[#efcafe]"
           >
             {isExpanded ? "Show Less" : "Details"}
           </Button>

@@ -59,20 +59,20 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
     : session?.user?.email?.[0].toUpperCase() || "A";
 
   return (
-    <Sidebar collapsible="icon" side="left" className="border-r border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]" {...props}>
-      <SidebarHeader className="border-b border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]">
+    <Sidebar collapsible="icon" side="left" className="border-r border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]" {...props}>
+      <SidebarHeader className="border-b border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="flex aspect-square size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#e3ae72] to-[#d49e5e] text-[#271024] shadow-lg">
+                <div className="flex aspect-square size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#efcafe] to-[#7a219f] text-[#7a219f] shadow-lg">
                   <TrendingUp className="size-5" />
                 </div>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-sm font-semibold text-[#271024] dark:text-[#e3ae72]">
+                  <span className="text-sm font-semibold text-[#7a219f] dark:text-[#efcafe]">
                     Admin
                   </span>
-                  <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+                  <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
                     Management Dashboard
                   </span>
                 </div>
@@ -81,9 +81,9 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="bg-[#f8f9fa]/50 dark:bg-[#271024]/30">
+      <SidebarContent className="bg-[#f8f9fa]/50 dark:bg-[#7a219f]/30">
         <div className="px-3 py-2">
-          <p className="text-xs font-semibold text-[#271024]/60 dark:text-[#e3ae72]/60 px-3 mb-2">
+          <p className="text-xs font-semibold text-[#7a219f]/60 dark:text-[#efcafe]/60 px-3 mb-2">
             MENU
           </p>
           <Suspense fallback={null}>
@@ -91,7 +91,7 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           </Suspense>
         </div>
       </SidebarContent>
-      <SidebarFooter className="border-t border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]">
+      <SidebarFooter className="border-t border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
@@ -108,14 +108,14 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           <SidebarMenuItem>
             <SidebarMenuButton size="sm" asChild className="cursor-pointer">
               <div className="flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#e3ae72] to-[#d49e5e] text-[#271024]">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#efcafe] to-[#7a219f] text-[#7a219f]">
                   <span className="text-xs font-bold">{userInitials}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
+                  <span className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">
                     {session?.user?.name || "Admin"}
                   </span>
-                  <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+                  <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
                     {session?.user?.email}
                   </span>
                 </div>

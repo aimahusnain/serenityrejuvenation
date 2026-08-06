@@ -121,21 +121,21 @@ export default function PrivacyPolicyPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#271024]/5 to-transparent dark:from-[#e3ae72]/5">
+    <div className="min-h-screen bg-gradient-to-b from-[#7a219f]/5 to-transparent dark:from-[#efcafe]/5">
       {/* Header */}
-      <div className="bg-[#271024] dark:bg-[#e3ae72] py-16">
+      <div className="bg-[#7a219f] dark:bg-[#efcafe] py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 dark:bg-[#271024]/10 mb-6">
-              <FileText className="w-8 h-8 text-white dark:text-[#271024]" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 dark:bg-[#7a219f]/10 mb-6">
+              <FileText className="w-8 h-8 text-white dark:text-[#7a219f]" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white dark:text-[#271024] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-white dark:text-[#7a219f] mb-4">
               Privacy Policy
             </h1>
-            <p className="text-xl text-white/80 dark:text-[#271024]/80">
+            <p className="text-xl text-white/80 dark:text-[#7a219f]/80">
               Your privacy matters to us. Learn how we protect and use your information.
             </p>
-            <p className="text-sm text-white/60 dark:text-[#271024]/60 mt-4">
+            <p className="text-sm text-white/60 dark:text-[#7a219f]/60 mt-4">
               Last Updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
             </p>
           </div>
@@ -146,11 +146,11 @@ export default function PrivacyPolicyPage() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-12">
           {/* Introduction */}
-          <div className="bg-white dark:bg-[#271024] rounded-2xl p-8 shadow-sm border border-[#271024]/10 dark:border-[#e3ae72]/20">
-            <p className="text-[#271024]/70 dark:text-[#e3ae72]/70 leading-relaxed text-lg">
-              At <strong className="text-[#271024] dark:text-[#e3ae72]">Serenity Rejuvenation</strong>, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you visit our website, book appointments, or use our services.
+          <div className="bg-white dark:bg-[#7a219f] rounded-2xl p-8 shadow-sm border border-[#7a219f]/10 dark:border-[#efcafe]/20">
+            <p className="text-[#7a219f]/70 dark:text-[#efcafe]/70 leading-relaxed text-lg">
+              At <strong className="text-[#7a219f] dark:text-[#efcafe]">Serenity Rejuvenation</strong>, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you visit our website, book appointments, or use our services.
             </p>
-            <p className="text-[#271024]/70 dark:text-[#e3ae72]/70 leading-relaxed text-lg mt-4">
+            <p className="text-[#7a219f]/70 dark:text-[#efcafe]/70 leading-relaxed text-lg mt-4">
               By using our services, you agree to the terms of this Privacy Policy. If you do not agree with these terms, please do not use our website or services.
             </p>
           </div>
@@ -161,14 +161,14 @@ export default function PrivacyPolicyPage() {
             return (
               <div
                 key={sectionIndex}
-                className="bg-white dark:bg-[#271024] rounded-2xl shadow-sm border border-[#271024]/10 dark:border-[#e3ae72]/20 overflow-hidden"
+                className="bg-white dark:bg-[#7a219f] rounded-2xl shadow-sm border border-[#7a219f]/10 dark:border-[#efcafe]/20 overflow-hidden"
               >
                 {/* Section Header */}
-                <div className="bg-[#271024]/5 dark:bg-[#e3ae72]/10 px-8 py-6 flex items-center gap-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#271024] dark:bg-[#e3ae72]">
-                    <Icon className="w-6 h-6 text-white dark:text-[#271024]" />
+                <div className="bg-[#7a219f]/5 dark:bg-[#efcafe]/10 px-8 py-6 flex items-center gap-4">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#7a219f] dark:bg-[#efcafe]">
+                    <Icon className="w-6 h-6 text-white dark:text-[#7a219f]" />
                   </div>
-                  <h2 className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+                  <h2 className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                     {section.title}
                   </h2>
                 </div>
@@ -180,14 +180,14 @@ export default function PrivacyPolicyPage() {
                       key={itemIndex}
                       className={`pb-6 ${
                         itemIndex < section.content.length - 1
-                          ? "border-b border-[#271024]/10 dark:border-[#e3ae72]/15"
+                          ? "border-b border-[#7a219f]/10 dark:border-[#efcafe]/15"
                           : ""
                       }`}
                     >
-                      <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">
+                      <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">
                         {item.heading}
                       </h3>
-                      <p className="text-[#271024]/60 dark:text-[#e3ae72]/70 leading-relaxed">
+                      <p className="text-[#7a219f]/60 dark:text-[#efcafe]/70 leading-relaxed">
                         {item.text}
                       </p>
                     </div>
@@ -198,9 +198,9 @@ export default function PrivacyPolicyPage() {
           })}
 
           {/* Contact Section */}
-          <div className="bg-gradient-to-br from-[#271024] to-[#0a3a66] dark:from-[#e3ae72] dark:to-[#d49e5e] rounded-2xl p-8 text-white dark:text-[#271024]">
+          <div className="bg-gradient-to-br from-[#7a219f] to-[#0a3a66] dark:from-[#efcafe] dark:to-[#7a219f] rounded-2xl p-8 text-white dark:text-[#7a219f]">
             <h2 className="text-2xl font-bold mb-4">Questions About Your Privacy?</h2>
-            <p className="text-white/80 dark:text-[#271024]/80 mb-6">
+            <p className="text-white/80 dark:text-[#7a219f]/80 mb-6">
               If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal information, please contact us:
             </p>
             <div className="space-y-2">
@@ -208,8 +208,8 @@ export default function PrivacyPolicyPage() {
               <p><strong>Phone:</strong> (555) 123-4567</p>
               <p><strong>Hours:</strong> Daily 8:00 AM - 5:00 PM</p>
             </div>
-            <div className="mt-6 pt-6 border-t border-white/20 dark:border-[#271024]/20">
-              <p className="text-sm text-white/70 dark:text-[#271024]/70">
+            <div className="mt-6 pt-6 border-t border-white/20 dark:border-[#7a219f]/20">
+              <p className="text-sm text-white/70 dark:text-[#7a219f]/70">
                 We will respond to your privacy-related inquiries within 30 business days.
               </p>
             </div>
@@ -219,7 +219,7 @@ export default function PrivacyPolicyPage() {
           <div className="text-center pt-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-[#271024] dark:text-[#e3ae72] hover:text-[#271024]/80 dark:hover:text-[#e3ae72]/80 font-medium transition-colors"
+              className="inline-flex items-center gap-2 text-[#7a219f] dark:text-[#efcafe] hover:text-[#7a219f]/80 dark:hover:text-[#efcafe]/80 font-medium transition-colors"
             >
               ← Back to Home
             </Link>

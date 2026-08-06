@@ -161,15 +161,15 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-[#271024] dark:text-[#e3ae72] font-serif">
+          <h1 className="text-3xl font-bold text-[#7a219f] dark:text-[#efcafe] font-serif">
             My Appointments
           </h1>
-          <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 mt-1">
+          <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65 mt-1">
             Manage your scheduled and past appointments
           </p>
         </div>
         <Button
-          className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+          className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
           onClick={() => router.push("/user-dashboard/book")}
         >
           <Calendar className="mr-2 h-4 w-4" />
@@ -201,31 +201,31 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
       )}
 
       {/* Filters Toolbar */}
-      <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+      <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
         <CardContent className="p-4">
           <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#271024]/40 dark:text-[#e3ae72]/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#7a219f]/40 dark:text-[#efcafe]/40" />
               <Input
                 placeholder="Search appointments..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 border-[#271024]/20 dark:border-[#e3ae72]/30"
+                className="pl-10 border-[#7a219f]/20 dark:border-[#efcafe]/30"
               />
             </div>
 
             {/* Filters */}
             <div className="flex flex-wrap gap-3 items-center">
               {/* View Mode Toggle */}
-              <div className="flex items-center gap-1 p-1 rounded-lg bg-[#271024]/5 dark:bg-[#e3ae72]/10">
+              <div className="flex items-center gap-1 p-1 rounded-lg bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
                 <Button
                   variant={viewMode === "list" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setViewMode("list")}
                   className={cn(
                     "h-8",
-                    viewMode === "list" && "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]"
+                    viewMode === "list" && "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]"
                   )}
                 >
                   <List className="h-4 w-4" />
@@ -236,7 +236,7 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
                   onClick={() => setViewMode("calendar")}
                   className={cn(
                     "h-8",
-                    viewMode === "calendar" && "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]"
+                    viewMode === "calendar" && "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]"
                   )}
                 >
                   <CalendarDays className="h-4 w-4" />
@@ -245,7 +245,7 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
 
               {/* Status Filter */}
               <Select value={statusFilter} onValueChange={(v: StatusFilter) => setStatusFilter(v)}>
-                <SelectTrigger className="w-[140px] border-[#271024]/20 dark:border-[#e3ae72]/30">
+                <SelectTrigger className="w-[140px] border-[#7a219f]/20 dark:border-[#efcafe]/30">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -259,7 +259,7 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
 
               {/* Time Filter */}
               <Select value={timeFilter} onValueChange={(v: TimeFilter) => setTimeFilter(v)}>
-                <SelectTrigger className="w-35 border-[#271024]/20 dark:border-[#e3ae72]/30">
+                <SelectTrigger className="w-35 border-[#7a219f]/20 dark:border-[#efcafe]/30">
                   <SelectValue placeholder="Time" />
                 </SelectTrigger>
                 <SelectContent>
@@ -277,58 +277,58 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
 
       {/* Stats Summary */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm bg-gradient-to-br from-[#271024]/5 to-[#e3ae72]/5 dark:from-[#e3ae72]/10 dark:to-[#271024]/10">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm bg-gradient-to-br from-[#7a219f]/5 to-[#efcafe]/5 dark:from-[#efcafe]/10 dark:to-[#7a219f]/10">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[#271024]/10 dark:bg-[#e3ae72]/20">
-                <Calendar className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+              <div className="p-2 rounded-lg bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
+                <Calendar className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">{upcomingCount}</p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Upcoming</p>
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">{upcomingCount}</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Upcoming</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-emerald-500/10">
                 <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">✓</span>
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                   {enriched.filter((b) => b.status === "CONFIRMED").length}
                 </p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Confirmed</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Confirmed</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-amber-500/10">
                 <span className="text-lg font-bold text-amber-600 dark:text-amber-400">⏳</span>
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                   {enriched.filter((b) => b.status === "PENDING").length}
                 </p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Pending</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Pending</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-blue-500/10">
                 <span className="text-lg font-bold text-blue-600 dark:text-blue-400">✓</span>
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">{pastCount}</p>
-                <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">Past Visits</p>
+                <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">{pastCount}</p>
+                <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">Past Visits</p>
               </div>
             </div>
           </CardContent>
@@ -337,9 +337,9 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
 
       {/* Calendar View */}
       {viewMode === "calendar" && (
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Calendar View</CardTitle>
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Calendar View</CardTitle>
             <CardDescription>See your appointments at a glance</CardDescription>
           </CardHeader>
           <CardContent>
@@ -352,19 +352,19 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
       {viewMode === "list" && (
         <>
           {filteredAppointments.length === 0 ? (
-            <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+            <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
               <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-                <Calendar className="h-16 w-16 text-[#271024]/20 dark:text-[#e3ae72]/20 mb-4" />
-                <h3 className="text-xl font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">
+                <Calendar className="h-16 w-16 text-[#7a219f]/20 dark:text-[#efcafe]/20 mb-4" />
+                <h3 className="text-xl font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">
                   No appointments found
                 </h3>
-                <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 max-w-sm mb-6">
+                <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65 max-w-sm mb-6">
                   {searchQuery
                     ? "Try adjusting your search or filters"
                     : "You don't have any appointments yet. Book your first wellness session!"}
                 </p>
                 <Button
-                  className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                  className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                   onClick={() => router.push("/user-dashboard/book")}
                 >
                   <Calendar className="mr-2 h-4 w-4" />
@@ -391,10 +391,10 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
       <Dialog open={cancelDialogOpen} onOpenChange={setCancelDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Cancel Appointment?</DialogTitle>
+            <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">Cancel Appointment?</DialogTitle>
             <DialogDescription>
               Are you sure you want to cancel your{" "}
-              <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">
+              <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">
                 {selectedAppointment?.serviceName}
               </span>{" "}
               appointment on{" "}
@@ -411,7 +411,7 @@ export function MyAppointments({ bookings, products }: MyAppointmentsProps) {
           </DialogHeader>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+              <Button variant="outline" className="border-[#7a219f]/20 dark:border-[#efcafe]/30">
                 Keep Appointment
               </Button>
             </DialogClose>
@@ -449,22 +449,22 @@ function AppointmentCard({
   return (
     <Card
       className={cn(
-        "border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm transition-all hover:shadow-md overflow-hidden",
+        "border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm transition-all hover:shadow-md overflow-hidden",
         appointment.status === "CANCELLED" && "opacity-60"
       )}
     >
       <CardContent className="p-0">
         <div className="flex flex-col sm:flex-row">
           {/* Date Section */}
-          <div className="flex sm:flex-col items-center justify-center gap-2 p-4 sm:p-6 bg-gradient-to-br from-[#271024]/5 to-[#e3ae72]/5 dark:from-[#e3ae72]/10 dark:to-[#271024]/10 sm:min-w-[100px]">
+          <div className="flex sm:flex-col items-center justify-center gap-2 p-4 sm:p-6 bg-gradient-to-br from-[#7a219f]/5 to-[#efcafe]/5 dark:from-[#efcafe]/10 dark:to-[#7a219f]/10 sm:min-w-[100px]">
             <div className="text-center">
-              <p className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+              <p className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                 {appointmentDate.getDate()}
               </p>
-              <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60 uppercase">
+              <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60 uppercase">
                 {appointmentDate.toLocaleDateString("en-US", { month: "short" })}
               </p>
-              <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">
+              <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
                 {appointmentDate.toLocaleDateString("en-US", { weekday: "short" })}
               </p>
             </div>
@@ -476,7 +476,7 @@ function AppointmentCard({
               {/* Main Info */}
               <div className="space-y-3 flex-1">
                 <div className="flex items-start sm:items-center gap-3 flex-wrap">
-                  <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
+                  <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe]">
                     {appointment.serviceName}
                   </h3>
                   <Badge className={cn("border", STATUS_COLORS[appointment.status])}>
@@ -485,7 +485,7 @@ function AppointmentCard({
                   </Badge>
                 </div>
 
-                <div className="grid gap-2 text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">
+                <div className="grid gap-2 text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60">
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4" />
                     <span>
@@ -506,18 +506,18 @@ function AppointmentCard({
                 </div>
 
                 {appointment.notes && (
-                  <div className="text-sm text-[#271024]/70 dark:text-[#e3ae72]/70 bg-[#271024]/5 dark:bg-[#e3ae72]/5 rounded-lg p-3">
+                  <div className="text-sm text-[#7a219f]/70 dark:text-[#efcafe]/70 bg-[#7a219f]/5 dark:bg-[#efcafe]/5 rounded-lg p-3">
                     <span className="font-medium">Notes:</span> {appointment.notes}
                   </div>
                 )}
 
                 {/* Expandable Details */}
                 {isExpanded && (
-                  <div className="space-y-2 pt-2 border-t border-[#271024]/10 dark:border-[#e3ae72]/20">
-                    <div className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">
+                  <div className="space-y-2 pt-2 border-t border-[#7a219f]/10 dark:border-[#efcafe]/20">
+                    <div className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60">
                       <span className="font-medium">Appointment ID:</span> {appointment.id.slice(0, 8)}...
                     </div>
-                    <div className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">
+                    <div className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60">
                       <span className="font-medium">Booked on:</span>{" "}
                       {appointment.createdAt
                         ? new Date(appointment.createdAt).toLocaleDateString()
@@ -535,7 +535,7 @@ function AppointmentCard({
                       variant="outline"
                       size="sm"
                       onClick={onCancel}
-                      className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+                      className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
                     >
                       Cancel
                     </Button>
@@ -552,7 +552,7 @@ function AppointmentCard({
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className="text-[#271024]/60 dark:text-[#e3ae72]/60 hover:text-[#271024] dark:hover:text-[#e3ae72]"
+                  className="text-[#7a219f]/60 dark:text-[#efcafe]/60 hover:text-[#7a219f] dark:hover:text-[#efcafe]"
                 >
                   {isExpanded ? "Show Less" : "Show More"}
                 </Button>
@@ -610,13 +610,13 @@ function CalendarView({ bookings }: { bookings: ReturnType<typeof enrichBookings
         key={day}
         className={cn(
           "min-h-24 p-2 border border-border/40 rounded-lg transition-all hover:shadow-sm",
-          isToday && "border-[#e3ae72] dark:border-[#e3ae72] bg-[#e3ae72]/5 dark:bg-[#e3ae72]/10",
+          isToday && "border-[#efcafe] dark:border-[#efcafe] bg-[#efcafe]/5 dark:bg-[#efcafe]/10",
           dayBookings.length > 0 && "bg-primary/5"
         )}
       >
         <span className={cn(
           "text-sm font-medium",
-          isToday ? "text-[#e3ae72] dark:text-[#e3ae72]" : "text-foreground/70"
+          isToday ? "text-[#efcafe] dark:text-[#efcafe]" : "text-foreground/70"
         )}>
           {day}
         </span>
@@ -650,18 +650,18 @@ function CalendarView({ bookings }: { bookings: ReturnType<typeof enrichBookings
           variant="outline"
           size="icon"
           onClick={prevMonth}
-          className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+          className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
-        <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">
+        <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe]">
           {currentMonth.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
         </h3>
         <Button
           variant="outline"
           size="icon"
           onClick={nextMonth}
-          className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+          className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
         >
           <ChevronRight className="h-4 w-4" />
         </Button>
@@ -672,7 +672,7 @@ function CalendarView({ bookings }: { bookings: ReturnType<typeof enrichBookings
         {/* Day Headers */}
         <div className="grid grid-cols-7 gap-2 text-center">
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-            <div key={day} className="text-sm font-medium text-[#271024]/60 dark:text-[#e3ae72]/60">
+            <div key={day} className="text-sm font-medium text-[#7a219f]/60 dark:text-[#efcafe]/60">
               {day}
             </div>
           ))}

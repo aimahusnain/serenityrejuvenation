@@ -178,7 +178,7 @@ export function BookingSummary({
     <>
       <div className="space-y-8">
         <div className="text-center space-y-3">
-          <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#271024] to-[#3d1a3a] dark:from-[#e3ae72] dark:to-[#d49e5e] bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#7a219f] to-[#3d1a3a] dark:from-[#efcafe] dark:to-[#7a219f] bg-clip-text text-transparent">
             Review Your Booking
           </h2>
           <p className="text-base text-muted-foreground max-w-lg mx-auto leading-relaxed">
@@ -189,15 +189,15 @@ export function BookingSummary({
         <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
           {/* Service Summary */}
           <Card className="border-0 shadow-md hover:shadow-lg transition-shadow duration-200">
-            <CardHeader className="pb-4 bg-gradient-to-br from-[#271024]/5 to-[#3d1a3a]/5 border-b">
-              <CardTitle className="text-base flex items-center gap-2 text-[#271024] dark:text-[#e3ae72]">
-                <Sparkles className="w-4 h-4 text-[#e3ae72]" />
+            <CardHeader className="pb-4 bg-gradient-to-br from-[#7a219f]/5 to-[#3d1a3a]/5 border-b">
+              <CardTitle className="text-base flex items-center gap-2 text-[#7a219f] dark:text-[#efcafe]">
+                <Sparkles className="w-4 h-4 text-[#efcafe]" />
                 Treatment
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-4">
               <div>
-                <p className="font-semibold text-[#271024] dark:text-[#e3ae72] text-base">
+                <p className="font-semibold text-[#7a219f] dark:text-[#efcafe] text-base">
                   {service?.title}
                 </p>
                 <p className="text-sm text-muted-foreground mt-1.5 line-clamp-2 leading-relaxed">
@@ -206,7 +206,7 @@ export function BookingSummary({
               </div>
               <div className="flex justify-between items-center pt-3 border-t border-border">
                 <span className="text-sm text-muted-foreground font-medium">Service</span>
-                <span className="font-semibold text-[#271024] dark:text-[#e3ae72] text-lg">
+                <span className="font-semibold text-[#7a219f] dark:text-[#efcafe] text-lg">
                   ${servicePrice}
                 </span>
               </div>
@@ -215,28 +215,28 @@ export function BookingSummary({
 
           {/* Date & Time */}
           <Card className="border-0 shadow-md hover:shadow-lg transition-shadow duration-200">
-            <CardHeader className="pb-4 bg-gradient-to-br from-[#271024]/5 to-[#3d1a3a]/5 border-b">
-              <CardTitle className="text-base flex items-center gap-2 text-[#271024] dark:text-[#e3ae72]">
-                <Calendar className="w-4 h-4 text-[#e3ae72]" />
+            <CardHeader className="pb-4 bg-gradient-to-br from-[#7a219f]/5 to-[#3d1a3a]/5 border-b">
+              <CardTitle className="text-base flex items-center gap-2 text-[#7a219f] dark:text-[#efcafe]">
+                <Calendar className="w-4 h-4 text-[#efcafe]" />
                 Date & Time
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-3">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#e3ae72]/10 flex items-center justify-center shrink-0">
-                  <Calendar className="w-4 h-4 text-[#e3ae72]" />
+                <div className="w-8 h-8 rounded-lg bg-[#efcafe]/10 flex items-center justify-center shrink-0">
+                  <Calendar className="w-4 h-4 text-[#efcafe]" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
+                  <p className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">
                     {formattedDate}
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#e3ae72]/10 flex items-center justify-center shrink-0">
-                  <Clock className="w-4 h-4 text-[#e3ae72]" />
+                <div className="w-8 h-8 rounded-lg bg-[#efcafe]/10 flex items-center justify-center shrink-0">
+                  <Clock className="w-4 h-4 text-[#efcafe]" />
                 </div>
-                <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">
+                <p className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">
                   {selectedTime}
                 </p>
               </div>
@@ -261,9 +261,9 @@ export function BookingSummary({
 
           {/* Add-ons & Total */}
           <Card className="border-0 shadow-md hover:shadow-lg transition-shadow duration-200">
-            <CardHeader className="pb-4 bg-gradient-to-br from-[#271024]/5 to-[#3d1a3a]/5 border-b">
-              <CardTitle className="text-base flex items-center gap-2 text-[#271024] dark:text-[#e3ae72]">
-                <CreditCard className="w-4 h-4 text-[#e3ae72]" />
+            <CardHeader className="pb-4 bg-gradient-to-br from-[#7a219f]/5 to-[#3d1a3a]/5 border-b">
+              <CardTitle className="text-base flex items-center gap-2 text-[#7a219f] dark:text-[#efcafe]">
+                <CreditCard className="w-4 h-4 text-[#efcafe]" />
                 Summary
               </CardTitle>
             </CardHeader>
@@ -283,7 +283,7 @@ export function BookingSummary({
                         <span className="text-muted-foreground">
                           {addOn?.name}
                         </span>
-                        <span className="font-medium text-[#271024] dark:text-[#e3ae72]">
+                        <span className="font-medium text-[#7a219f] dark:text-[#efcafe]">
                           ${addOn?.price}
                         </span>
                       </div>
@@ -294,10 +294,10 @@ export function BookingSummary({
 
               <div className="pt-4 border-t border-border">
                 <div className="flex justify-between items-center">
-                  <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">
+                  <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">
                     Total
                   </span>
-                  <span className="text-2xl font-bold text-[#e3ae72]">
+                  <span className="text-2xl font-bold text-[#efcafe]">
                     ${totalPrice}
                   </span>
                 </div>
@@ -359,9 +359,9 @@ export function BookingSummary({
             size="lg"
             className={cn(
               "px-8 h-12 rounded-xl text-base font-medium min-w-[220px]",
-              "bg-gradient-to-r from-[#271024] to-[#3d1a3a]",
-              "text-white hover:from-[#271024]/90 hover:to-[#3d1a3a]/90",
-              "shadow-lg shadow-[#271024]/20 transition-all duration-200"
+              "bg-gradient-to-r from-[#7a219f] to-[#3d1a3a]",
+              "text-white hover:from-[#7a219f]/90 hover:to-[#3d1a3a]/90",
+              "shadow-lg shadow-[#7a219f]/20 transition-all duration-200"
             )}
           >
             {isSubmitting ? (

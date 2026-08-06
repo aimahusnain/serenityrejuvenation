@@ -37,7 +37,7 @@ export default function SpaLoader() {
       className={`
         fixed inset-0 z-50 flex flex-col items-center justify-center gap-2
         transition-opacity duration-800 ease-in-out
-        bg-white dark:bg-[#271024]
+        bg-white dark:bg-[#7a219f]
       `}
       style={{
         opacity: fading ? 0 : 1,
@@ -45,12 +45,12 @@ export default function SpaLoader() {
     >
       {/* Wordmark */}
       <div className="flex flex-col items-center gap-1.5">
-        <span className="text-[11px] font-light tracking-[0.65em] uppercase text-[#271024]/60 dark:text-[#e3ae72]/65">
+        <span className="text-[11px] font-light tracking-[0.65em] uppercase text-[#7a219f]/60 dark:text-[#efcafe]/65">
           Serenity
         </span>
 
         <span
-          className={`${prata.className} text-[32px] tracking-[0.06em] text-[#271024] dark:text-[#e3ae72]`}
+          className={`${prata.className} text-[32px] tracking-[0.06em] text-[#7a219f] dark:text-[#efcafe]`}
         >
           Rejuvenation
         </span>
@@ -58,10 +58,10 @@ export default function SpaLoader() {
 
       {/* Sweeping bar */}
       <div
-        className="relative w-30 h-1 overflow-hidden bg-[#271024]/15 dark:bg-[#e3ae72]/20"
+        className="relative w-30 h-1 overflow-hidden bg-[#7a219f]/15 dark:bg-[#efcafe]/20"
         aria-hidden="true"
       >
-        <div className="absolute inset-0 animate-sweep bg-[#271024] dark:bg-[#e3ae72]" />
+        <div className="absolute inset-0 animate-sweep bg-[#7a219f] dark:bg-[#efcafe]" />
       </div>
     </div>
   );

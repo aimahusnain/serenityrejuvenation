@@ -51,7 +51,7 @@ export function ChartPieDonutActive({ data }: { data: SpendingSlice[] }) {
   return (
     <Card className="border-border/60 shadow-sm">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Investment Breakdown</CardTitle>
+        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Investment Breakdown</CardTitle>
         <CardDescription>By treatment category (completed & scheduled)</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
@@ -85,14 +85,14 @@ export function ChartPieDonutActive({ data }: { data: SpendingSlice[] }) {
               <Label
                 value={`$${total.toLocaleString()}`}
                 position="center"
-                className="fill-foreground text-base font-semibold text-[#271024] dark:text-[#e3ae72]"
+                className="fill-foreground text-base font-semibold text-[#7a219f] dark:text-[#efcafe]"
               />
             </Pie>
           </PieChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm border-t border-border/40 pt-4">
-        <div className="flex items-center gap-2 leading-none font-medium text-[#271024] dark:text-[#e3ae72]">
+        <div className="flex items-center gap-2 leading-none font-medium text-[#7a219f] dark:text-[#efcafe]">
           Total from completed & scheduled <DollarSign className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground text-xs">

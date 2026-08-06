@@ -77,7 +77,7 @@ function TickerGroup() {
         className="
           [writing-mode:vertical-rl] [text-orientation:mixed] rotate-180
           text-[10px] font-bold tracking-[0.18em] uppercase
-          text-stone-500 dark:text-black whitespace-nowrap py-7 leading-none
+          text-black dark:text-white whitespace-nowrap py-7 leading-none
         "
       >
         Serenity Rejuvenation

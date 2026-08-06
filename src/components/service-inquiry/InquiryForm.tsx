@@ -118,7 +118,7 @@ export function InquiryForm({ service, trigger }: InquiryFormProps) {
   const defaultTrigger = (
     <Button
       variant="default"
-      className="w-full bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+      className="w-full bg-[#7a219f] text-white hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
     >
       Request Appointment
     </Button>
@@ -131,7 +131,7 @@ export function InquiryForm({ service, trigger }: InquiryFormProps) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">
+          <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">
             Request Appointment
           </DialogTitle>
           <DialogDescription>
@@ -142,12 +142,12 @@ export function InquiryForm({ service, trigger }: InquiryFormProps) {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Service Summary */}
-          <div className="flex items-start gap-3 p-3 rounded-lg bg-[#271024]/5 dark:bg-[#e3ae72]/10">
-            <div className="p-2 rounded bg-[#271024]/10 dark:bg-[#e3ae72]/20">
-              <Calendar className="h-4 w-4 text-[#271024] dark:text-[#e3ae72]" />
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
+            <div className="p-2 rounded bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
+              <Calendar className="h-4 w-4 text-[#7a219f] dark:text-[#efcafe]" />
             </div>
             <div className="flex-1">
-              <p className="font-medium text-sm text-[#271024] dark:text-[#e3ae72]">
+              <p className="font-medium text-sm text-[#7a219f] dark:text-[#efcafe]">
                 {service.title}
               </p>
               <p className="text-xs text-muted-foreground line-clamp-1">
@@ -294,7 +294,7 @@ export function InquiryForm({ service, trigger }: InquiryFormProps) {
               <Button
                 type="button"
                 variant="outline"
-                className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+                className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
               >
                 Cancel
               </Button>
@@ -302,7 +302,7 @@ export function InquiryForm({ service, trigger }: InquiryFormProps) {
             <Button
               type="submit"
               disabled={isPending}
-              className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+              className="bg-[#7a219f] text-white hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
             >
               {isPending ? "Submitting..." : "Submit Inquiry"}
             </Button>

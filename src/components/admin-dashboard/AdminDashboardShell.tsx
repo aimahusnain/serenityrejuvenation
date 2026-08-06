@@ -291,7 +291,7 @@ export function AdminDashboardShell({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-[#271024] dark:text-[#e3ae72]">
+        <h2 className="text-2xl font-bold text-[#7a219f] dark:text-[#efcafe]">
           {VIEW_TITLES[view] ?? "Admin"}
         </h2>
         <p className="text-sm text-muted-foreground">Spa management control center</p>
@@ -398,7 +398,7 @@ export function AdminDashboardShell({
           {blockedDays.length > 0 && (
             <Card className="border-border/60">
               <CardHeader>
-                <CardTitle className="text-sm text-[#271024] dark:text-[#e3ae72]">Blocked Days</CardTitle>
+                <CardTitle className="text-sm text-[#7a219f] dark:text-[#efcafe]">Blocked Days</CardTitle>
                 <CardDescription>New bookings are prevented on these days. Existing bookings are unaffected.</CardDescription>
               </CardHeader>
               <CardContent className="flex flex-wrap gap-2">
@@ -434,7 +434,7 @@ export function AdminDashboardShell({
 
           <Card className="border-border/60">
             <CardHeader>
-              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">All Appointments</CardTitle>
+              <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">All Appointments</CardTitle>
               <CardDescription>Conflict detection: overlapping slots highlighted in calendar</CardDescription>
             </CardHeader>
             <CardContent className="overflow-x-auto">
@@ -495,7 +495,7 @@ export function AdminDashboardShell({
         <Card className="border-border/60">
           <CardHeader className="flex flex-col sm:flex-row sm:items-center gap-4">
             <div>
-              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Clients ({users.length})</CardTitle>
+              <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Clients ({users.length})</CardTitle>
             </div>
             <Input placeholder="Search clients…" className="max-w-xs sm:ml-auto" value={clientSearch} onChange={(e) => setClientSearch(e.target.value)} />
           </CardHeader>
@@ -513,7 +513,7 @@ export function AdminDashboardShell({
                 {filteredUsers.map((u) => (
                   <TableRow
                     key={u.id}
-                    className="cursor-pointer hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5"
+                    className="cursor-pointer hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/5"
                     onClick={() => {
                       setSelectedClientId(u.id);
                       setClientDialogOpen(true);
@@ -552,7 +552,7 @@ export function AdminDashboardShell({
           <KpiCard title="Refunds" value="0" subtitle="No active refunds" icon={XCircle} />
           <Card className="md:col-span-3 border-border/60">
             <CardHeader className="flex flex-row justify-between">
-              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Transaction Log</CardTitle>
+              <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Transaction Log</CardTitle>
               <Button
                 variant="outline"
                 size="sm"
@@ -637,7 +637,7 @@ function AdminCalendar({
   return (
     <Card className="border-border/60 overflow-x-auto">
       <CardHeader>
-        <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Weekly Schedule</CardTitle>
+        <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Weekly Schedule</CardTitle>
         <CardDescription>Click status menu in table to move appointments. Use Block/Unblock below each date to prevent new bookings.</CardDescription>
       </CardHeader>
       <CardContent>

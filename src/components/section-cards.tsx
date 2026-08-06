@@ -69,20 +69,20 @@ export function SectionCards({ stats = defaultStats }: { stats?: SectionCardsSta
             <CardDescription className="text-xs font-medium uppercase tracking-wide">
               {card.description}
             </CardDescription>
-            <CardTitle className="text-3xl font-bold tabular-nums text-[#271024] dark:text-[#e3ae72]">
+            <CardTitle className="text-3xl font-bold tabular-nums text-[#7a219f] dark:text-[#efcafe]">
               {card.value}
             </CardTitle>
             <CardAction>
               <Badge
                 variant="outline"
-                className="text-xs px-2.5 py-0.5 border-[#271024]/20 dark:border-[#e3ae72]/30"
+                className="text-xs px-2.5 py-0.5 border-[#7a219f]/20 dark:border-[#efcafe]/30"
               >
                 {card.badge}
               </Badge>
             </CardAction>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-1.5 text-sm border-t border-border/40 pt-4">
-            <div className="font-medium text-[#271024] dark:text-[#e3ae72]">
+            <div className="font-medium text-[#7a219f] dark:text-[#efcafe]">
               {card.footerTitle}
             </div>
             <div className="text-xs text-muted-foreground">{card.footerDetail}</div>

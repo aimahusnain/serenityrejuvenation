@@ -58,7 +58,7 @@ export default async function UserInquiriesLayout() {
       <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader title="My Inquiries" />
-        <div className="flex-1 overflow-auto bg-[#f8f9fa]/50 dark:bg-[#271024]/30">
+        <div className="flex-1 overflow-auto bg-[#f8f9fa]/50 dark:bg-[#7a219f]/30">
           <div className="container mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-8">
             <Suspense fallback={<div className="text-muted-foreground text-sm">Loading inquiries…</div>}>
               <UserInquiriesPage inquiries={inquiriesWithServices} />

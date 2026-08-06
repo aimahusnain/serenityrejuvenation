@@ -169,13 +169,13 @@ export function UserDashboardShell({
   };
 
   const AppointmentCard = ({ b }: { b: (typeof enriched)[0] }) => (
-    <div className="flex flex-col gap-3 rounded-xl border border-[#271024]/10 dark:border-[#e3ae72]/20 bg-white dark:bg-[#271024]/30 p-4 sm:flex-row sm:items-center sm:justify-between transition-all hover:shadow-md">
+    <div className="flex flex-col gap-3 rounded-xl border border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]/30 p-4 sm:flex-row sm:items-center sm:justify-between transition-all hover:shadow-md">
       <div className="space-y-1">
         <div className="flex items-center gap-2">
-          <p className="font-semibold text-[#271024] dark:text-[#e3ae72]">{b.serviceName}</p>
+          <p className="font-semibold text-[#7a219f] dark:text-[#efcafe]">{b.serviceName}</p>
           <Badge className={cn("border-0", statusClass(b.status))}>{b.status}</Badge>
         </div>
-        <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60 flex items-center gap-1">
+        <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60 flex items-center gap-1">
           <Clock className="size-3.5" />
           {new Date(b.date).toLocaleString("en-US", {
             weekday: "short",
@@ -185,10 +185,10 @@ export function UserDashboardShell({
             minute: "2-digit",
           })}
         </p>
-        <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 flex items-center gap-1">
+        <p className="text-xs text-[#7a219f]/50 dark:text-[#efcafe]/50 flex items-center gap-1">
           <User className="size-3.5" /> Licensed aesthetician
         </p>
-        <p className="text-xs text-[#271024]/50 dark:text-[#e3ae72]/50 flex items-center gap-1">
+        <p className="text-xs text-[#7a219f]/50 dark:text-[#efcafe]/50 flex items-center gap-1">
           <MapPin className="size-3.5" /> Serenity Rejuvenation Med Spa
         </p>
       </div>
@@ -202,7 +202,7 @@ export function UserDashboardShell({
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Cancel Appointment?</DialogTitle>
+                <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">Cancel Appointment?</DialogTitle>
                 <DialogDescription>
                   Are you sure you want to cancel your {b.serviceName} appointment on{" "}
                   {new Date(b.date).toLocaleDateString("en-US", {
@@ -214,7 +214,7 @@ export function UserDashboardShell({
               </DialogHeader>
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+                  <Button variant="outline" className="border-[#7a219f]/20 dark:border-[#efcafe]/30">
                     Keep Appointment
                   </Button>
                 </DialogClose>
@@ -238,21 +238,21 @@ export function UserDashboardShell({
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle className="text-[#271024] dark:text-[#e3ae72]">Reschedule Appointment?</DialogTitle>
+                <DialogTitle className="text-[#7a219f] dark:text-[#efcafe]">Reschedule Appointment?</DialogTitle>
                 <DialogDescription>
                   Would you like to reschedule your {b.serviceName} appointment? You'll be able to select a new date and time that works better for you.
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button variant="outline" className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+                  <Button variant="outline" className="border-[#7a219f]/20 dark:border-[#efcafe]/30">
                     Keep Current Time
                   </Button>
                 </DialogClose>
                 <DialogClose asChild>
                   <Button
                     onClick={() => window.location.href = "/contact"}
-                    className="bg-[#271024] text-white hover:bg-[#271024]/90 dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                    className="bg-[#7a219f] text-white hover:bg-[#7a219f]/90 dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                   >
                     Continue to Reschedule
                   </Button>
@@ -267,18 +267,18 @@ export function UserDashboardShell({
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-[#271024]/10 dark:border-[#e3ae72]/20">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-[#7a219f]/10 dark:border-[#efcafe]/20">
         <div>
-          <h2 className="text-3xl font-bold text-[#271024] dark:text-[#e3ae72] font-serif">
+          <h2 className="text-3xl font-bold text-[#7a219f] dark:text-[#efcafe] font-serif">
             {VIEW_TITLES[view] ?? "Dashboard"}
           </h2>
-          <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 mt-1">
+          <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65 mt-1">
             Welcome back, {user.name?.split(" ")[0] ?? "there"} — your personal wellness hub
           </p>
         </div>
         {view === "overview" && (
           <Button
-            className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+            className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
             onClick={() => router.push("/user-dashboard?view=book")}
           >
             <Calendar className="mr-2 h-4 w-4" />
@@ -297,18 +297,18 @@ export function UserDashboardShell({
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
-            <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+            <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Treatment Timeline</CardTitle>
+                <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Treatment Timeline</CardTitle>
                 <CardDescription>Your wellness journey over time</CardDescription>
               </CardHeader>
               <CardContent>
                 <TreatmentTimelineChart data={timeline.length ? timeline : [{ month: "—", treatments: 0 }]} />
               </CardContent>
             </Card>
-            <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+            <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Spending Distribution</CardTitle>
+                <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Spending Distribution</CardTitle>
                 <CardDescription>Your investment in wellness</CardDescription>
               </CardHeader>
               <CardContent>
@@ -318,11 +318,11 @@ export function UserDashboardShell({
           </div>
 
           <div className="grid gap-6 lg:grid-cols-3">
-            <Card className="lg:col-span-2 border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+            <Card className="lg:col-span-2 border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Upcoming Appointments</CardTitle>
+                    <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Upcoming Appointments</CardTitle>
                     <CardDescription>Your scheduled wellness sessions</CardDescription>
                   </div>
                   {upcoming.length > 3 && (
@@ -335,13 +335,13 @@ export function UserDashboardShell({
               <CardContent className="space-y-3">
                 {upcoming.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">
-                    <Calendar className="h-12 w-12 text-[#271024]/30 dark:text-[#e3ae72]/30 mb-4" />
-                    <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">No upcoming appointments</h3>
-                    <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65 max-w-sm">
+                    <Calendar className="h-12 w-12 text-[#7a219f]/30 dark:text-[#efcafe]/30 mb-4" />
+                    <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">No upcoming appointments</h3>
+                    <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65 max-w-sm">
                       Schedule your next wellness session to see it here
                     </p>
                     <Button
-                      className="mt-4 bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                      className="mt-4 bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                       onClick={() => router.push("/user-dashboard?view=book")}
                     >
                       Book Now
@@ -352,9 +352,9 @@ export function UserDashboardShell({
                 )}
               </CardContent>
             </Card>
-            <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm bg-gradient-to-br from-[#271024]/5 to-[#e3ae72]/5 dark:from-[#e3ae72]/10 dark:to-[#271024]/10">
+            <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm bg-gradient-to-br from-[#7a219f]/5 to-[#efcafe]/5 dark:from-[#efcafe]/10 dark:to-[#7a219f]/10">
               <CardHeader>
-                <CardTitle className="text-[#271024] dark:text-[#e3ae72] flex items-center gap-2">
+                <CardTitle className="text-[#7a219f] dark:text-[#efcafe] flex items-center gap-2">
                   <Sparkles className="h-5 w-5" />
                   For You
                 </CardTitle>
@@ -363,18 +363,18 @@ export function UserDashboardShell({
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div>
-                    <p className="text-xs font-semibold text-[#271024]/70 dark:text-[#e3ae72]/70 uppercase tracking-wider">Recommended Next</p>
-                    <p className="text-sm font-medium text-[#271024] dark:text-[#e3ae72] mt-1">{recommendNextTreatment(enriched)}</p>
+                    <p className="text-xs font-semibold text-[#7a219f]/70 dark:text-[#efcafe]/70 uppercase tracking-wider">Recommended Next</p>
+                    <p className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe] mt-1">{recommendNextTreatment(enriched)}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-[#271024]/70 dark:text-[#e3ae72]/70 uppercase tracking-wider">Maintenance Plan</p>
-                    <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60 mt-1">
+                    <p className="text-xs font-semibold text-[#7a219f]/70 dark:text-[#efcafe]/70 uppercase tracking-wider">Maintenance Plan</p>
+                    <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60 mt-1">
                       Book every 8–12 weeks to maintain optimal results
                     </p>
                   </div>
                 </div>
                 <Button
-                  className="w-full bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+                  className="w-full bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
                   onClick={() => router.push("/user-dashboard?view=book")}
                 >
                   Schedule Now
@@ -393,7 +393,7 @@ export function UserDashboardShell({
                 variant={aptView === "list" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setAptView("list")}
-                className={aptView === "list" ? "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]" : ""}
+                className={aptView === "list" ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]" : ""}
               >
                 <List className="size-4 mr-1" /> List
               </Button>
@@ -401,13 +401,13 @@ export function UserDashboardShell({
                 variant={aptView === "calendar" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setAptView("calendar")}
-                className={aptView === "calendar" ? "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]" : ""}
+                className={aptView === "calendar" ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]" : ""}
               >
                 <CalendarDays className="size-4 mr-1" /> Calendar
               </Button>
             </div>
             <Button
-              className="bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+              className="bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
               onClick={() => router.push("/user-dashboard?view=book")}
             >
               <Calendar className="mr-2 h-4 w-4" />
@@ -415,13 +415,13 @@ export function UserDashboardShell({
             </Button>
           </div>
           {aptView === "calendar" ? (
-            <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+            <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Calendar View</CardTitle>
+                <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Calendar View</CardTitle>
                 <CardDescription>See your appointments at a glance</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-7 gap-2 text-center text-xs font-medium text-[#271024]/60 dark:text-[#e3ae72]/60 mb-2">
+                <div className="grid grid-cols-7 gap-2 text-center text-xs font-medium text-[#7a219f]/60 dark:text-[#efcafe]/60 mb-2">
                   {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
                     <div key={d}>{d}</div>
                   ))}
@@ -431,20 +431,20 @@ export function UserDashboardShell({
             </Card>
           ) : null}
           <Tabs defaultValue="upcoming" className="w-full">
-            <TabsList className="bg-[#271024]/5 dark:bg-[#e3ae72]/10">
-              <TabsTrigger value="upcoming" className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]">
+            <TabsList className="bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
+              <TabsTrigger value="upcoming" className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]">
                 Upcoming ({upcoming.length})
               </TabsTrigger>
-              <TabsTrigger value="past" className="data-[state=active]:bg-[#271024] data-[state=active]:text-white dark:data-[state=active]:bg-[#e3ae72] dark:data-[state=active]:text-[#271024]">
+              <TabsTrigger value="past" className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]">
                 Past ({enriched.length - upcoming.length})
               </TabsTrigger>
             </TabsList>
             <TabsContent value="upcoming" className="space-y-3 mt-6">
               {upcoming.length ? upcoming.map((b) => <AppointmentCard key={b.id} b={b} />) : (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
-                  <Calendar className="h-12 w-12 text-[#271024]/30 dark:text-[#e3ae72]/30 mb-4" />
-                  <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">No upcoming appointments</h3>
-                  <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65">Schedule your next wellness session to see it here</p>
+                  <Calendar className="h-12 w-12 text-[#7a219f]/30 dark:text-[#efcafe]/30 mb-4" />
+                  <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">No upcoming appointments</h3>
+                  <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65">Schedule your next wellness session to see it here</p>
                 </div>
               )}
             </TabsContent>
@@ -458,16 +458,16 @@ export function UserDashboardShell({
       )}
 
       {view === "book" && (
-        <Card className="max-w-2xl border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="max-w-2xl border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Book New Appointment</CardTitle>
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Book New Appointment</CardTitle>
             <CardDescription>Select your preferred treatment, add-ons, and time</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-3">
-              <Label className="text-[#271024] dark:text-[#e3ae72] font-medium">Service</Label>
+              <Label className="text-[#7a219f] dark:text-[#efcafe] font-medium">Service</Label>
               <Select value={bookService} onValueChange={setBookService}>
-                <SelectTrigger className="border-[#271024]/20 dark:border-[#e3ae72]/30">
+                <SelectTrigger className="border-[#7a219f]/20 dark:border-[#efcafe]/30">
                   <SelectValue placeholder="Choose treatment" />
                 </SelectTrigger>
                 <SelectContent>
@@ -480,7 +480,7 @@ export function UserDashboardShell({
               </Select>
             </div>
             <div className="space-y-3">
-              <Label className="text-[#271024] dark:text-[#e3ae72] font-medium">Add-ons</Label>
+              <Label className="text-[#7a219f] dark:text-[#efcafe] font-medium">Add-ons</Label>
               <div className="flex flex-wrap gap-2">
                 {ADD_ONS.map((a) => (
                   <Button
@@ -488,7 +488,7 @@ export function UserDashboardShell({
                     type="button"
                     size="sm"
                     variant={bookAddons.includes(a) ? "default" : "outline"}
-                    className={bookAddons.includes(a) ? "bg-[#271024] text-white dark:bg-[#e3ae72] dark:text-[#271024]" : "border-[#271024]/20 dark:border-[#e3ae72]/30"}
+                    className={bookAddons.includes(a) ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]" : "border-[#7a219f]/20 dark:border-[#efcafe]/30"}
                     onClick={() =>
                       setBookAddons((prev) =>
                         prev.includes(a) ? prev.filter((x) => x !== a) : [...prev, a]
@@ -501,19 +501,19 @@ export function UserDashboardShell({
               </div>
             </div>
             <div className="space-y-3">
-              <Label className="text-[#271024] dark:text-[#e3ae72] font-medium">Date & time</Label>
+              <Label className="text-[#7a219f] dark:text-[#efcafe] font-medium">Date & time</Label>
               <Input
                 type="datetime-local"
                 value={bookDate}
                 onChange={(e) => setBookDate(e.target.value)}
-                className="border-[#271024]/20 dark:border-[#e3ae72]/30"
+                className="border-[#7a219f]/20 dark:border-[#efcafe]/30"
               />
             </div>
-            <div className="rounded-lg border border-[#271024]/20 dark:border-[#e3ae72]/30 bg-[#271024]/5 dark:bg-[#e3ae72]/5 p-4 text-sm flex items-center gap-3">
-              <CreditCard className="size-5 text-[#271024] dark:text-[#e3ae72]" />
+            <div className="rounded-lg border border-[#7a219f]/20 dark:border-[#efcafe]/30 bg-[#7a219f]/5 dark:bg-[#efcafe]/5 p-4 text-sm flex items-center gap-3">
+              <CreditCard className="size-5 text-[#7a219f] dark:text-[#efcafe]" />
               <div>
-                <p className="font-medium text-[#271024] dark:text-[#e3ae72]">Payment Information</p>
-                <p className="text-[#271024]/60 dark:text-[#e3ae72]/60">Payment collected at checkout — secure gateway integration coming soon.</p>
+                <p className="font-medium text-[#7a219f] dark:text-[#efcafe]">Payment Information</p>
+                <p className="text-[#7a219f]/60 dark:text-[#efcafe]/60">Payment collected at checkout — secure gateway integration coming soon.</p>
               </div>
             </div>
             {message && (
@@ -522,7 +522,7 @@ export function UserDashboardShell({
               </div>
             )}
             <Button
-              className="w-full bg-[#271024] hover:bg-[#271024]/90 text-white dark:bg-[#e3ae72] dark:text-[#271024] dark:hover:bg-[#d49e5e]"
+              className="w-full bg-[#7a219f] hover:bg-[#7a219f]/90 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]"
               disabled={isPending}
               onClick={submitBooking}
             >
@@ -535,21 +535,21 @@ export function UserDashboardShell({
       {view === "history" && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72]">Treatment History</h3>
-            <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">{enriched.length} total appointments</p>
+            <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe]">Treatment History</h3>
+            <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60">{enriched.length} total appointments</p>
           </div>
           {enriched.map((b) => (
-            <Card key={b.id} className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+            <Card key={b.id} className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
               <CardContent className="pt-6 flex flex-col sm:flex-row sm:justify-between gap-4">
                 <div className="space-y-1">
-                  <p className="font-semibold text-[#271024] dark:text-[#e3ae72]">{b.serviceName}</p>
-                  <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">{new Date(b.date).toLocaleDateString()}</p>
-                  {b.notes && <p className="text-xs mt-2 text-[#271024]/50 dark:text-[#e3ae72]/50">Notes: {b.notes}</p>}
-                  <p className="text-xs mt-1 text-[#271024]/40 dark:text-[#e3ae72]/40 italic">Provider notes available after visit</p>
+                  <p className="font-semibold text-[#7a219f] dark:text-[#efcafe]">{b.serviceName}</p>
+                  <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60">{new Date(b.date).toLocaleDateString()}</p>
+                  {b.notes && <p className="text-xs mt-2 text-[#7a219f]/50 dark:text-[#efcafe]/50">Notes: {b.notes}</p>}
+                  <p className="text-xs mt-1 text-[#7a219f]/40 dark:text-[#efcafe]/40 italic">Provider notes available after visit</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <Badge className={statusClass(b.status)}>{b.status}</Badge>
-                  <Button variant="ghost" size="sm" className="text-[#271024] dark:text-[#e3ae72] hover:bg-[#271024]/5 dark:hover:bg-[#e3ae72]/5">
+                  <Button variant="ghost" size="sm" className="text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/5">
                     <Download className="size-4 mr-1" /> Receipt
                   </Button>
                 </div>
@@ -558,35 +558,35 @@ export function UserDashboardShell({
           ))}
           {enriched.length === 0 && (
             <div className="flex flex-col items-center justify-center py-12 text-center">
-              <Sparkles className="h-12 w-12 text-[#271024]/30 dark:text-[#e3ae72]/30 mb-4" />
-              <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">No treatment history yet</h3>
-              <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65">Your completed appointments will appear here</p>
+              <Sparkles className="h-12 w-12 text-[#7a219f]/30 dark:text-[#efcafe]/30 mb-4" />
+              <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">No treatment history yet</h3>
+              <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65">Your completed appointments will appear here</p>
             </div>
           )}
         </div>
       )}
 
       {view === "payments" && (
-        <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm">
+        <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Payment History</CardTitle>
+            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Payment History</CardTitle>
             <CardDescription>Your investment in wellness services</CardDescription>
           </CardHeader>
-          <CardContent className="divide-y divide-[#271024]/10 dark:divide-[#e3ae72]/20">
+          <CardContent className="divide-y divide-[#7a219f]/10 dark:divide-[#efcafe]/20">
             {completed.map((b) => (
               <div key={b.id} className="flex justify-between py-4 text-sm items-center">
                 <div>
-                  <p className="font-medium text-[#271024] dark:text-[#e3ae72]">{b.serviceName}</p>
-                  <p className="text-[#271024]/60 dark:text-[#e3ae72]/60 text-xs">{new Date(b.date).toLocaleDateString()}</p>
+                  <p className="font-medium text-[#7a219f] dark:text-[#efcafe]">{b.serviceName}</p>
+                  <p className="text-[#7a219f]/60 dark:text-[#efcafe]/60 text-xs">{new Date(b.date).toLocaleDateString()}</p>
                 </div>
-                <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">${b.servicePrice}</span>
+                <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">${b.servicePrice}</span>
               </div>
             ))}
             {completed.length === 0 && (
               <div className="flex flex-col items-center justify-center py-12 text-center">
-                <CreditCard className="h-12 w-12 text-[#271024]/30 dark:text-[#e3ae72]/30 mb-4" />
-                <h3 className="text-lg font-semibold text-[#271024] dark:text-[#e3ae72] mb-2">No payment history yet</h3>
-                <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/65">Your completed payments will appear here</p>
+                <CreditCard className="h-12 w-12 text-[#7a219f]/30 dark:text-[#efcafe]/30 mb-4" />
+                <h3 className="text-lg font-semibold text-[#7a219f] dark:text-[#efcafe] mb-2">No payment history yet</h3>
+                <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/65">Your completed payments will appear here</p>
               </div>
             )}
           </CardContent>
@@ -603,45 +603,45 @@ export function UserDashboardShell({
       {view === "loyalty" && (
         <div className="grid gap-6 md:grid-cols-3">
           <KpiCard title="Points Balance" value={String(loyaltyPoints)} subtitle="Redeem at 500 pts" icon={Gift} />
-          <Card className="border-[#271024]/10 dark:border-[#e3ae72]/20 shadow-sm md:col-span-2">
+          <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm md:col-span-2">
             <CardHeader>
-              <CardTitle className="text-[#271024] dark:text-[#e3ae72]">Membership Tiers</CardTitle>
+              <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">Membership Tiers</CardTitle>
               <CardDescription>Unlock exclusive benefits as you progress</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className={`flex justify-between rounded-lg border p-4 ${completed.length >= 0 ? "border-[#e3ae72]/30 dark:border-[#e3ae72]/30 bg-[#e3ae72]/10 dark:bg-[#e3ae72]/20" : "border-[#271024]/10"}`}>
+              <div className={`flex justify-between rounded-lg border p-4 ${completed.length >= 0 ? "border-[#efcafe]/30 dark:border-[#efcafe]/30 bg-[#efcafe]/10 dark:bg-[#efcafe]/20" : "border-[#7a219f]/10"}`}>
                 <div className="flex items-center gap-3">
-                  <Sparkles className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                  <Sparkles className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                   <div>
-                    <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">Glow</span>
-                    <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">0+ visits</p>
+                    <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">Glow</span>
+                    <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">0+ visits</p>
                   </div>
                 </div>
-                <span className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">5% off add-ons</span>
+                <span className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">5% off add-ons</span>
               </div>
-              <div className={`flex justify-between rounded-lg border p-4 ${completed.length >= 5 ? "border-[#e3ae72]/30 dark:border-[#e3ae72]/30 bg-[#e3ae72]/10 dark:bg-[#e3ae72]/20" : "border-[#271024]/10"}`}>
+              <div className={`flex justify-between rounded-lg border p-4 ${completed.length >= 5 ? "border-[#efcafe]/30 dark:border-[#efcafe]/30 bg-[#efcafe]/10 dark:bg-[#efcafe]/20" : "border-[#7a219f]/10"}`}>
                 <div className="flex items-center gap-3">
-                  <Sparkles className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                  <Sparkles className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                   <div>
-                    <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">Radiance</span>
-                    <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">5+ visits</p>
+                    <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">Radiance</span>
+                    <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">5+ visits</p>
                   </div>
                 </div>
-                <span className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">10% off treatments</span>
+                <span className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">10% off treatments</span>
               </div>
-              <div className={`flex justify-between rounded-lg border p-4 ${completed.length >= 10 ? "border-[#e3ae72]/30 dark:border-[#e3ae72]/30 bg-[#e3ae72]/10 dark:bg-[#e3ae72]/20" : "border-[#271024]/10"}`}>
+              <div className={`flex justify-between rounded-lg border p-4 ${completed.length >= 10 ? "border-[#efcafe]/30 dark:border-[#efcafe]/30 bg-[#efcafe]/10 dark:bg-[#efcafe]/20" : "border-[#7a219f]/10"}`}>
                 <div className="flex items-center gap-3">
-                  <Sparkles className="h-5 w-5 text-[#271024] dark:text-[#e3ae72]" />
+                  <Sparkles className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
                   <div>
-                    <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">Serenity</span>
-                    <p className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/60">10+ visits</p>
+                    <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">Serenity</span>
+                    <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">10+ visits</p>
                   </div>
                 </div>
-                <span className="text-sm font-medium text-[#271024] dark:text-[#e3ae72]">15% off + priority booking</span>
+                <span className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">15% off + priority booking</span>
               </div>
-              <div className="mt-4 pt-4 border-t border-[#271024]/10 dark:border-[#e3ae72]/20">
-                <p className="text-sm text-[#271024]/60 dark:text-[#e3ae72]/60">
-                  Current tier: <span className="font-semibold text-[#271024] dark:text-[#e3ae72]">{completed.length >= 10 ? "Serenity" : completed.length >= 5 ? "Radiance" : "Glow"}</span>
+              <div className="mt-4 pt-4 border-t border-[#7a219f]/10 dark:border-[#efcafe]/20">
+                <p className="text-sm text-[#7a219f]/60 dark:text-[#efcafe]/60">
+                  Current tier: <span className="font-semibold text-[#7a219f] dark:text-[#efcafe]">{completed.length >= 10 ? "Serenity" : completed.length >= 5 ? "Radiance" : "Glow"}</span>
                 </p>
               </div>
             </CardContent>

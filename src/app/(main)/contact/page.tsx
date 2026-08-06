@@ -39,7 +39,7 @@ const CONTACT_FIELDS: ContactField[] = [
     icon: (
       <svg
         className="h-4.5 w-4.5"
-        style={{ stroke: "#271024" }}
+        style={{ stroke: "#7a219f" }}
         viewBox="0 0 24 24"
         fill="none"
         strokeWidth={1.7}
@@ -57,7 +57,7 @@ const CONTACT_FIELDS: ContactField[] = [
     icon: (
       <svg
         className="h-4.5 w-4.5"
-        style={{ stroke: "#271024" }}
+        style={{ stroke: "#7a219f" }}
         viewBox="0 0 24 24"
         fill="none"
         strokeWidth={1.7}
@@ -74,7 +74,7 @@ const CONTACT_FIELDS: ContactField[] = [
     icon: (
       <svg
         className="h-4.5 w-4.5"
-        style={{ stroke: "#271024" }}
+        style={{ stroke: "#7a219f" }}
         viewBox="0 0 24 24"
         fill="none"
         strokeWidth={1.7}
@@ -96,7 +96,7 @@ const CONTACT_FIELDS: ContactField[] = [
     icon: (
       <svg
         className="h-4.5 w-4.5"
-        style={{ stroke: "#271024" }}
+        style={{ stroke: "#7a219f" }}
         viewBox="0 0 24 24"
         fill="none"
         strokeWidth={1.7}
@@ -157,14 +157,14 @@ function CheckboxField({
           name={name}
           checked={checked}
           onChange={onChange}
-          className="peer h-4 w-4 cursor-pointer appearance-none rounded border-2 border-[#271024]/30 transition
-            checked:border-[#271024] checked:bg-[#271024]
-            focus:outline-none focus:ring-2 focus:ring-[#271024]/20
-            dark:border-[#e3ae72]/30 dark:checked:border-[#e3ae72] dark:checked:bg-[#e3ae72]
-            dark:focus:ring-[#e3ae72]/20"
+          className="peer h-4 w-4 cursor-pointer appearance-none rounded border-2 border-[#7a219f]/30 transition
+            checked:border-[#7a219f] checked:bg-[#7a219f]
+            focus:outline-none focus:ring-2 focus:ring-[#7a219f]/20
+            dark:border-[#efcafe]/30 dark:checked:border-[#efcafe] dark:checked:bg-[#efcafe]
+            dark:focus:ring-[#efcafe]/20"
         />
         <svg
-          className="pointer-events-none absolute inset-0 hidden h-4 w-4 text-white dark:text-[#271024] peer-checked:block"
+          className="pointer-events-none absolute inset-0 hidden h-4 w-4 text-white dark:text-[#7a219f] peer-checked:block"
           viewBox="0 0 16 16"
           fill="none"
         >
@@ -177,7 +177,7 @@ function CheckboxField({
           />
         </svg>
       </div>
-      <span className="text-xs text-[#271024]/60 dark:text-[#e3ae72]/65">
+      <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/65">
         {label} <span className="text-red-400">*</span>
       </span>
     </label>
@@ -210,15 +210,15 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#271024]">
+    <main className="min-h-screen bg-white dark:bg-[#7a219f]">
       {/* ── Hero Banner ── */}
-      <section className="relative overflow-hidden bg-[#271024]/80 dark:bg-[#e3ae72] px-6 py-14 text-center">
+      <section className="relative overflow-hidden bg-[#7a219f]/80 dark:bg-[#efcafe] px-6 py-14 text-center">
         {/* Ripple rings – right */}
         <div className="pointer-events-none absolute right-12 top-1/2 h-48 w-48 -translate-y-1/2">
           {[0, 1, 2, 3].map((i) => (
             <span
               key={i}
-              className="absolute rounded-full border border-[#e3ae72]/20 animate-ping"
+              className="absolute rounded-full border border-[#efcafe]/20 animate-ping"
               style={{
                 inset: `${i * -20}px`,
                 animationDelay: `${i * 0.7}s`,
@@ -232,7 +232,7 @@ export default function ContactPage() {
           {[0, 1, 2].map((i) => (
             <span
               key={i}
-              className="absolute rounded-full border border-[#e3ae72]/15 animate-ping"
+              className="absolute rounded-full border border-[#efcafe]/15 animate-ping"
               style={{
                 inset: `${i * -18}px`,
                 animationDelay: `${i * 0.9 + 0.3}s`,
@@ -243,10 +243,10 @@ export default function ContactPage() {
         </div>
 
         <div className="relative z-10 flex flex-col items-center">
-          <span className="mb-4 inline-block rounded-full border border-[#e3ae72]/30 bg-[#e3ae72]/10 px-5 py-1.5 text-[11px] font-semibold tracking-widest dark:text-black text-[#e3ae72]/90 uppercase backdrop-blur-sm">
+          <span className="mb-4 inline-block rounded-full border border-[#efcafe]/30 bg-[#efcafe]/10 px-5 py-1.5 text-[11px] font-semibold tracking-widest dark:text-black text-[#efcafe]/90 uppercase backdrop-blur-sm">
             Write to us
           </span>
-          <h1 className="font-serif text-4xl font-bold dark:text-black text-[#e3ae72]/90 md:text-5xl leading-[1.1] tracking-tight">
+          <h1 className="font-serif text-4xl font-bold dark:text-black text-[#efcafe]/90 md:text-5xl leading-[1.1] tracking-tight">
             Get In Touch
           </h1>
         </div>
@@ -257,10 +257,10 @@ export default function ContactPage() {
         <div className="grid gap-12 lg:grid-cols-2">
           {/* ── LEFT: Form ── */}
           <div>
-            <h2 className="mb-1 font-serif text-3xl font-bold text-[#271024] dark:text-[#e3ae72] leading-[1.1] tracking-tight">
+            <h2 className="mb-1 font-serif text-3xl font-bold text-[#7a219f] dark:text-[#efcafe] leading-[1.1] tracking-tight">
               Let&apos;s Talk!
             </h2>
-            <p className="mb-8 text-[15px] text-[#271024]/60 dark:text-[#e3ae72]/65">
+            <p className="mb-8 text-[15px] text-[#7a219f]/60 dark:text-[#efcafe]/65">
               Get in touch with us using the enquiry form or contact details
               below.
             </p>
@@ -283,7 +283,7 @@ export default function ContactPage() {
                   ] as const
                 ).map(({ name, label, placeholder }) => (
                   <div key={name}>
-                    <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-[#271024]/50 dark:text-[#e3ae72]/50">
+                    <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-[#7a219f]/50 dark:text-[#efcafe]/50">
                       {label}
                     </label>
                     <input
@@ -291,10 +291,10 @@ export default function ContactPage() {
                       value={form[name]}
                       onChange={handle}
                       placeholder={placeholder}
-                      className="w-full rounded-xl border border-[#271024]/15 bg-white px-4 py-2.5 text-sm text-[#271024] placeholder-[#271024]/25 shadow-sm transition
-                        focus:border-[#271024] focus:outline-none focus:ring-2 focus:ring-[#271024]/10
-                        dark:border-[#e3ae72]/20 dark:bg-[#271024]/60 dark:text-[#e3ae72] dark:placeholder-[#e3ae72]/25
-                        dark:focus:border-[#e3ae72] dark:focus:ring-[#e3ae72]/10"
+                      className="w-full rounded-xl border border-[#7a219f]/15 bg-white px-4 py-2.5 text-sm text-[#7a219f] placeholder-[#7a219f]/25 shadow-sm transition
+                        focus:border-[#7a219f] focus:outline-none focus:ring-2 focus:ring-[#7a219f]/10
+                        dark:border-[#efcafe]/20 dark:bg-[#7a219f]/60 dark:text-[#efcafe] dark:placeholder-[#efcafe]/25
+                        dark:focus:border-[#efcafe] dark:focus:ring-[#efcafe]/10"
                     />
                   </div>
                 ))}
@@ -302,7 +302,7 @@ export default function ContactPage() {
 
               {/* Email */}
               <div>
-                <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-[#271024]/50 dark:text-[#e3ae72]/50">
+                <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-[#7a219f]/50 dark:text-[#efcafe]/50">
                   Email
                 </label>
                 <input
@@ -311,16 +311,16 @@ export default function ContactPage() {
                   value={form.email}
                   onChange={handle}
                   placeholder="hello@example.com"
-                  className="w-full rounded-xl border border-[#271024]/15 bg-white px-4 py-2.5 text-sm text-[#271024] placeholder-[#271024]/25 shadow-sm transition
-                    focus:border-[#271024] focus:outline-none focus:ring-2 focus:ring-[#271024]/10
-                    dark:border-[#e3ae72]/20 dark:bg-[#271024]/60 dark:text-[#e3ae72] dark:placeholder-[#e3ae72]/25
-                    dark:focus:border-[#e3ae72] dark:focus:ring-[#e3ae72]/10"
+                  className="w-full rounded-xl border border-[#7a219f]/15 bg-white px-4 py-2.5 text-sm text-[#7a219f] placeholder-[#7a219f]/25 shadow-sm transition
+                    focus:border-[#7a219f] focus:outline-none focus:ring-2 focus:ring-[#7a219f]/10
+                    dark:border-[#efcafe]/20 dark:bg-[#7a219f]/60 dark:text-[#efcafe] dark:placeholder-[#efcafe]/25
+                    dark:focus:border-[#efcafe] dark:focus:ring-[#efcafe]/10"
                 />
               </div>
 
               {/* Message */}
               <div>
-                <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-[#271024]/50 dark:text-[#e3ae72]/50">
+                <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-[#7a219f]/50 dark:text-[#efcafe]/50">
                   Message
                 </label>
                 <textarea
@@ -329,24 +329,24 @@ export default function ContactPage() {
                   onChange={handle}
                   rows={4}
                   placeholder="Type something..."
-                  className="w-full resize-none rounded-xl border border-[#271024]/15 bg-white px-4 py-2.5 text-sm text-[#271024] placeholder-[#271024]/25 shadow-sm transition
-                    focus:border-[#271024] focus:outline-none focus:ring-2 focus:ring-[#271024]/10
-                    dark:border-[#e3ae72]/20 dark:bg-[#271024]/60 dark:text-[#e3ae72] dark:placeholder-[#e3ae72]/25
-                    dark:focus:border-[#e3ae72] dark:focus:ring-[#e3ae72]/10"
+                  className="w-full resize-none rounded-xl border border-[#7a219f]/15 bg-white px-4 py-2.5 text-sm text-[#7a219f] placeholder-[#7a219f]/25 shadow-sm transition
+                    focus:border-[#7a219f] focus:outline-none focus:ring-2 focus:ring-[#7a219f]/10
+                    dark:border-[#efcafe]/20 dark:bg-[#7a219f]/60 dark:text-[#efcafe] dark:placeholder-[#efcafe]/25
+                    dark:focus:border-[#efcafe] dark:focus:ring-[#efcafe]/10"
                 />
               </div>
               {/* Submit */}
               <button
                 type="submit"
                 className="mt-1 inline-flex items-center gap-2 rounded-full
-                  bg-[#271024] dark:bg-[#e3ae72]
-                  text-white dark:text-[#271024]
+                  bg-[#7a219f] dark:bg-[#efcafe]
+                  text-white dark:text-[#7a219f]
                   px-10 py-4 text-sm font-medium tracking-wide shadow-md
                   transition-all duration-200
-                  hover:bg-[#271024]/80 dark:hover:bg-[#d49e5e]
+                  hover:bg-[#7a219f]/80 dark:hover:bg-[#7a219f]
                   active:scale-95
                   focus-visible:outline-none focus-visible:ring-2
-                  focus-visible:ring-[#271024] dark:focus-visible:ring-[#e3ae72]"
+                  focus-visible:ring-[#7a219f] dark:focus-visible:ring-[#efcafe]"
               >
                 SEND A MESSAGE
                 <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none">
@@ -365,24 +365,24 @@ export default function ContactPage() {
           {/* ── RIGHT: Illustration + Info ── */}
           <div className="flex flex-col gap-8">
             {/* Contact detail blocks */}
-            <div className="space-y-5 rounded-2xl border border-[#271024]/10 dark:border-[#e3ae72]/10 bg-white dark:bg-[#271024]/60 p-6 shadow-sm">
+            <div className="space-y-5 rounded-2xl border border-[#7a219f]/10 dark:border-[#efcafe]/10 bg-white dark:bg-[#7a219f]/60 p-6 shadow-sm">
               {CONTACT_FIELDS.map(({ title, lines, icon }, idx) => (
                 <div key={title}>
                   {idx > 0 && (
-                    <div className="mb-5 h-px bg-[#271024]/8 dark:bg-[#e3ae72]/10" />
+                    <div className="mb-5 h-px bg-[#7a219f]/8 dark:bg-[#efcafe]/10" />
                   )}
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#271024]/8 dark:bg-[#e3ae72]">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/8 dark:bg-[#efcafe]">
                       {icon}
                     </div>
                     <div>
-                      <p className="mb-0.5 text-[10px] font-bold uppercase tracking-widest text-[#271024]/40 dark:text-[#e3ae72]/45">
+                      <p className="mb-0.5 text-[10px] font-bold uppercase tracking-widest text-[#7a219f]/40 dark:text-[#efcafe]/45">
                         {title}
                       </p>
                       {lines.map((line) => (
                         <p
                           key={line}
-                          className="text-sm text-[#271024] dark:text-[#e3ae72]/80"
+                          className="text-sm text-[#7a219f] dark:text-[#efcafe]/80"
                         >
                           {line}
                         </p>
@@ -395,7 +395,7 @@ export default function ContactPage() {
 
             {/* Social links */}
             <div>
-              <p className="mb-3 font-serif text-xl font-bold text-[#271024] dark:text-[#e3ae72]">
+              <p className="mb-3 font-serif text-xl font-bold text-[#7a219f] dark:text-[#efcafe]">
                 Follow us
               </p>
               <div className="flex flex-wrap gap-2">
