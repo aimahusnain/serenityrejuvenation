@@ -6,7 +6,6 @@ import "./globals.css";
 
 import LenisProvider from "@/components/LenisProvider";
 import SpaLoader from "@/components/loader";
-import ThemeContextProvider from "@/components/ThemeContextProvider";
 
 import { ProductsProvider } from "@/components/ProductsProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -29,17 +28,15 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <html lang="en" suppressHydrationWarning className={fontSans.variable}>
+    <html lang="en" suppressHydrationWarning className={`${fontSans.variable} dark`}>
       <body className="antialiased">
       <TooltipProvider>
         <SessionProvider session={session}>
-          <ThemeContextProvider>
-            <ProductsProvider initialProducts={products}>
-              <SpaLoader />
+          <ProductsProvider initialProducts={products}>
+            <SpaLoader />
 
-              <LenisProvider>{children}</LenisProvider>
-            </ProductsProvider>
-          </ThemeContextProvider>
+            <LenisProvider>{children}</LenisProvider>
+          </ProductsProvider>
         </SessionProvider>
       </TooltipProvider>
       </body>

@@ -352,7 +352,7 @@ export function UserDashboardShell({
                 )}
               </CardContent>
             </Card>
-            <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20 shadow-sm bg-gradient-to-br from-[#7a219f]/5 to-[#efcafe]/5 dark:from-[#efcafe]/10 dark:to-[#7a219f]/10">
+            <Card className="border-[#7a219f]/10 shadow-sm bg-[linear-gradient(135deg,rgba(122,33,159,0.08),rgba(239,202,254,0.08))]">
               <CardHeader>
                 <CardTitle className="text-[#7a219f] dark:text-[#efcafe] flex items-center gap-2">
                   <Sparkles className="h-5 w-5" />

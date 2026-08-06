@@ -81,15 +81,15 @@ export default function AdminDashboard({ users, bookings, stats }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#7a219f] py-8 px-4">
+    <main className="min-h-screen bg-[#1d002c] py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-[#7a219f] dark:text-[#efcafe]">
+            <h1 className="text-3xl font-bold text-[#efcafe]">
               Admin Dashboard
             </h1>
-            <p className="text-[#7a219f]/60 dark:text-[#efcafe]/65 mt-2">
+            <p className="text-[#efcafe]/70 mt-2">
               Manage users, bookings, and settings
             </p>
           </div>
@@ -113,17 +113,17 @@ export default function AdminDashboard({ users, bookings, stats }: Props) {
 
         {/* Main Content */}
         <Tabs defaultValue="users" className="mt-8">
-          <TabsList className="grid w-full grid-cols-2 bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
+          <TabsList className="grid w-full grid-cols-2 bg-[#7a219f]/10">
             <TabsTrigger
               value="users"
-              className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
+              className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white"
             >
               <Users className="h-4 w-4 mr-2" />
               Users
             </TabsTrigger>
             <TabsTrigger
               value="bookings"
-              className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white dark:data-[state=active]:bg-[#efcafe] dark:data-[state=active]:text-[#7a219f]"
+              className="data-[state=active]:bg-[#7a219f] data-[state=active]:text-white"
             >
               <Calendar className="h-4 w-4 mr-2" />
               Bookings

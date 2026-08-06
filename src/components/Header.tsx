@@ -24,20 +24,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 import { useProducts } from "@/components/ProductsProvider";
 import UserMenu from "@/components/UserMenu";
 import { getHeaderThemeClasses, type HeaderVariant } from "@/lib/header-home-theme";
-import { useHomeThemeUi } from "@/components/home/HomeThemeUiContext";
 
 export default function Header({ variant = "default" }: { variant?: HeaderVariant }) {
   const products = useProducts();
   const { data: session } = useSession();
   const [isPending, startTransition] = useTransition();
   const t = getHeaderThemeClasses(variant);
-  const { darkBg } = useHomeThemeUi();
   const isHome = variant === "home";
-  const showLightLogo = isHome ? darkBg : false;
 
   const handleSignOut = () => {
     startTransition(async () => {
@@ -109,7 +105,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                     navigationMenuTriggerStyle(),
                     isHome
                       ? t.menuTrigger
-                      : "text-[#7a219f] hover:bg-[#7a219f]/8 dark:text-[#efcafe] dark:hover:bg-[#efcafe]/10",
+                      : "text-[#efcafe] hover:bg-[#efcafe]/10",
                   )}
                 >
                   Gallery
@@ -120,24 +116,10 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
         </NavigationMenu>
 
         <Link href="/" className="flex items-center space-x-2 mr-18">
-          {/* Light mode logo */}
           <Image
             src="/logo_dark.png"
             alt="Serenity Rejuvenation"
-            className={cn(
-              "max-h-full",
-              isHome ? (showLightLogo ? "hidden" : "block") : "dark:hidden",
-            )}
-            width={130}
-            height={200}
-          />
-          <Image
-            src="/logo_light.png"
-            alt="Serenity Rejuvenation"
-            className={cn(
-              "max-h-full",
-              isHome ? (showLightLogo ? "block" : "hidden") : "hidden dark:block",
-            )}
+            className="max-h-full"
             width={130}
             height={200}
           />
@@ -145,8 +127,6 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
 
         {/* Right side buttons */}
         <div className="flex items-center space-x-2 md:space-x-4">
-          {!isHome && <AnimatedThemeToggler />}
-
           {session ? (
             <UserMenu />
           ) : (
@@ -159,7 +139,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                     "hidden cursor-pointer sm:flex",
                     isHome
                       ? t.ghostBtn
-                      : "text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/8 dark:hover:bg-[#efcafe]/10",
+                      : "text-[#efcafe] hover:bg-[#efcafe]/10",
                   )}
                 >
                   <User className="mr-2 size-4" />
@@ -174,7 +154,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                     "sm:flex hidden",
                     isHome
                       ? t.primaryBtn
-                      : "bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]",
+                      : "bg-[#efcafe] hover:bg-[#f7e0ac]/90 text-[#2d063f]",
                   )}
                 >
                   <LogIn className="mr-2 size-4" />
@@ -194,7 +174,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                 className={cn(
                   isHome
                     ? t.ghostBtn
-                    : "text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/8 dark:hover:bg-[#efcafe]/10",
+                    : "text-[#efcafe] hover:bg-[#efcafe]/10",
                 )}
               >
                 <Menu className="size-6" />
@@ -208,24 +188,11 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
               <div className={t.sheetHeader}>
                 {/* Light mode logo */}
                 <Image
-                  src="/logo_dark.png"
-                  alt="Serenity Rejuvenation"
-                  width={100}
-                  height={60}
-                  className={cn(
-                    "object-contain",
-                    isHome ? (showLightLogo ? "hidden" : "block") : "dark:hidden",
-                  )}
-                />
-                <Image
                   src="/logo_light.png"
                   alt="Serenity Rejuvenation"
                   width={100}
                   height={60}
-                  className={cn(
-                    "object-contain",
-                    isHome ? (showLightLogo ? "block" : "hidden") : "hidden dark:block",
-                  )}
+                  className="object-contain"
                 />
               </div>
 
@@ -255,7 +222,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                                     "text-xs font-medium leading-snug",
                                     isHome
                                       ? "text-[var(--home-text)]"
-                                      : "text-[#7a219f] dark:text-[#efcafe]",
+                                      : "text-[#efcafe]",
                                   )}
                                 >
                                   {service.title}
@@ -274,7 +241,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                                   "text-[11px] leading-relaxed line-clamp-2",
                                   isHome
                                     ? "text-[var(--home-text)]/55"
-                                    : "text-[#7a219f]/55 dark:text-[#efcafe]/55",
+                                    : "text-[#efcafe]/55",
                                 )}
                               >
                                 {service.description}
@@ -347,7 +314,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                     <Link href="/login" onClick={() => setTimeout(() => {}, 0)}>
                       <Button
                         size="sm"
-                        className={cn("w-full", isHome ? t.primaryBtn : "bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]")}
+                        className={cn("w-full", isHome ? t.primaryBtn : "bg-[#efcafe] hover:bg-[#f7e0ac]/90 text-[#2d063f]")}
                       >
                         <LogIn className="mr-2 size-4" />
                         Login

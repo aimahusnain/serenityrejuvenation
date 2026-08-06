@@ -59,8 +59,8 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
     : session?.user?.email?.[0].toUpperCase() || "A";
 
   return (
-    <Sidebar collapsible="icon" side="left" className="border-r border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]" {...props}>
-      <SidebarHeader className="border-b border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]">
+    <Sidebar collapsible="icon" side="left" className="border-r border-[#7a219f]/10 bg-[#1d002c]" {...props}>
+      <SidebarHeader className="border-b border-[#7a219f]/10 bg-[#1d002c]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
@@ -81,9 +81,9 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="bg-[#f8f9fa]/50 dark:bg-[#7a219f]/30">
+      <SidebarContent className="bg-[#26043e]">
         <div className="px-3 py-2">
-          <p className="text-xs font-semibold text-[#7a219f]/60 dark:text-[#efcafe]/60 px-3 mb-2">
+          <p className="text-xs font-semibold text-[#efcafe]/70 px-3 mb-2">
             MENU
           </p>
           <Suspense fallback={null}>
@@ -91,13 +91,13 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           </Suspense>
         </div>
       </SidebarContent>
-      <SidebarFooter className="border-t border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]">
+      <SidebarFooter className="border-t border-[#7a219f]/10 bg-[#1d002c]">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={handleSignOut}
               disabled={isPending}
-              className="cursor-pointer text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10"
+              className="cursor-pointer text-red-400 hover:text-red-300 hover:bg-red-500/10"
             >
               <LogOut className="size-4" />
               <span>{isPending ? "Signing out..." : "Sign out"}</span>
@@ -112,10 +112,10 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
                   <span className="text-xs font-bold">{userInitials}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">
+                  <span className="text-sm font-medium text-[#efcafe]">
                     {session?.user?.name || "Admin"}
                   </span>
-                  <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
+                  <span className="text-xs text-[#efcafe]/70">
                     {session?.user?.email}
                   </span>
                 </div>

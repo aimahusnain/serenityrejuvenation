@@ -69,7 +69,7 @@ export default function LoginPage() {
   // Show loading state during form submission
   if (isPending) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#7a219f]">
+      <div className="min-h-screen flex items-center justify-center bg-[#1d002c]">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="h-8 w-8 animate-spin text-[#7a219f] dark:text-[#efcafe]" />
           <p className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]">
@@ -81,9 +81,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2 bg-white dark:bg-[#7a219f] relative">
+    <div className="min-h-screen grid lg:grid-cols-2 bg-[#1d002c] relative">
       {/* Left side - Form */}
-      <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#7a219f]">
+      <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 bg-[#1d002c]">
         <div className="mx-auto w-full max-w-sm">
           {/* Logo/Brand */}
           <div className="mb-8">
@@ -102,7 +102,7 @@ export default function LoginPage() {
             <h1 className="text-2xl font-bold tracking-tight text-[#7a219f] dark:text-[#efcafe] sm:text-3xl">
               Welcome back
             </h1>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 text-sm text-[#efcafe]/70">
               Enter your email and password to sign in to your account
             </p>
           </div>
@@ -115,7 +115,7 @@ export default function LoginPage() {
                 Email
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-[#efcafe]/60" />
+                <Mail className="absolute left-3 top-3 h-4 w-4 text-[#efcafe]/60" />
                 <Input
                   id="email"
                   type="email"
@@ -124,7 +124,7 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={isPending}
-                  className="pl-10 bg-white dark:bg-[#1a0a18] border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] placeholder:text-muted-foreground dark:placeholder:text-[#efcafe]/50 focus:border-[#7a219f] dark:focus:border-[#efcafe]"
+                  className="pl-10 bg-[#26043e] border-[#7a219f]/20 text-[#efcafe] placeholder:text-[#efcafe]/50 focus:border-[#efcafe]"
                 />
               </div>
             </div>
@@ -137,13 +137,13 @@ export default function LoginPage() {
                 </Label>
                 <Link
                   href="#"
-                  className="text-xs text-muted-foreground hover:text-[#7a219f] dark:hover:text-[#efcafe]"
+                  className="text-xs text-[#efcafe]/70 hover:text-[#efcafe]"
                 >
                   Forgot password?
                 </Link>
               </div>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-[#efcafe]/60" />
+                <Lock className="absolute left-3 top-3 h-4 w-4 text-[#efcafe]/60" />
                 <Input
                   id="password"
                   type="password"
@@ -151,7 +151,7 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   disabled={isPending}
-                  className="pl-10 bg-white dark:bg-[#1a0a18] border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] placeholder:text-muted-foreground dark:placeholder:text-[#efcafe]/50 focus:border-[#7a219f] dark:focus:border-[#efcafe]"
+                  className="pl-10 bg-[#26043e] border-[#7a219f]/20 text-[#efcafe] placeholder:text-[#efcafe]/50 focus:border-[#efcafe]"
                 />
               </div>
             </div>
@@ -195,7 +195,7 @@ export default function LoginPage() {
 
           {/* Sign up link */}
           <div className="mt-6 text-center text-sm">
-            <span className="text-muted-foreground">Don&apos;t have an account? </span>
+            <span className="text-[#efcafe]/70">Don&apos;t have an account? </span>
             <Link
               href="/signup"
               className="font-medium text-[#7a219f] hover:text-[#7a219f]/80 dark:text-[#efcafe] dark:hover:text-[#efcafe]/80"
@@ -205,7 +205,7 @@ export default function LoginPage() {
           </div>
 
           {/* Terms */}
-          <p className="mt-6 text-xs text-muted-foreground text-center">
+          <p className="mt-6 text-xs text-[#efcafe]/70 text-center">
             By continuing, you agree to our{" "}
             <Link
               href="/terms-and-conditions"
@@ -225,8 +225,8 @@ export default function LoginPage() {
       </div>
 
       {/* Right side - Image/Gradient */}
-      <div className="hidden lg:block relative bg-[#f5f5f5] dark:bg-[#1a0a18]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#7a219f] via-[#0a3a66] to-[#7a219f] dark:from-[#1a0a18] dark:via-[#2d1540] dark:to-[#1a0a18]" />
+      <div className="hidden lg:block relative bg-[#2d063f]">
+        <div className="absolute inset-0 bg-linear-to-br from-[#7a219f] via-[#0a3a66] to-[#7a219f]" />
         <div className="absolute inset-0 bg-[url('/hero-image.jpg')] bg-cover bg-center opacity-20 dark:opacity-10" />
         <div className="relative h-full flex flex-col justify-center items-center px-12 text-center">
           <blockquote className="max-w-lg space-y-6">

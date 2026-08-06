@@ -37,33 +37,29 @@ export function getHeaderThemeClasses(variant: HeaderVariant) {
   }
 
   return {
-    nav: "mx-8 sticky top-2 z-50 rounded-lg bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:bg-[#7a219f]/95 dark:supports-backdrop-filter:bg-[#7a219f]/80 border border-[#7a219f]/10 dark:border-[#efcafe]/15",
-    menuTrigger:
-      "text-[#7a219f] hover:bg-[#7a219f]/8 dark:text-[#efcafe] dark:hover:bg-[#efcafe]/10",
-    menuContent: "bg-white dark:bg-[#7a219f] dark:border-[#efcafe]/15",
-    menuGrid: "bg-white dark:bg-[#7a219f] dark:border-[#efcafe]/15",
+    nav: "mx-8 sticky top-2 z-50 rounded-lg bg-[#2d063f]/95 backdrop-blur supports-backdrop-filter:bg-[#2d063f]/80 border border-[#7a219f]/20",
+    menuTrigger: "text-[#efcafe] hover:bg-[#efcafe]/10",
+    menuContent: "bg-[#1d002c] border border-[#7a219f]/15",
+    menuGrid: "bg-[#1d002c]",
     serviceCard:
-      "group rounded-lg border border-[#7a219f]/15 dark:border-[#efcafe]/20 p-4 hover:border-[#7a219f]/40 dark:hover:border-[#efcafe]/50 hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/8 transition-all",
-    serviceTitle:
-      "font-semibold text-[#7a219f] dark:text-[#efcafe] text-sm leading-tight",
-    serviceDesc: "text-xs text-[#7a219f]/55 dark:text-[#efcafe]/60 mt-1 line-clamp-2",
+      "group rounded-lg border border-[#7a219f]/15 p-4 hover:border-[#7a219f]/30 hover:bg-[#7a219f]/5 transition-all",
+    serviceTitle: "font-semibold text-[#efcafe] text-sm leading-tight",
+    serviceDesc: "text-xs text-[#efcafe]/70 mt-1 line-clamp-2",
     price: "text-xs font-semibold text-[#efcafe]",
-    ghostBtn:
-      "text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/8 dark:hover:bg-[#efcafe]/10",
-    primaryBtn:
-      "bg-[#7a219f] hover:bg-[#7a219f]/80 text-white dark:bg-[#efcafe] dark:text-[#7a219f] dark:hover:bg-[#7a219f]",
-    sheet: "w-72 bg-white dark:bg-[#7a219f] p-0 flex flex-col",
+    ghostBtn: "text-[#efcafe] hover:bg-[#efcafe]/10",
+    primaryBtn: "bg-[#efcafe] hover:bg-[#f7e0ac]/90 text-[#2d063f]",
+    sheet: "w-72 bg-[#1d002c] p-0 flex flex-col",
     sheetHeader:
-      "flex items-center justify-between px-5 py-4 border-b border-[#7a219f]/15 dark:border-[#efcafe]/20",
+      "flex items-center justify-between px-5 py-4 border-b border-[#7a219f]/15",
     accordionTrigger:
-      "px-5 py-3 text-sm font-medium text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10 hover:no-underline rounded-none",
+      "px-5 py-3 text-sm font-medium text-[#efcafe] hover:bg-[#7a219f]/5 hover:no-underline rounded-none",
     mobileServiceCard:
-      "rounded-xl border border-[#7a219f]/15 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]/50 px-3 py-2.5 hover:border-[#7a219f]/30 dark:hover:border-[#efcafe]/40 hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/8 transition-all cursor-pointer",
-    mobileDivider: "h-px bg-[#7a219f]/10 dark:bg-[#efcafe]/15 mx-5 my-1",
+      "rounded-xl border border-[#7a219f]/15 bg-[#26043e] px-3 py-2.5 hover:border-[#7a219f]/30 hover:bg-[#7a219f]/8 transition-all cursor-pointer",
+    mobileDivider: "h-px bg-[#7a219f]/10 mx-5 my-1",
     mobileLink:
-      "flex items-center px-5 py-3 text-sm font-medium text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10 transition-colors",
-    sheetFooter: "border-t border-[#7a219f]/15 dark:border-[#efcafe]/20 p-4",
+      "flex items-center px-5 py-3 text-sm font-medium text-[#efcafe] hover:bg-[#7a219f]/5 transition-colors",
+    sheetFooter: "border-t border-[#7a219f]/15 p-4",
     outlineBtn:
-      "w-full border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10",
+      "w-full border-[#7a219f]/20 text-[#efcafe] hover:bg-[#7a219f]/5",
   };
 }

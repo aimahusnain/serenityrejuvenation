@@ -36,9 +36,9 @@ interface Props {
 
 const getClientStatus = (bookingCount: number) => {
   if (bookingCount >= 10) return { status: "VIP", color: "bg-[#efcafe] text-[#7a219f]" };
-  if (bookingCount >= 5) return { status: "Regular", color: "bg-green-500/20 text-green-700 dark:bg-green-500/30 dark:text-green-400" };
-  if (bookingCount >= 2) return { status: "Active", color: "bg-blue-500/20 text-blue-700 dark:bg-blue-500/30 dark:text-blue-400" };
-  return { status: "New", color: "bg-gray-500/20 text-gray-700 dark:bg-gray-500/30 dark:text-gray-400" };
+  if (bookingCount >= 5) return { status: "Regular", color: "bg-[#7a219f]/15 text-[#efcafe]" };
+  if (bookingCount >= 2) return { status: "Active", color: "bg-[#7a219f]/10 text-[#efcafe]" };
+  return { status: "New", color: "bg-[#7a219f]/10 text-[#efcafe]" };
 };
 
 export function AdminClientsTable({ users }: Props) {
@@ -67,14 +67,14 @@ export function AdminClientsTable({ users }: Props) {
   const irregularCount = users.length - regularCount;
 
   return (
-    <Card className="border-[#7a219f]/10 dark:border-[#efcafe]/20">
+    <Card className="border-[#7a219f]/10 bg-[#26043e]">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-[#7a219f] dark:text-[#efcafe]">
+            <CardTitle className="text-[#efcafe]">
               Clients ({users.length})
             </CardTitle>
-            <CardDescription className="text-[#7a219f]/60 dark:text-[#efcafe]/65">
+            <CardDescription className="text-[#efcafe]/65">
               Manage your client base
             </CardDescription>
           </div>
@@ -89,7 +89,7 @@ export function AdminClientsTable({ users }: Props) {
             <Star className="h-3 w-3 mr-1" />
             Regular: {regularCount}
           </Badge>
-          <Badge variant="outline" className="bg-[#7a219f]/10 border-[#7a219f]/30 text-[#7a219f] dark:text-[#efcafe]/80">
+          <Badge variant="outline" className="bg-[#7a219f]/10 border-[#7a219f]/30 text-[#efcafe]">
             New: {newCount}
           </Badge>
           <Badge variant="outline" className="bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-400">
@@ -139,7 +139,7 @@ export function AdminClientsTable({ users }: Props) {
       <CardContent>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-[#7a219f]/5 dark:bg-[#efcafe]/10">
+            <thead className="bg-[#7a219f]/5">
               <tr>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-[#7a219f] dark:text-[#efcafe] uppercase tracking-wider">
                   Client
@@ -161,17 +161,17 @@ export function AdminClientsTable({ users }: Props) {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#7a219f]/10 dark:divide-[#efcafe]/10">
+            <tbody className="divide-y divide-[#7a219f]/10">
               {filteredUsers.map((user) => {
                 const clientStatus = getClientStatus(user._count.bookings);
                 return (
-                  <tr key={user.id} className="hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/5">
+                  <tr key={user.id} className="hover:bg-[#7a219f]/5">
                     <td className="px-4 py-3">
                       <div>
                         <p className="text-sm font-medium text-[#7a219f] dark:text-[#efcafe]/90">
                           {user.name || "—"}
                         </p>
-                        <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60 flex items-center gap-1">
+                        <p className="text-xs text-[#efcafe]/60 flex items-center gap-1">
                           <Mail className="h-3 w-3" />
                           {user.email || "—"}
                         </p>
@@ -215,7 +215,7 @@ export function AdminClientsTable({ users }: Props) {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                           align="end"
-                          className="border-[#7a219f]/10 dark:border-[#efcafe]/20 bg-white dark:bg-[#7a219f]"
+                          className="border-[#7a219f]/10 bg-[#26043e]"
                         >
                           <DropdownMenuItem className="cursor-pointer text-[#7a219f] dark:text-[#efcafe]/80">
                             <Mail className="h-4 w-4 mr-2" />
@@ -235,7 +235,7 @@ export function AdminClientsTable({ users }: Props) {
                 <tr>
                   <td
                     colSpan={6}
-                    className="px-4 py-8 text-center text-[#7a219f]/60 dark:text-[#efcafe]/60"
+                    className="px-4 py-8 text-center text-[#efcafe]/60"
                   >
                     No clients found matching your criteria
                   </td>

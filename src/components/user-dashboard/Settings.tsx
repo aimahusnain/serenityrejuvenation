@@ -35,9 +35,6 @@ import {
   Palette,
   Download,
   Trash2,
-  Moon,
-  Sun,
-  AlertCircle,
   CheckCircle2,
   Eye,
   EyeOff,
@@ -47,7 +44,6 @@ import {
   Edit2,
 } from "lucide-react";
 import { updateProfile, deleteAccount } from "@/app/actions/auth";
-import { useTheme } from "next-themes";
 
 interface User {
   id: string;
@@ -74,7 +70,6 @@ interface SettingsProps {
 
 export function Settings({ user, preferences }: SettingsProps) {
   const router = useRouter();
-  const { theme, setTheme } = useTheme();
 
   // Profile state
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -851,73 +846,45 @@ export function Settings({ user, preferences }: SettingsProps) {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="flex items-center justify-between p-4 rounded-xl border border-[#7a219f]/10 dark:border-[#efcafe]/15 bg-[#7a219f]/5 dark:bg-[#efcafe]/5">
+              <div className="rounded-xl border border-[#7a219f]/10 bg-[#7a219f]/5 p-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
-                    <Palette className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/10">
+                    <Palette className="h-5 w-5 text-[#7a219f]" />
                   </div>
                   <div>
-                    <p className="font-medium text-[#7a219f] dark:text-[#efcafe]">
-                      Dark Mode
+                    <p className="font-medium text-[#efcafe]">
+                      Brand Colors
                     </p>
-                    <p className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
-                      Toggle between light and dark themes
+                    <p className="text-xs text-[#efcafe]/70">
+                      The application uses a single fixed dark palette.
                     </p>
                   </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant={theme === "light" ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setTheme("light")}
-                    className={
-                      theme === "light"
-                        ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]"
-                        : "border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
-                    }
-                  >
-                    <Sun className="h-4 w-4 mr-1" />
-                    Light
-                  </Button>
-                  <Button
-                    variant={theme === "dark" ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setTheme("dark")}
-                    className={
-                      theme === "dark"
-                        ? "bg-[#7a219f] text-white dark:bg-[#efcafe] dark:text-[#7a219f]"
-                        : "border-[#7a219f]/20 dark:border-[#efcafe]/30 text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/5 dark:hover:bg-[#efcafe]/10"
-                    }
-                  >
-                    <Moon className="h-4 w-4 mr-1" />
-                    Dark
-                  </Button>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 rounded-xl border border-[#7a219f]/10 dark:border-[#efcafe]/15 bg-[#7a219f]/5 dark:bg-[#efcafe]/5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/10 dark:bg-[#efcafe]/20">
-                  <Palette className="h-5 w-5 text-[#7a219f] dark:text-[#efcafe]" />
+              <div className="flex items-start gap-4 p-4 rounded-xl border border-[#7a219f]/10 bg-[#7a219f]/5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7a219f]/10">
+                  <Palette className="h-5 w-5 text-[#7a219f]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-[#7a219f] dark:text-[#efcafe]/90 font-medium">
+                  <p className="text-[#efcafe]/90 font-medium">
                     Brand Colors
                   </p>
                   <div className="mt-3 flex gap-3">
                     <div className="flex flex-col items-center gap-1">
                       <div className="w-12 h-12 rounded-lg bg-[#7a219f] border-2 border-white/20 shadow-sm" />
-                      <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
+                      <span className="text-xs text-[#efcafe]/60">
                         Navy
                       </span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
                       <div className="w-12 h-12 rounded-lg bg-[#efcafe] border-2 border-white/20 shadow-sm" />
-                      <span className="text-xs text-[#7a219f]/60 dark:text-[#efcafe]/60">
+                      <span className="text-xs text-[#efcafe]/60">
                         Gold
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs text-[#7a219f]/50 dark:text-[#efcafe]/50 mt-2">
+                  <p className="text-xs text-[#efcafe]/50 mt-2">
                     Serenity Rejuvenation brand colors
                   </p>
                 </div>

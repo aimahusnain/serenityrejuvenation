@@ -66,9 +66,9 @@ export default async function AdminPage() {
   return (
     <SidebarProvider>
       <AdminSidebar />
-      <SidebarInset className="flex flex-1 flex-col bg-white dark:bg-[#7a219f]">
+      <SidebarInset className="flex flex-1 flex-col bg-[#1d002c]">
         <SiteHeader title="Admin Panel" />
-        <div className="flex-1 overflow-auto bg-[#f8f9fa]/50 dark:bg-[#7a219f]/30">
+        <div className="flex-1 overflow-auto bg-[#26043e]">
           <div className="container mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-8">
             <Suspense fallback={<div className="text-muted-foreground text-sm">Loading…</div>}>
               <AdminDashboardShell
