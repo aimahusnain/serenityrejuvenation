@@ -39,6 +39,24 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
   const [priceRevealed, setPriceRevealed] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
+  const formatPriceValue = (price: string | null | undefined) => {
+    if (!price) return null;
+
+    const trimmed = price.trim();
+    if (!trimmed) return null;
+
+    const normalized = trimmed.replace(/^\$/, "");
+    const numericValue = Number(normalized);
+
+    if (Number.isNaN(numericValue)) {
+      return trimmed;
+    }
+
+    return numericValue.toFixed(2);
+  };
+
+  const formattedPrice = formatPriceValue(product.price);
+
   // Determine where to send the user based on auth status
   const bookUrl = session?.user ? "/user-dashboard/book" : "/login";
   const glpLink =
@@ -124,7 +142,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 )}
           </div>
 
-          {product.price && (
+          {formattedPrice && (
             <div className="mt-4 text-(--home-on-purple)/80">
               From{" "}
               <span
@@ -137,7 +155,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 }}
                 className="text-2xl font-light"
               >
-                ${product.price}.00
+                ${formattedPrice}
               </span>
             </div>
           )}
