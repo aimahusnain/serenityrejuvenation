@@ -1,14 +1,14 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { RiInstagramFill } from "react-icons/ri";
-import { FaFacebook } from "react-icons/fa";
-import { cn } from "@/lib/utils";
-import { useProducts } from "./ProductsProvider";
-import { useSession } from "next-auth/react";
-import { getFooterThemeClasses, type FooterVariant } from "@/lib/footer-home-theme";
 import { useHomeThemeUi } from "@/components/home/HomeThemeUiContext";
+import { getFooterThemeClasses, type FooterVariant } from "@/lib/footer-home-theme";
+import { cn } from "@/lib/utils";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { RiInstagramFill } from "react-icons/ri";
+import { SiTiktok } from "react-icons/si";
+import { useProducts } from "./ProductsProvider";
 
 export default function Footer({ variant = "default" }: { variant?: FooterVariant }) {
   const products = useProducts();
@@ -62,8 +62,8 @@ export default function Footer({ variant = "default" }: { variant?: FooterVarian
 
             <div className="flex items-center gap-2.5">
               {[
-                { href: "https://instagram.com", Icon: RiInstagramFill, label: "Instagram" },
-                { href: "https://facebook.com", Icon: FaFacebook, label: "Facebook" },
+                { href: "https://www.instagram.com/serenityrejuvenation", Icon: RiInstagramFill, label: "Instagram" },
+                { href: "https://www.tiktok.com/@serenity.rejuvena", Icon: SiTiktok, label: "TikTok" },
               ].map(({ href, Icon, label }) => (
                 <a
                   key={label}
