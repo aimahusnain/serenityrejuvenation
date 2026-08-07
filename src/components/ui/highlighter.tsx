@@ -16,6 +16,7 @@ type AnnotationAction =
 
 interface HighlighterProps {
   children: React.ReactNode;
+  className?: string;
   action?: AnnotationAction;
   lightColor?: string;
   darkColor?: string;
@@ -29,6 +30,7 @@ interface HighlighterProps {
 
 export function Highlighter({
   children,
+  className = "",
   action = "highlight",
   darkColor = "#fbbf24",
   strokeWidth = 1.5,
@@ -89,7 +91,10 @@ export function Highlighter({
   ]);
 
   return (
-    <span ref={elementRef} className="relative inline-block bg-transparent">
+    <span
+      ref={elementRef}
+      className={`relative inline-block bg-transparent text-black ${className}`.trim()}
+    >
       {children}
     </span>
   );

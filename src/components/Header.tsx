@@ -117,7 +117,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
 
         <Link href="/" className="flex items-center space-x-2 mr-18">
           <Image
-            src="/logo_dark.png"
+            src="/logo_light.png"
             alt="Serenity Rejuvenation"
             className="max-h-full"
             width={130}
@@ -174,15 +174,15 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                 className={cn(
                   isHome
                     ? t.ghostBtn
-                    : "text-[#efcafe] hover:bg-[#efcafe]/10",
+                    : "text-white! hover:bg-[#efcafe]/10",
                 )}
               >
-                <Menu className="size-6" />
+                <Menu className="size-6 text-white!" />
               </Button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className={t.sheet}
+              className={cn(t.sheet, "bg-[#2d063f]")}
             >
               {/* Header */}
               <div className={t.sheetHeader}>
@@ -221,7 +221,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                                   className={cn(
                                     "text-xs font-medium leading-snug",
                                     isHome
-                                      ? "text-[var(--home-text)]"
+                                      ? "text-(--home-text)"
                                       : "text-[#efcafe]",
                                   )}
                                 >
@@ -230,7 +230,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                                 <span
                                   className={cn(
                                     "text-[11px] font-medium whitespace-nowrap pt-px",
-                                    isHome ? "text-[var(--home-accent)]" : "text-[#efcafe]",
+                                    isHome ? "text-(--home-accent)" : "text-[#efcafe]",
                                   )}
                                 >
                                   {service.price ? `$${service.price}.00` : "Contact"}
@@ -240,7 +240,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                                 className={cn(
                                   "text-[11px] leading-relaxed line-clamp-2",
                                   isHome
-                                    ? "text-[var(--home-text)]/55"
+                                    ? "text-(--home-text)/55"
                                     : "text-[#efcafe]/55",
                                 )}
                               >
@@ -272,7 +272,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                       <Button
                         variant="outline"
                         size="sm"
-                        className={cn(t.outlineBtn, "mb-2")}
+                        className={cn(t.outlineBtn, "mb-2", "text-white!")}
                       >
                         <User className="mr-2 size-4" />
                         Dashboard
@@ -282,7 +282,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                       <Button
                         variant="outline"
                         size="sm"
-                        className={cn(t.outlineBtn, "mb-2")}
+                        className={cn(t.outlineBtn, "mb-2 text-white!")}
                       >
                         <User className="mr-2 size-4" />
                         Profile
@@ -293,7 +293,7 @@ export default function Header({ variant = "default" }: { variant?: HeaderVarian
                       size="sm"
                       onClick={handleSignOut}
                       disabled={isPending}
-                      className={t.outlineBtn}
+                      className={cn("text-white!", t.outlineBtn)}
                     >
                       <LogOut className="mr-2 size-4" />
                       {isPending ? "Signing out..." : "Sign Out"}

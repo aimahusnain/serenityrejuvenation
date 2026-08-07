@@ -94,7 +94,7 @@ export default function PurelyRejuvenated() {
             <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[var(--home-text)] leading-[1.1] tracking-tight">
               Purely
               <br />
-              <ThemedHighlighter action="underline">
+              <ThemedHighlighter action="underline" className="text-[#efcafe]!">
                 Rejuvenated
               </ThemedHighlighter>
             </h1>

@@ -49,7 +49,7 @@ export default function UserMenu() {
         <Button
           variant="ghost"
           size="sm"
-          className="hidden sm:flex text-[#7a219f] dark:text-[#efcafe] hover:bg-[#7a219f]/8 dark:hover:bg-[#efcafe]/10"
+          className="hidden sm:flex text-white! hover:bg-[#7a219f]/8 dark:hover:bg-[#efcafe]/10"
         >
           <LayoutDashboard className="mr-2 size-4" />
           Dashboard

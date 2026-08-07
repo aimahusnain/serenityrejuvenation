@@ -100,30 +100,32 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
     >
       <div className="absolute -inset-4 -z-10 rounded-[48px] bg-[color-mix(in_srgb,var(--home-purple)_4%,transparent)] blur-2xl" />
 
-      <div className="rounded-[28px] overflow-hidden bg-[var(--home-bg)] border border-[color-mix(in_srgb,var(--home-purple)_12%,transparent)] shadow-[0_8px_40px_rgba(7,38,79,0.10)] h-full flex flex-col">
-        <div className="relative bg-[var(--home-purple)] px-7 pt-7 pb-9">
-          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase text-[var(--home-on-purple)]/60 bg-white/10 px-3 py-1.5 rounded-full">
+      <div className="rounded-[28px] overflow-hidden bg-(--home-bg) border border-[color-mix(in_srgb,var(--home-purple)_12%,transparent)] shadow-[0_8px_40px_rgba(7,38,79,0.10)] h-full flex flex-col">
+        <div className="relative bg-(--home-purple) px-7 pt-7 pb-9">
+          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase text-(--home-on-purple)/60 bg-white/10 px-3 py-1.5 rounded-full">
             <StarDiamond className="w-2 h-2" />
             Treatment
           </span>
 
           <div className="flex items-end justify-between mt-4">
-            <h3 className="text-[1.6rem] font-light text-[var(--home-on-purple)] leading-[1.1]">
+            <h3 className="text-[1.6rem] font-light text-(--home-on-purple) leading-[1.1]">
               {product.title}
             </h3>
 
-            <div className="relative w-16 h-16 rounded-full overflow-hidden border border-white/30">
-              <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                className="object-cover"
-              />
-            </div>
+{product.image && product.image !== "/images/placeholder.jpg" && (
+  <div className="relative w-16 h-16 rounded-full overflow-hidden border border-white/30">
+    <Image
+      src={product.image}
+      alt={product.title}
+      fill
+      className="object-cover"
+    />
+  </div>
+)}
           </div>
 
           {product.price && (
-            <div className="mt-4 text-[var(--home-on-purple)]/80">
+            <div className="mt-4 text-(--home-on-purple)/80">
               From{" "}
               <span
                 style={{
@@ -143,7 +145,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
         {/* BOTTOM */}
         <div className="px-7 pt-6 pb-7 flex flex-col flex-1">
-          <p className="text-sm text-[var(--home-text)]/70 mb-4">
+          <p className="text-sm text-(--home-text)/70 mb-4">
             {product.description}
           </p>
 
@@ -152,7 +154,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
               href={glpLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-[var(--home-text)] hover:underline"
+              className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-(--home-text) hover:underline"
             >
               Buy the required GLP-1 product here
             </a>
@@ -169,7 +171,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 <StarDiamond
                   className={`w-2 h-2 ${
                     hoveredBenefit === i
-                      ? "text-[var(--home-accent)]"
+                      ? "text-(--home-accent)"
                       : "text-neutral-400"
                   }`}
                 />
@@ -180,7 +182,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
           <Link
             href={bookUrl}
-            className="mt-6 block bg-[var(--home-btn-bg)] text-[var(--home-btn-text)] text-center py-3 rounded-full text-sm uppercase tracking-wider hover:opacity-90"
+            className="mt-6 block bg-(--home-btn-bg) text-(--home-btn-text) text-center py-3 rounded-full text-sm uppercase tracking-wider hover:opacity-90"
           >
             Book Now
           </Link>
@@ -195,15 +197,15 @@ export default function ProductsSection() {
   const products = useProducts();
 
   return (
-    <section className="w-full pt-20 pb-10 bg-[var(--home-bg)]">
+    <section className="w-full pt-20 pb-10 bg-(--home-bg)">
       <div className="max-w-7xl mx-auto px-4">
         {/* HEADER */}
         <div className="text-center mb-14">
-          <p className="uppercase tracking-widest text-sm text-[var(--home-text)]">
+          <p className="uppercase tracking-widest text-sm text-(--home-text)">
             <ThemedHighlighter action="highlight">Our Products</ThemedHighlighter>
           </p>
 
-          <h2 className="text-4xl md:text-6xl font-light mt-4 text-[var(--home-text)]">
+          <h2 className="text-4xl md:text-6xl font-light mt-4 text-(--home-text)">
             Advanced Treatments
           </h2>
         </div>
