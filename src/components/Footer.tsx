@@ -9,6 +9,7 @@ import Link from "next/link";
 import { RiInstagramFill } from "react-icons/ri";
 import { SiTiktok } from "react-icons/si";
 import { useProducts } from "./ProductsProvider";
+import { FaFacebook } from "react-icons/fa";
 
 export default function Footer({ variant = "default" }: { variant?: FooterVariant }) {
   const products = useProducts();
@@ -63,6 +64,7 @@ export default function Footer({ variant = "default" }: { variant?: FooterVarian
             <div className="flex items-center gap-2.5">
               {[
                 { href: "https://www.instagram.com/serenityrejuvenation", Icon: RiInstagramFill, label: "Instagram" },
+                { href: "https://www.facebook.com/profile.php?id=61592475877575", Icon: FaFacebook, label: "Facebook" },
                 { href: "https://www.tiktok.com/@serenity.rejuvena", Icon: SiTiktok, label: "TikTok" },
               ].map(({ href, Icon, label }) => (
                 <a
