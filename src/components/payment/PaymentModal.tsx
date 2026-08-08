@@ -39,6 +39,7 @@ export function PaymentModal({
   const handlePaymentError = (error: string) => {
     console.error("Payment error:", error);
     if (!error.includes("Failed to initialize")) {
+      onError?.(error);
       onClose();
     }
   };

@@ -85,6 +85,12 @@ export async function POST(request: NextRequest) {
     ]);
 
     const emailUrl = new URL("/api/sendemail", request.url).toString();
+    console.log("=== SENDING APPOINTMENT EMAILS ===");
+    console.log("Booking ID:", booking.id);
+    console.log("User email:", bookingUser?.email || session.user.email);
+    console.log("Service:", service?.title);
+    console.log("Appointment date:", booking.date);
+    
     const emailResponse = await fetch(emailUrl, {
       method: "POST",
       headers: {
@@ -103,7 +109,12 @@ export async function POST(request: NextRequest) {
 
     if (!emailResponse.ok) {
       const responseBody = await emailResponse.json().catch(() => ({}));
-      console.error("Appointment email notification failed:", responseBody);
+      console.error("=== APPOINTMENT EMAIL FAILED ===");
+      console.error("Status:", emailResponse.status);
+      console.error("Response:", responseBody);
+      console.error("===============================");
+    } else {
+      console.log("=== APPOINTMENT EMAILS SENT SUCCESSFULLY ===");
     }
 
     return NextResponse.json({ success: true, booking });

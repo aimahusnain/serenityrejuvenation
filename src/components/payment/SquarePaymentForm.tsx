@@ -204,6 +204,19 @@ export function SquarePaymentForm({
     }
   };
 
+  // Handle payment cancellation when modal is closed
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (processing) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [processing]);
+
   if (success) {
     return (
       <div className="flex flex-col items-center justify-center py-8 text-center animate-in fade-in-50 slide-in-from-bottom-4 duration-500">

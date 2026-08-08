@@ -394,12 +394,12 @@ export function BookingSummary({
           open={showPayment}
           onClose={() => {
             setShowPayment(false);
-            handlePaymentError("Payment cancelled");
           }}
           amount={totalPrice}
           productId={service?.id}
           serviceTitle={service?.title}
           onSuccess={handlePaymentSuccess}
+          onError={handlePaymentError}
         />
       )}
     </>
