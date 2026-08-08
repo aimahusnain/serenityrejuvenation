@@ -15,6 +15,7 @@ interface PaymentModalProps {
   productId?: string;
   serviceTitle?: string;
   onSuccess?: (paymentResult: any) => void;
+  onError?: (error: string) => void;
 }
 
 export function PaymentModal({
@@ -24,6 +25,7 @@ export function PaymentModal({
   productId,
   serviceTitle,
   onSuccess,
+  onError,
 }: PaymentModalProps) {
   const [paymentCompleted, setPaymentCompleted] = useState(false);
 

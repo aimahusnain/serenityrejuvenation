@@ -81,9 +81,6 @@ export async function POST(req: NextRequest) {
 
           userId,
 
-          bookingId:
-          bookingId ?? null,
-
           amount,
 
           currency:"USD",

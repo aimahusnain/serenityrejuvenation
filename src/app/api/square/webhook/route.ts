@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
         // Find the payment record by squarePaymentId
         const existingPayment = await prisma.payment.findUnique({
           where: { squarePaymentId: payment.id },
+          include: { bookings: true },
         });
 
         if (existingPayment) {
@@ -60,12 +61,14 @@ export async function POST(req: NextRequest) {
             },
           });
 
-          // If payment is completed and has a booking, confirm the booking
-          if (newStatus === "COMPLETED" && existingPayment.bookingId) {
-            await prisma.booking.update({
-              where: { id: existingPayment.bookingId },
-              data: { status: "CONFIRMED" },
-            });
+          // If payment is completed and has bookings, confirm them
+          if (newStatus === "COMPLETED" && existingPayment.bookings && existingPayment.bookings.length > 0) {
+            for (const booking of existingPayment.bookings) {
+              await prisma.booking.update({
+                where: { id: booking.id },
+                data: { status: "CONFIRMED" },
+              });
+            }
           }
         }
         break;

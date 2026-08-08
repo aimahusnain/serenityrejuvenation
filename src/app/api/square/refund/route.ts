@@ -33,7 +33,10 @@ export async function POST(req: NextRequest) {
     // Get the payment record
     const payment = await prisma.payment.findUnique({
       where: { id: paymentId },
-      include: { user: true },
+      include: { 
+        user: true,
+        bookings: true,
+      },
     });
 
     if (!payment) {
@@ -83,11 +86,13 @@ export async function POST(req: NextRequest) {
     });
 
     // Also update the booking status if applicable
-    if (payment.bookingId) {
-      await prisma.booking.update({
-        where: { id: payment.bookingId },
-        data: { status: "CANCELLED" },
-      });
+    if (payment.bookings && payment.bookings.length > 0) {
+      for (const booking of payment.bookings) {
+        await prisma.booking.update({
+          where: { id: booking.id },
+          data: { status: "CANCELLED" },
+        });
+      }
     }
 
     return NextResponse.json({

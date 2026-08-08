@@ -39,11 +39,10 @@ export async function POST(request: NextRequest) {
         status: 'COMPLETED',
         squarePaymentId: squarePaymentId || null,
         squareReceiptUrl: squareReceiptUrl || null,
-        bookingId: bookingId || null,
       },
     });
 
-    // If bookingId is provided, update booking status
+    // If bookingId is provided, update booking status and link payment
     if (bookingId) {
       await prisma.booking.update({
         where: { id: bookingId },
@@ -89,7 +88,7 @@ export async function GET(request: NextRequest) {
     const payment = await prisma.payment.findUnique({
       where: { id: paymentId },
       include: {
-        booking: {
+        bookings: {
           select: {
             id: true,
             date: true,
