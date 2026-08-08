@@ -141,6 +141,13 @@
   .animate-marquee {
     animation: marquee 50s linear infinite;
   }
+
+  button[class*="bg-[#7a219f]"]:hover,
+  button[class*="bg-[#7a219f]"]:focus-visible,
+  button[class*="bg-[#7a219f]/"]:hover,
+  button[class*="bg-[#7a219f]/"]:focus-visible {
+    color: white !important;
+  }
 }
 
 ::selection {

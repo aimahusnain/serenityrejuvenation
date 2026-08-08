@@ -67,6 +67,45 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    const [service, bookingUser] = await Promise.all([
+      prisma.product.findUnique({
+        where: { id: serviceId },
+        select: { title: true },
+      }),
+      prisma.user.findUnique({
+        where: { id: session.user.id },
+        select: {
+          name: true,
+          email: true,
+          preferences: {
+            select: { phone: true },
+          },
+        },
+      }),
+    ]);
+
+    const emailUrl = new URL("/api/sendemail", request.url).toString();
+    const emailResponse = await fetch(emailUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type: "appointment",
+        name: bookingUser?.name || session.user.name || "Customer",
+        email: bookingUser?.email || session.user.email || "",
+        service: service?.title || "Selected service",
+        appointmentDate: booking.date,
+        notes: booking.notes || "",
+        phone: bookingUser?.preferences?.phone || null,
+      }),
+    });
+
+    if (!emailResponse.ok) {
+      const responseBody = await emailResponse.json().catch(() => ({}));
+      console.error("Appointment email notification failed:", responseBody);
+    }
+
     return NextResponse.json({ success: true, booking });
   } catch (error) {
     console.error("Booking creation error:", error);
