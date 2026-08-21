@@ -28,15 +28,13 @@ export async function GET(request: NextRequest) {
     });
 
     if (blockedDay) {
-      // If entire day is blocked (no specific time slots)
-      if (!blockedDay.blockedTimeSlots || blockedDay.blockedTimeSlots.length === 0) {
-        return NextResponse.json({
-          availableSlots: [],
-          bookedSlots: [],
-          date: date,
-          message: blockedDay.reason || 'This date is not available for booking'
-        });
-      }
+      // Entire day is blocked
+      return NextResponse.json({
+        availableSlots: [],
+        bookedSlots: [],
+        date: date,
+        message: blockedDay.reason || 'This date is not available for booking'
+      });
     }
 
     // Get all bookings for this date
@@ -70,14 +68,7 @@ export async function GET(request: NextRequest) {
       return `${bookingDate.getHours().toString().padStart(2, '0')}:${bookingDate.getMinutes().toString().padStart(2, '0')}`;
     });
 
-    let availableSlots = allSlots.filter(slot => !bookedTimes.includes(slot));
-
-    // If specific time slots are blocked, filter them out
-    if (blockedDay && blockedDay.blockedTimeSlots && blockedDay.blockedTimeSlots.length > 0) {
-      availableSlots = availableSlots.filter(
-        slot => !blockedDay.blockedTimeSlots!.includes(slot)
-      );
-    }
+    const availableSlots = allSlots.filter(slot => !bookedTimes.includes(slot));
 
     return NextResponse.json({
       availableSlots,

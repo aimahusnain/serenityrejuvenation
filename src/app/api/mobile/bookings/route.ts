@@ -37,30 +37,14 @@ export async function POST(request: NextRequest) {
     });
 
     if (blockedDay) {
-      // Get the time slot from the booking date
-      const timeSlot = `${bookingDate.getHours().toString().padStart(2, '0')}:${bookingDate.getMinutes().toString().padStart(2, '0')}`;
-
-      // Check if specific time slot is blocked
-      if (blockedDay.blockedTimeSlots && blockedDay.blockedTimeSlots.length > 0) {
-        if (blockedDay.blockedTimeSlots.includes(timeSlot)) {
-          return NextResponse.json(
-            { 
-              error: 'This time slot is not available',
-              reason: blockedDay.reason || 'Time slot blocked by admin'
-            },
-            { status: 409 }
-          );
-        }
-      } else {
-        // Entire day is blocked
-        return NextResponse.json(
-          { 
-            error: 'This date is not available for booking',
-            reason: blockedDay.reason || 'Date blocked by admin'
-          },
-          { status: 409 }
-        );
-      }
+      // Entire day is blocked
+      return NextResponse.json(
+        { 
+          error: 'This date is not available for booking',
+          reason: blockedDay.reason || 'Date blocked by admin'
+        },
+        { status: 409 }
+      );
     }
 
     // Check for existing booking at the same date and time
