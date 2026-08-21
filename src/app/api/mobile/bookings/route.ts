@@ -13,80 +13,100 @@ export async function POST(request: NextRequest) {
     // Validate required fields
     if (!userId || !serviceId || !date) {
       return NextResponse.json(
-        { error: 'userId, serviceId, and date are required' },
+        { error: 'Missing required fields: userId, serviceId, date' },
         { status: 400 }
       );
     }
 
-    // Check if user exists
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-    });
-
-    if (!user) {
+    // Parse the booking date
+    const bookingDate = new Date(date);
+    if (isNaN(bookingDate.getTime())) {
       return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
+        { error: 'Invalid date format' },
+        { status: 400 }
       );
     }
 
-    // Check if service exists
-    const service = await prisma.product.findUnique({
-      where: { id: serviceId },
+    // Extract date part for checking blocked days
+    const dateOnly = new Date(bookingDate);
+    dateOnly.setHours(0, 0, 0, 0);
+
+    // Check if the date is blocked
+    const blockedDay = await prisma.blockedDay.findUnique({
+      where: { date: dateOnly }
     });
 
-    if (!service) {
+    if (blockedDay) {
+      // Get the time slot from the booking date
+      const timeSlot = `${bookingDate.getHours().toString().padStart(2, '0')}:${bookingDate.getMinutes().toString().padStart(2, '0')}`;
+
+      // Check if specific time slot is blocked
+      if (blockedDay.blockedTimeSlots && blockedDay.blockedTimeSlots.length > 0) {
+        if (blockedDay.blockedTimeSlots.includes(timeSlot)) {
+          return NextResponse.json(
+            { 
+              error: 'This time slot is not available',
+              reason: blockedDay.reason || 'Time slot blocked by admin'
+            },
+            { status: 409 }
+          );
+        }
+      } else {
+        // Entire day is blocked
+        return NextResponse.json(
+          { 
+            error: 'This date is not available for booking',
+            reason: blockedDay.reason || 'Date blocked by admin'
+          },
+          { status: 409 }
+        );
+      }
+    }
+
+    // Check for existing booking at the same date and time
+    const existingBooking = await prisma.booking.findFirst({
+      where: {
+        date: bookingDate,
+        status: {
+          in: ['PENDING', 'CONFIRMED']
+        }
+      }
+    });
+
+    if (existingBooking) {
+      const existingTime = `${bookingDate.getHours().toString().padStart(2, '0')}:${bookingDate.getMinutes().toString().padStart(2, '0')}`;
       return NextResponse.json(
-        { error: 'Service not found' },
-        { status: 404 }
+        { 
+          error: 'This time slot is already booked',
+          message: `Time slot ${existingTime} is already taken. Please select a different time.`,
+          existingBookingId: existingBooking.id
+        },
+        { status: 409 }
       );
     }
 
-    // Create booking
+    // Create the booking
     const booking = await prisma.booking.create({
       data: {
         userId,
         serviceId,
-        date: new Date(date),
-        notes: notes || null,
-        paymentId: paymentId || null,
-        status: 'PENDING',
-      },
+        date: bookingDate,
+        notes,
+        paymentId,
+        status: 'PENDING'
+      }
     });
-
-    // Update booking with confirmation details
-    const updatedBooking = await prisma.booking.findUnique({
-      where: { id: booking.id },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
-      },
-    });
-
-    // Get user phone from preferences if needed
-    const userPreferences = await prisma.userPreferences.findUnique({
-      where: { userId },
-      select: { phone: true },
-    });
-
-    const responseBooking = updatedBooking ? {
-      ...updatedBooking,
-      user: updatedBooking.user ? {
-        ...updatedBooking.user,
-        phone: userPreferences?.phone || null,
-      } : null,
-    } : null;
 
     return NextResponse.json({
       success: true,
-      booking: responseBooking,
-      message: 'Booking created successfully',
+      booking: {
+        id: booking.id,
+        date: booking.date,
+        status: booking.status
+      },
+      message: 'Booking created successfully'
     });
+
   } catch (error) {
     console.error('Error creating booking:', error);
     return NextResponse.json(
@@ -111,47 +131,28 @@ export async function GET(request: NextRequest) {
 
     const bookings = await prisma.booking.findMany({
       where: {
-        userId,
+        userId: userId
       },
       include: {
-        payment: {
+        payment: true,
+        user: {
           select: {
             id: true,
-            amount: true,
-            status: true,
-            squareReceiptUrl: true,
-          },
-        },
+            name: true,
+            email: true
+          }
+        }
       },
       orderBy: {
-        date: 'desc',
-      },
+        date: 'desc'
+      }
     });
-
-    // Get service details for each booking
-    const bookingsWithServices = await Promise.all(
-      bookings.map(async (booking) => {
-        const service = await prisma.product.findUnique({
-          where: { id: booking.serviceId },
-          select: {
-            id: true,
-            title: true,
-            price: true,
-            description: true,
-            image: true,
-          },
-        });
-
-        return {
-          ...booking,
-          service,
-        };
-      })
-    );
 
     return NextResponse.json({
-      bookings: bookingsWithServices,
+      bookings,
+      total: bookings.length
     });
+
   } catch (error) {
     console.error('Error fetching bookings:', error);
     return NextResponse.json(

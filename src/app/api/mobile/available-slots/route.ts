@@ -22,6 +22,23 @@ export async function GET(request: NextRequest) {
     const startOfDay = new Date(selectedDate.setHours(0, 0, 0, 0));
     const endOfDay = new Date(selectedDate.setHours(23, 59, 59, 999));
 
+    // Check if the entire day is blocked
+    const blockedDay = await prisma.blockedDay.findUnique({
+      where: { date: startOfDay }
+    });
+
+    if (blockedDay) {
+      // If entire day is blocked (no specific time slots)
+      if (!blockedDay.blockedTimeSlots || blockedDay.blockedTimeSlots.length === 0) {
+        return NextResponse.json({
+          availableSlots: [],
+          bookedSlots: [],
+          date: date,
+          message: blockedDay.reason || 'This date is not available for booking'
+        });
+      }
+    }
+
     // Get all bookings for this date
     const bookedSlots = await prisma.booking.findMany({
       where: {
@@ -53,7 +70,14 @@ export async function GET(request: NextRequest) {
       return `${bookingDate.getHours().toString().padStart(2, '0')}:${bookingDate.getMinutes().toString().padStart(2, '0')}`;
     });
 
-    const availableSlots = allSlots.filter(slot => !bookedTimes.includes(slot));
+    let availableSlots = allSlots.filter(slot => !bookedTimes.includes(slot));
+
+    // If specific time slots are blocked, filter them out
+    if (blockedDay && blockedDay.blockedTimeSlots && blockedDay.blockedTimeSlots.length > 0) {
+      availableSlots = availableSlots.filter(
+        slot => !blockedDay.blockedTimeSlots!.includes(slot)
+      );
+    }
 
     return NextResponse.json({
       availableSlots,
